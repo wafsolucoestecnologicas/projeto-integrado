@@ -1,7 +1,9 @@
-import users from './users.routes';
+import authentication from './authentication.routes';
+import user from './user.routes';
 
 const routes: any = {
-    users
+    authentication,
+    user
 };
 
 export default routes;
