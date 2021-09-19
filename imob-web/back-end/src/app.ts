@@ -4,6 +4,8 @@ import express from 'express';
 import cors from 'cors';
 
 import routes from './routes/index';
+import { authenticationMiddleware } from './middlewares/authentication.middleware';
+import CONFIGURATION from '../config/dotenv';
 
 export class App {
 
@@ -12,7 +14,7 @@ export class App {
 
     constructor() {
         this.express = express();
-        this.port = 3000;
+        this.port = (CONFIGURATION.SERVER.PORT) ? CONFIGURATION.SERVER.PORT : 3000;
 
         this.middlewares();
         this.database();
@@ -23,6 +25,7 @@ export class App {
     private middlewares(): void {
         this.express.use(express.json());
         this.express.use(cors());
+        this.express.use(authenticationMiddleware);
     }
 
     private database(): void {
@@ -36,7 +39,8 @@ export class App {
     }
 
     private routes(): void {
-        this.express.use('/users', routes.users);
+        this.express.use('/authentication', routes.authentication);
+        this.express.use('/users', routes.user);
     }
 
     private listen(): void {
