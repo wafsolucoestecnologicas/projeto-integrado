@@ -1,4 +1,4 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
 
 @Entity({
     schema: 'business',
@@ -24,7 +24,7 @@ export class CompanyModel {
         nullable: false,
         comment: 'CNPJ da imobiliária'
     })
-    public CNPJ: number;
+    public cnpj: string;
 
     @Column({
         name: 'corporate_name',
@@ -32,7 +32,7 @@ export class CompanyModel {
         nullable: false,
         comment: 'Razão social da imobiliária'
     })
-    public corporateName: number;
+    public corporateName: string;
 
     @Column({
         name: 'state_registration',
@@ -40,7 +40,7 @@ export class CompanyModel {
         nullable: false,
         comment: 'Inscrição estadual da imobiliária'
     })
-    public stateRegistration: number;
+    public stateRegistration: string;
 
     @Column({
         name: 'created_at',
@@ -62,5 +62,16 @@ export class CompanyModel {
     public updatedAt: Date;
 
     constructor() { }
+
+    @BeforeInsert()
+    public setCreatedAt(): void {
+        this.createdAt = new Date();
+    }
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    public setUpdatedAt(): void {
+        this.updatedAt = new Date();
+    }
 
 }
