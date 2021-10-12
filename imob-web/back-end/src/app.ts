@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Connection, ConnectionOptions, createConnection } from 'typeorm';
+import { ConnectionOptions, createConnection } from 'typeorm';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -13,7 +13,6 @@ export class App {
     private port: number;
     private express: express.Application;
     private options: ConnectionOptions;
-    private connection: Connection;
 
     constructor() {
         this.port = (CONFIGURATION.SERVER.PORT) ? CONFIGURATION.SERVER.PORT : 3000;
