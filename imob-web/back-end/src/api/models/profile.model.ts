@@ -1,4 +1,4 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
 
 @Entity({
     schema: 'authentication',
@@ -62,5 +62,16 @@ export class ProfileModel {
     public updatedAt: Date;
 
     constructor() { }
+
+    @BeforeInsert()
+    public setCreatedAt(): void {
+        this.createdAt = new Date();
+    }
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    public setUpdatedAt(): void {
+        this.updatedAt = new Date();
+    }
 
 }
