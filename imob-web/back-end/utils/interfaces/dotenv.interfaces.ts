@@ -1,4 +1,5 @@
 export interface Configuration {
+    ENVIRONMENT: string,
     SERVER: {
         PORT: number
     },

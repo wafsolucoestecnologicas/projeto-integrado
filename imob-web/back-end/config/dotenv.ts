@@ -18,6 +18,7 @@ switch (process.env.NODE_ENV) {
 dotenv.config({ path: pathConfig });
 
 const CONFIGURATION: Configuration = {
+    ENVIRONMENT: process.env.NODE_ENV || '',
     SERVER: {
         PORT: 0
     },
