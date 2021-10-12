@@ -1,8 +1,7 @@
 import { Entity, Column, JoinColumn, OneToOne, BeforeInsert, BeforeUpdate } from 'typeorm';
-import bcrypt from 'bcryptjs';
-
 import { ProfileModel } from './profile.model';
 import { CompanyModel } from './company.model';
+import bcrypt from 'bcryptjs';
 
 @Entity({
     schema: 'authentication',
@@ -20,22 +19,6 @@ export class UserModel {
         comment: 'Código sequencial únido do usuário'
     })
     public id: number;
-
-    @Column({
-        name: 'profile_id',
-        type: 'int',
-        nullable: false,
-        comment: 'Código sequencial único do perfil do usuário'
-    })
-    public profileId: number;
-
-    @Column({
-        name: 'company_id',
-        type: 'int',
-        nullable: false,
-        comment: 'Código sequencial único da imobiliária do usuário'
-    })
-    public companyId: number;
 
     @Column({
         name: 'uuid',
@@ -104,11 +87,11 @@ export class UserModel {
     public updatedAt: Date;
 
     @OneToOne(() => ProfileModel)
-    @JoinColumn()
+    @JoinColumn({ name: 'profile_id' })
     public profile: ProfileModel;
 
     @OneToOne(() => CompanyModel)
-    @JoinColumn()
+    @JoinColumn({ name: 'company_id' })
     public company: CompanyModel;
 
     constructor() { }
@@ -117,6 +100,17 @@ export class UserModel {
     @BeforeUpdate()
     public encryptPassword(): void {
         this.password = bcrypt.hashSync(this.password, 8);
+    }
+
+    @BeforeInsert()
+    public setCreatedAt(): void {
+        this.createdAt = new Date();
+    }
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    public setUpdatedAt(): void {
+        this.updatedAt = new Date();
     }
 
 }
