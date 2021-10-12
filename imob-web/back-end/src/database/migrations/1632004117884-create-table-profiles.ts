@@ -19,7 +19,7 @@ export class createTableProfiles1632004117884 implements MigrationInterface {
                     },
                     {
                         name: 'user_type',
-                        type: 'char(1)',
+                        type: 'varchar(15)',
                         isNullable: false
                     },
                     {
