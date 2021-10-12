@@ -1,10 +1,9 @@
-import { getRepository, Repository } from "typeorm";
-import { Request, Response } from "express";
+import { getRepository, Repository } from 'typeorm';
+import { Request, Response } from 'express';
+import { UserModel } from '../models/user.model';
+import { JWT } from '../../../utils/classes/jwt.class';
+import { statusMessages } from '../../../utils/utils';
 import bcrypt from 'bcryptjs';
-
-import { UserModel } from "../models/user.model";
-import { JWT } from "../../../utils/classes/jwt.class";
-import statusMessages from '../../../utils/utils';
 
 export class AuthenticationController {
 
@@ -39,8 +38,8 @@ export class AuthenticationController {
             jwt.setExpiredIn('1d');
 
             return response.status(200).json({ user, token: jwt.generateToken() });
-        } catch (e: any) {
-            return response.status(500).json(e.message);
+        } catch (error: any) {
+            return response.status(500).json({ message: error.message });
         }
     }
 
