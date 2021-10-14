@@ -12,5 +12,6 @@ export const returnMessages: string[] = [
     'Já existe um registro com o CNPJ informado no banco de dados.',
     'Já existe um registro com o e-mail informado no banco de dados.',
     'Erro interno ao cadastrar uma nova imobiliária.',
-    'Erro interno ao recuperar o perfil de usuário gestor.'
+    'Erro interno ao recuperar o perfil de usuário gestor.',
+    'Senha de usuário informada não confere.'
 ];
