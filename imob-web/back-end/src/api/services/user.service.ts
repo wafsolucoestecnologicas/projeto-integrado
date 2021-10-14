@@ -1,5 +1,6 @@
 import { getRepository, Repository, DeleteResult } from 'typeorm';
 import { UserModel } from '../models/user.model';
+import bcrypt from 'bcryptjs';
 
 export class UserService {
 
@@ -92,6 +93,27 @@ export class UserService {
             });
 
         return result;
+    }
+
+    public async findByEmail(email: string): Promise<UserModel | undefined> {
+        const userModel: UserModel | undefined =
+            await this.repository.findOne({
+                relations: [
+                    'profile'
+                ],
+                where: {
+                    email: email
+                }
+            });
+
+        return userModel;
+    }
+
+    public async validatePassword(data: UserModel, password: string): Promise<boolean> {
+        const isValid: boolean = 
+            await bcrypt.compare(password, data.password);
+
+        return isValid;
     }
 
     public validateData(data: UserModel): boolean {
