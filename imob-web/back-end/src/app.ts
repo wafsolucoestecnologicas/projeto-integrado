@@ -76,7 +76,7 @@ export class App {
     }
 
     private routes(): void {
-        this.express.use('/authentication', routes.authentication);
+        this.express.use('/authentications', routes.authentication);
         this.express.use('/companies', routes.company);
         this.express.use('/profiles', routes.profile);
         this.express.use('/users', routes.user);

@@ -8,7 +8,7 @@ const validateURLWithoutAuthentication = (url: string): boolean => {
 
     /**@TODO Deixar apenas as rotas de authentication e users futuramente */
     const urls: string[] = [
-        'authentication',
+        'authentications',
         'users',
         'companies',
         'profiles'
