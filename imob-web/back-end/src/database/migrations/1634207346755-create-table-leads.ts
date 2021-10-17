@@ -1,0 +1,126 @@
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
+
+export class createTableLeads1634207346755 implements MigrationInterface {
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.createTable(
+            new Table({
+                schema: 'business',
+                name: 'leads',
+                columns: [
+                    {
+                        name: 'id',
+                        type: 'integer',
+                        isPrimary: true,
+                        isGenerated: true,
+                        isUnique: true,
+                        generationStrategy: 'increment',
+                        isNullable: false
+                    },
+                    {
+                        name: 'company_id',
+                        type: 'integer',
+                        isNullable: false
+                    },
+                    {
+                        name: 'person_id',
+                        type: 'integer',
+                        isNullable: false
+                    },
+                    {
+                        name: 'created_by_administrator',
+                        type: 'boolean',
+                        isNullable: false
+                    },
+                    {
+                        name: 'created_by_manager',
+                        type: 'boolean',
+                        isNullable: false
+                    },
+                    {
+                        name: 'created_by_secretary',
+                        type: 'boolean',
+                        isNullable: false
+                    },
+                    {
+                        name: 'name',
+                        type: 'varchar(50)',
+                        isNullable: false
+                    },
+                    {
+                        name: 'surname',
+                        type: 'varchar(50)',
+                        isNullable: false
+                    },
+                    {
+                        name: 'email',
+                        type: 'varchar(50)',
+                        isUnique: true,
+                        isNullable: false
+                    },
+                    {
+                        name: 'source',
+                        type: 'varchar(50)',
+                        isNullable: false
+                    },
+                    {
+                        name: 'landline',
+                        type: 'char(10)',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'cell_phone',
+                        type: 'char(11)',
+                        isNullable: false
+                    },
+                    {
+                        name: 'created_at',
+                        type: 'timestamp',
+                        isNullable: false
+                    },
+                    {
+                        name: 'updated_at',
+                        type: 'timestamp',
+                        isNullable: false
+                    }
+                ],
+                foreignKeys: [
+                    {
+                        name: 'fk_company_id',
+                        columnNames: ['company_id'],
+                        referencedSchema: 'business',
+                        referencedTableName: 'business.companies',
+                        referencedColumnNames: ['id']
+                    },
+                    {
+                        name: 'fk_administrator_id',
+                        columnNames: ['person_id'],
+                        referencedSchema: 'persons',
+                        referencedTableName: 'persons.administrators',
+                        referencedColumnNames: ['id']
+                    },
+                    {
+                        name: 'fk_manager_id',
+                        columnNames: ['person_id'],
+                        referencedSchema: 'persons',
+                        referencedTableName: 'persons.managers',
+                        referencedColumnNames: ['id']
+                    },
+                    {
+                        name: 'fk_secretary_id',
+                        columnNames: ['person_id'],
+                        referencedSchema: 'persons',
+                        referencedTableName: 'persons.secretaries',
+                        referencedColumnNames: ['id']
+                    }
+                ]
+            })
+        );
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('business.leads');
+    }
+
+}
