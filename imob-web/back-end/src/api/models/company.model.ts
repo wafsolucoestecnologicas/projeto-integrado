@@ -48,7 +48,7 @@ export class CompanyModel {
         nullable: true,
         comment: 'Percentual de comissão à receber pelas vendas de imóveis da imobiliária'
     })
-    public percentage_commission_received: number;
+    public percentageCommissionReceived: number;
 
     @Column({
         name: 'percentage_commission_payable',
@@ -56,7 +56,7 @@ export class CompanyModel {
         nullable: true,
         comment: 'Percentual de comissão à pagar aos corretores pelas vendas e captação de imóveis da imobiliária'
     })
-    public percentage_commission_payable: number;
+    public percentageCommissionPayable: number;
 
     @Column({
         name: 'created_at',
