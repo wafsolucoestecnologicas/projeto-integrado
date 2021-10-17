@@ -1,10 +1,11 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { CompanyModel } from './company.model';
 
 @Entity({
     schema: 'business',
     name: 'companies'
 })
-export class CompanyModel {
+export class CompanyEntity implements CompanyModel {
 
     @Column({
         name: 'id',

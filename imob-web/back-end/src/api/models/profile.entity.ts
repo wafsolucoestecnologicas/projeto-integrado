@@ -1,10 +1,11 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { ProfileModel } from './profile.model';
 
 @Entity({
     schema: 'authentication',
     name: 'profiles'
 })
-export class ProfileModel {
+export class ProfileEntity implements ProfileModel {
 
     @Column({
         name: 'id',

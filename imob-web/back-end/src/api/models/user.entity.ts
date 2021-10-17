@@ -1,13 +1,14 @@
 import { Entity, Column, JoinColumn, OneToOne, BeforeInsert, BeforeUpdate } from 'typeorm';
-import { ProfileModel } from './profile.model';
-import { CompanyModel } from './company.model';
+import { UserModel } from './user.model';
+import { CompanyEntity } from './company.entity';
+import { ProfileEntity } from './profile.entity';
 import bcrypt from 'bcryptjs';
 
 @Entity({
     schema: 'authentication',
     name: 'users'
 })
-export class UserModel {
+export class UserEntity implements UserModel {
 
     @Column({
         name: 'id',
@@ -86,13 +87,13 @@ export class UserModel {
     })
     public updatedAt: Date;
 
-    @OneToOne(() => CompanyModel)
+    @OneToOne(() => CompanyEntity)
     @JoinColumn({ name: 'company_id' })
-    public company: CompanyModel;
+    public company: CompanyEntity;
 
-    @OneToOne(() => ProfileModel)
+    @OneToOne(() => ProfileEntity)
     @JoinColumn({ name: 'profile_id' })
-    public profile: ProfileModel;
+    public profile: ProfileEntity;
 
     constructor() { }
 
