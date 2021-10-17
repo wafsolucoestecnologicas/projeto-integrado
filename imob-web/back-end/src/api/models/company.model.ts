@@ -43,6 +43,22 @@ export class CompanyModel {
     public stateRegistration: string;
 
     @Column({
+        name: 'percentage_commission_received',
+        type: 'numeric',
+        nullable: true,
+        comment: 'Percentual de comissão à receber pelas vendas de imóveis da imobiliária'
+    })
+    public percentage_commission_received: number;
+
+    @Column({
+        name: 'percentage_commission_payable',
+        type: 'numeric',
+        nullable: true,
+        comment: 'Percentual de comissão à pagar aos corretores pelas vendas e captação de imóveis da imobiliária'
+    })
+    public percentage_commission_payable: number;
+
+    @Column({
         name: 'created_at',
         type: 'timestamp',
         nullable: false,

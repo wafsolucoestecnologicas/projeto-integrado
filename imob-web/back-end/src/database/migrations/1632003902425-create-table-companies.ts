@@ -33,6 +33,18 @@ export class createTableCompanies1632003902425 implements MigrationInterface {
                         isNullable: false
                     },
                     {
+                        name: 'percentage_commission_received',
+                        type: 'numeric(21, 2)',
+                        default: 0,
+                        isNullable: true
+                    },
+                    {
+                        name: 'percentage_commission_payable',
+                        type: 'numeric(21, 2)',
+                        default: 0,
+                        isNullable: true
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         isNullable: false
