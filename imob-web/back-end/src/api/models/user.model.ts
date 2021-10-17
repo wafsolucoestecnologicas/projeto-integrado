@@ -86,13 +86,13 @@ export class UserModel {
     })
     public updatedAt: Date;
 
-    @OneToOne(() => ProfileModel)
-    @JoinColumn({ name: 'profile_id' })
-    public profile: ProfileModel;
-
     @OneToOne(() => CompanyModel)
     @JoinColumn({ name: 'company_id' })
     public company: CompanyModel;
+
+    @OneToOne(() => ProfileModel)
+    @JoinColumn({ name: 'profile_id' })
+    public profile: ProfileModel;
 
     constructor() { }
 
