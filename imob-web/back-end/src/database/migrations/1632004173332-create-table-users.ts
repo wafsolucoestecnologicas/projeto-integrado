@@ -18,12 +18,12 @@ export class createTableUsers1632004173332 implements MigrationInterface {
                         isNullable: false
                     },
                     {
-                        name: 'profile_id',
+                        name: 'company_id',
                         type: 'integer',
                         isNullable: false,
                     },
                     {
-                        name: 'company_id',
+                        name: 'profile_id',
                         type: 'integer',
                         isNullable: false,
                     },
@@ -71,15 +71,17 @@ export class createTableUsers1632004173332 implements MigrationInterface {
                 ],
                 foreignKeys: [
                     {
-                        name: 'fk_profile_id',
-                        columnNames: ['profile_id'],
-                        referencedTableName: 'authentication.profiles',
+                        name: 'fk_company_id',
+                        columnNames: ['company_id'],
+                        referencedSchema: 'business',
+                        referencedTableName: 'business.companies',
                         referencedColumnNames: ['id']
                     },
                     {
-                        name: 'fk_company_id',
-                        columnNames: ['company_id'],
-                        referencedTableName: 'business.companies',
+                        name: 'fk_profile_id',
+                        columnNames: ['profile_id'],
+                        referencedSchema: 'authentication',
+                        referencedTableName: 'authentication.profiles',
                         referencedColumnNames: ['id']
                     }
                 ]
