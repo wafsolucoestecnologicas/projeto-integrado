@@ -8,7 +8,7 @@
     "synchronize": false,
     "logging": true,
     "entities": [
-        "src/api/models/*.ts"
+        "src/api/entities/*.ts"
     ],
     "migrations": [
         "src/database/migrations/*.ts"

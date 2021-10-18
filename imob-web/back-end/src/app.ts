@@ -27,8 +27,8 @@ export class App {
             synchronize: false,
             logging: true,
             entities: [
-                `${path.join(__dirname, 'api', 'models', '*.ts')}`,
-                `${path.join(__dirname, 'api', 'models', '*.js')}`
+                `${path.join(__dirname, 'api', 'entities', '*.ts')}`,
+                `${path.join(__dirname, 'api', 'entities', '*.js')}`
             ],
             migrations: [
                 `${path.join(__dirname, 'database', 'migrations', '*.ts')}`
