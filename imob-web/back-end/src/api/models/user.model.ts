@@ -1,5 +1,5 @@
-import { CompanyEntity } from "./company.entity";
-import { ProfileEntity } from "./profile.entity";
+import { CompanyEntity } from "../entities/company.entity";
+import { ProfileEntity } from "../entities/profile.entity";
 
 export interface UserModel {
     id: number;
