@@ -1,5 +1,5 @@
 import { Entity, Column, JoinColumn, OneToOne, BeforeInsert, BeforeUpdate } from 'typeorm';
-import { UserModel } from './user.model';
+import { UserModel } from '../models/user.model';
 import { CompanyEntity } from './company.entity';
 import { ProfileEntity } from './profile.entity';
 import bcrypt from 'bcryptjs';

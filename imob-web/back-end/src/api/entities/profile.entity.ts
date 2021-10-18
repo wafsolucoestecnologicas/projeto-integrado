@@ -1,5 +1,5 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
-import { ProfileModel } from './profile.model';
+import { ProfileModel } from '../models/profile.model';
 
 @Entity({
     schema: 'authentication',
