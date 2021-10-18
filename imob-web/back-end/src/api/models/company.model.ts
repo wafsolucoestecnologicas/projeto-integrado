@@ -8,6 +8,7 @@ export interface CompanyModel {
     createdAt: Date;
     updatedAt: Date;
 
+    convertValuesToNumber(): void;
     setCreatedAt(): void;
     setUpdatedAt(): void;
 }
