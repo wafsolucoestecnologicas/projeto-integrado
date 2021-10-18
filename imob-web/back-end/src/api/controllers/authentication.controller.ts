@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UserModel } from '../models/user.model';
+import { UserEntity } from '../entities/user.entity';
 import { JWT } from '../../../utils/classes/jwt.class';
 import { returnMessages, statusMessages } from '../../../utils/utils';
 import { UserService } from '../services/user.service';
@@ -18,37 +18,37 @@ export class AuthenticationController {
                     await userService.alreadyRegisteredByEmail(request.body.email);
 
                 if (!result) {
-                    return response.status(401).json({ message: statusMessages[401] });
+                    return response.status(401).json({ message: `${statusMessages[401]} ${returnMessages[1]}` });
                 }
 
-                const userModel: UserModel | undefined =
+                const userEntity: UserEntity | undefined =
                     await userService.findByEmail(request.body.email);
 
-                if (userModel) {
+                if (userEntity) {
                     const isValid: boolean =
-                        await userService.validatePassword(userModel, request.body.password);
+                        await userService.validatePassword(userEntity, request.body.password);
 
                     if (!isValid) {
                         return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[7]}` });
                     }
 
-                    userModel.password = '';
+                    userEntity.password = '';
 
                     const jwt: JWT = new JWT();
 
                     jwt.setPayload({
-                        id: userModel.id,
-                        uuid: userModel.uuid,
-                        name: userModel.name,
-                        surname: userModel.surname,
-                        email: userModel.email,
-                        isAdmin: userModel.profile.isAdmin,
-                        permissions: userModel.profile.permissions
+                        id: userEntity.id,
+                        uuid: userEntity.uuid,
+                        name: userEntity.name,
+                        surname: userEntity.surname,
+                        email: userEntity.email,
+                        isAdmin: userEntity.profile.isAdmin,
+                        permissions: userEntity.profile.permissions
                     });
 
                     jwt.setExpiredIn('1d');
 
-                    return response.status(200).json({ userModel, token: jwt.generateToken() });
+                    return response.status(200).json({ userEntity, token: jwt.generateToken() });
                 } else {
                     return response.status(500).json({ message: `${statusMessages[500]} ${returnMessages[1]}` });
                 }

@@ -1,11 +1,11 @@
 import { DeleteResult } from 'typeorm';
 import { Request, Response } from 'express';
-import { CompanyModel } from '../models/company.model';
-import { CompanyService } from '../services/company.service';
-import { ProfileModel } from '../models/profile.model';
-import { ProfileService } from '../services/profile.service';
-import { UserModel } from '../models/user.model';
+import { UserEntity } from '../entities/user.entity';
+import { CompanyEntity } from '../entities/company.entity';
+import { ProfileEntity } from '../entities/profile.entity';
 import { UserService } from '../services/user.service';
+import { CompanyService } from '../services/company.service';
+import { ProfileService } from '../services/profile.service';
 import { statusMessages, returnMessages } from '../../../utils/utils';
 
 export class UserController {
@@ -17,10 +17,10 @@ export class UserController {
             const userService: UserService =
                 new UserService();
 
-            const userModel: UserModel[] =
+            const userEntity: UserEntity[] =
                 await userService.index();
 
-            return response.status(200).json(userModel);
+            return response.status(200).json(userEntity);
         } catch (error: any) {
             return response.status(500).json({ message: error.message });
         }
@@ -42,30 +42,32 @@ export class UserController {
                     const companyService: CompanyService =
                         new CompanyService();
 
-                    const companyModel: CompanyModel =
+                    const companyEntity: CompanyEntity =
                         await companyService.create({
                             cnpj: '00000000000000',
                             corporateName: 'Empresa Cadastrada Automaticamente',
-                            stateRegistration: '0000000000'
-                        } as CompanyModel);
+                            stateRegistration: '0000000000',
+                            percentageCommissionReceived: 0,
+                            percentageCommissionPayable: 0
+                        } as CompanyEntity);
 
-                    if (companyModel) {
+                    if (companyEntity) {
                         const profileService: ProfileService =
                             new ProfileService();
 
-                        const profileModel: ProfileModel | undefined =
+                        const profileEntity: ProfileEntity | undefined =
                             await profileService.read(2);
 
-                        if (profileModel && profileModel.userType === 'manager') {
-                            request.body.company = companyModel;
-                            request.body.profile = profileModel;
+                        if (profileEntity && profileEntity.userType === 'manager') {
+                            request.body.company = companyEntity;
+                            request.body.profile = profileEntity;
 
-                            const userModel: UserModel =
+                            const userEntity: UserEntity =
                                 await userService.create(request.body);
 
-                            if (userModel) userModel.password = '';
+                            if (userEntity) userEntity.password = '';
 
-                            return response.status(200).json(userModel);
+                            return response.status(200).json(userEntity);
                         } else {
                             return response.status(500).json({ message: `${returnMessages[6]}` });
                         }
@@ -89,12 +91,12 @@ export class UserController {
                 new UserService();
 
             if (Number(request.params.id)) {
-                const userModel: UserModel | undefined =
+                const userEntity: UserEntity | undefined =
                     await userService.read(Number(request.params.id));
 
-                if (userModel) userModel.password = '';
+                if (userEntity) userEntity.password = '';
 
-                return response.status(200).json(userModel);
+                return response.status(200).json(userEntity);
             } else {
                 return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[2]}` });
             }
@@ -117,12 +119,12 @@ export class UserController {
                         userService.validateData(request.body);
 
                     if (result) {
-                        const userModel: UserModel =
+                        const userEntity: UserEntity =
                             await userService.update(Number(request.params.id), request.body);
 
-                        if (userModel) userModel.password = '';
+                        if (userEntity) userEntity.password = '';
 
-                        return response.status(200).json(userModel);
+                        return response.status(200).json(userEntity);
                     } else {
                         return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
                     }
@@ -143,14 +145,14 @@ export class UserController {
                 new UserService();
 
             if (Number(request.params.id)) {
-                const userModel: UserModel | undefined =
+                const userEntity: UserEntity | undefined =
                     await userService.read(Number(request.params.id));
 
-                if (userModel) {
+                if (userEntity) {
                     const companyService: CompanyService =
                         new CompanyService();
 
-                    const companyId: number = userModel.company.id;
+                    const companyId: number = userEntity.company.id;
 
                     const userDeleteResult: DeleteResult =
                         await userService.delete(Number(request.params.id));

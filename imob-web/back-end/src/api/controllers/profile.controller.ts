@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ProfileModel } from '../models/profile.model';
+import { ProfileEntity } from '../entities/profile.entity';
 import { ProfileService } from '../services/profile.service';
 import { returnMessages, statusMessages } from '../../../utils/utils';
 
@@ -12,10 +12,10 @@ export class ProfileController {
             const profileService: ProfileService =
                 new ProfileService();
 
-            const profileModel: ProfileModel[] =
+            const profileEntity: ProfileEntity[] =
                 await profileService.index();
 
-            return response.status(200).json(profileModel);
+            return response.status(200).json(profileEntity);
         } catch (error: any) {
             return response.status(500).json({ message: error.message });
         }
@@ -35,10 +35,10 @@ export class ProfileController {
                 new ProfileService();
 
             if (Number(request.params.id)) {
-                const profileModel: ProfileModel | undefined =
+                const profileEntity: ProfileEntity | undefined =
                     await profileService.read(Number(request.params.id));
 
-                return response.status(200).json(profileModel);
+                return response.status(200).json(profileEntity);
             } else {
                 return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[2]}` });
             }

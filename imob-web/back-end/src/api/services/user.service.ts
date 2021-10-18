@@ -1,17 +1,17 @@
 import { getRepository, Repository, DeleteResult } from 'typeorm';
-import { UserModel } from '../models/user.model';
+import { UserEntity } from '../entities/user.entity';
 import bcrypt from 'bcryptjs';
 
 export class UserService {
 
-    private repository: Repository<UserModel>;
+    private repository: Repository<UserEntity>;
 
     constructor() {
-        this.repository = getRepository(UserModel);
+        this.repository = getRepository(UserEntity);
     }
 
-    public async index(): Promise<UserModel[]> {
-        const userModel: UserModel[] =
+    public async index(): Promise<UserEntity[]> {
+        const userEntity: UserEntity[] =
             await this.repository.find({
                 select: [
                     'id',
@@ -27,11 +27,11 @@ export class UserService {
                 ]
             });
 
-        return userModel;
+        return userEntity;
     }
 
-    public async create(data: UserModel): Promise<UserModel> {
-        const userModel: UserModel =
+    public async create(data: UserEntity): Promise<UserEntity> {
+        const userEntity: UserEntity =
             this.repository.create({
                 profile: data.profile,
                 company: data.company,
@@ -41,14 +41,14 @@ export class UserService {
                 password: data.password
             });
 
-        const result: UserModel =
-            await this.repository.save(userModel);
+        const result: UserEntity =
+            await this.repository.save(userEntity);
 
         return result;
     }
 
-    public async read(id: number): Promise<UserModel | undefined> {
-        const userModel: UserModel | undefined =
+    public async read(id: number): Promise<UserEntity | undefined> {
+        const userEntity: UserEntity | undefined =
             await this.repository.findOne({
                 select: [
                     'id',
@@ -67,12 +67,12 @@ export class UserService {
                 }
             });
 
-        return userModel;
+        return userEntity;
     }
 
-    public async update(id: number, data: UserModel): Promise<UserModel> {
-        const userModel: UserModel =
-            await this.repository.create({
+    public async update(id: number, data: UserEntity): Promise<UserEntity> {
+        const userEntity: UserEntity =
+            this.repository.create({
                 id: id,
                 name: data.name.toLowerCase(),
                 surname: data.surname.toLowerCase(),
@@ -80,8 +80,8 @@ export class UserService {
                 password: data.password
             });
 
-        const result: UserModel =
-            await this.repository.save(userModel);
+        const result: UserEntity =
+            await this.repository.save(userEntity);
 
         return result;
     }
@@ -95,8 +95,8 @@ export class UserService {
         return result;
     }
 
-    public async findByEmail(email: string): Promise<UserModel | undefined> {
-        const userModel: UserModel | undefined =
+    public async findByEmail(email: string): Promise<UserEntity | undefined> {
+        const userEntity: UserEntity | undefined =
             await this.repository.findOne({
                 relations: [
                     'profile'
@@ -106,17 +106,17 @@ export class UserService {
                 }
             });
 
-        return userModel;
+        return userEntity;
     }
 
-    public async validatePassword(data: UserModel, password: string): Promise<boolean> {
-        const isValid: boolean = 
+    public async validatePassword(data: UserEntity, password: string): Promise<boolean> {
+        const isValid: boolean =
             await bcrypt.compare(password, data.password);
 
         return isValid;
     }
 
-    public validateData(data: UserModel): boolean {
+    public validateData(data: UserEntity): boolean {
         let isValid: boolean = true;
 
         if (!data.name || !data.surname || !data.email || !data.password) {
@@ -127,7 +127,7 @@ export class UserService {
     }
 
     public async alreadyRegisteredByEmail(email: string): Promise<boolean> {
-        const userModel: UserModel | undefined =
+        const userEntity: UserEntity | undefined =
             await this.repository.findOne({
                 select: ['email'],
                 where: {
@@ -135,13 +135,13 @@ export class UserService {
                 }
             });
 
-        const result: boolean = (userModel) ? true : false;
+        const result: boolean = (userEntity) ? true : false;
 
         return result;
     }
 
     public async alreadyRegisteredById(id: number): Promise<boolean> {
-        const userModel: UserModel | undefined =
+        const userEntity: UserEntity | undefined =
             await this.repository.findOne({
                 select: ['id'],
                 where: {
@@ -149,7 +149,7 @@ export class UserService {
                 }
             });
 
-        const result: boolean = (userModel) ? true : false;
+        const result: boolean = (userEntity) ? true : false;
 
         return result;
     }
