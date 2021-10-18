@@ -1,5 +1,5 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
-import { CompanyModel } from './company.model';
+import { Entity, Column, AfterLoad, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { CompanyModel } from '../models/company.model';
 
 @Entity({
     schema: 'business',
@@ -79,6 +79,12 @@ export class CompanyEntity implements CompanyModel {
     public updatedAt: Date;
 
     constructor() { }
+
+    @AfterLoad()
+    convertValuesToNumber(): void {
+        this.percentageCommissionReceived = Number(this.percentageCommissionReceived);
+        this.percentageCommissionPayable = Number(this.percentageCommissionPayable);
+    }
 
     @BeforeInsert()
     public setCreatedAt(): void {
