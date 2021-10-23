@@ -80,6 +80,13 @@ export class App {
         this.express.use('/companies', routes.company);
         this.express.use('/profiles', routes.profile);
         this.express.use('/users', routes.user);
+        this.express.use('/administrators', routes.administrator);
+        this.express.use('/managers', routes.manager);
+        this.express.use('/advisors', routes.advisor);
+        this.express.use('/brokers', routes.broker);
+        this.express.use('/secretaries', routes.secretary);
+        this.express.use('/owners', routes.owner);
+        this.express.use('/customers', routes.customer);
     }
 
     private listen(): void {
