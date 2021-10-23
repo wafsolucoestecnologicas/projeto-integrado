@@ -11,7 +11,8 @@ const validateURLWithoutAuthentication = (url: string): boolean => {
         'authentications',
         'users',
         'companies',
-        'profiles'
+        'profiles',
+        'managers'
     ];
 
     const isValid: boolean = urls.includes(url);
