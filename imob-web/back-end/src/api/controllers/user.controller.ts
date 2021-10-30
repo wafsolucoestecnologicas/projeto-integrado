@@ -3,9 +3,20 @@ import { Request, Response } from 'express';
 import { UserEntity } from '../entities/user.entity';
 import { CompanyEntity } from '../entities/company.entity';
 import { ProfileEntity } from '../entities/profile.entity';
+import { AdministratorEntity } from '../entities/administrator.entity';
+import { ManagerEntity } from '../entities/manager.entity';
+import { AdvisorEntity } from '../entities/advisor.entity';
+import { BrokerEntity } from '../entities/broker.entity';
+import { SecretaryEntity } from '../entities/secretary.entity';
 import { UserService } from '../services/user.service';
 import { CompanyService } from '../services/company.service';
 import { ProfileService } from '../services/profile.service';
+import { AdministratorService } from '../services/administrator.service';
+import { ManagerService } from '../services/manager.service';
+import { AdvisorService } from '../services/advisor.service';
+import { BrokerService } from '../services/broker.service';
+import { SecretaryService } from '../services/secretary.service';
+import { ProfileEnum } from '../models/profile.model';
 import { statusMessages, returnMessages } from '../../../utils/utils';
 
 export class UserController {
@@ -56,11 +67,103 @@ export class UserController {
                             new ProfileService();
 
                         const profileEntity: ProfileEntity | undefined =
-                            await profileService.read(2);
+                            await profileService.read(Number(request.body.profile.id));
 
-                        if (profileEntity && profileEntity.userType === 'manager') {
+                        if (profileEntity) {
                             request.body.company = companyEntity;
                             request.body.profile = profileEntity;
+
+                            switch (profileEntity.id) {
+                                case ProfileEnum.ADMINISTRATOR:
+                                    const administratorService: AdministratorService =
+                                        new AdministratorService();
+
+                                    const administratorEntity: AdministratorEntity =
+                                        await administratorService.create({
+                                            name: request.body.name,
+                                            surname: request.body.surname,
+                                            email: request.body.email,
+                                            birthDate: new Date(),
+                                            rg: '000000000',
+                                            cpf: '00000000000',
+                                            cellPhone: '00000000000'
+                                        } as AdministratorEntity);
+
+                                    request.body.administrator = administratorEntity;
+                                    break;
+
+                                case ProfileEnum.MANAGER:
+                                    const managerService: ManagerService =
+                                        new ManagerService();
+
+                                    const managerEntity: ManagerEntity =
+                                        await managerService.create({
+                                            name: request.body.name,
+                                            surname: request.body.surname,
+                                            email: request.body.email,
+                                            birthDate: new Date(),
+                                            rg: '000000000',
+                                            cpf: '00000000000',
+                                            cellPhone: '00000000000'
+                                        } as ManagerEntity);
+
+                                    request.body.manager = managerEntity;
+                                    break;
+
+                                case ProfileEnum.ADVISOR:
+                                    const advisorService: AdvisorService =
+                                        new AdvisorService();
+
+                                    const advisorEntity: AdvisorEntity =
+                                        await advisorService.create({
+                                            name: request.body.name,
+                                            surname: request.body.surname,
+                                            email: request.body.email,
+                                            birthDate: new Date(),
+                                            rg: '000000000',
+                                            cpf: '00000000000',
+                                            cellPhone: '00000000000'
+                                        } as AdvisorEntity);
+
+                                    request.body.advisor = advisorEntity;
+                                    break;
+
+                                case ProfileEnum.BROKER:
+                                    const brokerService: BrokerService =
+                                        new BrokerService();
+
+                                    const brokerEntity: BrokerEntity =
+                                        await brokerService.create({
+                                            name: request.body.name,
+                                            surname: request.body.surname,
+                                            email: request.body.email,
+                                            birthDate: new Date(),
+                                            rg: '000000000',
+                                            cpf: '00000000000',
+                                            cellPhone: '00000000000'
+                                        } as BrokerEntity);
+
+                                    request.body.broker = brokerEntity;
+                                    break;
+
+                                case ProfileEnum.SECRETARY:
+                                    const secretaryService: SecretaryService =
+                                        new SecretaryService();
+
+                                    const secretaryEntity: SecretaryEntity =
+                                        await secretaryService.create({
+                                            name: request.body.name,
+                                            surname: request.body.surname,
+                                            email: request.body.email,
+                                            birthDate: new Date(),
+                                            rg: '000000000',
+                                            cpf: '00000000000',
+                                            cellPhone: '00000000000'
+                                        } as SecretaryEntity);
+
+                                    request.body.secretary = secretaryEntity;
+                                    break;
+                            }
 
                             const userEntity: UserEntity =
                                 await userService.create(request.body);
