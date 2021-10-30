@@ -2,6 +2,11 @@ import { Entity, Column, JoinColumn, OneToOne, BeforeInsert, BeforeUpdate } from
 import { UserModel } from '../models/user.model';
 import { CompanyEntity } from './company.entity';
 import { ProfileEntity } from './profile.entity';
+import { AdministratorEntity } from './administrator.entity';
+import { ManagerEntity } from './manager.entity';
+import { AdvisorEntity } from './advisor.entity';
+import { BrokerEntity } from './broker.entity';
+import { SecretaryEntity } from './secretary.entity';
 import bcrypt from 'bcryptjs';
 
 @Entity({
@@ -69,6 +74,46 @@ export class UserEntity implements UserModel {
     public password: string;
 
     @Column({
+        name: 'is_administrator',
+        type: 'bool',
+        nullable: false,
+        comment: 'Confirmação se o usuário é um administrador'
+    })
+    public isAdministrator: boolean;
+
+    @Column({
+        name: 'is_manager',
+        type: 'bool',
+        nullable: false,
+        comment: 'Confirmação se o usuário é um gestor'
+    })
+    public isManager: boolean;
+
+    @Column({
+        name: 'is_advisor',
+        type: 'bool',
+        nullable: false,
+        comment: 'Confirmação se o usuário é um despachante'
+    })
+    public isAdvisor: boolean;
+
+    @Column({
+        name: 'is_broker',
+        type: 'bool',
+        nullable: false,
+        comment: 'Confirmação se o usuário é um corretor'
+    })
+    public isBroker: boolean;
+
+    @Column({
+        name: 'is_secretary',
+        type: 'bool',
+        nullable: false,
+        comment: 'Confirmação se o usuário é uma secretária'
+    })
+    public isSecretary: boolean;
+
+    @Column({
         name: 'created_at',
         type: 'timestamp',
         nullable: false,
@@ -94,6 +139,26 @@ export class UserEntity implements UserModel {
     @OneToOne(() => ProfileEntity)
     @JoinColumn({ name: 'profile_id' })
     public profile: ProfileEntity;
+
+    @OneToOne(() => AdministratorEntity)
+    @JoinColumn({ name: 'person_id'})
+    public administrator?: AdministratorEntity;
+
+    @OneToOne(() => ManagerEntity)
+    @JoinColumn({ name: 'person_id'})
+    public manager?: ManagerEntity;
+
+    @OneToOne(() => AdvisorEntity)
+    @JoinColumn({ name: 'person_id'})
+    public advisor?: AdvisorEntity;
+
+    @OneToOne(() => BrokerEntity)
+    @JoinColumn({ name: 'person_id'})
+    public broker?: BrokerEntity;
+
+    @OneToOne(() => SecretaryEntity)
+    @JoinColumn({ name: 'person_id'})
+    public secretary?: SecretaryEntity;
 
     constructor() { }
 
