@@ -11,11 +11,7 @@ export class CompanyService {
 
     public async index(): Promise<CompanyEntity[]> {
         const companyEntity: CompanyEntity[] =
-            await this.repository.find({
-                order: {
-                    id: 'ASC'
-                }
-            });
+            await this.repository.find();
 
         return companyEntity;
     }
@@ -87,7 +83,9 @@ export class CompanyService {
     public validateData(data: CompanyEntity): boolean {
         let isValid: boolean = true;
 
-        if (!data.cnpj || !data.corporateName || !data.stateRegistration) {
+        if (!data.cnpj ||
+            !data.corporateName ||
+            !data.stateRegistration) {
             isValid = false;
         }
 
