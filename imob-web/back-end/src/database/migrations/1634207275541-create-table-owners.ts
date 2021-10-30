@@ -56,11 +56,13 @@ export class createTableOwners1634207275541 implements MigrationInterface {
                     {
                         name: 'rg',
                         type: 'char(9)',
+                        isUnique: true,
                         isNullable: false
                     },
                     {
                         name: 'cpf',
                         type: 'char(11)',
+                        isUnique: true,
                         isNullable: false
                     },
                     {
@@ -79,6 +81,16 @@ export class createTableOwners1634207275541 implements MigrationInterface {
                         type: 'varchar(50)',
                         default: null,
                         isNullable: true
+                    },
+                    {
+                        name: 'created_at',
+                        type: 'timestamp',
+                        isNullable: false
+                    },
+                    {
+                        name: 'updated_at',
+                        type: 'timestamp',
+                        isNullable: false
                     }
                 ],
                 foreignKeys: [
