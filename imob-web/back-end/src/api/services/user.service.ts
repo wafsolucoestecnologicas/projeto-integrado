@@ -1,5 +1,6 @@
 import { getRepository, Repository, DeleteResult } from 'typeorm';
 import { UserEntity } from '../entities/user.entity';
+import { ProfileEnum } from '../models/profile.model';
 import bcrypt from 'bcryptjs';
 
 export class UserService {
@@ -18,6 +19,11 @@ export class UserService {
                     'name',
                     'surname',
                     'email',
+                    'isAdministrator',
+                    'isManager',
+                    'isAdvisor',
+                    'isBroker',
+                    'isSecretary',
                     'createdAt',
                     'updatedAt'
                 ],
@@ -38,8 +44,40 @@ export class UserService {
                 name: data.name.toLowerCase(),
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
-                password: data.password
+                password: data.password,
+                isAdministrator: false,
+                isManager: false,
+                isAdvisor: false,
+                isBroker: false,
+                isSecretary: false
             });
+
+        switch (data.profile.id) {
+            case ProfileEnum.ADMINISTRATOR:
+                userEntity.administrator = data.administrator;
+                userEntity.isAdministrator = true;
+                break;
+
+            case ProfileEnum.MANAGER:
+                userEntity.manager = data.manager;
+                userEntity.isManager = true;
+                break;
+
+            case ProfileEnum.ADVISOR:
+                userEntity.advisor = data.advisor;
+                userEntity.isAdvisor = true;
+                break;
+
+            case ProfileEnum.BROKER:
+                userEntity.broker = data.broker;
+                userEntity.isBroker = true;
+                break;
+
+            case ProfileEnum.SECRETARY:
+                userEntity.secretary = data.secretary;
+                userEntity.isSecretary = true;
+                break;
+        }
 
         const result: UserEntity =
             await this.repository.save(userEntity);
@@ -55,6 +93,10 @@ export class UserService {
                     'name',
                     'surname',
                     'email',
+                    'isManager',
+                    'isAdvisor',
+                    'isBroker',
+                    'isSecretary',
                     'createdAt',
                     'updatedAt'
                 ],
@@ -119,7 +161,11 @@ export class UserService {
     public validateData(data: UserEntity): boolean {
         let isValid: boolean = true;
 
-        if (!data.name || !data.surname || !data.email || !data.password) {
+        if (!data.name ||
+            !data.surname ||
+            !data.email ||
+            !data.password ||
+            !data.profile.id) {
             isValid = false;
         }
 
