@@ -9,3 +9,11 @@ export interface ProfileModel {
     setCreatedAt(): void;
     setUpdatedAt(): void;
 }
+
+export enum ProfileEnum {
+    ADMINISTRATOR = 1,
+    MANAGER,
+    ADVISOR,
+    BROKER,
+    SECRETARY
+}
