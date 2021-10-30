@@ -30,7 +30,6 @@ export class ProfileEntity implements ProfileModel {
         name: 'is_admin',
         type: 'bool',
         nullable: false,
-        default: false,
         comment: 'Confirmação se o perfil do usuário é de administrador'
     })
     public isAdmin: boolean;
