@@ -1,4 +1,4 @@
-import { getRepository, Repository, DeleteResult } from 'typeorm';
+import { getRepository, Repository, DeleteResult, EntityManager } from 'typeorm';
 import { AdministratorEntity } from '../entities/administrator.entity';
 
 export class AdministratorService {
@@ -16,7 +16,7 @@ export class AdministratorService {
         return administratorEntity;
     }
 
-    public async create(data: AdministratorEntity): Promise<AdministratorEntity> {
+    public async create(data: AdministratorEntity, transaction: EntityManager): Promise<AdministratorEntity> {
         const administratorEntity: AdministratorEntity =
             this.repository.create({
                 name: data.name.toLowerCase(),
@@ -31,7 +31,7 @@ export class AdministratorService {
             });
 
         const result: AdministratorEntity =
-            await this.repository.save(administratorEntity);
+            await transaction.save(administratorEntity);
 
         return result;
     }
@@ -47,7 +47,7 @@ export class AdministratorService {
         return administratorEntity;
     }
 
-    public async update(id: number, data: AdministratorEntity): Promise<AdministratorEntity> {
+    public async update(id: number, data: AdministratorEntity, transaction: EntityManager): Promise<AdministratorEntity> {
         const administratorEntity: AdministratorEntity =
             this.repository.create({
                 id: id,
@@ -63,14 +63,14 @@ export class AdministratorService {
             });
 
         const result: AdministratorEntity =
-            await this.repository.save(administratorEntity);
+            await transaction.save(administratorEntity);
 
         return result;
     }
 
-    public async delete(id: number): Promise<DeleteResult> {
+    public async delete(id: number, transaction: EntityManager): Promise<DeleteResult> {
         const result: DeleteResult =
-            await this.repository.delete({
+            await transaction.delete(AdministratorEntity, {
                 id: id
             });
 

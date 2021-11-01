@@ -1,4 +1,4 @@
-import { getRepository, Repository, DeleteResult } from 'typeorm';
+import { getRepository, Repository, DeleteResult, EntityManager } from 'typeorm';
 import { AdvisorEntity } from '../entities/advisor.entity';
 
 export class AdvisorService {
@@ -16,7 +16,7 @@ export class AdvisorService {
         return advisorEntity;
     }
 
-    public async create(data: AdvisorEntity): Promise<AdvisorEntity> {
+    public async create(data: AdvisorEntity, transaction: EntityManager): Promise<AdvisorEntity> {
         const advisorEntity: AdvisorEntity =
             this.repository.create({
                 name: data.name.toLowerCase(),
@@ -32,7 +32,7 @@ export class AdvisorService {
             });
 
         const result: AdvisorEntity =
-            await this.repository.save(advisorEntity);
+            await transaction.save(advisorEntity);
 
         return result;
     }
@@ -48,7 +48,7 @@ export class AdvisorService {
         return advisorEntity;
     }
 
-    public async update(id: number, data: AdvisorEntity): Promise<AdvisorEntity> {
+    public async update(id: number, data: AdvisorEntity, transaction: EntityManager): Promise<AdvisorEntity> {
         const advisorEntity: AdvisorEntity =
             this.repository.create({
                 id: id,
@@ -64,14 +64,14 @@ export class AdvisorService {
             });
 
         const result: AdvisorEntity =
-            await this.repository.save(advisorEntity);
+            await transaction.save(advisorEntity);
 
         return result;
     }
 
-    public async delete(id: number): Promise<DeleteResult> {
+    public async delete(id: number, transaction: EntityManager): Promise<DeleteResult> {
         const result: DeleteResult =
-            await this.repository.delete({
+            await transaction.delete(AdvisorEntity, {
                 id: id
             });
 

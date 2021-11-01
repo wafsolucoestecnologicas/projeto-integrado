@@ -1,4 +1,4 @@
-import { getRepository, Repository, DeleteResult } from 'typeorm';
+import { getRepository, Repository, DeleteResult, EntityManager } from 'typeorm';
 import { UserEntity } from '../entities/user.entity';
 import { ProfileEnum } from '../models/profile.model';
 import bcrypt from 'bcryptjs';
@@ -29,14 +29,19 @@ export class UserService {
                 ],
                 relations: [
                     'company',
-                    'profile'
+                    'profile',
+                    'administrator',
+                    'manager',
+                    'advisor',
+                    'broker',
+                    'secretary'
                 ]
             });
 
         return userEntity;
     }
 
-    public async create(data: UserEntity): Promise<UserEntity> {
+    public async create(data: UserEntity, transaction: EntityManager): Promise<UserEntity> {
         const userEntity: UserEntity =
             this.repository.create({
                 profile: data.profile,
@@ -80,7 +85,7 @@ export class UserService {
         }
 
         const result: UserEntity =
-            await this.repository.save(userEntity);
+            await transaction.save(userEntity);
 
         return result;
     }
@@ -93,6 +98,7 @@ export class UserService {
                     'name',
                     'surname',
                     'email',
+                    'isAdministrator',
                     'isManager',
                     'isAdvisor',
                     'isBroker',
@@ -102,7 +108,12 @@ export class UserService {
                 ],
                 relations: [
                     'company',
-                    'profile'
+                    'profile',
+                    'administrator',
+                    'manager',
+                    'advisor',
+                    'broker',
+                    'secretary'
                 ],
                 where: {
                     id: id
@@ -112,7 +123,7 @@ export class UserService {
         return userEntity;
     }
 
-    public async update(id: number, data: UserEntity): Promise<UserEntity> {
+    public async update(id: number, data: UserEntity, transaction: EntityManager): Promise<UserEntity> {
         const userEntity: UserEntity =
             this.repository.create({
                 id: id,
@@ -123,14 +134,14 @@ export class UserService {
             });
 
         const result: UserEntity =
-            await this.repository.save(userEntity);
+            await transaction.save(userEntity);
 
         return result;
     }
 
-    public async delete(id: number): Promise<DeleteResult> {
+    public async delete(id: number, transaction: EntityManager): Promise<DeleteResult> {
         const result: DeleteResult =
-            await this.repository.delete({
+            await transaction.delete(UserEntity, {
                 id: id
             });
 

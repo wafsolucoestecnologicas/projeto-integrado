@@ -1,4 +1,4 @@
-import { getRepository, Repository, DeleteResult } from 'typeorm';
+import { getRepository, Repository, DeleteResult, EntityManager } from 'typeorm';
 import { ManagerEntity } from '../entities/manager.entity';
 
 export class ManagerService {
@@ -11,14 +11,19 @@ export class ManagerService {
 
     public async index(): Promise<ManagerEntity[]> {
         const managerEntity: ManagerEntity[] =
-            await this.repository.find();
+            await this.repository.find({
+                relations: [
+                    'company'
+                ]
+            });
 
         return managerEntity;
     }
 
-    public async create(data: ManagerEntity): Promise<ManagerEntity> {
+    public async create(data: ManagerEntity, transaction: EntityManager): Promise<ManagerEntity> {
         const managerEntity: ManagerEntity =
             this.repository.create({
+                company: data.company,
                 name: data.name.toLowerCase(),
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
@@ -32,7 +37,7 @@ export class ManagerService {
             });
 
         const result: ManagerEntity =
-            await this.repository.save(managerEntity);
+            await transaction.save(managerEntity);
 
         return result;
     }
@@ -40,6 +45,9 @@ export class ManagerService {
     public async read(id: number): Promise<ManagerEntity | undefined> {
         const managerEntity: ManagerEntity | undefined =
             await this.repository.findOne({
+                relations: [
+                    'company'
+                ],
                 where: {
                     id: id
                 }
@@ -48,7 +56,7 @@ export class ManagerService {
         return managerEntity;
     }
 
-    public async update(id: number, data: ManagerEntity): Promise<ManagerEntity> {
+    public async update(id: number, data: ManagerEntity, transaction: EntityManager): Promise<ManagerEntity> {
         const managerEntity: ManagerEntity =
             this.repository.create({
                 id: id,
@@ -64,14 +72,14 @@ export class ManagerService {
             });
 
         const result: ManagerEntity =
-            await this.repository.save(managerEntity);
+            await transaction.save(managerEntity);
 
         return result;
     }
 
-    public async delete(id: number): Promise<DeleteResult> {
+    public async delete(id: number, transaction: EntityManager): Promise<DeleteResult> {
         const result: DeleteResult =
-            await this.repository.delete({
+            await transaction.delete(ManagerEntity, {
                 id: id
             });
 
