@@ -12,7 +12,13 @@ const validateURLWithoutAuthentication = (url: string): boolean => {
         'users',
         'companies',
         'profiles',
-        'managers'
+        'administrators',
+        'managers',
+        'advisors',
+        'brokers',
+        'secretaries',
+        'owners',
+        'customers'
     ];
 
     const isValid: boolean = urls.includes(url);
