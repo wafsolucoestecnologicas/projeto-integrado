@@ -130,7 +130,6 @@ export class SecretaryEntity implements SecretaryModel {
     constructor() { }
 
     @BeforeInsert()
-    @BeforeUpdate()
     public setCreatedAt(): void {
         this.createdAt = new Date();
     }

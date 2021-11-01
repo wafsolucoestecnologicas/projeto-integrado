@@ -130,7 +130,6 @@ export class BrokerEntity implements BrokerModel {
     constructor() { }
 
     @BeforeInsert()
-    @BeforeUpdate()
     public setCreatedAt(): void {
         this.createdAt = new Date();
     }

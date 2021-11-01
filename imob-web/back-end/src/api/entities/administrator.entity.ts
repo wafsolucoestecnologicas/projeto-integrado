@@ -125,7 +125,6 @@ export class AdministratorEntity implements AdministratorModel {
     constructor() { }
 
     @BeforeInsert()
-    @BeforeUpdate()
     public setCreatedAt(): void {
         this.createdAt = new Date();
     }

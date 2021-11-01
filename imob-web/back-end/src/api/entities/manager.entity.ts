@@ -130,7 +130,6 @@ export class ManagerEntity implements ManagerModel {
     constructor() { }
 
     @BeforeInsert()
-    @BeforeUpdate()
     public setCreatedAt(): void {
         this.createdAt = new Date();
     }

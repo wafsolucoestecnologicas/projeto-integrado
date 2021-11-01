@@ -138,7 +138,6 @@ export class OwnerEntity implements OwnerModel {
     constructor() { }
 
     @BeforeInsert()
-    @BeforeUpdate()
     public setCreatedAt(): void {
         this.createdAt = new Date();
     }

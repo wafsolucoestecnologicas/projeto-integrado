@@ -130,7 +130,6 @@ export class AdvisorEntity implements AdvisorModel {
     constructor() { }
 
     @BeforeInsert()
-    @BeforeUpdate()
     public setCreatedAt(): void {
         this.createdAt = new Date();
     }
