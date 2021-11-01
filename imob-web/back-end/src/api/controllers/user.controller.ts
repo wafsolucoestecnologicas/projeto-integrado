@@ -1,4 +1,4 @@
-import { DeleteResult } from 'typeorm';
+import { DeleteResult, EntityManager, getManager } from 'typeorm';
 import { Request, Response } from 'express';
 import { UserEntity } from '../entities/user.entity';
 import { CompanyEntity } from '../entities/company.entity';
@@ -38,154 +38,160 @@ export class UserController {
     }
 
     public async create(request: Request, response: Response): Promise<Response> {
-        try {
-            const userService: UserService =
-                new UserService();
+        return await getManager().transaction(async (transaction: EntityManager) => {
+            try {
+                const userService: UserService =
+                    new UserService();
 
-            const result: boolean =
-                userService.validateData(request.body);
-
-            if (result) {
                 const result: boolean =
-                    await userService.alreadyRegisteredByEmail(request.body.email);
+                    userService.validateData(request.body);
 
-                if (!result) {
-                    const companyService: CompanyService =
-                        new CompanyService();
+                if (result) {
+                    const result: boolean =
+                        await userService.alreadyRegisteredByEmail(request.body.email);
 
-                    const companyEntity: CompanyEntity =
-                        await companyService.create({
-                            cnpj: '00000000000000',
-                            corporateName: 'Empresa Cadastrada Automaticamente',
-                            stateRegistration: '0000000000',
-                            percentageCommissionReceived: 0,
-                            percentageCommissionPayable: 0
-                        } as CompanyEntity);
+                    if (!result) {
+                        const companyService: CompanyService =
+                            new CompanyService();
 
-                    if (companyEntity) {
-                        const profileService: ProfileService =
-                            new ProfileService();
+                        const companyEntity: CompanyEntity =
+                            await companyService.create({
+                                cnpj: '00000000000000',
+                                corporateName: 'Empresa Cadastrada Automaticamente',
+                                stateRegistration: '0000000000',
+                                percentageCommissionReceived: 0,
+                                percentageCommissionPayable: 0
+                            } as CompanyEntity, transaction);
 
-                        const profileEntity: ProfileEntity | undefined =
-                            await profileService.read(Number(request.body.profile.id));
+                        if (companyEntity) {
+                            const profileService: ProfileService =
+                                new ProfileService();
 
-                        if (profileEntity) {
-                            request.body.company = companyEntity;
-                            request.body.profile = profileEntity;
+                            const profileEntity: ProfileEntity | undefined =
+                                await profileService.read(Number(request.body.profile.id));
 
-                            switch (profileEntity.id) {
-                                case ProfileEnum.ADMINISTRATOR:
-                                    const administratorService: AdministratorService =
-                                        new AdministratorService();
+                            if (profileEntity) {
+                                request.body.company = companyEntity;
+                                request.body.profile = profileEntity;
 
-                                    const administratorEntity: AdministratorEntity =
-                                        await administratorService.create({
-                                            name: request.body.name,
-                                            surname: request.body.surname,
-                                            email: request.body.email,
-                                            birthDate: new Date(),
-                                            rg: '000000000',
-                                            cpf: '00000000000',
-                                            cellPhone: '00000000000'
-                                        } as AdministratorEntity);
+                                switch (profileEntity.id) {
+                                    case ProfileEnum.ADMINISTRATOR:
+                                        const administratorService: AdministratorService =
+                                            new AdministratorService();
 
-                                    request.body.administrator = administratorEntity;
-                                    break;
+                                        const administratorEntity: AdministratorEntity =
+                                            await administratorService.create({
+                                                name: request.body.name,
+                                                surname: request.body.surname,
+                                                email: request.body.email,
+                                                birthDate: new Date(),
+                                                rg: '000000000',
+                                                cpf: '00000000000',
+                                                cellPhone: '00000000000'
+                                            } as AdministratorEntity, transaction);
 
-                                case ProfileEnum.MANAGER:
-                                    const managerService: ManagerService =
-                                        new ManagerService();
+                                        request.body.administrator = administratorEntity;
+                                        break;
 
-                                    const managerEntity: ManagerEntity =
-                                        await managerService.create({
-                                            name: request.body.name,
-                                            surname: request.body.surname,
-                                            email: request.body.email,
-                                            birthDate: new Date(),
-                                            rg: '000000000',
-                                            cpf: '00000000000',
-                                            cellPhone: '00000000000'
-                                        } as ManagerEntity);
+                                    case ProfileEnum.MANAGER:
+                                        const managerService: ManagerService =
+                                            new ManagerService();
 
-                                    request.body.manager = managerEntity;
-                                    break;
+                                        const managerEntity: ManagerEntity =
+                                            await managerService.create({
+                                                company: companyEntity,
+                                                name: request.body.name,
+                                                surname: request.body.surname,
+                                                email: request.body.email,
+                                                birthDate: new Date(),
+                                                rg: '000000000',
+                                                cpf: '00000000000',
+                                                cellPhone: '00000000000'
+                                            } as ManagerEntity, transaction);
 
-                                case ProfileEnum.ADVISOR:
-                                    const advisorService: AdvisorService =
-                                        new AdvisorService();
+                                        request.body.manager = managerEntity;
+                                        break;
 
-                                    const advisorEntity: AdvisorEntity =
-                                        await advisorService.create({
-                                            name: request.body.name,
-                                            surname: request.body.surname,
-                                            email: request.body.email,
-                                            birthDate: new Date(),
-                                            rg: '000000000',
-                                            cpf: '00000000000',
-                                            cellPhone: '00000000000'
-                                        } as AdvisorEntity);
+                                    case ProfileEnum.ADVISOR:
+                                        const advisorService: AdvisorService =
+                                            new AdvisorService();
 
-                                    request.body.advisor = advisorEntity;
-                                    break;
+                                        const advisorEntity: AdvisorEntity =
+                                            await advisorService.create({
+                                                company: companyEntity,
+                                                name: request.body.name,
+                                                surname: request.body.surname,
+                                                email: request.body.email,
+                                                birthDate: new Date(),
+                                                rg: '000000000',
+                                                cpf: '00000000000',
+                                                cellPhone: '00000000000'
+                                            } as AdvisorEntity, transaction);
 
-                                case ProfileEnum.BROKER:
-                                    const brokerService: BrokerService =
-                                        new BrokerService();
+                                        request.body.advisor = advisorEntity;
+                                        break;
 
-                                    const brokerEntity: BrokerEntity =
-                                        await brokerService.create({
-                                            name: request.body.name,
-                                            surname: request.body.surname,
-                                            email: request.body.email,
-                                            birthDate: new Date(),
-                                            rg: '000000000',
-                                            cpf: '00000000000',
-                                            cellPhone: '00000000000'
-                                        } as BrokerEntity);
+                                    case ProfileEnum.BROKER:
+                                        const brokerService: BrokerService =
+                                            new BrokerService();
 
-                                    request.body.broker = brokerEntity;
-                                    break;
+                                        const brokerEntity: BrokerEntity =
+                                            await brokerService.create({
+                                                company: companyEntity,
+                                                name: request.body.name,
+                                                surname: request.body.surname,
+                                                email: request.body.email,
+                                                birthDate: new Date(),
+                                                rg: '000000000',
+                                                cpf: '00000000000',
+                                                cellPhone: '00000000000'
+                                            } as BrokerEntity, transaction);
 
-                                case ProfileEnum.SECRETARY:
-                                    const secretaryService: SecretaryService =
-                                        new SecretaryService();
+                                        request.body.broker = brokerEntity;
+                                        break;
 
-                                    const secretaryEntity: SecretaryEntity =
-                                        await secretaryService.create({
-                                            name: request.body.name,
-                                            surname: request.body.surname,
-                                            email: request.body.email,
-                                            birthDate: new Date(),
-                                            rg: '000000000',
-                                            cpf: '00000000000',
-                                            cellPhone: '00000000000'
-                                        } as SecretaryEntity);
+                                    case ProfileEnum.SECRETARY:
+                                        const secretaryService: SecretaryService =
+                                            new SecretaryService();
 
-                                    request.body.secretary = secretaryEntity;
-                                    break;
+                                        const secretaryEntity: SecretaryEntity =
+                                            await secretaryService.create({
+                                                company: companyEntity,
+                                                name: request.body.name,
+                                                surname: request.body.surname,
+                                                email: request.body.email,
+                                                birthDate: new Date(),
+                                                rg: '000000000',
+                                                cpf: '00000000000',
+                                                cellPhone: '00000000000'
+                                            } as SecretaryEntity, transaction);
+
+                                        request.body.secretary = secretaryEntity;
+                                        break;
+                                }
+
+                                const userEntity: UserEntity =
+                                    await userService.create(request.body, transaction);
+
+                                if (userEntity) userEntity.password = '';
+
+                                return response.status(200).json(userEntity);
+                            } else {
+                                return response.status(500).json({ message: `${returnMessages[6]}` });
                             }
-
-                            const userEntity: UserEntity =
-                                await userService.create(request.body);
-
-                            if (userEntity) userEntity.password = '';
-
-                            return response.status(200).json(userEntity);
                         } else {
-                            return response.status(500).json({ message: `${returnMessages[6]}` });
+                            return response.status(500).json({ message: `${returnMessages[5]}` });
                         }
                     } else {
-                        return response.status(500).json({ message: `${returnMessages[5]}` });
+                        return response.status(409).json({ message: `${statusMessages[409]} ${returnMessages[4]}` });
                     }
                 } else {
-                    return response.status(409).json({ message: `${statusMessages[409]} ${returnMessages[4]}` });
+                    return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
                 }
-            } else {
-                return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
+            } catch (error: any) {
+                return response.status(500).json({ message: error.message });
             }
-        } catch (error: any) {
-            return response.status(500).json({ message: error.message });
-        }
+        });
     }
 
     public async read(request: Request, response: Response): Promise<Response> {
@@ -209,70 +215,129 @@ export class UserController {
     }
 
     public async update(request: Request, response: Response): Promise<Response> {
-        try {
-            const userService: UserService =
-                new UserService();
+        return await getManager().transaction(async (transaction: EntityManager) => {
+            try {
+                const userService: UserService =
+                    new UserService();
 
-            if (Number(request.params.id)) {
-                const result: boolean =
-                    await userService.alreadyRegisteredById(Number(request.params.id));
-
-                if (result) {
+                if (Number(request.params.id)) {
                     const result: boolean =
-                        userService.validateData(request.body);
+                        await userService.alreadyRegisteredById(Number(request.params.id));
 
                     if (result) {
-                        const userEntity: UserEntity =
-                            await userService.update(Number(request.params.id), request.body);
+                        const result: boolean =
+                            userService.validateData(request.body);
 
-                        if (userEntity) userEntity.password = '';
+                        if (result) {
+                            const userEntity: UserEntity =
+                                await userService.update(Number(request.params.id), request.body, transaction);
 
-                        return response.status(200).json(userEntity);
+                            if (userEntity) userEntity.password = '';
+
+                            return response.status(200).json(userEntity);
+                        } else {
+                            return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
+                        }
                     } else {
-                        return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
+                        return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[1]}` });
                     }
                 } else {
-                    return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[1]}` });
+                    return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[2]}` });
                 }
-            } else {
-                return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[2]}` });
+            } catch (error: any) {
+                return response.status(500).json({ message: error.message });
             }
-        } catch (error: any) {
-            return response.status(500).json({ message: error.message });
-        }
+        });
     }
 
     public async delete(request: Request, response: Response): Promise<Response> {
-        try {
-            const userService: UserService =
-                new UserService();
+        return await getManager().transaction(async (transaction: EntityManager) => {
+            try {
+                const userService: UserService =
+                    new UserService();
 
-            if (Number(request.params.id)) {
-                const userEntity: UserEntity | undefined =
-                    await userService.read(Number(request.params.id));
+                if (Number(request.params.id)) {
+                    const userEntity: UserEntity | undefined =
+                        await userService.read(Number(request.params.id));
 
-                if (userEntity) {
-                    const companyService: CompanyService =
-                        new CompanyService();
+                    if (userEntity) {
+                        const companyService: CompanyService =
+                            new CompanyService();
 
-                    const companyId: number = userEntity.company.id;
+                        const companyId: number = userEntity.company.id;
+                        const personId: number =
+                            userEntity.administrator?.id ||
+                            userEntity.manager?.id ||
+                            userEntity.advisor?.id ||
+                            userEntity.broker?.id ||
+                            userEntity.secretary?.id ||
+                            0;
 
-                    const userDeleteResult: DeleteResult =
-                        await userService.delete(Number(request.params.id));
+                        const userDeleteResult: DeleteResult =
+                            await userService.delete(Number(request.params.id), transaction);
 
-                    const companyDeleteResult: DeleteResult =
-                        await companyService.delete(companyId);
+                        let personDeleteResult: DeleteResult = new DeleteResult();
 
-                    return response.status(200).json({ user: userDeleteResult.affected, company: companyDeleteResult.affected });
+                        switch (userEntity.profile.id) {
+                            case ProfileEnum.ADMINISTRATOR:
+                                const administratorService: AdministratorService =
+                                    new AdministratorService();
+
+                                personDeleteResult =
+                                    await administratorService.delete(personId, transaction);
+                                break;
+
+                            case ProfileEnum.MANAGER:
+                                const managerService: ManagerService =
+                                    new ManagerService();
+
+                                personDeleteResult =
+                                    await managerService.delete(personId, transaction);
+                                break;
+
+                            case ProfileEnum.ADVISOR:
+                                const advisorService: AdvisorService =
+                                    new AdvisorService();
+
+                                personDeleteResult =
+                                    await advisorService.delete(personId, transaction);
+                                break;
+
+                            case ProfileEnum.BROKER:
+                                const brokerService: BrokerService =
+                                    new BrokerService();
+
+                                personDeleteResult =
+                                    await brokerService.delete(personId, transaction);
+                                break;
+
+                            case ProfileEnum.SECRETARY:
+                                const secretaryService: SecretaryService =
+                                    new SecretaryService();
+
+                                personDeleteResult =
+                                    await secretaryService.delete(personId, transaction);
+                                break;
+                        }
+
+                        const companyDeleteResult: DeleteResult =
+                            await companyService.delete(companyId, transaction);
+
+                        return response.status(200).json({
+                            user: userDeleteResult.affected,
+                            person: personDeleteResult.affected,
+                            company: companyDeleteResult.affected
+                        });
+                    } else {
+                        return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[1]}` });
+                    }
                 } else {
-                    return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[1]}` });
+                    return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[2]}` });
                 }
-            } else {
-                return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[2]}` });
+            } catch (error: any) {
+                return response.status(500).json({ message: error.message });
             }
-        } catch (error: any) {
-            return response.status(500).json({ message: error.message });
-        }
+        });
     }
 
 }
