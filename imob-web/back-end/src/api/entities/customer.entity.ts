@@ -1,5 +1,6 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn } from 'typeorm';
 import { CustomerModel } from '../models/customer.model';
+import { CompanyEntity } from './company.entity';
 
 @Entity({
     schema: 'persons',
@@ -52,7 +53,7 @@ export class CustomerEntity implements CustomerModel {
     public birthDate: Date;
 
     @Column({
-        name: 'is_manager',
+        name: 'is_customer',
         type: 'bool',
         nullable: false,
         comment: 'Confirmação se o registro é um cliente'
@@ -121,6 +122,10 @@ export class CustomerEntity implements CustomerModel {
         comment: 'Data de atualização do registro'
     })
     public updatedAt: Date;
+
+    @OneToOne(() => CompanyEntity)
+    @JoinColumn({ name: 'company_id' })
+    public company: CompanyEntity;
 
     constructor() { }
 

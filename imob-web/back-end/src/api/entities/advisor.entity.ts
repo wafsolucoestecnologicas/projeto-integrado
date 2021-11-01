@@ -1,5 +1,6 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn } from 'typeorm';
 import { AdvisorModel } from '../models/advisor.model';
+import { CompanyEntity } from './company.entity';
 
 @Entity({
     schema: 'persons',
@@ -52,7 +53,7 @@ export class AdvisorEntity implements AdvisorModel {
     public birthDate: Date;
 
     @Column({
-        name: 'is_manager',
+        name: 'is_advisor',
         type: 'bool',
         nullable: false,
         comment: 'Confirmação se o registro é um despachante'
@@ -121,6 +122,10 @@ export class AdvisorEntity implements AdvisorModel {
         comment: 'Data de atualização do registro'
     })
     public updatedAt: Date;
+
+    @OneToOne(() => CompanyEntity)
+    @JoinColumn({ name: 'company_id' })
+    public company: CompanyEntity;
 
     constructor() { }
 

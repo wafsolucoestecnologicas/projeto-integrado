@@ -1,5 +1,6 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
 import { ManagerModel } from '../models/manager.model';
+import { CompanyEntity } from './company.entity';
 
 @Entity({
     schema: 'persons',
@@ -121,6 +122,10 @@ export class ManagerEntity implements ManagerModel {
         comment: 'Data de atualização do registro'
     })
     public updatedAt: Date;
+
+    @OneToOne(() => CompanyEntity)
+    @JoinColumn({ name: 'company_id' })
+    public company: CompanyEntity;
 
     constructor() { }
 

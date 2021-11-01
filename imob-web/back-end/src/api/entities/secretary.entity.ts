@@ -1,5 +1,6 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn } from 'typeorm';
 import { SecretaryModel } from '../models/secretary.model';
+import { CompanyEntity } from './company.entity';
 
 @Entity({
     schema: 'persons',
@@ -52,7 +53,7 @@ export class SecretaryEntity implements SecretaryModel {
     public birthDate: Date;
 
     @Column({
-        name: 'is_manager',
+        name: 'is_secretary',
         type: 'bool',
         nullable: false,
         comment: 'Confirmação se o registro é uma secretária'
@@ -121,6 +122,10 @@ export class SecretaryEntity implements SecretaryModel {
         comment: 'Data de atualização do registro'
     })
     public updatedAt: Date;
+
+    @OneToOne(() => CompanyEntity)
+    @JoinColumn({ name: 'company_id' })
+    public company: CompanyEntity;
 
     constructor() { }
 

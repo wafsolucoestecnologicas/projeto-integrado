@@ -1,5 +1,6 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn } from 'typeorm';
 import { BrokerModel } from '../models/broker.model';
+import { CompanyEntity } from './company.entity';
 
 @Entity({
     schema: 'persons',
@@ -52,7 +53,7 @@ export class BrokerEntity implements BrokerModel {
     public birthDate: Date;
 
     @Column({
-        name: 'is_manager',
+        name: 'is_broker',
         type: 'bool',
         nullable: false,
         comment: 'Confirmação se o registro é um corretor'
@@ -121,6 +122,10 @@ export class BrokerEntity implements BrokerModel {
         comment: 'Data de atualização do registro'
     })
     public updatedAt: Date;
+
+    @OneToOne(() => CompanyEntity)
+    @JoinColumn({ name: 'company_id' })
+    public company: CompanyEntity;
 
     constructor() { }
 

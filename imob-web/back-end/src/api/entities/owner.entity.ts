@@ -1,5 +1,6 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn } from 'typeorm';
 import { OwnerModel } from '../models/owner.model';
+import { CompanyEntity } from './company.entity';
 
 @Entity({
     schema: 'persons',
@@ -60,7 +61,7 @@ export class OwnerEntity implements OwnerModel {
     public checked: boolean;
 
     @Column({
-        name: 'is_manager',
+        name: 'is_owner',
         type: 'bool',
         nullable: false,
         comment: 'Confirmação se o registro é um proprietário'
@@ -129,6 +130,10 @@ export class OwnerEntity implements OwnerModel {
         comment: 'Data de atualização do registro'
     })
     public updatedAt: Date;
+
+    @OneToOne(() => CompanyEntity)
+    @JoinColumn({ name: 'company_id' })
+    public company: CompanyEntity;
 
     constructor() { }
 

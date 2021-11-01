@@ -52,7 +52,7 @@ export class AdministratorEntity implements AdministratorModel {
     public birthDate: Date;
 
     @Column({
-        name: 'is_manager',
+        name: 'is_administrator',
         type: 'bool',
         nullable: false,
         comment: 'Confirmação se o registro é um administrador'
