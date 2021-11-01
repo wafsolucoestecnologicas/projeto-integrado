@@ -27,7 +27,8 @@ export class AdministratorService {
                 cpf: data.cpf,
                 landline: data.landline,
                 cellPhone: data.cellPhone,
-                profession: data.profession
+                profession: data.profession,
+                isAdministrator: true
             });
 
         const result: AdministratorEntity =
