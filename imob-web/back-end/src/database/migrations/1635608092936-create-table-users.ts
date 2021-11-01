@@ -20,17 +20,42 @@ export class createTableUsers1635608092936 implements MigrationInterface {
                     {
                         name: 'company_id',
                         type: 'integer',
-                        isNullable: false,
+                        isNullable: false
                     },
                     {
                         name: 'profile_id',
                         type: 'integer',
-                        isNullable: false,
+                        isNullable: false
                     },
                     {
-                        name: 'person_id',
+                        name: 'administrator_id',
                         type: 'integer',
-                        isNullable: false,
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'manager_id',
+                        type: 'integer',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'advisor_id',
+                        type: 'integer',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'broker_id',
+                        type: 'integer',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'secretary_id',
+                        type: 'integer',
+                        default: null,
+                        isNullable: true
                     },
                     {
                         name: 'uuid',
@@ -116,35 +141,35 @@ export class createTableUsers1635608092936 implements MigrationInterface {
                     },
                     {
                         name: 'fk_administrator_id',
-                        columnNames: ['person_id'],
+                        columnNames: ['administrator_id'],
                         referencedSchema: 'persons',
                         referencedTableName: 'persons.administrators',
                         referencedColumnNames: ['id']
                     },
                     {
                         name: 'fk_manager_id',
-                        columnNames: ['person_id'],
+                        columnNames: ['manager_id'],
                         referencedSchema: 'persons',
                         referencedTableName: 'persons.managers',
                         referencedColumnNames: ['id']
                     },
                     {
                         name: 'fk_advisor_id',
-                        columnNames: ['person_id'],
+                        columnNames: ['advisor_id'],
                         referencedSchema: 'persons',
                         referencedTableName: 'persons.advisors',
                         referencedColumnNames: ['id']
                     },
                     {
                         name: 'fk_broker_id',
-                        columnNames: ['person_id'],
+                        columnNames: ['broker_id'],
                         referencedSchema: 'persons',
                         referencedTableName: 'persons.brokers',
                         referencedColumnNames: ['id']
                     },
                     {
                         name: 'fk_secretary_id',
-                        columnNames: ['person_id'],
+                        columnNames: ['secretary_id'],
                         referencedSchema: 'persons',
                         referencedTableName: 'persons.secretaries',
                         referencedColumnNames: ['id']
