@@ -141,23 +141,23 @@ export class UserEntity implements UserModel {
     public profile: ProfileEntity;
 
     @OneToOne(() => AdministratorEntity)
-    @JoinColumn({ name: 'person_id'})
+    @JoinColumn({ name: 'administrator_id'})
     public administrator?: AdministratorEntity;
 
     @OneToOne(() => ManagerEntity)
-    @JoinColumn({ name: 'person_id'})
+    @JoinColumn({ name: 'manager_id'})
     public manager?: ManagerEntity;
 
     @OneToOne(() => AdvisorEntity)
-    @JoinColumn({ name: 'person_id'})
+    @JoinColumn({ name: 'advisor_id'})
     public advisor?: AdvisorEntity;
 
     @OneToOne(() => BrokerEntity)
-    @JoinColumn({ name: 'person_id'})
+    @JoinColumn({ name: 'broker_id'})
     public broker?: BrokerEntity;
 
     @OneToOne(() => SecretaryEntity)
-    @JoinColumn({ name: 'person_id'})
+    @JoinColumn({ name: 'secretary_id'})
     public secretary?: SecretaryEntity;
 
     constructor() { }
