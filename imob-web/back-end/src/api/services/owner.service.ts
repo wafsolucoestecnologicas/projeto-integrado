@@ -11,7 +11,11 @@ export class OwnerService {
 
     public async index(): Promise<OwnerEntity[]> {
         const ownerEntity: OwnerEntity[] =
-            await this.repository.find();
+            await this.repository.find({
+                relations: [
+                    'company'
+                ],
+            });
 
         return ownerEntity;
     }
@@ -19,6 +23,7 @@ export class OwnerService {
     public async create(data: OwnerEntity, transaction: EntityManager): Promise<OwnerEntity> {
         const ownerEntity: OwnerEntity =
             this.repository.create({
+                company: data.company,
                 name: data.name.toLowerCase(),
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
@@ -41,6 +46,9 @@ export class OwnerService {
     public async read(id: number): Promise<OwnerEntity | undefined> {
         const ownerEntity: OwnerEntity | undefined =
             await this.repository.findOne({
+                relations: [
+                    'company'
+                ],
                 where: {
                     id: id
                 }

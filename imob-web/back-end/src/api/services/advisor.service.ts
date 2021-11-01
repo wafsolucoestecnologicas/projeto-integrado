@@ -11,7 +11,11 @@ export class AdvisorService {
 
     public async index(): Promise<AdvisorEntity[]> {
         const advisorEntity: AdvisorEntity[] =
-            await this.repository.find();
+            await this.repository.find({
+                relations: [
+                    'company'
+                ]
+            });
 
         return advisorEntity;
     }
@@ -19,6 +23,7 @@ export class AdvisorService {
     public async create(data: AdvisorEntity, transaction: EntityManager): Promise<AdvisorEntity> {
         const advisorEntity: AdvisorEntity =
             this.repository.create({
+                company: data.company,
                 name: data.name.toLowerCase(),
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
@@ -40,6 +45,9 @@ export class AdvisorService {
     public async read(id: number): Promise<AdvisorEntity | undefined> {
         const advisorEntity: AdvisorEntity | undefined =
             await this.repository.findOne({
+                relations: [
+                    'company'
+                ],
                 where: {
                     id: id
                 }

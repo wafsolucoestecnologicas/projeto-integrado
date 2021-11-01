@@ -11,7 +11,11 @@ export class CustomerService {
 
     public async index(): Promise<CustomerEntity[]> {
         const customerEntity: CustomerEntity[] =
-            await this.repository.find();
+            await this.repository.find({
+                relations: [
+                    'company'
+                ],
+            });
 
         return customerEntity;
     }
@@ -19,6 +23,7 @@ export class CustomerService {
     public async create(data: CustomerEntity, transaction: EntityManager): Promise<CustomerEntity> {
         const customerEntity: CustomerEntity =
             this.repository.create({
+                company: data.company,
                 name: data.name.toLowerCase(),
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
@@ -40,6 +45,9 @@ export class CustomerService {
     public async read(id: number): Promise<CustomerEntity | undefined> {
         const customerEntity: CustomerEntity | undefined =
             await this.repository.findOne({
+                relations: [
+                    'company'
+                ],
                 where: {
                     id: id
                 }

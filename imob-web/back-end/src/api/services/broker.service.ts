@@ -11,7 +11,11 @@ export class BrokerService {
 
     public async index(): Promise<BrokerEntity[]> {
         const brokerEntity: BrokerEntity[] =
-            await this.repository.find();
+            await this.repository.find({
+                relations: [
+                    'company'
+                ],
+            });
 
         return brokerEntity;
     }
@@ -19,6 +23,7 @@ export class BrokerService {
     public async create(data: BrokerEntity, transaction: EntityManager): Promise<BrokerEntity> {
         const brokerEntity: BrokerEntity =
             this.repository.create({
+                company: data.company,
                 name: data.name.toLowerCase(),
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
@@ -40,6 +45,9 @@ export class BrokerService {
     public async read(id: number): Promise<BrokerEntity | undefined> {
         const brokerEntity: BrokerEntity | undefined =
             await this.repository.findOne({
+                relations: [
+                    'company'
+                ],
                 where: {
                     id: id
                 }
