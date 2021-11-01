@@ -20,12 +20,12 @@ export class createTableCities1635608593918 implements MigrationInterface {
                     {
                         name: 'state_id',
                         type: 'integer',
-                        isNullable: false,
+                        isNullable: false
                     },
                     {
                         name: 'city',
                         type: 'varchar(100)',
-                        isNullable: false,
+                        isNullable: false
                     }
                 ],
                 foreignKeys: [

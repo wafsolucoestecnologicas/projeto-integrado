@@ -20,12 +20,12 @@ export class createTableNeighborhoods1635608643563 implements MigrationInterface
                     {
                         name: 'city_id',
                         type: 'integer',
-                        isNullable: false,
+                        isNullable: false
                     },
                     {
                         name: 'neighborhood',
                         type: 'varchar(100)',
-                        isNullable: false,
+                        isNullable: false
                     },
                 ],
                 foreignKeys: [
