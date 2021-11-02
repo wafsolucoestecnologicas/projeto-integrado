@@ -24,7 +24,7 @@ export class BusinessEntity implements BusinessModel {
         generated: 'increment',
         unique: true,
         nullable: false,
-        comment: 'Código sequencial únido do negócio'
+        comment: 'Código sequencial único do negócio'
     })
     public id: number;
 

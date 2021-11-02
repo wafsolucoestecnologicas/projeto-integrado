@@ -22,7 +22,7 @@ export class UserEntity implements UserModel {
         generated: 'increment',
         unique: true,
         nullable: false,
-        comment: 'Código sequencial únido do usuário'
+        comment: 'Código sequencial único do usuário'
     })
     public id: number;
 
