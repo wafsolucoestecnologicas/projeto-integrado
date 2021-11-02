@@ -41,21 +41,6 @@ export class createTableLeads1635608264516 implements MigrationInterface {
                         isNullable: true
                     },
                     {
-                        name: 'created_by_administrator',
-                        type: 'boolean',
-                        isNullable: false
-                    },
-                    {
-                        name: 'created_by_manager',
-                        type: 'boolean',
-                        isNullable: false
-                    },
-                    {
-                        name: 'created_by_secretary',
-                        type: 'boolean',
-                        isNullable: false
-                    },
-                    {
                         name: 'name',
                         type: 'varchar(50)',
                         isNullable: false
@@ -85,6 +70,27 @@ export class createTableLeads1635608264516 implements MigrationInterface {
                     {
                         name: 'cell_phone',
                         type: 'char(11)',
+                        isNullable: false
+                    },
+                    {
+                        name: 'comments',
+                        type: 'text',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'created_by_administrator',
+                        type: 'boolean',
+                        isNullable: false
+                    },
+                    {
+                        name: 'created_by_manager',
+                        type: 'boolean',
+                        isNullable: false
+                    },
+                    {
+                        name: 'created_by_secretary',
+                        type: 'boolean',
                         isNullable: false
                     },
                     {

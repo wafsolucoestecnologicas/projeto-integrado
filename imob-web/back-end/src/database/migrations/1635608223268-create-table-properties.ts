@@ -53,9 +53,27 @@ export class createTableProperties1635608223268 implements MigrationInterface {
                         isNullable: true
                     },
                     {
+                        name: 'description',
+                        type: 'text',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'photos',
+                        type: 'json',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
                         name: 'checked',
                         type: 'boolean',
                         isNullable: false
+                    },
+                    {
+                        name: 'elevator',
+                        type: 'boolean',
+                        default: false,
+                        isNullable: true
                     },
                     {
                         name: 'bedrooms',
@@ -82,44 +100,38 @@ export class createTableProperties1635608223268 implements MigrationInterface {
                         isNullable: true
                     },
                     {
-                        name: 'elevator',
-                        type: 'boolean',
-                        default: false,
-                        isNullable: true
-                    },
-                    {
                         name: 'terrain_area',
-                        type: 'smallint',
+                        type: 'numeric(21, 2)',
                         default: 0,
                         isNullable: true
                     },
                     {
                         name: 'building_area',
-                        type: 'smallint',
+                        type: 'numeric(21, 2)',
                         default: 0,
                         isNullable: true
                     },
                     {
                         name: 'total_util_terrain_area',
-                        type: 'smallint',
+                        type: 'numeric(21, 2)',
                         default: 0,
                         isNullable: true
                     },
                     {
                         name: 'condominium',
-                        type: 'smallint',
+                        type: 'numeric(21, 2)',
                         default: 0,
                         isNullable: true
                     },
                     {
                         name: 'iptu',
-                        type: 'smallint',
+                        type: 'numeric(21, 2)',
                         default: 0,
                         isNullable: true
                     },
                     {
                         name: 'value',
-                        type: 'smallint',
+                        type: 'numeric(21, 2)',
                         default: 0,
                         isNullable: true
                     },

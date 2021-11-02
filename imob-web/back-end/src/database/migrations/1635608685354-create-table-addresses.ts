@@ -23,6 +23,11 @@ export class createTableAddresses1635608685354 implements MigrationInterface {
                         isNullable: false
                     },
                     {
+                        name: 'neighborhood_id',
+                        type: 'integer',
+                        isNullable: false
+                    },
+                    {
                         name: 'manager_id',
                         type: 'integer',
                         default: null,
@@ -65,16 +70,6 @@ export class createTableAddresses1635608685354 implements MigrationInterface {
                         isNullable: true
                     },
                     {
-                        name: 'neighborhood_id',
-                        type: 'integer',
-                        isNullable: false
-                    },
-                    {
-                        name: 'cep',
-                        type: 'char(8)',
-                        isNullable: false
-                    },
-                    {
                         name: 'street',
                         type: 'varchar(100)',
                         isNullable: false
@@ -87,6 +82,11 @@ export class createTableAddresses1635608685354 implements MigrationInterface {
                     {
                         name: 'number',
                         type: 'varchar(30)',
+                        isNullable: false
+                    },
+                    {
+                        name: 'cep',
+                        type: 'char(8)',
                         isNullable: false
                     },
                     {

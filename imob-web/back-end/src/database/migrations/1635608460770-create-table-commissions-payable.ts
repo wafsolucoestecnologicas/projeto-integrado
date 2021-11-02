@@ -43,7 +43,7 @@ export class createTableCommissionsPayable1635608460770 implements MigrationInte
                         isNullable: false,
                     },
                     {
-                        name: 'value_property_acquisition',
+                        name: 'value_property_captured',
                         type: 'numeric(21, 2)',
                         isNullable: false,
                     },

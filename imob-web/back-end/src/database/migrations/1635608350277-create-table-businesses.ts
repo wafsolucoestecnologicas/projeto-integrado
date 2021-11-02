@@ -35,6 +35,18 @@ export class createTableBusinesses1635608350277 implements MigrationInterface {
                         isNullable: true
                     },
                     {
+                        name: 'advisor_id',
+                        type: 'integer',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'broker_id',
+                        type: 'integer',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
                         name: 'secretary_id',
                         type: 'integer',
                         default: null,
@@ -52,56 +64,29 @@ export class createTableBusinesses1635608350277 implements MigrationInterface {
                         isNullable: true
                     },
                     {
-                        name: 'lead_id',
-                        type: 'integer',
-                        isNullable: false
-                    },
-                    {
                         name: 'property_id',
                         type: 'integer',
                         default: null,
                         isNullable: true
                     },
                     {
-                        name: 'redirected_manager_id',
+                        name: 'lead_id',
                         type: 'integer',
-                        default: null,
-                        isNullable: true
-                    },
-                    {
-                        name: 'redirected_advisor_id',
-                        type: 'integer',
-                        default: null,
-                        isNullable: true
-                    },
-                    {
-                        name: 'redirected_broker_id',
-                        type: 'integer',
-                        default: null,
-                        isNullable: true
-                    },
-                    {
-                        name: 'created_by_administrator',
-                        type: 'boolean',
-                        isNullable: false
-                    },
-                    {
-                        name: 'created_by_manager',
-                        type: 'boolean',
-                        isNullable: false
-                    },
-                    {
-                        name: 'created_by_secretary',
-                        type: 'boolean',
                         isNullable: false
                     },
                     {
                         name: 'status',
-                        type: 'varchar(30)',
+                        type: 'smallint',
                         isNullable: false
                     },
                     {
                         name: 'date_visit',
+                        type: 'timestamp',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'date_sale',
                         type: 'timestamp',
                         default: null,
                         isNullable: true
@@ -179,6 +164,39 @@ export class createTableBusinesses1635608350277 implements MigrationInterface {
                         isNullable: true
                     },
                     {
+                        name: 'created_by_administrator',
+                        type: 'boolean',
+                        isNullable: false
+                    },
+                    {
+                        name: 'created_by_manager',
+                        type: 'boolean',
+                        isNullable: false
+                    },
+                    {
+                        name: 'created_by_secretary',
+                        type: 'boolean',
+                        isNullable: false
+                    },
+                    {
+                        name: 'redirected_manager_id',
+                        type: 'integer',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'redirected_advisor_id',
+                        type: 'integer',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'redirected_broker_id',
+                        type: 'integer',
+                        default: null,
+                        isNullable: true
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         isNullable: false
@@ -209,6 +227,20 @@ export class createTableBusinesses1635608350277 implements MigrationInterface {
                         columnNames: ['manager_id'],
                         referencedSchema: 'persons',
                         referencedTableName: 'persons.managers',
+                        referencedColumnNames: ['id']
+                    },
+                    {
+                        name: 'fk_advisor_id',
+                        columnNames: ['advisor_id'],
+                        referencedSchema: 'persons',
+                        referencedTableName: 'persons.advisors',
+                        referencedColumnNames: ['id']
+                    },
+                    {
+                        name: 'fk_broker_id',
+                        columnNames: ['broker_id'],
+                        referencedSchema: 'persons',
+                        referencedTableName: 'persons.brokers',
                         referencedColumnNames: ['id']
                     },
                     {
