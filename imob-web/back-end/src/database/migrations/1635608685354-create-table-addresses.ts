@@ -6,7 +6,7 @@ export class createTableAddresses1635608685354 implements MigrationInterface {
         await queryRunner.createTable(
             new Table({
                 schema: 'public',
-                name: 'addresses',
+                name: 'adresses',
                 columns: [
                     {
                         name: 'id',
@@ -200,7 +200,7 @@ export class createTableAddresses1635608685354 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('public.addresses');
+        await queryRunner.dropTable('public.adresses');
     }
 
 }

@@ -22,6 +22,11 @@ export class createTableStates1635608537001 implements MigrationInterface {
                         type: 'varchar(100)',
                         isNullable: false,
                     },
+                    {
+                        name: 'uf',
+                        type: 'char(2)',
+                        isNullable: false,
+                    },
                 ]
             })
         );
