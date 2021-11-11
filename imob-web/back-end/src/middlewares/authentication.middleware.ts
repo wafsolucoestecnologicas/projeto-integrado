@@ -6,7 +6,7 @@ import { statusMessages } from '../../utils/utils';
 const validateURLWithoutAuthentication = (url: string): boolean => {
     url = url.split('/')[1];
 
-    /**@TODO Deixar apenas as rotas de authentication e users futuramente */
+    /** @TODO Deixar apenas as rotas de authentication e users futuramente */
     const urls: string[] = [
         'authentications',
         'users',
@@ -18,7 +18,11 @@ const validateURLWithoutAuthentication = (url: string): boolean => {
         'brokers',
         'secretaries',
         'owners',
-        'customers'
+        'customers',
+        'adresses',
+        'neighborhoods',
+        'cities',
+        'states'
     ];
 
     const isValid: boolean = urls.includes(url);
