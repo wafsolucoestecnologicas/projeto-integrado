@@ -87,6 +87,10 @@ export class App {
         this.express.use('/secretaries', routes.secretary);
         this.express.use('/owners', routes.owner);
         this.express.use('/customers', routes.customer);
+        this.express.use('/adresses', routes.address);
+        this.express.use('/neighborhoods', routes.neighborhood);
+        this.express.use('/cities', routes.city);
+        this.express.use('/states', routes.state);
     }
 
     private listen(): void {
