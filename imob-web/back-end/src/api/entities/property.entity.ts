@@ -26,7 +26,7 @@ export class PropertyEntity implements PropertyModel {
 
     @Column({
         name: 'description',
-        type: 'longtext',
+        type: 'text',
         default: null,
         nullable: true,
         comment: 'Descrição do imóvel'

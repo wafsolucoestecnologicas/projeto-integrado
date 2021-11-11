@@ -1,4 +1,4 @@
-import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, AfterLoad } from 'typeorm';
 import { AddressModel } from '../models/address.model';
 import { CompanyEntity } from './company.entity';
 import { NeighborhoodEntity } from './neighborhood.entity';
@@ -12,7 +12,7 @@ import { PropertyEntity } from './property.entity';
 
 @Entity({
     schema: 'public',
-    name: 'addresses'
+    name: 'adresses'
 })
 export class AddressEntity implements AddressModel {
 
@@ -45,11 +45,11 @@ export class AddressEntity implements AddressModel {
 
     @Column({
         name: 'number',
-        type: 'int',
+        type: 'text',
         nullable: false,
         comment: 'Número do endereço'
     })
-    public number: number;
+    public number: string;
 
     @Column({
         name: 'cep',
@@ -160,5 +160,11 @@ export class AddressEntity implements AddressModel {
     public property?: PropertyEntity;
 
     constructor() { }
+
+    @AfterLoad()
+    public convertValuesToUpperCase(): void {
+        if (this.street) this.street = this.street.toUpperCase();
+        if (this.complement) this.complement = this.complement.toUpperCase();
+    }
 
 }

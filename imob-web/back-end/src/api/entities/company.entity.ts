@@ -81,9 +81,9 @@ export class CompanyEntity implements CompanyModel {
     constructor() { }
 
     @AfterLoad()
-    convertValuesToNumber(): void {
-        this.percentageCommissionReceived = Number(this.percentageCommissionReceived);
-        this.percentageCommissionPayable = Number(this.percentageCommissionPayable);
+    public convertValuesToNumber(): void {
+        if (this.percentageCommissionReceived) this.percentageCommissionReceived = Number(this.percentageCommissionReceived);
+        if (this.percentageCommissionPayable) this.percentageCommissionPayable = Number(this.percentageCommissionPayable);
     }
 
     @BeforeInsert()

@@ -73,7 +73,7 @@ export class LeadEntity implements LeadModel {
 
     @Column({
         name: 'comments',
-        type: 'longtext',
+        type: 'text',
         default: null,
         nullable: true,
         comment: 'Observações do contato na lead'

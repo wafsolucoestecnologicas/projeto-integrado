@@ -1,4 +1,4 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, AfterLoad } from 'typeorm';
 import { StateModel } from '../models/state.model';
 
 @Entity({
@@ -26,6 +26,19 @@ export class StateEntity implements StateModel {
     })
     public state: string;
 
+    @Column({
+        name: 'uf',
+        type: 'text',
+        nullable: false,
+        comment: 'Sigla do estado'
+    })
+    public UF: string;
+
     constructor() { }
+
+    @AfterLoad()
+    public convertStateToUpperCase(): void {
+        if (this.state) this.state = this.state.toUpperCase();
+    }
 
 }

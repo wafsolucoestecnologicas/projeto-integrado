@@ -1,4 +1,4 @@
-import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, AfterLoad } from 'typeorm';
 import { NeighborhoodModel } from '../models/neighborhood.model';
 import { CityEntity } from './city.entity';
 
@@ -32,5 +32,10 @@ export class NeighborhoodEntity implements NeighborhoodModel {
     public city: CityEntity;
 
     constructor() { }
+
+    @AfterLoad()
+    public convertNeighborhoodToUpperCase(): void {
+        if (this.neighborhood) this.neighborhood = this.neighborhood.toUpperCase();
+    }
 
 }
