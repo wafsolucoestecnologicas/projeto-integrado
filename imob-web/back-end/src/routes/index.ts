@@ -1,3 +1,4 @@
+import { Router } from 'express';
 import authentication from './authentication.routes';
 import company from './company.routes';
 import profile from './profile.routes';
@@ -9,8 +10,12 @@ import broker from './broker.routes';
 import secretary from './secretary.routes';
 import owner from './owner.routes';
 import customer from './customer.routes';
+import address from './address.routes';
+import neighborhood from './neighborhood.routes';
+import city from './city.routes';
+import state from './state.routes';
 
-const routes: any = {
+const routes: { [key: string]: Router } = {
     authentication,
     company,
     profile,
@@ -21,7 +26,11 @@ const routes: any = {
     broker,
     secretary,
     owner,
-    customer
+    customer,
+    address,
+    neighborhood,
+    city,
+    state
 };
 
 export default routes;
