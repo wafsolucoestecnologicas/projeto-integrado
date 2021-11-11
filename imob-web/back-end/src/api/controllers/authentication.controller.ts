@@ -39,6 +39,7 @@ export class AuthenticationController {
                     jwt.setPayload({
                         id: userEntity.id,
                         uuid: userEntity.uuid,
+                        company: userEntity.company,
                         name: userEntity.name,
                         surname: userEntity.surname,
                         email: userEntity.email,
