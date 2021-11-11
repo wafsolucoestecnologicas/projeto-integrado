@@ -12,7 +12,7 @@ export interface AddressModel {
     id: number;
     street: string;
     complement: string;
-    number: number;
+    number: string;
     CEP: string;
     isCompany: boolean;
     isManager: boolean;
@@ -31,4 +31,19 @@ export interface AddressModel {
     owner?: OwnerEntity;
     customer?: CustomerEntity;
     property?: PropertyEntity;
+
+    convertValuesToUpperCase(): void;
+}
+
+export interface ResponseViaCEPModel {
+    cep: string;
+    logradouro: string;
+    complemento: string;
+    bairro: string;
+    localidade: string;
+    uf: string;
+    ibge: string;
+    gia: string;
+    ddd: string;
+    siafi: string;
 }
