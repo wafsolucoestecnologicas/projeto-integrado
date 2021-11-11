@@ -21,13 +21,7 @@ export class ProfileController {
         }
     }
 
-    /* public async create(request: Request, response: Response): Promise<Response> {
-        try {
-            return response.status(200).json();
-        } catch (error: any) {
-            return response.status(500).json({ message: error.message });
-        }
-    } */
+    /* public async create(request: Request, response: Response): Promise<Response> { } */
 
     public async read(request: Request, response: Response): Promise<Response> {
         try {
@@ -47,20 +41,8 @@ export class ProfileController {
         }
     }
 
-    /* public async update(request: Request, response: Response): Promise<Response> {
-        try {
-            return response.status(200).json();
-        } catch (error: any) {
-            return response.status(500).json({ message: error.message });
-        }
-    } */
+    /* public async update(request: Request, response: Response): Promise<Response> { } */
 
-    /* public async delete(request: Request, response: Response): Promise<Response> {
-        try {
-            return response.status(200).json();
-        } catch (error: any) {
-            return response.status(500).json({ message: error.message });
-        }
-    } */
+    /* public async delete(request: Request, response: Response): Promise<Response> { } */
 
 }
