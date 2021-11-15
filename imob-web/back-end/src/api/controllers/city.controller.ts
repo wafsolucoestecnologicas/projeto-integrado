@@ -35,7 +35,7 @@ export class CityController {
                     const cityEntity: CityEntity =
                         await cityService.create(request.body, transaction);
 
-                    return response.status(200).json(cityEntity);
+                    return response.status(201).json(cityEntity);
                 } else {
                     return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
                 }

@@ -35,7 +35,7 @@ export class NeighborhoodController {
                     const neighborhoodEntity: NeighborhoodEntity =
                         await neighborhoodService.create(request.body, transaction);
 
-                    return response.status(200).json(neighborhoodEntity);
+                    return response.status(201).json(neighborhoodEntity);
                 } else {
                     return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
                 }

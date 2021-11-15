@@ -39,7 +39,7 @@ export class AddressController {
                     const addressEntity: AddressEntity =
                         await addressService.create(request.body, transaction);
 
-                    return response.status(200).json(addressEntity);
+                    return response.status(201).json(addressEntity);
                 } else {
                     return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
                 }

@@ -175,7 +175,7 @@ export class UserController {
 
                                 if (userEntity) userEntity.password = '';
 
-                                return response.status(200).json(userEntity);
+                                return response.status(201).json(userEntity);
                             } else {
                                 return response.status(500).json({ message: `${returnMessages[6]}` });
                             }
