@@ -87,6 +87,11 @@ export class App {
         this.express.use('/secretaries', routes.secretary);
         this.express.use('/owners', routes.owner);
         this.express.use('/customers', routes.customer);
+        this.express.use('/properties', routes.property);
+        this.express.use('/leads', routes.lead);
+        this.express.use('/businesses', routes.business);
+        this.express.use('/commissions-receive', routes.receive);
+        this.express.use('/commissions-payable', routes.payable);
         this.express.use('/adresses', routes.address);
         this.express.use('/neighborhoods', routes.neighborhood);
         this.express.use('/cities', routes.city);
