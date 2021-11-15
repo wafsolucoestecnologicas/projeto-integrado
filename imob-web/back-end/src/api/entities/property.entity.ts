@@ -53,7 +53,7 @@ export class PropertyEntity implements PropertyModel {
     @Column({
         name: 'elevator',
         type: 'bool',
-        default: false,
+        default: null,
         nullable: true,
         comment: 'Confirmação se o imóvel possui elevador'
     })

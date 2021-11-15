@@ -58,7 +58,8 @@ export class LeadEntity implements LeadModel {
     @Column({
         name: 'landline',
         type: 'text',
-        nullable: false,
+        default: null,
+        nullable: true,
         comment: 'Telefone fixo do contato na lead'
     })
     public landline: string;

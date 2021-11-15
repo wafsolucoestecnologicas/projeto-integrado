@@ -8,7 +8,7 @@ import { PropertyEntity } from './property.entity';
     schema: 'commission',
     name: 'commissions_payable'
 })
-export class CommissionPayable implements CommissionPayableModel {
+export class CommissionPayableEntity implements CommissionPayableModel {
 
     @Column({
         name: 'id',

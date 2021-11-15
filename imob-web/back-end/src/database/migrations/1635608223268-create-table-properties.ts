@@ -72,7 +72,7 @@ export class createTableProperties1635608223268 implements MigrationInterface {
                     {
                         name: 'elevator',
                         type: 'boolean',
-                        default: false,
+                        default: null,
                         isNullable: true
                     },
                     {
