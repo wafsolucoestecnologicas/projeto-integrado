@@ -30,6 +30,7 @@ export interface PropertyModel {
     broker?: BrokerEntity;
     secretary?: SecretaryEntity;
 
+    convertValuesToNumber(): void;
     setCreatedAt(): void;
     setUpdatedAt(): void;
 }

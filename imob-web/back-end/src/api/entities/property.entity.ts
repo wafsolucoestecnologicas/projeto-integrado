@@ -1,4 +1,4 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn, AfterLoad } from 'typeorm';
 import { PropertyModel } from '../models/property.model';
 import { CompanyEntity } from './company.entity';
 import { AdministratorEntity } from './administrator.entity';
@@ -193,6 +193,16 @@ export class PropertyEntity implements PropertyModel {
     public secretary?: SecretaryEntity;
 
     constructor() { }
+
+    @AfterLoad()
+    public convertValuesToNumber(): void {
+        if (this.terrainArea) this.terrainArea = Number(this.terrainArea);
+        if (this.buildingArea) this.buildingArea = Number(this.buildingArea);
+        if (this.totalUtilTerrainArea) this.totalUtilTerrainArea = Number(this.totalUtilTerrainArea);
+        if (this.condominium) this.condominium = Number(this.condominium);
+        if (this.IPTU) this.IPTU = Number(this.IPTU);
+        if (this.value) this.value = Number(this.value);
+    }
 
     @BeforeInsert()
     public setCreatedAt(): void {
