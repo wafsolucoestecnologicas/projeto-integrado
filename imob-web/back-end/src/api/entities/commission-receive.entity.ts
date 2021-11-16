@@ -1,4 +1,4 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn, AfterLoad } from 'typeorm';
 import { CommissionReceiveModel } from '../models/commission-receive.model';
 import { CompanyEntity } from './company.entity';
 import { PropertyEntity } from './property.entity';
@@ -65,6 +65,11 @@ export class CommissionReceiveEntity implements CommissionReceiveModel {
 
     constructor() { }
 
+    @AfterLoad()
+    public convertValuesToNumber(): void {
+        if (this.value) this.value = Number(this.value);
+    }
+    
     @BeforeInsert()
     public setCreatedAt(): void {
         this.createdAt = new Date();

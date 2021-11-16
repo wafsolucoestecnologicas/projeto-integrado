@@ -10,6 +10,7 @@ export interface CommissionReceiveModel {
     company: CompanyEntity;
     property: PropertyEntity;
 
+    convertValuesToNumber(): void;
     setCreatedAt(): void;
     setUpdatedAt(): void;
 }
