@@ -275,6 +275,13 @@ export class BusinessEntity implements BusinessModel {
     constructor() { }
 
     @BeforeInsert()
+    @BeforeUpdate()
+    public convertDatesToTimestamp(): void {
+        if (this.dateVisit) this.dateVisit = new Date(this.dateVisit);
+        if (this.dateSale) this.dateSale = new Date(this.dateSale);
+    }
+
+    @BeforeInsert()
     public setCreatedAt(): void {
         this.createdAt = new Date();
     }
