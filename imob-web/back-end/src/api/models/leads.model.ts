@@ -8,7 +8,7 @@ export interface LeadModel {
     name: string;
     surname: string;
     email: string;
-    source: string;
+    source: number;
     landline: string;
     cellPhone: string;
     comments: string;
