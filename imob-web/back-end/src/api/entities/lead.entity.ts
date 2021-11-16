@@ -1,5 +1,5 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate, JoinColumn, OneToOne } from 'typeorm';
-import { LeadModel } from '../models/leads.model';
+import { LeadModel } from '../models/lead.model';
 import { CompanyEntity } from './company.entity';
 import { AdministratorEntity } from './administrator.entity';
 import { ManagerEntity } from './manager.entity';
