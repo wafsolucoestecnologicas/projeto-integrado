@@ -58,7 +58,7 @@ export class createTableLeads1635608264516 implements MigrationInterface {
                     },
                     {
                         name: 'source',
-                        type: 'varchar(50)',
+                        type: 'smallint',
                         isNullable: false
                     },
                     {
