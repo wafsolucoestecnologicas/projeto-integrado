@@ -1,4 +1,4 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn, AfterLoad } from 'typeorm';
 import { CommissionPayableModel } from '../models/commission-payable.model';
 import { CompanyEntity } from './company.entity';
 import { BrokerEntity } from './broker.entity';
@@ -38,7 +38,7 @@ export class CommissionPayableEntity implements CommissionPayableModel {
     public valueClosedDeals: number;
 
     @Column({
-        name: 'value_property_acquisition',
+        name: 'value_property_captured',
         type: 'numeric',
         nullable: false,
         comment: 'Valor da comissão à pagar por imóveis captados'
@@ -78,6 +78,12 @@ export class CommissionPayableEntity implements CommissionPayableModel {
 
     constructor() { }
 
+    @AfterLoad()
+    public convertValuesToNumber(): void {
+        if (this.valueClosedDeals) this.valueClosedDeals = Number(this.valueClosedDeals);
+        if (this.valuePropertyCaptured) this.valuePropertyCaptured = Number(this.valuePropertyCaptured);
+    }
+    
     @BeforeInsert()
     public setCreatedAt(): void {
         this.createdAt = new Date();

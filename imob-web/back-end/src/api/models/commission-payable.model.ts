@@ -13,6 +13,7 @@ export interface CommissionPayableModel {
     broker: BrokerEntity;
     property: PropertyEntity;
 
+    convertValuesToNumber(): void;
     setCreatedAt(): void;
     setUpdatedAt(): void;
 }
