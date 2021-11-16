@@ -49,11 +49,11 @@ export class LeadEntity implements LeadModel {
 
     @Column({
         name: 'source',
-        type: 'text',
+        type: 'smallint',
         nullable: false,
         comment: 'Origem do contato na lead, onde: 0 - Imobiliária, 1 - Telefone, 2 - Anúncios, 3 - Internet e 4 - Whatsapp'
     })
-    public source: string;
+    public source: number;
 
     @Column({
         name: 'landline',
