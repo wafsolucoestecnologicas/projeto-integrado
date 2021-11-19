@@ -127,4 +127,22 @@ export class LeadController {
         });
     }
 
+    public async amount(request: Request, response: Response): Promise<Response> {
+        try {
+            const leadService: LeadService =
+                new LeadService();
+
+            if (request.query.month) {
+                const result: any =
+                    await leadService.calculateTotalAmountLeads(String(request.query.month));
+
+                return response.status(200).json(result);
+            } else {
+                return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
+            }
+        } catch (error: any) {
+            return response.status(500).json({ message: error.message });
+        }
+    }
+
 }
