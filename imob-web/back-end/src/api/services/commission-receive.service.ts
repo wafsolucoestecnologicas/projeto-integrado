@@ -1,5 +1,6 @@
 import { DeleteResult, EntityManager, getRepository, Repository } from 'typeorm'
 import { CommissionReceiveEntity } from '../entities/commission-receive.entity'
+import moment from 'moment';
 
 export class CommissionReceiveService {
 
@@ -79,8 +80,8 @@ export class CommissionReceiveService {
 
         if (!data.date ||
             !data.value) {
-                isValid = false;
-            }
+            isValid = false;
+        }
 
         return isValid;
     }
@@ -97,6 +98,30 @@ export class CommissionReceiveService {
         const result: boolean = (commissionReceiveEntity) ? true : false;
 
         return result;
+    }
+
+    public async calculateTotalValueReceiveble(month: string): Promise<any> {
+        const dateFrom: string = moment(month).startOf('month').format('YYYY-MM-DD');
+        const dateTo: string = moment(month).endOf('month').format('YYYY-MM-DD');
+
+        const query: any =
+            await this.repository.query(`
+                    SELECT
+                        SUM (commissions_receive.value) AS "totalValueReceiveble"
+                    FROM commission.commissions_receive AS commissions_receive
+                    WHERE (commissions_receive.date BETWEEN '${dateFrom}' AND '${dateTo}')
+                `);
+
+        const result: any =
+            query.map((object: any) => {
+                for (const key in object) {
+                    if (typeof object[key] === 'string') object[key] = Number(object[key]);
+                }
+
+                return object;
+            });
+
+        return result[0];
     }
 
 }
