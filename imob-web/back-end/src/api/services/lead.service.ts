@@ -1,5 +1,6 @@
 import { DeleteResult, EntityManager, getRepository, Repository } from 'typeorm'
 import { LeadEntity } from '../entities/lead.entity'
+import moment from 'moment';
 
 export class LeadService {
 
@@ -103,7 +104,7 @@ export class LeadService {
             !data.hasOwnProperty('createdByAdministrator') ||
             !data.hasOwnProperty('createdByManager') ||
             !data.hasOwnProperty('createdBySecretary')) {
-                isValid = false;
+            isValid = false;
         }
 
         return isValid;
@@ -135,6 +136,34 @@ export class LeadService {
         const result: boolean = (leadEntity) ? true : false;
 
         return result;
+    }
+
+    /** @TODO Implementar método de pesquisa avançada de leads */
+
+    /* public async advancedLeadSearch(): Promise<LeadEntity[]> { } */
+
+    public async calculateTotalAmountLeads(month: string): Promise<any> {
+        const dateFrom: string = moment(month).startOf('month').format('YYYY-MM-DD');
+        const dateTo: string = moment(month).endOf('month').format('YYYY-MM-DD');
+
+        const query: any =
+            await this.repository.query(`
+                SELECT
+                    COUNT (*) AS "totalLeads"
+                FROM business.leads
+                WHERE (leads.created_at BETWEEN '${dateFrom}' AND '${dateTo}');
+            `);
+
+        const result: any =
+            query.map((object: any) => {
+                for (const key in object) {
+                    if (typeof object[key] === 'string') object[key] = Number(object[key]);
+                }
+
+                return object;
+            });
+
+        return result[0];
     }
 
 }
