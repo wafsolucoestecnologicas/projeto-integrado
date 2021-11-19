@@ -1,5 +1,5 @@
 import { DeleteResult, EntityManager, getRepository, Repository } from 'typeorm'
-import { CommissionReceivebleEntity } from '../entities/commission-receive.entity'
+import { CommissionReceivebleEntity } from '../entities/commission-receiveble.entity'
 import moment from 'moment';
 
 export class CommissionReceivebleService {

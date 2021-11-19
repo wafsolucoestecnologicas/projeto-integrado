@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { CommissionReceivebleController } from '../api/controllers/commission-receive.controller';
+import { CommissionReceivebleController } from '../api/controllers/commission-receiveble.controller';
 
 const commissionReceivebleController: CommissionReceivebleController = new CommissionReceivebleController();
 const router: Router = Router();
