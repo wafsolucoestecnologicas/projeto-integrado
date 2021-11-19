@@ -4,6 +4,7 @@ import { CommissionPayableController } from '../api/controllers/commission-payab
 const commissionPayableController: CommissionPayableController = new CommissionPayableController();
 const router: Router = Router();
 
+router.get('/payable', commissionPayableController.payable);
 router.get('/', commissionPayableController.index);
 router.post('/', commissionPayableController.create);
 router.get('/:id', commissionPayableController.read);

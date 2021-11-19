@@ -4,6 +4,7 @@ import { BusinessController } from '../api/controllers/business.controller';
 const businessController: BusinessController = new BusinessController();
 const router: Router = Router();
 
+router.get('/amount', businessController.amount);
 router.get('/', businessController.index);
 router.post('/', businessController.create);
 router.get('/:id', businessController.read);

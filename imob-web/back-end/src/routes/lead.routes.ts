@@ -4,6 +4,7 @@ import { LeadController } from '../api/controllers/lead.controller';
 const leadController: LeadController = new LeadController();
 const router: Router = Router();
 
+router.get('/amount', leadController.amount);
 router.get('/', leadController.index);
 router.post('/', leadController.create);
 router.get('/:id', leadController.read);

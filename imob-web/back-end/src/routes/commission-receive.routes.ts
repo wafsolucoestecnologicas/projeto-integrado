@@ -4,6 +4,7 @@ import { CommissionReceiveController } from '../api/controllers/commission-recei
 const commissionReceiveController: CommissionReceiveController = new CommissionReceiveController();
 const router: Router = Router();
 
+router.get('/receiveble', commissionReceiveController.receiveble);
 router.get('/', commissionReceiveController.index);
 router.post('/', commissionReceiveController.create);
 router.get('/:id', commissionReceiveController.read);
