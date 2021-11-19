@@ -126,10 +126,14 @@ export class AddressController {
             const addressService: AddressService =
                 new AddressService();
 
-            const responseViaCEP: ResponseViaCEPModel =
-                await addressService.fetchAddressInAPIViaCEP(request.params.cep);
+            if (request.query.CEP) {
+                const responseViaCEP: ResponseViaCEPModel =
+                    await addressService.fetchAddressInAPIViaCEP(String(request.query.CEP));
 
-            return response.status(200).json(responseViaCEP);
+                return response.status(200).json(responseViaCEP);
+            } else {
+                return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
+            }
         } catch (error: any) {
             return response.status(500).json({ message: error.message });
         }
