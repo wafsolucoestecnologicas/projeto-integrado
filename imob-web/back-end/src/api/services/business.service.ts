@@ -3,6 +3,7 @@ import { BusinessEntity } from '../entities/business.entity';
 import { ManagerEntity } from '../entities/manager.entity';
 import { AdvisorEntity } from '../entities/advisor.entity';
 import { BrokerEntity } from '../entities/broker.entity';
+import moment from 'moment';
 
 export class BusinessService {
 
@@ -230,6 +231,35 @@ export class BusinessService {
             });
 
         return updateResult;
+    }
+
+    public async calculateTotalAmountBusinesses(month: string): Promise<any> {
+        const dateFrom: string = moment(month).startOf('month').format('YYYY-MM-DD');
+        const dateTo: string = moment(month).endOf('month').format('YYYY-MM-DD');
+
+        const query: any =
+            await this.repository.query(`
+                SELECT
+                    SUM (CASE WHEN (businesses.status = 0) THEN (1) ELSE (0) END) AS "totalAmountProspecting",
+                    SUM (CASE WHEN (businesses.status = 1) THEN (1) ELSE (0) END) AS "totalAmountVisit",
+                    SUM (CASE WHEN (businesses.status = 2) THEN (1) ELSE (0) END) AS "totalAmountProposal",
+                    SUM (CASE WHEN (businesses.status = 3) THEN (1) ELSE (0) END) AS "totalAmountRejected",
+                    SUM (CASE WHEN (businesses.status = 4) THEN (1) ELSE (0) END) AS "totalAmountClosed",
+                    COUNT (*) AS "totalAmountBusinesses"
+                FROM business.businesses AS businesses
+                WHERE (businesses.created_at BETWEEN '${dateFrom}' AND '${dateTo}')
+            `);
+
+        const result: any =
+            query.map((object: any) => {
+                for (const key in object) {
+                    if (typeof object[key] === 'string') object[key] = Number(object[key]);
+                }
+
+                return object;
+            });
+
+        return result[0];
     }
 
 }
