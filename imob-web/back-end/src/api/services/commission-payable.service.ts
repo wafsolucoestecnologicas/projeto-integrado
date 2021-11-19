@@ -1,5 +1,6 @@
 import { DeleteResult, EntityManager, getRepository, Repository } from 'typeorm'
 import { CommissionPayableEntity } from '../entities/commission-payable.entity'
+import moment from 'moment';
 
 export class CommissionPayableService {
 
@@ -85,8 +86,8 @@ export class CommissionPayableService {
         if (!data.date ||
             !data.valueClosedDeals ||
             !data.valuePropertyCaptured) {
-                isValid = false;
-            }
+            isValid = false;
+        }
 
         return isValid;
     }
@@ -103,6 +104,31 @@ export class CommissionPayableService {
         const result: boolean = (commissionPayableEntity) ? true : false;
 
         return result;
+    }
+
+    public async calculateTotalValuePayable(month: string): Promise<any> {
+        const dateFrom: string = moment(month).startOf('month').format('YYYY-MM-DD');
+        const dateTo: string = moment(month).endOf('month').format('YYYY-MM-DD');
+
+        const query: any =
+            await this.repository.query(`
+                SELECT
+                    SUM (commissions_payable.value_closed_deals) AS "totalValueClosedDeals",
+                    SUM (commissions_payable.value_property_captured) AS "totalValuePropertyCaptured"
+                FROM commission.commissions_payable AS commissions_payable
+                WHERE (commissions_payable.date BETWEEN '${dateFrom}' AND '${dateTo}')
+            `);
+
+        const result: any =
+            query.map((object: any) => {
+                for (const key in object) {
+                    if (typeof object[key] === 'string') object[key] = Number(object[key]);
+                }
+
+                return object;
+            });
+
+        return result[0];
     }
 
 }
