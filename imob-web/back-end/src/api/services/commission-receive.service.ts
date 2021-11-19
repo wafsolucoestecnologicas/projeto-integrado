@@ -1,17 +1,17 @@
 import { DeleteResult, EntityManager, getRepository, Repository } from 'typeorm'
-import { CommissionReceiveEntity } from '../entities/commission-receive.entity'
+import { CommissionReceivebleEntity } from '../entities/commission-receive.entity'
 import moment from 'moment';
 
-export class CommissionReceiveService {
+export class CommissionReceivebleService {
 
-    private repository: Repository<CommissionReceiveEntity>;
+    private repository: Repository<CommissionReceivebleEntity>;
 
     constructor() {
-        this.repository = getRepository(CommissionReceiveEntity);
+        this.repository = getRepository(CommissionReceivebleEntity);
     }
 
-    public async index(): Promise<CommissionReceiveEntity[]> {
-        const commissionReceiveEntity: CommissionReceiveEntity[] =
+    public async index(): Promise<CommissionReceivebleEntity[]> {
+        const commissionReceivebleEntity: CommissionReceivebleEntity[] =
             await this.repository.find({
                 relations: [
                     'company',
@@ -19,11 +19,11 @@ export class CommissionReceiveService {
                 ]
             });
 
-        return commissionReceiveEntity;
+        return commissionReceivebleEntity;
     }
 
-    public async create(data: CommissionReceiveEntity, transaction: EntityManager): Promise<CommissionReceiveEntity> {
-        const commissionReceiveEntity: CommissionReceiveEntity =
+    public async create(data: CommissionReceivebleEntity, transaction: EntityManager): Promise<CommissionReceivebleEntity> {
+        const commissionReceivebleEntity: CommissionReceivebleEntity =
             this.repository.create({
                 company: data.company,
                 property: data.property,
@@ -31,14 +31,14 @@ export class CommissionReceiveService {
                 value: data.value
             });
 
-        const result: CommissionReceiveEntity =
-            await transaction.save(commissionReceiveEntity);
+        const result: CommissionReceivebleEntity =
+            await transaction.save(commissionReceivebleEntity);
 
         return result;
     }
 
-    public async read(id: number): Promise<CommissionReceiveEntity | undefined> {
-        const commissionReceiveEntity: CommissionReceiveEntity | undefined =
+    public async read(id: number): Promise<CommissionReceivebleEntity | undefined> {
+        const commissionReceivebleEntity: CommissionReceivebleEntity | undefined =
             await this.repository.findOne({
                 where: {
                     id: id
@@ -49,33 +49,33 @@ export class CommissionReceiveService {
                 ]
             });
 
-        return commissionReceiveEntity;
+        return commissionReceivebleEntity;
     }
 
-    public async update(id: number, data: CommissionReceiveEntity, transaction: EntityManager): Promise<CommissionReceiveEntity> {
-        const commissionReceiveEntity: CommissionReceiveEntity =
+    public async update(id: number, data: CommissionReceivebleEntity, transaction: EntityManager): Promise<CommissionReceivebleEntity> {
+        const commissionReceivebleEntity: CommissionReceivebleEntity =
             this.repository.create({
                 id: id,
                 date: data.date,
                 value: data.value
             });
 
-        const result: CommissionReceiveEntity =
-            await transaction.save(commissionReceiveEntity);
+        const result: CommissionReceivebleEntity =
+            await transaction.save(commissionReceivebleEntity);
 
         return result;
     }
 
     public async delete(id: number, transaction: EntityManager): Promise<DeleteResult> {
         const result: DeleteResult =
-            await transaction.delete(CommissionReceiveEntity, {
+            await transaction.delete(CommissionReceivebleEntity, {
                 id: id
             });
 
         return result;
     }
 
-    public validateData(data: CommissionReceiveEntity): boolean {
+    public validateData(data: CommissionReceivebleEntity): boolean {
         let isValid: boolean = true;
 
         if (!data.date ||
@@ -87,7 +87,7 @@ export class CommissionReceiveService {
     }
 
     public async alreadyRegisterById(id: number): Promise<boolean> {
-        const commissionReceiveEntity: CommissionReceiveEntity | undefined =
+        const commissionReceivebleEntity: CommissionReceivebleEntity | undefined =
             await this.repository.findOne({
                 select: ['id'],
                 where: {
@@ -95,7 +95,7 @@ export class CommissionReceiveService {
                 }
             });
 
-        const result: boolean = (commissionReceiveEntity) ? true : false;
+        const result: boolean = (commissionReceivebleEntity) ? true : false;
 
         return result;
     }

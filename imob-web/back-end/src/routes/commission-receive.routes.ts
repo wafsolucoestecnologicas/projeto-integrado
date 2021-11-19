@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { CommissionReceiveController } from '../api/controllers/commission-receive.controller';
+import { CommissionReceivebleController } from '../api/controllers/commission-receive.controller';
 
-const commissionReceiveController: CommissionReceiveController = new CommissionReceiveController();
+const commissionReceivebleController: CommissionReceivebleController = new CommissionReceivebleController();
 const router: Router = Router();
 
-router.get('/receiveble', commissionReceiveController.receiveble);
-router.get('/', commissionReceiveController.index);
-router.post('/', commissionReceiveController.create);
-router.get('/:id', commissionReceiveController.read);
-router.put('/:id', commissionReceiveController.update);
-router.delete('/:id', commissionReceiveController.delete);
+router.get('/receiveble', commissionReceivebleController.receiveble);
+router.get('/', commissionReceivebleController.index);
+router.post('/', commissionReceivebleController.create);
+router.get('/:id', commissionReceivebleController.read);
+router.put('/:id', commissionReceivebleController.update);
+router.delete('/:id', commissionReceivebleController.delete);
 
 export default router;

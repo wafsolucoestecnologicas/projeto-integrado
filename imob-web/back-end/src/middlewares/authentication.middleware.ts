@@ -22,7 +22,7 @@ const validateURLWithoutAuthentication = (url: string): boolean => {
         'properties',
         'leads',
         'businesses',
-        'commissions-receive',
+        'commissions-receiveble',
         'commissions-payable',
         'adresses',
         'neighborhoods',

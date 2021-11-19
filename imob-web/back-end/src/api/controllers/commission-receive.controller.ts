@@ -1,22 +1,22 @@
 import { DeleteResult, EntityManager, getManager } from 'typeorm';
 import { Request, Response } from 'express';
-import { CommissionReceiveEntity } from '../entities/commission-receive.entity';
-import { CommissionReceiveService } from '../services/commission-receive.service';
+import { CommissionReceivebleEntity } from '../entities/commission-receive.entity';
+import { CommissionReceivebleService } from '../services/commission-receive.service';
 import { returnMessages, statusMessages } from '../../../utils/utils';
 
-export class CommissionReceiveController {
+export class CommissionReceivebleController {
 
     constructor() { }
 
     public async index(request: Request, response: Response): Promise<Response> {
         try {
-            const commissionReceiveService: CommissionReceiveService =
-                new CommissionReceiveService();
+            const commissionReceivebleService: CommissionReceivebleService =
+                new CommissionReceivebleService();
 
-            const commissionReceiveEntity: CommissionReceiveEntity[] =
-                await commissionReceiveService.index();
+            const commissionReceivebleEntity: CommissionReceivebleEntity[] =
+                await commissionReceivebleService.index();
 
-            return response.status(200).json(commissionReceiveEntity);
+            return response.status(200).json(commissionReceivebleEntity);
         } catch (error: any) {
             return response.status(500).json({ message: error.message });
         }
@@ -25,17 +25,17 @@ export class CommissionReceiveController {
     public async create(request: Request, response: Response): Promise<Response> {
         return await getManager().transaction(async (transaction: EntityManager) => {
             try {
-                const commissionReceiveService: CommissionReceiveService =
-                    new CommissionReceiveService();
+                const commissionReceivebleService: CommissionReceivebleService =
+                    new CommissionReceivebleService();
 
                 const result: boolean =
-                    commissionReceiveService.validateData(request.body);
+                    commissionReceivebleService.validateData(request.body);
 
                 if (result) {
-                    const commissionReceiveEntity: CommissionReceiveEntity =
-                        await commissionReceiveService.create(request.body, transaction);
+                    const commissionReceivebleEntity: CommissionReceivebleEntity =
+                        await commissionReceivebleService.create(request.body, transaction);
 
-                    return response.status(201).json(commissionReceiveEntity);
+                    return response.status(201).json(commissionReceivebleEntity);
                 } else {
                     return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
                 }
@@ -47,14 +47,14 @@ export class CommissionReceiveController {
 
     public async read(request: Request, response: Response): Promise<Response> {
         try {
-            const commissionReceiveService: CommissionReceiveService =
-                new CommissionReceiveService();
+            const commissionReceivebleService: CommissionReceivebleService =
+                new CommissionReceivebleService();
 
             if (Number(request.params.id)) {
-                const commissionReceiveEntity: CommissionReceiveEntity | undefined =
-                    await commissionReceiveService.read(Number(request.params.id));
+                const commissionReceivebleEntity: CommissionReceivebleEntity | undefined =
+                    await commissionReceivebleService.read(Number(request.params.id));
 
-                return response.status(200).json(commissionReceiveEntity);
+                return response.status(200).json(commissionReceivebleEntity);
             } else {
                 return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[2]}` });
             }
@@ -66,22 +66,22 @@ export class CommissionReceiveController {
     public async update(request: Request, response: Response): Promise<Response> {
         return await getManager().transaction(async (transaction: EntityManager) => {
             try {
-                const commissionReceiveService: CommissionReceiveService =
-                    new CommissionReceiveService();
+                const commissionReceivebleService: CommissionReceivebleService =
+                    new CommissionReceivebleService();
 
                 if (Number(request.params.id)) {
                     const result: boolean =
-                        await commissionReceiveService.alreadyRegisterById(Number(request.params.id));
+                        await commissionReceivebleService.alreadyRegisterById(Number(request.params.id));
 
                     if (result) {
                         const result: boolean =
-                            commissionReceiveService.validateData(request.body);
+                            commissionReceivebleService.validateData(request.body);
 
                         if (result) {
-                            const commissionReceiveEntity: CommissionReceiveEntity =
-                                await commissionReceiveService.update(Number(request.params.id), request.body, transaction);
+                            const commissionReceivebleEntity: CommissionReceivebleEntity =
+                                await commissionReceivebleService.update(Number(request.params.id), request.body, transaction);
 
-                            return response.status(200).json(commissionReceiveEntity);
+                            return response.status(200).json(commissionReceivebleEntity);
                         } else {
                             return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
                         }
@@ -100,14 +100,14 @@ export class CommissionReceiveController {
     public async delete(request: Request, response: Response): Promise<Response> {
         return await getManager().transaction(async (transaction: EntityManager) => {
             try {
-                const commissionReceiveService: CommissionReceiveService =
-                    new CommissionReceiveService();
+                const commissionReceivebleService: CommissionReceivebleService =
+                    new CommissionReceivebleService();
 
                 if (Number(request.params.id)) {
                     const deleteResult: DeleteResult =
-                        await commissionReceiveService.delete(Number(request.params.id), transaction);
+                        await commissionReceivebleService.delete(Number(request.params.id), transaction);
 
-                    return response.status(200).json({ commissionReceive: deleteResult.affected });
+                    return response.status(200).json({ commissionReceiveble: deleteResult.affected });
                 } else {
                     return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[2]}` });
                 }
@@ -119,12 +119,12 @@ export class CommissionReceiveController {
 
     public async receiveble(request: Request, response: Response): Promise<Response> {
         try {
-            const commissionReceiveService: CommissionReceiveService =
-                new CommissionReceiveService();
+            const commissionReceivebleService: CommissionReceivebleService =
+                new CommissionReceivebleService();
 
             if (request.query.month) {
                 const result: any =
-                    await commissionReceiveService.calculateTotalValueReceiveble(String(request.query.month));
+                    await commissionReceivebleService.calculateTotalValueReceiveble(String(request.query.month));
 
                 return response.status(200).json(result);
             } else {

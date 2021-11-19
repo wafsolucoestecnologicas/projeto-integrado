@@ -13,7 +13,7 @@ import customer from './customer.routes';
 import property from './property.routes';
 import lead from './lead.routes';
 import business from './business.routes';
-import receive from './commission-receive.routes';
+import receiveble from './commission-receive.routes';
 import payable from './commission-payable.routes';
 import address from './address.routes';
 import neighborhood from './neighborhood.routes';
@@ -35,7 +35,7 @@ const routes: { [key: string]: Router } = {
     property,
     lead,
     business,
-    receive,
+    receiveble,
     payable,
     address,
     neighborhood,

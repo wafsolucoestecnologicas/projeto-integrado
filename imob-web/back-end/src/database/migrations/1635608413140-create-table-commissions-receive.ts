@@ -1,12 +1,12 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class createTableCommissionsReceive1635608413140 implements MigrationInterface {
+export class createTableCommissionsReceiveble1635608413140 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
                 schema: 'commission',
-                name: 'commissions_receive',
+                name: 'commissions_receiveble',
                 columns: [
                     {
                         name: 'id',

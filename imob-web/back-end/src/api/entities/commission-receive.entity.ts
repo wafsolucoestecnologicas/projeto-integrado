@@ -1,13 +1,13 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn, AfterLoad } from 'typeorm';
-import { CommissionReceiveModel } from '../models/commission-receive.model';
+import { CommissionReceivebleModel } from '../models/commission-receive.model';
 import { CompanyEntity } from './company.entity';
 import { PropertyEntity } from './property.entity';
 
 @Entity({
     schema: 'commission',
-    name: 'commissions_receive'
+    name: 'commissions_receiveble'
 })
-export class CommissionReceiveEntity implements CommissionReceiveModel {
+export class CommissionReceivebleEntity implements CommissionReceivebleModel {
 
     @Column({
         name: 'id',
@@ -69,7 +69,7 @@ export class CommissionReceiveEntity implements CommissionReceiveModel {
     public convertValuesToNumber(): void {
         if (this.value) this.value = Number(this.value);
     }
-    
+
     @BeforeInsert()
     public setCreatedAt(): void {
         this.createdAt = new Date();
