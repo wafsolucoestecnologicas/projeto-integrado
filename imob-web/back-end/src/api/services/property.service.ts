@@ -130,4 +130,7 @@ export class PropertyService {
         return result;
     }
 
+    /** @TODO Implementar método de pesquisa avançada de imóveis */
+
+    /* public async advancedPropertySearch(): Promise<PropertyEntity[]> { } */
 }
