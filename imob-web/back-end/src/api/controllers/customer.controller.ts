@@ -33,7 +33,7 @@ export class CustomerController {
     
                 if (result) {
                     const result: boolean =
-                        await customerService.alreadyRegisterByCpf(request.body.cpf);
+                        await customerService.alreadyRegisterByCPF(request.body.cpf);
     
                     if (!result) {
                         const customerEntity: CustomerEntity =

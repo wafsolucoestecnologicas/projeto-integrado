@@ -33,7 +33,7 @@ export class OwnerController {
     
                 if (result) {
                     const result: boolean =
-                        await ownerService.alreadyRegisterByCpf(request.body.cpf);
+                        await ownerService.alreadyRegisterByCPF(request.body.cpf);
     
                     if (!result) {
                         const ownerEntity: OwnerEntity =

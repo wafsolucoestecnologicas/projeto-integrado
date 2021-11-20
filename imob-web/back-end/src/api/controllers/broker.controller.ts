@@ -33,7 +33,7 @@ export class BrokerController {
     
                 if (result) {
                     const result: boolean =
-                        await brokerService.alreadyRegisterByCpf(request.body.cpf);
+                        await brokerService.alreadyRegisterByCPF(request.body.cpf);
     
                     if (!result) {
                         const brokerEntity: BrokerEntity =

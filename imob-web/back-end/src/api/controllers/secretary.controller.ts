@@ -33,7 +33,7 @@ export class SecretaryController {
     
                 if (result) {
                     const result: boolean =
-                        await secretaryService.alreadyRegisterByCpf(request.body.cpf);
+                        await secretaryService.alreadyRegisterByCPF(request.body.cpf);
     
                     if (!result) {
                         const secretaryEntity: SecretaryEntity =

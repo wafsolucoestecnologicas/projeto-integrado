@@ -33,7 +33,7 @@ export class AdministratorController {
     
                 if (result) {
                     const result: boolean =
-                        await administratorService.alreadyRegisterByCpf(request.body.cpf);
+                        await administratorService.alreadyRegisterByCPF(request.body.cpf);
     
                     if (!result) {
                         const administratorEntity: AdministratorEntity =

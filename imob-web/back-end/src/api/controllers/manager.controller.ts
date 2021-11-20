@@ -33,7 +33,7 @@ export class ManagerController {
     
                 if (result) {
                     const result: boolean =
-                        await managerService.alreadyRegisterByCpf(request.body.cpf);
+                        await managerService.alreadyRegisterByCPF(request.body.cpf);
     
                     if (!result) {
                         const managerEntity: ManagerEntity =

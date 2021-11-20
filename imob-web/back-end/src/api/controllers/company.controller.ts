@@ -33,7 +33,7 @@ export class CompanyController {
     
                 if (result) {
                     const result: boolean =
-                        await companyService.alreadyRegisteredByCnpj(request.body.cnpj);
+                        await companyService.alreadyRegisteredByCNPJ(request.body.cnpj);
     
                     if (!result) {
                         const companyEntity: CompanyEntity =

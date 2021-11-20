@@ -33,7 +33,7 @@ export class AdvisorController {
     
                 if (result) {
                     const result: boolean =
-                        await advisorService.alreadyRegisterByCpf(request.body.cpf);
+                        await advisorService.alreadyRegisterByCPF(request.body.cpf);
     
                     if (!result) {
                         const advisorEntity: AdvisorEntity =
