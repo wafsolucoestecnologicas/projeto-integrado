@@ -1,7 +1,7 @@
 import { CompanyEntity } from '../entities/company.entity';
-import { PersonModel } from './person.model';
+import { Person } from '../../../utils/interfaces/person';
 
-export interface OwnerModel extends PersonModel {
+export interface OwnerModel extends Person {
     checked: boolean;
     isOwner: boolean;
     company: CompanyEntity;

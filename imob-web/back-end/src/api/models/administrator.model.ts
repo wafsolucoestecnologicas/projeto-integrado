@@ -1,5 +1,5 @@
-import { PersonModel } from "./person.model";
+import { Person } from "../../../utils/interfaces/person";
 
-export interface AdministratorModel extends PersonModel {
+export interface AdministratorModel extends Person {
     isAdministrator: boolean;
 }
