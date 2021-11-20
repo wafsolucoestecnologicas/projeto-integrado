@@ -28,8 +28,8 @@ export class OwnerService {
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
                 birthDate: data.birthDate,
-                rg: data.rg,
-                cpf: data.cpf,
+                RG: data.RG,
+                CPF: data.CPF,
                 landline: data.landline,
                 cellPhone: data.cellPhone,
                 profession: data.profession,
@@ -65,8 +65,8 @@ export class OwnerService {
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
                 birthDate: data.birthDate,
-                rg: data.rg,
-                cpf: data.cpf,
+                RG: data.RG,
+                CPF: data.CPF,
                 landline: data.landline,
                 cellPhone: data.cellPhone,
                 profession: data.profession,
@@ -95,8 +95,8 @@ export class OwnerService {
             !data.surname ||
             !data.email ||
             !data.birthDate ||
-            !data.rg ||
-            !data.cpf ||
+            !data.RG ||
+            !data.CPF ||
             !data.cellPhone) {
                 isValid = false;
             }
@@ -104,12 +104,12 @@ export class OwnerService {
         return isValid;
     }
 
-    public async alreadyRegisterByCpf(cpf: string): Promise<boolean> {
+    public async alreadyRegisterByCPF(CPF: string): Promise<boolean> {
         const ownerEntity: OwnerEntity | undefined =
             await this.repository.findOne({
-                select: ['cpf'],
+                select: ['CPF'],
                 where: {
-                    cpf: cpf
+                    CPF: CPF
                 }
             });
 

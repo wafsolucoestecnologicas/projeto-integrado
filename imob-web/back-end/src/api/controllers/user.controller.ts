@@ -56,7 +56,7 @@ export class UserController {
 
                         const companyEntity: CompanyEntity =
                             await companyService.create({
-                                cnpj: '00000000000000',
+                                CNPJ: '00000000000000',
                                 corporateName: 'Empresa Cadastrada Automaticamente',
                                 stateRegistration: '0000000000',
                                 percentageCommissionReceived: 0,
@@ -85,8 +85,8 @@ export class UserController {
                                                 surname: request.body.surname,
                                                 email: request.body.email,
                                                 birthDate: new Date(),
-                                                rg: '000000000',
-                                                cpf: '00000000000',
+                                                RG: '000000000',
+                                                CPF: '00000000000',
                                                 cellPhone: '00000000000'
                                             } as AdministratorEntity, transaction);
 
@@ -104,8 +104,8 @@ export class UserController {
                                                 surname: request.body.surname,
                                                 email: request.body.email,
                                                 birthDate: new Date(),
-                                                rg: '000000000',
-                                                cpf: '00000000000',
+                                                RG: '000000000',
+                                                CPF: '00000000000',
                                                 cellPhone: '00000000000'
                                             } as ManagerEntity, transaction);
 
@@ -123,8 +123,8 @@ export class UserController {
                                                 surname: request.body.surname,
                                                 email: request.body.email,
                                                 birthDate: new Date(),
-                                                rg: '000000000',
-                                                cpf: '00000000000',
+                                                RG: '000000000',
+                                                CPF: '00000000000',
                                                 cellPhone: '00000000000'
                                             } as AdvisorEntity, transaction);
 
@@ -142,8 +142,8 @@ export class UserController {
                                                 surname: request.body.surname,
                                                 email: request.body.email,
                                                 birthDate: new Date(),
-                                                rg: '000000000',
-                                                cpf: '00000000000',
+                                                RG: '000000000',
+                                                CPF: '00000000000',
                                                 cellPhone: '00000000000'
                                             } as BrokerEntity, transaction);
 
@@ -161,8 +161,8 @@ export class UserController {
                                                 surname: request.body.surname,
                                                 email: request.body.email,
                                                 birthDate: new Date(),
-                                                rg: '000000000',
-                                                cpf: '00000000000',
+                                                RG: '000000000',
+                                                CPF: '00000000000',
                                                 cellPhone: '00000000000'
                                             } as SecretaryEntity, transaction);
 

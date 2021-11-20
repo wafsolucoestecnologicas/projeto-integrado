@@ -28,8 +28,8 @@ export class BrokerService {
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
                 birthDate: data.birthDate,
-                rg: data.rg,
-                cpf: data.cpf,
+                RG: data.RG,
+                CPF: data.CPF,
                 landline: data.landline,
                 cellPhone: data.cellPhone,
                 profession: data.profession,
@@ -64,8 +64,8 @@ export class BrokerService {
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
                 birthDate: data.birthDate,
-                rg: data.rg,
-                cpf: data.cpf,
+                RG: data.RG,
+                CPF: data.CPF,
                 landline: data.landline,
                 cellPhone: data.cellPhone,
                 profession: data.profession
@@ -93,8 +93,8 @@ export class BrokerService {
             !data.surname ||
             !data.email ||
             !data.birthDate ||
-            !data.rg ||
-            !data.cpf ||
+            !data.RG ||
+            !data.CPF ||
             !data.cellPhone) {
                 isValid = false;
             }
@@ -102,12 +102,12 @@ export class BrokerService {
         return isValid;
     }
 
-    public async alreadyRegisterByCpf(cpf: string): Promise<boolean> {
+    public async alreadyRegisterByCPF(CPF: string): Promise<boolean> {
         const brokerEntity: BrokerEntity | undefined =
             await this.repository.findOne({
-                select: ['cpf'],
+                select: ['CPF'],
                 where: {
-                    cpf: cpf
+                    CPF: CPF
                 }
             });
 

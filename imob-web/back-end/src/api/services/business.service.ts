@@ -47,7 +47,7 @@ export class BusinessService {
                 visitForm: data.visitForm,
                 propertyRegistration: data.propertyRegistration,
                 propertySaleContract: data.propertySaleContract,
-                IBTI: data.IBTI,
+                ITBI: data.ITBI,
                 customerRG: data.customerRG,
                 customerCPF: data.customerCPF,
                 customerAddressProof: data.customerAddressProof,
@@ -102,7 +102,7 @@ export class BusinessService {
                 visitForm: data.visitForm,
                 propertyRegistration: data.propertyRegistration,
                 propertySaleContract: data.propertySaleContract,
-                IBTI: data.IBTI,
+                ITBI: data.ITBI,
                 customerRG: data.customerRG,
                 customerCPF: data.customerCPF,
                 customerAddressProof: data.customerAddressProof,
@@ -143,7 +143,7 @@ export class BusinessService {
             !data.hasOwnProperty('visitForm') ||
             !data.hasOwnProperty('propertyRegistration') ||
             !data.hasOwnProperty('propertySaleContract') ||
-            !data.hasOwnProperty('IBTI') ||
+            !data.hasOwnProperty('ITBI') ||
             !data.hasOwnProperty('customerRG') ||
             !data.hasOwnProperty('customerCPF') ||
             !data.hasOwnProperty('customerAddressProof') ||

@@ -19,7 +19,7 @@ export class CompanyService {
     public async create(data: CompanyEntity, transaction: EntityManager): Promise<CompanyEntity> {
         const companyEntity: CompanyEntity =
             this.repository.create({
-                cnpj: data.cnpj,
+                CNPJ: data.CNPJ,
                 corporateName: data.corporateName,
                 stateRegistration: data.stateRegistration,
                 percentageCommissionReceived: data.percentageCommissionReceived,
@@ -47,7 +47,7 @@ export class CompanyService {
         const companyEntity: CompanyEntity =
             this.repository.create({
                 id: id,
-                cnpj: data.cnpj,
+                CNPJ: data.CNPJ,
                 corporateName: data.corporateName,
                 stateRegistration: data.stateRegistration,
                 percentageCommissionReceived: data.percentageCommissionReceived,
@@ -72,7 +72,7 @@ export class CompanyService {
     public createCompanyEntityByRepository(data: any): CompanyEntity {
         const companyEntity: CompanyEntity =
             this.repository.create({
-                cnpj: data.cnpj,
+                CNPJ: data.CNPJ,
                 corporateName: data.corporateName,
                 stateRegistration: data.stateRegistration
             });
@@ -83,7 +83,7 @@ export class CompanyService {
     public validateData(data: CompanyEntity): boolean {
         let isValid: boolean = true;
 
-        if (!data.cnpj ||
+        if (!data.CNPJ ||
             !data.corporateName ||
             !data.stateRegistration) {
             isValid = false;
@@ -92,12 +92,12 @@ export class CompanyService {
         return isValid;
     }
 
-    public async alreadyRegisteredByCnpj(cnpj: string): Promise<boolean> {
+    public async alreadyRegisteredByCNPJ(CNPJ: string): Promise<boolean> {
         const companyEntity: CompanyEntity | undefined =
             await this.repository.findOne({
-                select: ['cnpj'],
+                select: ['CNPJ'],
                 where: {
-                    cnpj: cnpj
+                    CNPJ: CNPJ
                 }
             });
 
