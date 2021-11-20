@@ -88,7 +88,7 @@ export class BusinessEntity implements BusinessModel {
         nullable: true,
         comment: 'Caminho relativo do documento de quitação de ITBI referente ao negócio'
     })
-    public IBTI: string;
+    public ITBI: string;
 
     @Column({
         name: 'customer_rg',

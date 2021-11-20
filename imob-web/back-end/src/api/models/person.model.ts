@@ -4,8 +4,8 @@ export interface PersonModel {
     surname: string;
     email: string;
     birthDate: Date;
-    rg: string;
-    cpf: string;
+    RG: string;
+    CPF: string;
     landline: string;
     cellPhone: string;
     profession: string;

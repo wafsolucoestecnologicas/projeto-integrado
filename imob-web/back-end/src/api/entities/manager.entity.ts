@@ -66,7 +66,7 @@ export class ManagerEntity implements ManagerModel {
         nullable: false,
         comment: 'Número do RG do gestor'
     })
-    public rg: string;
+    public RG: string;
 
     @Column({
         name: 'cpf',
@@ -74,7 +74,7 @@ export class ManagerEntity implements ManagerModel {
         nullable: false,
         comment: 'Número do CPF do gestor'
     })
-    public cpf: string;
+    public CPF: string;
 
     @Column({
         name: 'landline',

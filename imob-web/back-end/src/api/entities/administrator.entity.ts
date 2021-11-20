@@ -65,7 +65,7 @@ export class AdministratorEntity implements AdministratorModel {
         nullable: false,
         comment: 'Número do RG do administrador'
     })
-    public rg: string;
+    public RG: string;
 
     @Column({
         name: 'cpf',
@@ -73,7 +73,7 @@ export class AdministratorEntity implements AdministratorModel {
         nullable: false,
         comment: 'Número do CPF do administrador'
     })
-    public cpf: string;
+    public CPF: string;
 
     @Column({
         name: 'landline',

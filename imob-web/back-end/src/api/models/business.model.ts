@@ -17,7 +17,7 @@ export interface BusinessModel {
     visitForm: string;
     propertyRegistration: string;
     propertySaleContract: string;
-    IBTI: string;
+    ITBI: string;
     customerRG: string;
     customerCPF: string;
     customerAddressProof: string;

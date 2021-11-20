@@ -1,6 +1,6 @@
 export interface CompanyModel {
     id: number;
-    cnpj: string;
+    CNPJ: string;
     corporateName: string;
     stateRegistration: string;
     percentageCommissionReceived: number;

@@ -66,7 +66,7 @@ export class SecretaryEntity implements SecretaryModel {
         nullable: false,
         comment: 'Número do RG da secretária'
     })
-    public rg: string;
+    public RG: string;
 
     @Column({
         name: 'cpf',
@@ -74,7 +74,7 @@ export class SecretaryEntity implements SecretaryModel {
         nullable: false,
         comment: 'Número do CPF da secretária'
     })
-    public cpf: string;
+    public CPF: string;
 
     @Column({
         name: 'landline',

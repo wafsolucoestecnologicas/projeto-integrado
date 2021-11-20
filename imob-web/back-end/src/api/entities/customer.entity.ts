@@ -66,7 +66,7 @@ export class CustomerEntity implements CustomerModel {
         nullable: false,
         comment: 'Número do RG do cliente'
     })
-    public rg: string;
+    public RG: string;
 
     @Column({
         name: 'cpf',
@@ -74,7 +74,7 @@ export class CustomerEntity implements CustomerModel {
         nullable: false,
         comment: 'Número do CPF do cliente'
     })
-    public cpf: string;
+    public CPF: string;
 
     @Column({
         name: 'landline',

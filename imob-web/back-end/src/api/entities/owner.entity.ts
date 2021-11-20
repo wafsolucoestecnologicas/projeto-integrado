@@ -74,7 +74,7 @@ export class OwnerEntity implements OwnerModel {
         nullable: false,
         comment: 'Número do RG do proprietário'
     })
-    public rg: string;
+    public RG: string;
 
     @Column({
         name: 'cpf',
@@ -82,7 +82,7 @@ export class OwnerEntity implements OwnerModel {
         nullable: false,
         comment: 'Número do CPF do proprietário'
     })
-    public cpf: string;
+    public CPF: string;
 
     @Column({
         name: 'landline',

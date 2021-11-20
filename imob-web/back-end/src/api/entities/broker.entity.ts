@@ -66,7 +66,7 @@ export class BrokerEntity implements BrokerModel {
         nullable: false,
         comment: 'Número do RG do corretor'
     })
-    public rg: string;
+    public RG: string;
 
     @Column({
         name: 'cpf',
@@ -74,7 +74,7 @@ export class BrokerEntity implements BrokerModel {
         nullable: false,
         comment: 'Número do CPF do corretor'
     })
-    public cpf: string;
+    public CPF: string;
 
     @Column({
         name: 'landline',
