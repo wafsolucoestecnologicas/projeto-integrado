@@ -62,7 +62,6 @@ export class AdministratorEntity implements AdministratorModel {
     @Column({
         name: 'rg',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'Número do RG do administrador'
     })
@@ -71,7 +70,6 @@ export class AdministratorEntity implements AdministratorModel {
     @Column({
         name: 'cpf',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'Número do CPF do administrador'
     })

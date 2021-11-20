@@ -56,13 +56,11 @@ export class createTableOwners1635608146631 implements MigrationInterface {
                     {
                         name: 'rg',
                         type: 'char(9)',
-                        isUnique: true,
                         isNullable: false
                     },
                     {
                         name: 'cpf',
                         type: 'char(11)',
-                        isUnique: true,
                         isNullable: false
                     },
                     {

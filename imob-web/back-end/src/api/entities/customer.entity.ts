@@ -63,7 +63,6 @@ export class CustomerEntity implements CustomerModel {
     @Column({
         name: 'rg',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'Número do RG do cliente'
     })
@@ -72,7 +71,6 @@ export class CustomerEntity implements CustomerModel {
     @Column({
         name: 'cpf',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'Número do CPF do cliente'
     })

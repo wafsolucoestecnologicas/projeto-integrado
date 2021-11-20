@@ -47,13 +47,11 @@ export class createTableAdministrators1635607762029 implements MigrationInterfac
                     {
                         name: 'rg',
                         type: 'char(9)',
-                        isUnique: true,
                         isNullable: false
                     },
                     {
                         name: 'cpf',
                         type: 'char(11)',
-                        isUnique: true,
                         isNullable: false
                     },
                     {

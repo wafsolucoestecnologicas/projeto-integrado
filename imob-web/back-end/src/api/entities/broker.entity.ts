@@ -63,7 +63,6 @@ export class BrokerEntity implements BrokerModel {
     @Column({
         name: 'rg',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'Número do RG do corretor'
     })
@@ -72,7 +71,6 @@ export class BrokerEntity implements BrokerModel {
     @Column({
         name: 'cpf',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'Número do CPF do corretor'
     })

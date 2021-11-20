@@ -63,7 +63,6 @@ export class SecretaryEntity implements SecretaryModel {
     @Column({
         name: 'rg',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'Número do RG da secretária'
     })
@@ -72,7 +71,6 @@ export class SecretaryEntity implements SecretaryModel {
     @Column({
         name: 'cpf',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'Número do CPF da secretária'
     })

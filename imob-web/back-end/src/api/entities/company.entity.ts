@@ -21,7 +21,6 @@ export class CompanyEntity implements CompanyModel {
     @Column({
         name: 'cnpj',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'CNPJ da imobiliária'
     })

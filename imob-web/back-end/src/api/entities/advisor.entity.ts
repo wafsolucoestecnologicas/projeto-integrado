@@ -63,7 +63,6 @@ export class AdvisorEntity implements AdvisorModel {
     @Column({
         name: 'rg',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'Número do RG do despachante'
     })
@@ -72,7 +71,6 @@ export class AdvisorEntity implements AdvisorModel {
     @Column({
         name: 'cpf',
         type: 'text',
-        unique: true,
         nullable: false,
         comment: 'Número do CPF do despachante'
     })

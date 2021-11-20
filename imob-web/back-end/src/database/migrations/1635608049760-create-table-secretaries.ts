@@ -51,13 +51,11 @@ export class createTableSecretaries1635608049760 implements MigrationInterface {
                     {
                         name: 'rg',
                         type: 'char(9)',
-                        isUnique: true,
                         isNullable: false
                     },
                     {
                         name: 'cpf',
                         type: 'char(11)',
-                        isUnique: true,
                         isNullable: false
                     },
                     {
