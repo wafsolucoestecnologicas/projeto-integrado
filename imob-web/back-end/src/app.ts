@@ -6,6 +6,7 @@ import path from 'path';
 
 import routes from './routes/index';
 import authentication from './middlewares/authentication.middleware';
+import manage from './middlewares/manage-user-profile.middleware';
 import CONFIGURATION from '../config/dotenv';
 
 export class App {
@@ -51,6 +52,7 @@ export class App {
         this.express.use(express.json());
         this.express.use(cors());
         this.express.use(authentication);
+        this.express.use(manage);
     }
 
     private database(): void {
