@@ -152,6 +152,7 @@ export class UserService {
         const userEntity: UserEntity | undefined =
             await this.repository.findOne({
                 relations: [
+                    'company',
                     'profile'
                 ],
                 where: {
