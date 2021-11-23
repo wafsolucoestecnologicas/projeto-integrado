@@ -49,7 +49,7 @@ export class AuthenticationController {
 
                     jwt.setExpiredIn('1d');
 
-                    return response.status(200).json({ userEntity, token: jwt.generateToken() });
+                    return response.status(200).json({ user: userEntity, token: jwt.generateToken() });
                 } else {
                     return response.status(500).json({ message: `${statusMessages[500]} ${returnMessages[1]}` });
                 }
