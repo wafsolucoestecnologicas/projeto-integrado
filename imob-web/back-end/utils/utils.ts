@@ -15,3 +15,21 @@ export const returnMessages: string[] = [
     'Erro interno ao recuperar o perfil de usuário gestor.',
     'Senha de usuário informada não confere.'
 ];
+
+export const validateURLWithoutAuthentication = (url: string, method: string): boolean => {
+    let isValid: boolean = false;
+
+    const paths: string[] = [
+        'authentications',
+        'users'
+    ];
+    const path: string = url.split('/')[1];
+
+    if (path === 'users') {
+        isValid = paths.includes(path) && method === 'POST';
+    } else {
+        isValid = paths.includes(path);
+    }
+
+    return isValid;
+};
