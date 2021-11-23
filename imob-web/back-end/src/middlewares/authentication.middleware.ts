@@ -1,44 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import { JWT } from '../../utils/classes/jwt.class';
 import { Payload } from '../../utils/interfaces/jwt.interfaces';
-import { statusMessages } from '../../utils/utils';
+import { validateURLWithoutAuthentication, statusMessages } from '../../utils/utils';
 
-const validateURLWithoutAuthentication = (url: string): boolean => {
-    url = url.split('/')[1];
-
-    /** @TODO Deixar apenas as rotas de authentication e users futuramente */
-    const urls: string[] = [
-        'authentications',
-        'users',
-        'companies',
-        'profiles',
-        'administrators',
-        'managers',
-        'advisors',
-        'brokers',
-        'secretaries',
-        'owners',
-        'customers',
-        'properties',
-        'leads',
-        'businesses',
-        'commissions-receiveble',
-        'commissions-payable',
-        'adresses',
-        'neighborhoods',
-        'cities',
-        'states'
-    ];
-
-    const isValid: boolean = urls.includes(url);
-
-    return isValid;
-};
-
-const authenticationMiddleware = (request: Request, response: Response, next: NextFunction): Response | void => {
+function authenticationMiddleware(request: Request, response: Response, next: NextFunction): Response | void {
     try {
         const result: boolean =
-            validateURLWithoutAuthentication(request.url);
+            validateURLWithoutAuthentication(request.url, request.method);
 
         if (result) {
             next();
