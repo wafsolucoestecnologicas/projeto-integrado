@@ -33,13 +33,19 @@ export class createTableCompanies1635607484603 implements MigrationInterface {
                         isNullable: false
                     },
                     {
-                        name: 'percentage_commission_received',
+                        name: 'percentage_commission_receivable',
                         type: 'numeric(21, 2)',
                         default: 0,
                         isNullable: true
                     },
                     {
-                        name: 'percentage_commission_payable',
+                        name: 'percentage_commission_payable_for_closed_deals',
+                        type: 'numeric(21, 2)',
+                        default: 0,
+                        isNullable: true
+                    },
+                    {
+                        name: 'percentage_commission_payable_for_property_captured',
                         type: 'numeric(21, 2)',
                         default: 0,
                         isNullable: true
