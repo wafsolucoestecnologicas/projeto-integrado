@@ -3,8 +3,9 @@ export interface CompanyModel {
     CNPJ: string;
     corporateName: string;
     stateRegistration: string;
-    percentageCommissionReceived: number;
-    percentageCommissionPayable: number;
+    percentageCommissionReceivable: number;
+    percentageCommissionPayableForClosedDeals: number;
+    percentageCommissionPayableForPropertyCaptured: number;
     createdAt: Date;
     updatedAt: Date;
 
