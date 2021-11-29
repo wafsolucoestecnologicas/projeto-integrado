@@ -18,7 +18,7 @@ export class AuthenticationController {
                     await userService.alreadyRegisteredByEmail(request.body.email);
 
                 if (!result) {
-                    return response.status(401).json({ message: `${statusMessages[401]} ${returnMessages[1]}` });
+                    return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[1]}` });
                 }
 
                 const userEntity: UserEntity | undefined =
