@@ -17,7 +17,7 @@ export class CompanyEntity implements CompanyModel {
         comment: 'Código sequencial único da imobiliária'
     })
     public id: number;
-    
+
     @Column({
         name: 'cnpj',
         type: 'text',
@@ -48,15 +48,23 @@ export class CompanyEntity implements CompanyModel {
         nullable: true,
         comment: 'Percentual de comissão à receber pelas vendas de imóveis da imobiliária'
     })
-    public percentageCommissionReceived: number;
+    public percentageCommissionReceivable: number;
 
     @Column({
-        name: 'percentage_commission_payable',
+        name: 'percentage_commission_payable_for_closed_deals',
         type: 'numeric',
         nullable: true,
-        comment: 'Percentual de comissão à pagar aos corretores pelas vendas e captação de imóveis da imobiliária'
+        comment: 'Percentual de comissão à pagar aos corretores pelas vendas de imóveis da imobiliária'
     })
-    public percentageCommissionPayable: number;
+    public percentageCommissionPayableForClosedDeals: number;
+
+    @Column({
+        name: 'percentage_commission_payable_for_property_captured',
+        type: 'numeric',
+        nullable: true,
+        comment: 'Percentual de comissão à pagar aos corretores pelas captações de imóveis realizadas na imobiliária'
+    })
+    public percentageCommissionPayableForPropertyCaptured: number;
 
     @Column({
         name: 'created_at',
@@ -81,8 +89,12 @@ export class CompanyEntity implements CompanyModel {
 
     @AfterLoad()
     public convertValuesToNumber(): void {
-        if (this.percentageCommissionReceived) this.percentageCommissionReceived = Number(this.percentageCommissionReceived);
-        if (this.percentageCommissionPayable) this.percentageCommissionPayable = Number(this.percentageCommissionPayable);
+        if (this.percentageCommissionReceivable)
+            this.percentageCommissionReceivable = Number(this.percentageCommissionReceivable);
+        if (this.percentageCommissionPayableForClosedDeals)
+            this.percentageCommissionPayableForClosedDeals = Number(this.percentageCommissionPayableForClosedDeals);
+        if (this.percentageCommissionPayableForPropertyCaptured)
+            this.percentageCommissionPayableForPropertyCaptured = Number(this.percentageCommissionPayableForPropertyCaptured);
     }
 
     @BeforeInsert()
