@@ -22,8 +22,9 @@ export class CompanyService {
                 CNPJ: data.CNPJ,
                 corporateName: data.corporateName,
                 stateRegistration: data.stateRegistration,
-                percentageCommissionReceived: data.percentageCommissionReceived,
-                percentageCommissionPayable: data.percentageCommissionPayable
+                percentageCommissionReceivable: data.percentageCommissionReceivable,
+                percentageCommissionPayableForClosedDeals: data.percentageCommissionPayableForClosedDeals,
+                percentageCommissionPayableForPropertyCaptured: data.percentageCommissionPayableForPropertyCaptured
             });
 
         const result: CompanyEntity =
@@ -50,8 +51,9 @@ export class CompanyService {
                 CNPJ: data.CNPJ,
                 corporateName: data.corporateName,
                 stateRegistration: data.stateRegistration,
-                percentageCommissionReceived: data.percentageCommissionReceived,
-                percentageCommissionPayable: data.percentageCommissionPayable
+                percentageCommissionReceivable: data.percentageCommissionReceivable,
+                percentageCommissionPayableForClosedDeals: data.percentageCommissionPayableForClosedDeals,
+                percentageCommissionPayableForPropertyCaptured: data.percentageCommissionPayableForPropertyCaptured
             });
 
         const result: CompanyEntity =
