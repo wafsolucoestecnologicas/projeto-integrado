@@ -176,8 +176,7 @@ export class UserService {
         if (!data.name ||
             !data.surname ||
             !data.email ||
-            !data.password ||
-            !data.profile.id) {
+            !data.password) {
             isValid = false;
         }
 
