@@ -51,19 +51,26 @@ export class UserController {
                         await userService.alreadyRegisteredByEmail(request.body.email);
 
                     if (!result) {
-                        const companyService: CompanyService =
-                            new CompanyService();
+                        let companyEntity: CompanyEntity;
 
-                        const companyEntity: CompanyEntity =
-                            await companyService.create({
-                                CNPJ: '00000000000000',
-                                corporateName: 'Empresa Cadastrada Automaticamente',
-                                stateRegistration: '0000000000',
-                                percentageCommissionReceived: 0,
-                                percentageCommissionPayable: 0
-                            } as CompanyEntity, transaction);
+                        if (!request.body.company.id) {
+                            const companyService: CompanyService =
+                                new CompanyService();
 
-                        if (companyEntity) {
+                            companyEntity =
+                                await companyService.create({
+                                    CNPJ: '00000000000000',
+                                    corporateName: 'Empresa Cadastrada Automaticamente',
+                                    stateRegistration: '0000000000',
+                                    percentageCommissionReceivable: 0,
+                                    percentageCommissionPayableForClosedDeals: 0,
+                                    percentageCommissionPayableForPropertyCaptured: 0
+                                } as CompanyEntity, transaction);
+                        } else {
+                            companyEntity = request.body.company;
+                        }
+
+                        if (request.body.company.id || companyEntity) {
                             const profileService: ProfileService =
                                 new ProfileService();
 
@@ -71,7 +78,7 @@ export class UserController {
                                 await profileService.read(Number(request.body.profile.id));
 
                             if (profileEntity) {
-                                request.body.company = companyEntity;
+                                request.body.company = (!request.body.company.id) ? companyEntity : request.body.company;
                                 request.body.profile = profileEntity;
 
                                 switch (profileEntity.id) {
