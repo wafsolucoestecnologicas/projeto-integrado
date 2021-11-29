@@ -43,7 +43,7 @@ export class CompanyEntity implements CompanyModel {
     public stateRegistration: string;
 
     @Column({
-        name: 'percentage_commission_received',
+        name: 'percentage_commission_receivable',
         type: 'numeric',
         nullable: true,
         comment: 'Percentual de comissão à receber pelas vendas de imóveis da imobiliária'
