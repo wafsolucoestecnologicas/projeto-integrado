@@ -53,7 +53,7 @@ export class UserController {
                     if (!result) {
                         let companyEntity: CompanyEntity;
 
-                        if (!request.body.company.id) {
+                        if (!request.body.company.id || request.body.profile.id === 1) {
                             const companyService: CompanyService =
                                 new CompanyService();
 
