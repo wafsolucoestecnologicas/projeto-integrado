@@ -5,7 +5,7 @@ import cors from 'cors';
 import path from 'path';
 import swaggerUiExpress  from 'swagger-ui-express';
 
-import routes from './routes/index';
+import routes from './routes/index.routes';
 import authentication from './middlewares/authentication.middleware';
 import manage from './middlewares/manage-user-profile.middleware';
 import CONFIGURATION from '../config/dotenv';
