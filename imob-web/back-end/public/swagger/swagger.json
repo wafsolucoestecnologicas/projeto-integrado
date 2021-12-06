@@ -380,10 +380,10 @@
                                 "type": "string"
                               }
                             },
-                            "receiveble": {
+                            "receivable": {
                               "type": "array",
                               "example": [
-                                "commissions-receiveble"
+                                "commissions-receivable"
                               ],
                               "items": {
                                 "type": "string"
@@ -479,15 +479,15 @@
                 "properties": {
                   "id": {
                     "type": "number",
-                    "example": 5
+                    "example": 1
                   },
                   "userType": {
                     "type": "string",
-                    "example": "secretary"
+                    "example": "administrator"
                   },
                   "isAdmin": {
                     "type": "boolean",
-                    "example": false
+                    "example": true
                   },
                   "permissions": {
                     "type": "object",
@@ -495,6 +495,11 @@
                       "create": {
                         "type": "array",
                         "example": [
+                          "companies",
+                          "managers",
+                          "advisors",
+                          "brokers",
+                          "secretaries",
                           "owners",
                           "customers",
                           "properties",
@@ -508,7 +513,13 @@
                       "read": {
                         "type": "array",
                         "example": [
+                          "users",
+                          "profiles",
+                          "companies",
+                          "managers",
+                          "advisors",
                           "brokers",
+                          "secretaries",
                           "owners",
                           "customers",
                           "properties",
@@ -522,6 +533,11 @@
                       "update": {
                         "type": "array",
                         "example": [
+                          "companies",
+                          "managers",
+                          "advisors",
+                          "brokers",
+                          "secretaries",
                           "owners",
                           "customers",
                           "properties",
@@ -535,10 +551,16 @@
                       "delete": {
                         "type": "array",
                         "example": [
+                          "companies",
+                          "managers",
+                          "advisors",
+                          "brokers",
+                          "secretaries",
                           "owners",
                           "customers",
                           "properties",
-                          "leads"
+                          "leads",
+                          "businesses"
                         ],
                         "items": {
                           "type": "string"
@@ -576,23 +598,39 @@
                       },
                       "reject": {
                         "type": "array",
-                        "example": [],
-                        "items": {}
+                        "example": [
+                          "businesses"
+                        ],
+                        "items": {
+                          "type": "string"
+                        }
                       },
                       "close": {
                         "type": "array",
-                        "example": [],
-                        "items": {}
+                        "example": [
+                          "businesses"
+                        ],
+                        "items": {
+                          "type": "string"
+                        }
                       },
-                      "receiveble": {
+                      "receivable": {
                         "type": "array",
-                        "example": [],
-                        "items": {}
+                        "example": [
+                          "commissions-receivable"
+                        ],
+                        "items": {
+                          "type": "string"
+                        }
                       },
                       "payable": {
                         "type": "array",
-                        "example": [],
-                        "items": {}
+                        "example": [
+                          "commissions-payable"
+                        ],
+                        "items": {
+                          "type": "string"
+                        }
                       }
                     }
                   },
@@ -814,10 +852,10 @@
                         "type": "string"
                       }
                     },
-                    "receiveble": {
+                    "receivable": {
                       "type": "array",
                       "example": [
-                        "commissions-receiveble"
+                        "commissions-receivable"
                       ],
                       "items": {
                         "type": "string"
@@ -1148,10 +1186,10 @@
                               "type": "string"
                             }
                           },
-                          "receiveble": {
+                          "receivable": {
                             "type": "array",
                             "example": [
-                              "commissions-receiveble"
+                              "commissions-receivable"
                             ],
                             "items": {
                               "type": "string"
@@ -1574,10 +1612,10 @@
                             "type": "string"
                           }
                         },
-                        "receiveble": {
+                        "receivable": {
                           "type": "array",
                           "example": [
-                            "commissions-receiveble"
+                            "commissions-receivable"
                           ],
                           "items": {
                             "type": "string"
@@ -2040,10 +2078,10 @@
                             "type": "string"
                           }
                         },
-                        "receiveble": {
+                        "receivable": {
                           "type": "array",
                           "example": [
-                            "commissions-receiveble"
+                            "commissions-receivable"
                           ],
                           "items": {
                             "type": "string"
@@ -2464,19 +2502,19 @@
                 "properties": {
                   "id": {
                     "type": "number",
-                    "example": 2
+                    "example": 1
                   },
                   "CNPJ": {
                     "type": "string",
-                    "example": "75536670000126"
+                    "example": "00000000000000"
                   },
                   "corporateName": {
                     "type": "string",
-                    "example": "WAF Soluções Tecnologicas"
+                    "example": "Empresa Cadastrada Automaticamente"
                   },
                   "stateRegistration": {
                     "type": "string",
-                    "example": "0467483802980"
+                    "example": "0000000000"
                   },
                   "percentageCommissionReceivable": {
                     "type": "number",
@@ -2484,19 +2522,19 @@
                   },
                   "percentageCommissionPayableForClosedDeals": {
                     "type": "number",
-                    "example": 10.3
+                    "example": 0
                   },
                   "percentageCommissionPayableForPropertyCaptured": {
                     "type": "number",
-                    "example": 2
+                    "example": 0
                   },
                   "createdAt": {
                     "type": "string",
-                    "example": "2021-11-29T21:42:26.552Z"
+                    "example": "2021-11-29T21:37:56.927Z"
                   },
                   "updatedAt": {
                     "type": "string",
-                    "example": "2021-11-29T21:42:26.552Z"
+                    "example": "2021-11-29T21:37:56.927Z"
                   }
                 }
               },
@@ -6065,19 +6103,19 @@
                 "properties": {
                   "id": {
                     "type": "number",
-                    "example": 2
+                    "example": 1
                   },
                   "name": {
                     "type": "string",
-                    "example": "maria"
+                    "example": "cesar"
                   },
                   "surname": {
                     "type": "string",
-                    "example": "cristina"
+                    "example": "brito"
                   },
                   "email": {
                     "type": "string",
-                    "example": "maria.cristina@gmail.com"
+                    "example": "cesar.brito@gmail.com"
                   },
                   "birthDate": {
                     "type": "string",
@@ -6093,11 +6131,11 @@
                   },
                   "RG": {
                     "type": "string",
-                    "example": "157882255"
+                    "example": "157882299"
                   },
                   "CPF": {
                     "type": "string",
-                    "example": "20717934327"
+                    "example": "20717934047"
                   },
                   "landline": {
                     "type": "string",
@@ -6105,7 +6143,7 @@
                   },
                   "cellPhone": {
                     "type": "string",
-                    "example": "31986547815"
+                    "example": "31986857815"
                   },
                   "profession": {
                     "type": "string",
@@ -6113,11 +6151,11 @@
                   },
                   "createdAt": {
                     "type": "string",
-                    "example": "2021-12-02T01:50:31.431Z"
+                    "example": "2021-12-02T01:49:25.438Z"
                   },
                   "updatedAt": {
                     "type": "string",
-                    "example": "2021-12-02T01:50:31.431Z"
+                    "example": "2021-12-02T01:49:25.438Z"
                   },
                   "company": {
                     "type": "object",
@@ -11865,138 +11903,871 @@
         ]
       }
     },
-    "/commissions-receiveble": {
+    "/commissions-receivable/receivable": {
       "get": {
         "tags": [
           "Comissões a Receber"
         ],
-        "summary": "",
-        "description": "",
+        "summary": "Busca pelos valores totais de comissões a receber no mês",
+        "description": "Endpoint para buscar os valores totais de comissões a receber no mês",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "parameterName",
+            "name": "month",
             "in": "query",
-            "description": "",
-            "required": false,
-            "type": "",
-            "format": "",
+            "description": "Ano e mês no formato AAAA-MM",
+            "required": true,
+            "type": "string",
             "schema": {
-              "type": "object",
-              "properties": {}
+              "$ref": "#/definitions/month"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Busca pelos valores totais de comissões a receber no mês realizada com sucesso",
             "schema": {
               "type": "object",
-              "properties": {},
+              "properties": {
+                "totalValueReceivable": {
+                  "type": "number",
+                  "example": 3000
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição sem um Token válido",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Não possui credenciais de autenticação válidas para o recurso!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Erro no servidor ao processar a solicitação!"
+                }
+              },
               "xml": {
                 "name": "main"
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ]
+      }
+    },
+    "/commissions-receivable": {
+      "get": {
+        "tags": [
+          "Comissões a Receber"
+        ],
+        "summary": "Busca por todas as comissões a receber",
+        "description": "Endpoint para buscar por todas as comissões a receber",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Busca por todas as comissões a receber realizada com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "date": {
+                    "type": "string",
+                    "example": "2021-12-04"
+                  },
+                  "value": {
+                    "type": "number",
+                    "example": 1500
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "example": "2021-12-06T02:39:59.854Z"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "example": "2021-12-06T02:39:59.854Z"
+                  },
+                  "company": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number",
+                        "example": 1
+                      },
+                      "CNPJ": {
+                        "type": "string",
+                        "example": "00000000000000"
+                      },
+                      "corporateName": {
+                        "type": "string",
+                        "example": "Empresa Cadastrada Automaticamente"
+                      },
+                      "stateRegistration": {
+                        "type": "string",
+                        "example": "0000000000"
+                      },
+                      "percentageCommissionReceivable": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "percentageCommissionPayableForClosedDeals": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "percentageCommissionPayableForPropertyCaptured": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "example": "2021-12-06T02:38:33.426Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "example": "2021-12-06T02:38:33.426Z"
+                      }
+                    }
+                  },
+                  "property": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number",
+                        "example": 1
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "casa de 2 andares, total de 14 cômodos"
+                      },
+                      "photos": {
+                        "type": "object",
+                        "properties": {
+                          "paths": {
+                            "type": "array",
+                            "example": [],
+                            "items": {}
+                          }
+                        }
+                      },
+                      "checked": {
+                        "type": "boolean",
+                        "example": false
+                      },
+                      "elevator": {
+                        "type": "string",
+                        "example": "null"
+                      },
+                      "bedrooms": {
+                        "type": "number",
+                        "example": 2
+                      },
+                      "bathrooms": {
+                        "type": "number",
+                        "example": 5
+                      },
+                      "suites": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "parkingLots": {
+                        "type": "number",
+                        "example": 2
+                      },
+                      "terrainArea": {
+                        "type": "number",
+                        "example": 1000
+                      },
+                      "buildingArea": {
+                        "type": "number",
+                        "example": 800
+                      },
+                      "totalUtilTerrainArea": {
+                        "type": "number",
+                        "example": 1000
+                      },
+                      "condominium": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "IPTU": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "value": {
+                        "type": "number",
+                        "example": 450000
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "example": "2021-12-06T02:39:45.369Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "example": "2021-12-06T02:39:45.369Z"
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição sem um Token válido",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Não possui credenciais de autenticação válidas para o recurso!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Erro no servidor ao processar a solicitação!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ]
       },
       "post": {
         "tags": [
           "Comissões a Receber"
         ],
-        "summary": "",
-        "description": "",
+        "summary": "Cria uma nova comissão a receber",
+        "description": "Endpoint para criar uma nova comissão a receber",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "parameterName",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "",
-            "format": "",
+            "name": "body",
+            "in": "body",
+            "description": "JSON com um objeto para criação de uma comissão a receber",
+            "required": true,
+            "type": "object",
             "schema": {
               "type": "object",
-              "properties": {}
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "value": {
+                  "type": "string",
+                  "example": "decimal"
+                },
+                "company": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "property": {
+                  "type": "string",
+                  "example": "object"
+                }
+              }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Criação da comissão a receber realizada com sucesso",
             "schema": {
               "type": "object",
-              "properties": {},
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "date": {
+                  "type": "string",
+                  "example": "2021-12-04"
+                },
+                "value": {
+                  "type": "number",
+                  "example": 1500
+                },
+                "company": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  }
+                },
+                "property": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  }
+                },
+                "createdAt": {
+                  "type": "string",
+                  "example": "2021-12-06T02:39:59.854Z"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "example": "2021-12-06T02:39:59.854Z"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição com dados inválidos",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "O pedido não pôde ser entregue devido à sintaxe incorreta!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição sem um Token válido",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Não possui credenciais de autenticação válidas para o recurso!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Erro no servidor ao processar a solicitação!"
+                }
+              },
               "xml": {
                 "name": "main"
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ]
+      }
+    },
+    "/commissions-receivable/{id}": {
+      "get": {
+        "tags": [
+          "Comissões a Receber"
+        ],
+        "summary": "Busca por uma comissão a receber",
+        "description": "Endpoint para buscar por uma comissão a receber",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID da comissão a receber"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Busca por uma comissão a receber realizada com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "date": {
+                  "type": "string",
+                  "example": "2021-12-04"
+                },
+                "value": {
+                  "type": "number",
+                  "example": 1500
+                },
+                "createdAt": {
+                  "type": "string",
+                  "example": "2021-12-06T02:39:59.854Z"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "example": "2021-12-06T02:39:59.854Z"
+                },
+                "company": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    },
+                    "CNPJ": {
+                      "type": "string",
+                      "example": "00000000000000"
+                    },
+                    "corporateName": {
+                      "type": "string",
+                      "example": "Empresa Cadastrada Automaticamente"
+                    },
+                    "stateRegistration": {
+                      "type": "string",
+                      "example": "0000000000"
+                    },
+                    "percentageCommissionReceivable": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "percentageCommissionPayableForClosedDeals": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "percentageCommissionPayableForPropertyCaptured": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2021-12-06T02:38:33.426Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2021-12-06T02:38:33.426Z"
+                    }
+                  }
+                },
+                "property": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "casa de 2 andares, total de 14 cômodos"
+                    },
+                    "photos": {
+                      "type": "object",
+                      "properties": {
+                        "paths": {
+                          "type": "array",
+                          "example": [],
+                          "items": {}
+                        }
+                      }
+                    },
+                    "checked": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "elevator": {
+                      "type": "string",
+                      "example": "null"
+                    },
+                    "bedrooms": {
+                      "type": "number",
+                      "example": 2
+                    },
+                    "bathrooms": {
+                      "type": "number",
+                      "example": 5
+                    },
+                    "suites": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "parkingLots": {
+                      "type": "number",
+                      "example": 2
+                    },
+                    "terrainArea": {
+                      "type": "number",
+                      "example": 1000
+                    },
+                    "buildingArea": {
+                      "type": "number",
+                      "example": 800
+                    },
+                    "totalUtilTerrainArea": {
+                      "type": "number",
+                      "example": 1000
+                    },
+                    "condominium": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "IPTU": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "value": {
+                      "type": "number",
+                      "example": 450000
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2021-12-06T02:39:45.369Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2021-12-06T02:39:45.369Z"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição sem o ID da comissão a receber",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "O pedido não pôde ser entregue devido à sintaxe incorreta!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição sem um Token válido",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Não possui credenciais de autenticação válidas para o recurso!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Erro no servidor ao processar a solicitação!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ]
       },
       "put": {
         "tags": [
           "Comissões a Receber"
         ],
-        "summary": "",
-        "description": "",
+        "summary": "Atualiza os dados de uma comissão a receber",
+        "description": "Endpoint para atualizar os dados de uma comissão a receber",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "parameterName",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "",
-            "format": "",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID da comissão a receber"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "JSON com um objeto para atualização de uma comissão a receber",
+            "required": true,
+            "type": "object",
             "schema": {
               "type": "object",
-              "properties": {}
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "value": {
+                  "type": "string",
+                  "example": "decimal"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Atualização dos dados da comissão a receber realizada com sucesso",
             "schema": {
               "type": "object",
-              "properties": {},
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "date": {
+                  "type": "string",
+                  "example": "2021-12-04"
+                },
+                "value": {
+                  "type": "number",
+                  "example": 2000
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "example": "2021-12-06T02:42:58.349Z"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição sem o ID da comissão a receber | ID da comissão a receber não encontrado na base de dados | Requisição com dados inválidos",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "O pedido não pôde ser entregue devido à sintaxe incorreta!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição sem um Token válido",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Não possui credenciais de autenticação válidas para o recurso!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Erro no servidor ao processar a solicitação!"
+                }
+              },
               "xml": {
                 "name": "main"
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ]
       },
       "delete": {
         "tags": [
           "Comissões a Receber"
         ],
-        "summary": "",
-        "description": "",
+        "summary": "Deleta uma comissão a receber",
+        "description": "Endpoint para deletar uma comissão a receber",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "parameterName",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "",
-            "format": "",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID da comissão a receber"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Deleção da comissão a receber realizada com sucesso",
             "schema": {
               "type": "object",
-              "properties": {},
+              "properties": {
+                "commissionReceivable": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição sem o ID da comissão a receber",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "O pedido não pôde ser entregue devido à sintaxe incorreta!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição sem um Token válido",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Não possui credenciais de autenticação válidas para o recurso!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Erro no servidor ao processar a solicitação!"
+                }
+              },
               "xml": {
                 "name": "main"
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ]
       }
     },
     "/commissions-payable/payable": {
@@ -12106,7 +12877,7 @@
                 "properties": {
                   "id": {
                     "type": "number",
-                    "example": 2
+                    "example": 1
                   },
                   "date": {
                     "type": "string",
@@ -12114,19 +12885,19 @@
                   },
                   "valueClosedDeals": {
                     "type": "number",
-                    "example": 750
+                    "example": 1000
                   },
                   "valuePropertyCaptured": {
                     "type": "number",
-                    "example": 250
+                    "example": 500
                   },
                   "createdAt": {
                     "type": "string",
-                    "example": "2021-12-04T00:26:39.201Z"
+                    "example": "2021-12-04T00:26:19.998Z"
                   },
                   "updatedAt": {
                     "type": "string",
-                    "example": "2021-12-04T00:26:39.201Z"
+                    "example": "2021-12-04T00:26:19.998Z"
                   },
                   "company": {
                     "type": "object",
@@ -15028,15 +15799,15 @@
                 "properties": {
                   "id": {
                     "type": "number",
-                    "example": 27
+                    "example": 1
                   },
                   "state": {
                     "type": "string",
-                    "example": "DISTRITO FEDERAL"
+                    "example": "ACRE"
                   },
                   "UF": {
                     "type": "string",
-                    "example": "DF"
+                    "example": "AC"
                   }
                 }
               },
