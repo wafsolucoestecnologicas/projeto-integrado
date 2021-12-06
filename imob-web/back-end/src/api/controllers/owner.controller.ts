@@ -41,7 +41,7 @@ export class OwnerController {
     
                         return response.status(201).json(ownerEntity);
                     } else {
-                        return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[3]}` });
+                        return response.status(409).json({ message: `${statusMessages[409]} ${returnMessages[3]}` });
                     }
                 } else {
                     return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
@@ -114,7 +114,7 @@ export class OwnerController {
                     const deleteResult: DeleteResult =
                         await ownerService.delete(Number(request.params.id), transaction);
     
-                    return response.status(200).json({ manager: deleteResult.affected });
+                    return response.status(200).json({ owner: deleteResult.affected });
                 } else {
                     return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[2]}` });
                 }

@@ -44,7 +44,7 @@ export class LeadController {
 
                         return response.status(201).json(leadEntity);
                     } else {
-                        return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[3]}` });
+                        return response.status(409).json({ message: `${statusMessages[409]} ${returnMessages[3]}` });
                     }
                 } else {
                     return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
