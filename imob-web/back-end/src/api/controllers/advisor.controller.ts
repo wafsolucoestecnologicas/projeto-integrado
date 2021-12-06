@@ -1,7 +1,9 @@
 import { DeleteResult, EntityManager, getManager } from 'typeorm';
 import { Request, Response } from 'express';
 import { AdvisorEntity } from '../entities/advisor.entity';
+import { UserEntity } from '../entities/user.entity';
 import { AdvisorService } from '../services/advisor.service';
+import { UserService } from '../services/user.service';
 import { returnMessages, statusMessages } from '../../../utils/utils';
 
 export class AdvisorController {
@@ -27,21 +29,21 @@ export class AdvisorController {
             try {
                 const advisorService: AdvisorService =
                     new AdvisorService();
-    
+
                 const result: boolean =
                     advisorService.validateData(request.body);
-    
+
                 if (result) {
                     const result: boolean =
                         await advisorService.alreadyRegisterByCPF(request.body.cpf);
-    
+
                     if (!result) {
                         const advisorEntity: AdvisorEntity =
                             await advisorService.create(request.body, transaction);
-    
+
                         return response.status(201).json(advisorEntity);
                     } else {
-                        return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[3]}` });
+                        return response.status(409).json({ message: `${statusMessages[409]} ${returnMessages[3]}` });
                     }
                 } else {
                     return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
@@ -75,19 +77,19 @@ export class AdvisorController {
             try {
                 const advisorService: AdvisorService =
                     new AdvisorService();
-    
+
                 if (Number(request.params.id)) {
                     const result: boolean =
                         await advisorService.alreadyRegisterById(Number(request.params.id));
-    
+
                     if (result) {
                         const result: boolean =
                             advisorService.validateData(request.body);
-    
+
                         if (result) {
                             const advisorEntity: AdvisorEntity =
                                 await advisorService.update(Number(request.params.id), request.body, transaction);
-    
+
                             return response.status(200).json(advisorEntity);
                         } else {
                             return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
@@ -109,12 +111,35 @@ export class AdvisorController {
             try {
                 const advisorService: AdvisorService =
                     new AdvisorService();
-    
+
                 if (Number(request.params.id)) {
-                    const deleteResult: DeleteResult =
-                        await advisorService.delete(Number(request.params.id), transaction);
-    
-                    return response.status(200).json({ manager: deleteResult.affected });
+                    const advisorEntity: AdvisorEntity | undefined =
+                        await advisorService.read(Number(request.params.id));
+
+                    if (advisorEntity) {
+                        const userService: UserService =
+                            new UserService();
+
+                        const userEntity: UserEntity | undefined =
+                            await userService.findByAdvisor(Number(request.params.id));
+
+                        if (userEntity) {
+                            const userDeleteResult: DeleteResult =
+                                await userService.delete(userEntity.id, transaction);
+
+                            const advisorDeleteResult: DeleteResult =
+                                await advisorService.delete(Number(request.params.id), transaction);
+
+                            return response.status(200).json({
+                                user: userDeleteResult.affected,
+                                advisor: advisorDeleteResult.affected
+                            });
+                        } else {
+                            return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[1]}` });
+                        }
+                    } else {
+                        return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[1]}` });
+                    }
                 } else {
                     return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[2]}` });
                 }
