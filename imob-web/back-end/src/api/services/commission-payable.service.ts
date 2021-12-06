@@ -84,8 +84,8 @@ export class CommissionPayableService {
         let isValid: boolean = true;
 
         if (!data.date ||
-            !data.valueClosedDeals ||
-            !data.valuePropertyCaptured) {
+            data.valueClosedDeals < 0 ||
+            data.valuePropertyCaptured < 0) {
             isValid = false;
         }
 
