@@ -95,7 +95,7 @@ export class App {
         this.express.use('/properties', routes.property);
         this.express.use('/leads', routes.lead);
         this.express.use('/businesses', routes.business);
-        this.express.use('/commissions-receiveble', routes.receiveble);
+        this.express.use('/commissions-receivable', routes.receivable);
         this.express.use('/commissions-payable', routes.payable);
         this.express.use('/adresses', routes.address);
         this.express.use('/neighborhoods', routes.neighborhood);

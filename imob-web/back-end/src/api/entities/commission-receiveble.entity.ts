@@ -1,13 +1,13 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn, AfterLoad } from 'typeorm';
-import { CommissionReceivebleModel } from '../models/commission-receiveble.model';
+import { CommissionReceivableModel } from '../models/commission-receiveble.model';
 import { CompanyEntity } from './company.entity';
 import { PropertyEntity } from './property.entity';
 
 @Entity({
     schema: 'commission',
-    name: 'commissions_receiveble'
+    name: 'commissions_receivable'
 })
-export class CommissionReceivebleEntity implements CommissionReceivebleModel {
+export class CommissionReceivableEntity implements CommissionReceivableModel {
 
     @Column({
         name: 'id',
