@@ -92,6 +92,10 @@ export class BusinessService {
         const businessEntity: BusinessEntity =
             this.repository.create({
                 id: id,
+                manager: data?.manager,
+                advisor: data?.advisor,
+                broker: data?.broker,
+                secretary: data?.secretary,
                 owner: data.owner,
                 customer: data.customer,
                 property: data.property,
@@ -178,43 +182,52 @@ export class BusinessService {
         return result;
     }
 
-    public async transferBusinessToManager(manager: ManagerEntity, business: BusinessEntity, transaction: EntityManager): Promise<UpdateResult> {
+    public async transferBusinessToManager(id: number, manager: ManagerEntity, transaction: EntityManager): Promise<UpdateResult> {
         const updateResult: UpdateResult =
             await transaction.update(BusinessEntity, {
-                id: business.id
+                id: id
             }, {
+                manager: {
+                    id: manager.id
+                },
                 redirectedManagerId: manager.id
             });
 
         return updateResult;
     }
 
-    public async transferBusinessToAdvisor(advisor: AdvisorEntity, business: BusinessEntity, transaction: EntityManager): Promise<UpdateResult> {
+    public async transferBusinessToAdvisor(id: number, advisor: AdvisorEntity, transaction: EntityManager): Promise<UpdateResult> {
         const updateResult: UpdateResult =
             await transaction.update(BusinessEntity, {
-                id: business.id
+                id: id
             }, {
+                advisor: {
+                    id: advisor.id
+                },
                 redirectedAdvisorId: advisor.id
             });
 
         return updateResult;
     }
 
-    public async transferBusinessToBroker(broker: BrokerEntity, business: BusinessEntity, transaction: EntityManager): Promise<UpdateResult> {
+    public async transferBusinessToBroker(id: number, broker: BrokerEntity, transaction: EntityManager): Promise<UpdateResult> {
         const updateResult: UpdateResult =
             await transaction.update(BusinessEntity, {
-                id: business.id
+                id: id
             }, {
+                broker: {
+                    id: broker.id
+                },
                 redirectedBrokerId: broker.id
             });
 
         return updateResult;
     }
 
-    public async rejectBusiness(business: BusinessEntity, transaction: EntityManager): Promise<UpdateResult> {
+    public async rejectBusiness(id: number, transaction: EntityManager): Promise<UpdateResult> {
         const updateResult: UpdateResult =
             await transaction.update(BusinessEntity, {
-                id: business.id
+                id: id
             }, {
                 status: 3
             });
@@ -222,10 +235,10 @@ export class BusinessService {
         return updateResult;
     }
 
-    public async closeBusiness(business: BusinessEntity, transaction: EntityManager): Promise<UpdateResult> {
+    public async closeBusiness(id: number, transaction: EntityManager): Promise<UpdateResult> {
         const updateResult: UpdateResult =
             await transaction.update(BusinessEntity, {
-                id: business.id
+                id: id
             }, {
                 status: 4
             });
