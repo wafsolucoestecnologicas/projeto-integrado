@@ -23,7 +23,7 @@ const endpointsFiles: string[] = [
     `${path.join(__dirname, 'src', 'routes', 'property.routes.ts')}`,
     `${path.join(__dirname, 'src', 'routes', 'lead.routes.ts')}`,
     `${path.join(__dirname, 'src', 'routes', 'business.routes.ts')}`,
-    `${path.join(__dirname, 'src', 'routes', 'commission-receiveble.routes.ts')}`,
+    `${path.join(__dirname, 'src', 'routes', 'commission-receivable.routes.ts')}`,
     `${path.join(__dirname, 'src', 'routes', 'commission-payable.routes.ts')}`,
     `${path.join(__dirname, 'src', 'routes', 'address.routes.ts')}`,
     `${path.join(__dirname, 'src', 'routes', 'neighborhood.routes.ts')}`,
