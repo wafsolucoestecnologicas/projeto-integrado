@@ -3,11 +3,13 @@ import { ConnectionOptions, createConnection } from 'typeorm';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import swaggerUiExpress  from 'swagger-ui-express';
 
 import routes from './routes/index';
 import authentication from './middlewares/authentication.middleware';
 import manage from './middlewares/manage-user-profile.middleware';
 import CONFIGURATION from '../config/dotenv';
+import swaggerFile from '../public/swagger/swagger.json';
 
 export class App {
 
@@ -78,6 +80,7 @@ export class App {
     }
 
     private routes(): void {
+        this.express.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerFile));
         this.express.use('/authentications', routes.authentication);
         this.express.use('/companies', routes.company);
         this.express.use('/profiles', routes.profile);
