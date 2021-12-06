@@ -132,7 +132,7 @@ export class BusinessController {
 
                     if (result) {
                         const updateResult: UpdateResult =
-                            await businessService.transferBusinessToManager(request.body.manager, request.body.business, transaction);
+                            await businessService.transferBusinessToManager(Number(request.params.id), request.body.manager, transaction);
 
                         return response.status(200).json({ business: updateResult.affected });
                     } else {
@@ -159,7 +159,7 @@ export class BusinessController {
 
                     if (result) {
                         const updateResult: UpdateResult =
-                            await businessService.transferBusinessToAdvisor(request.body.advisor, request.body.business, transaction);
+                            await businessService.transferBusinessToAdvisor(Number(request.params.id), request.body.advisor, transaction);
 
                         return response.status(200).json({ business: updateResult.affected });
                     } else {
@@ -186,7 +186,7 @@ export class BusinessController {
 
                     if (result) {
                         const updateResult: UpdateResult =
-                            await businessService.transferBusinessToBroker(request.body.broker, request.body.business, transaction);
+                            await businessService.transferBusinessToBroker(Number(request.params.id), request.body.broker, transaction);
 
                         return response.status(200).json({ business: updateResult.affected });
                     } else {
@@ -213,7 +213,7 @@ export class BusinessController {
 
                     if (result) {
                         const updateResult: UpdateResult =
-                            await businessService.rejectBusiness(request.body.business, transaction);
+                            await businessService.rejectBusiness(Number(request.params.id), transaction);
 
                         return response.status(200).json({ business: updateResult.affected });
                     } else {
@@ -240,7 +240,7 @@ export class BusinessController {
 
                     if (result) {
                         const updateResult: UpdateResult =
-                            await businessService.closeBusiness(request.body.business, transaction);
+                            await businessService.closeBusiness(Number(request.params.id), transaction);
 
                         return response.status(200).json({ business: updateResult.affected });
                     } else {
