@@ -13,7 +13,7 @@ import customer from './customer.routes';
 import property from './property.routes';
 import lead from './lead.routes';
 import business from './business.routes';
-import receivable from './commission-receiveble.routes';
+import receivable from './commission-receivable.routes';
 import payable from './commission-payable.routes';
 import address from './address.routes';
 import neighborhood from './neighborhood.routes';
