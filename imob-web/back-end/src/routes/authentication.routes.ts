@@ -122,8 +122,8 @@ router.post('/',
                             'close': [
                                 'businesses'
                             ],
-                            'receiveble': [
-                                'commissions-receiveble'
+                            'receivable': [
+                                'commissions-receivable'
                             ],
                             'payable': [
                                 'commissions-payable'

@@ -43,33 +43,6 @@ router.get('/',
                         'createdAt': '2021-12-01T00:16:28.450Z',
                         'updatedAt': '2021-12-01T00:16:28.450Z'
                     }
-                },
-                {
-                    'id': 2,
-                    'name': 'maria',
-                    'surname': 'cristina',
-                    'email': 'maria.cristina@gmail.com',
-                    'birthDate': '2021-03-08',
-                    'checked': false,
-                    'isOwner': true,
-                    'RG': '157882255',
-                    'CPF': '20717934327',
-                    'landline': '          ',
-                    'cellPhone': '31986547815',
-                    'profession': '',
-                    'createdAt': '2021-12-02T01:50:31.431Z',
-                    'updatedAt': '2021-12-02T01:50:31.431Z',
-                    'company': {
-                        'id': 1,
-                        'CNPJ': '00000000000000',
-                        'corporateName': 'Empresa Cadastrada Automaticamente',
-                        'stateRegistration': '0000000000',
-                        'percentageCommissionReceivable': 0,
-                        'percentageCommissionPayableForClosedDeals': 0,
-                        'percentageCommissionPayableForPropertyCaptured': 0,
-                        'createdAt': '2021-12-01T00:16:28.450Z',
-                        'updatedAt': '2021-12-01T00:16:28.450Z'
-                    }
                 }
             ]
         }

@@ -109,61 +109,6 @@ router.get('/',
                         'createdAt': '2021-12-03T23:20:06.093Z',
                         'updatedAt': '2021-12-03T23:20:06.093Z'
                     }
-                },
-                {
-                    'id': 2,
-                    'date': '2021-12-02',
-                    'valueClosedDeals': 750,
-                    'valuePropertyCaptured': 250,
-                    'createdAt': '2021-12-04T00:26:39.201Z',
-                    'updatedAt': '2021-12-04T00:26:39.201Z',
-                    'company': {
-                        'id': 1,
-                        'CNPJ': '00000000000000',
-                        'corporateName': 'Empresa Cadastrada Automaticamente',
-                        'stateRegistration': '0000000000',
-                        'percentageCommissionReceivable': 0,
-                        'percentageCommissionPayableForClosedDeals': 0,
-                        'percentageCommissionPayableForPropertyCaptured': 0,
-                        'createdAt': '2021-12-03T23:18:28.221Z',
-                        'updatedAt': '2021-12-03T23:18:28.221Z'
-                    },
-                    'broker': {
-                        'id': 1,
-                        'name': 'tiago',
-                        'surname': 'teixeira',
-                        'email': 'tiago.teixeira@gmail.com',
-                        'birthDate': '2021-12-03',
-                        'isBroker': true,
-                        'RG': '000000000',
-                        'CPF': '00000000000',
-                        'landline': 'null',
-                        'cellPhone': '00000000000',
-                        'profession': 'null',
-                        'createdAt': '2021-12-03T23:18:55.447Z',
-                        'updatedAt': '2021-12-03T23:18:55.447Z'
-                    },
-                    'property': {
-                        'id': 1,
-                        'description': 'casa de 2 andares, total de 14 cômodos',
-                        'photos': {
-                            'paths': []
-                        },
-                        'checked': false,
-                        'elevator': 'null',
-                        'bedrooms': 2,
-                        'bathrooms': 5,
-                        'suites': 0,
-                        'parkingLots': 2,
-                        'terrainArea': 1000,
-                        'buildingArea': 800,
-                        'totalUtilTerrainArea': 1000,
-                        'condominium': 0,
-                        'IPTU': 0,
-                        'value': 450000,
-                        'createdAt': '2021-12-03T23:20:06.093Z',
-                        'updatedAt': '2021-12-03T23:20:06.093Z'
-                    }
                 }
             ]
         }

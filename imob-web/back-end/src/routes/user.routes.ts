@@ -18,132 +18,6 @@ router.get('/',
 			description: 'Busca por todos os usuários realizada com sucesso',
 			schema: [
 				{
-					'id': 2,
-					'name': 'palloma',
-					'surname': 'felix',
-					'email': 'palloma.felix@gmail.com',
-					'isAdministrator': false,
-					'isManager': true,
-					'isAdvisor': false,
-					'isBroker': false,
-					'isSecretary': false,
-					'createdAt': '2021-11-29T13:56:21.716Z',
-					'updatedAt': '2021-11-29T13:56:21.716Z',
-					'company': {
-						'id': 2,
-						'CNPJ': '00000000000000',
-						'corporateName': 'Empresa Cadastrada Automaticamente',
-						'stateRegistration': '0000000000',
-						'percentageCommissionReceivable': 0,
-						'percentageCommissionPayableForClosedDeals': 0,
-						'percentageCommissionPayableForPropertyCaptured': 0,
-						'createdAt': '2021-11-29T13:56:21.590Z',
-						'updatedAt': '2021-11-29T13:56:21.590Z'
-					},
-					'profile': {
-						'id': 2,
-						'userType': 'manager',
-						'isAdmin': false,
-						'permissions': {
-							'create': [
-								'companies',
-								'managers',
-								'advisors',
-								'brokers',
-								'secretaries',
-								'owners',
-								'customers',
-								'properties',
-								'leads',
-								'businesses'
-							],
-							'read': [
-								'users',
-								'profiles',
-								'companies',
-								'managers',
-								'advisors',
-								'brokers',
-								'secretaries',
-								'owners',
-								'customers',
-								'properties',
-								'leads',
-								'businesses'
-							],
-							'update': [
-								'companies',
-								'managers',
-								'advisors',
-								'brokers',
-								'secretaries',
-								'owners',
-								'customers',
-								'properties',
-								'leads',
-								'businesses'
-							],
-							'delete': [
-								'companies',
-								'managers',
-								'advisors',
-								'brokers',
-								'secretaries',
-								'owners',
-								'customers',
-								'properties',
-								'leads',
-								'businesses'
-							],
-							'amount': [
-								'leads',
-								'businesses'
-							],
-							'search': [
-								'leads',
-								'businesses',
-								'adresses'
-							],
-							'transfer': [
-								'businesses'
-							],
-							'reject': [
-								'businesses'
-							],
-							'close': [
-								'businesses'
-							],
-							'receiveble': [
-								'commissions-receiveble'
-							],
-							'payable': [
-								'commissions-payable'
-							]
-						},
-						'createdAt': '2021-11-27T18:05:40.508Z',
-						'updatedAt': '2021-11-27T18:05:40.508Z'
-					},
-					'administrator': 'null',
-					'manager': {
-						'id': 2,
-						'name': 'palloma',
-						'surname': 'felix',
-						'email': 'palloma.felix@gmail.com',
-						'birthDate': '2021-11-29',
-						'isManager': true,
-						'RG': '000000000',
-						'CPF': '00000000000',
-						'landline': 'null',
-						'cellPhone': '00000000000',
-						'profession': 'null',
-						'createdAt': '2021-11-29T13:56:21.649Z',
-						'updatedAt': '2021-11-29T13:56:21.649Z'
-					},
-					'advisor': 'null',
-					'broker': 'null',
-					'secretary': 'null'
-				},
-				{
 					'id': 1,
 					'name': 'wellington',
 					'surname': 'felix',
@@ -239,8 +113,8 @@ router.get('/',
 							'close': [
 								'businesses'
 							],
-							'receiveble': [
-								'commissions-receiveble'
+							'receivable': [
+								'commissions-receivable'
 							],
 							'payable': [
 								'commissions-payable'
@@ -405,8 +279,8 @@ router.post('/',
 						'close': [
 							'businesses'
 						],
-						'receiveble': [
-							'commissions-receiveble'
+						'receivable': [
+							'commissions-receivable'
 						],
 						'payable': [
 							'commissions-payable'
@@ -581,8 +455,8 @@ router.get('/:id',
 						'close': [
 							'businesses'
 						],
-						'receiveble': [
-							'commissions-receiveble'
+						'receivable': [
+							'commissions-receivable'
 						],
 						'payable': [
 							'commissions-payable'

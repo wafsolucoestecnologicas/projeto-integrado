@@ -27,17 +27,6 @@ router.get('/',
                     'percentageCommissionPayableForPropertyCaptured': 0,
                     'createdAt': '2021-11-29T21:37:56.927Z',
                     'updatedAt': '2021-11-29T21:37:56.927Z'
-                },
-                {
-                    'id': 2,
-                    'CNPJ': '75536670000126',
-                    'corporateName': 'WAF Soluções Tecnologicas',
-                    'stateRegistration': '0467483802980',
-                    'percentageCommissionReceivable': 0,
-                    'percentageCommissionPayableForClosedDeals': 10.3,
-                    'percentageCommissionPayableForPropertyCaptured': 2,
-                    'createdAt': '2021-11-29T21:42:26.552Z',
-                    'updatedAt': '2021-11-29T21:42:26.552Z'
                 }
             ]
         }
