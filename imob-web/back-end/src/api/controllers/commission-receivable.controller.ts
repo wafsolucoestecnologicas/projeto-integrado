@@ -1,7 +1,7 @@
 import { DeleteResult, EntityManager, getManager } from 'typeorm';
 import { Request, Response } from 'express';
-import { CommissionReceivableEntity } from '../entities/commission-receiveble.entity';
-import { CommissionReceivableService } from '../services/commission-receiveble.service';
+import { CommissionReceivableEntity } from '../entities/commission-receivable.entity';
+import { CommissionReceivableService } from '../services/commission-receivable.service';
 import { returnMessages, statusMessages } from '../../../utils/utils';
 
 export class CommissionReceivableController {

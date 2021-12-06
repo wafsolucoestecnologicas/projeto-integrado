@@ -1,5 +1,5 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn, AfterLoad } from 'typeorm';
-import { CommissionReceivableModel } from '../models/commission-receiveble.model';
+import { CommissionReceivableModel } from '../models/commission-receivable.model';
 import { CompanyEntity } from './company.entity';
 import { PropertyEntity } from './property.entity';
 
