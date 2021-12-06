@@ -163,6 +163,76 @@ export class UserService {
         return userEntity;
     }
 
+    public async findByAdministrator(id: number): Promise<UserEntity | undefined> {
+        const userEntity: UserEntity | undefined =
+            await this.repository.findOne({
+                select: ['id'],
+                where: {
+                    administrator: {
+                        id: id
+                    }
+                }
+            });
+
+        return userEntity;
+    }
+
+    public async findByManager(id: number): Promise<UserEntity | undefined> {
+        const userEntity: UserEntity | undefined =
+            await this.repository.findOne({
+                select: ['id'],
+                where: {
+                    manager: {
+                        id: id
+                    }
+                }
+            });
+
+        return userEntity;
+    }
+
+    public async findByAdvisor(id: number): Promise<UserEntity | undefined> {
+        const userEntity: UserEntity | undefined =
+            await this.repository.findOne({
+                select: ['id'],
+                where: {
+                    advisor: {
+                        id: id
+                    }
+                }
+            });
+
+        return userEntity;
+    }
+
+    public async findByBroker(id: number): Promise<UserEntity | undefined> {
+        const userEntity: UserEntity | undefined =
+            await this.repository.findOne({
+                select: ['id'],
+                where: {
+                    broker: {
+                        id: id
+                    }
+                }
+            });
+
+        return userEntity;
+    }
+
+    public async findBySecretary(id: number): Promise<UserEntity | undefined> {
+        const userEntity: UserEntity | undefined =
+            await this.repository.findOne({
+                select: ['id'],
+                where: {
+                    secretary: {
+                        id: id
+                    }
+                }
+            });
+
+        return userEntity;
+    }
+
     public async validatePassword(data: UserEntity, password: string): Promise<boolean> {
         const isValid: boolean =
             await bcrypt.compare(password, data.password);
