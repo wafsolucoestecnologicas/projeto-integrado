@@ -36,6 +36,8 @@ export class OwnerController {
                         await ownerService.alreadyRegisterByCPF(request.body.cpf);
     
                     if (!result) {
+                        request.body.company = request.payload.company;
+                        
                         const ownerEntity: OwnerEntity =
                             await ownerService.create(request.body, transction);
     

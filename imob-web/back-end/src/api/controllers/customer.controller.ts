@@ -36,6 +36,8 @@ export class CustomerController {
                         await customerService.alreadyRegisterByCPF(request.body.cpf);
     
                     if (!result) {
+                        request.body.company = request.payload.company;
+                        
                         const customerEntity: CustomerEntity =
                             await customerService.create(request.body, transaction);
     

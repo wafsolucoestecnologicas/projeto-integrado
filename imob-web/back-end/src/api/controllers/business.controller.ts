@@ -32,8 +32,7 @@ export class BusinessController {
                     businessService.validateData(request.body);
 
                 if (result) {
-                    /** @TODO Descomentar a linha abaixo após os testes com o Postman */
-                    //request.body.company = request.payload.company;
+                    request.body.company = request.payload.company;
 
                     const businessEntity: BusinessEntity =
                         await businessService.create(request.body, transaction);

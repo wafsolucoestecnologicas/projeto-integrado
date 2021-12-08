@@ -32,6 +32,8 @@ export class CommissionReceivableController {
                     commissionReceivableService.validateData(request.body);
 
                 if (result) {
+                    request.body.company = request.payload.company;
+                    
                     const commissionReceivableEntity: CommissionReceivableEntity =
                         await commissionReceivableService.create(request.body, transaction);
 

@@ -33,8 +33,19 @@ export class AddressController {
                     addressService.validateData(request.body);
 
                 if (result) {
-                    /** @TODO Descomentar a linha abaixo após os testes com o Postman */
-                    /* request.body.company = request.payload.company; */
+                    request.body.company = request.payload.company;
+
+                    if (request.body.isManager && request.payload.isManager)
+                        request.body.manager = request.payload?.manager;
+
+                    if (request.body.isAdvisor && request.payload.isAdvisor)
+                        request.body.advisor = request.payload?.advisor;
+
+                    if (request.body.isBroker && request.payload.isBroker)
+                        request.body.broker = request.payload?.broker;
+
+                    if (request.body.isSecretary && request.payload.isSecretary)
+                        request.body.secretary = request.payload?.secretary;
 
                     const addressEntity: AddressEntity =
                         await addressService.create(request.body, transaction);

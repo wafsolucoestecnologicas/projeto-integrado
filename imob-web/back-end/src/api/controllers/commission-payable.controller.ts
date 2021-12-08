@@ -32,6 +32,8 @@ export class CommissionPayableController {
                     commissionPayableService.validateData(request.body);
 
                 if (result) {
+                    request.body.company = request.payload.company;
+                    
                     const commissionPayableEntity: CommissionPayableEntity =
                         await commissionPayableService.create(request.body, transaction);
 

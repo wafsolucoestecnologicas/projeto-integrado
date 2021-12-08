@@ -36,8 +36,10 @@ export class LeadController {
                         await leadService.alreadyRegisterByEmail(request.body.email);
 
                     if (!result) {
-                        /** @TODO Descomentar a linha abaixo após os testes com o Postman */
-                        //request.body.company = request.payload.company;
+                        request.body.company = request.payload.company;
+                        request.body.administrator = request.payload?.administrator;
+                        request.body.manager = request.payload?.manager;
+                        request.body.secretary = request.payload?.secretary;
 
                         const leadEntity: LeadEntity =
                             await leadService.create(request.body, transaction);

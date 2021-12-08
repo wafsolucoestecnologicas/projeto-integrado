@@ -32,6 +32,12 @@ export class PropertyController {
                     propertyService.validateData(request.body);
 
                 if (result) {
+                    request.body.company = request.payload.company;
+                    request.body.administrator = request.payload?.administrator;
+                    request.body.manager = request.payload?.manager;
+                    request.body.advisor = request.payload?.advisor;
+                    request.body.secretary = request.payload?.secretary;
+                    
                     const propertyEntity: PropertyEntity =
                         await propertyService.create(request.body, transaction);
 
