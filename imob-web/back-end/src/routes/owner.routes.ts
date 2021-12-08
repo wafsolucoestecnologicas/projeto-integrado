@@ -83,13 +83,13 @@ router.post('/',
                 landline: 'string',
                 cellPhone: 'string',
                 profession: 'string',
-                checked: 'boolean',
-                company: 'object'
+                checked: 'boolean'
             }
         }
      * #swagger.responses[201] = {
             description: 'Criação do proprietário realizada com sucesso',
             schema: {
+                'id': 1,
                 'name': 'cesar',
                 'surname': 'brito',
                 'email': 'cesar.brito@gmail.com',
@@ -105,8 +105,7 @@ router.post('/',
                     'id': 1
                 },
                 'createdAt': '2021-12-02T01:49:25.438Z',
-                'updatedAt': '2021-12-02T01:49:25.438Z',
-                'id': 1
+                'updatedAt': '2021-12-02T01:49:25.438Z'
             }
         }
      * #swagger.responses[400] = {

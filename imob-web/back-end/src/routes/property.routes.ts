@@ -81,13 +81,7 @@ router.post('/',
                 totalUtilTerrainArea: 'integer',
                 condominium: 'integer',
                 IPTU: 'integer',
-                value: 'integer',
-                company: 'object',
-                administrator: 'object',
-                manager: 'object',
-                advisor: 'object',
-                broker: 'object',
-                secretary: 'object'
+                value: 'integer'
             }
         }
       * #swagger.responses[201] = {

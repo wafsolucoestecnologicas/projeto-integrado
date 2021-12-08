@@ -143,7 +143,6 @@ router.post('/',
                 date: 'string',
                 valueClosedDeals: 'decimal',
                 valuePropertyCaptured: 'decimal',
-                company: 'object',
                 broker: 'object',
                 property: 'object'
             }

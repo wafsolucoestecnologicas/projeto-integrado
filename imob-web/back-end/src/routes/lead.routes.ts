@@ -123,11 +123,7 @@ router.post('/',
                 comments: 'string',
                 createdByAdministrator: 'boolean',
                 createdByManager: 'boolean',
-                createdBySecretary: 'boolean',
-                company: 'object',
-                administrator: 'object',
-                manager: 'object',
-                secretary: 'object',
+                createdBySecretary: 'boolean'
             }
         }
       * #swagger.responses[201] = {

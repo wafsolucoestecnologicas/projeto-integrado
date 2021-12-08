@@ -68,60 +68,59 @@ router.post('/',
       * #swagger.summary = 'Cria um novo cliente'
       * #swagger.description = 'Endpoint para criar um novo cliente'
       * #swagger.parameters['body'] = {
-             in: 'body',
-             description: 'JSON com um objeto para criação de um cliente',
-             required: true,
-             type: 'object',
-             schema: {
-                 name: 'string',
-                 surname: 'string',
-                 email: 'string',
-                 birthDate: 'string',
-                 RG: 'string',
-                 CPF: 'string',
-                 landline: 'string',
-                 cellPhone: 'string',
-                 profession: 'string',
-                 company: 'object'
-             }
-         }
+            in: 'body',
+            description: 'JSON com um objeto para criação de um cliente',
+            required: true,
+            type: 'object',
+            schema: {
+                name: 'string',
+                surname: 'string',
+                email: 'string',
+                birthDate: 'string',
+                RG: 'string',
+                CPF: 'string',
+                landline: 'string',
+                cellPhone: 'string',
+                profession: 'string'
+            }
+        }
       * #swagger.responses[201] = {
-             description: 'Criação do cliente realizada com sucesso',
-             schema: {
-                 'id': 1,
-                 'name': 'florisvaldo',
-                 'surname': 'miranda',
-                 'email': 'florisvaldo.miranda@gmail.com',
-                 'birthDate': '2021-03-08',
-                 'isCustomer': true,
-                 'RG': '157882299',
-                 'CPF': '20717934047',
-                 'landline': '          ',
-                 'cellPhone': '31986857815',
-                 'profession': '',
-                 'company': {
-                     'id': 1
-                 },
-                 'createdAt': '2021-12-02T02:00:52.863Z',
-                 'updatedAt': '2021-12-02T02:00:52.863Z'
-             }
-         }
+            description: 'Criação do cliente realizada com sucesso',
+                schema: {
+                'id': 1,
+                'name': 'florisvaldo',
+                'surname': 'miranda',
+                'email': 'florisvaldo.miranda@gmail.com',
+                'birthDate': '2021-03-08',
+                'isCustomer': true,
+                'RG': '157882299',
+                'CPF': '20717934047',
+                'landline': '          ',
+                'cellPhone': '31986857815',
+                'profession': '',
+                'company': {
+                    'id': 1
+                },
+                'createdAt': '2021-12-02T02:00:52.863Z',
+                'updatedAt': '2021-12-02T02:00:52.863Z'
+            }
+        }
       * #swagger.responses[400] = {
-             description: 'Requisição com dados inválidos',
-             schema: { message: 'O pedido não pôde ser entregue devido à sintaxe incorreta!' }
-         }
+            description: 'Requisição com dados inválidos',
+            schema: { message: 'O pedido não pôde ser entregue devido à sintaxe incorreta!' }
+        }
       * #swagger.responses[401] = {
-             description: 'Requisição sem um Token válido',
-             schema: { message: 'Não possui credenciais de autenticação válidas para o recurso!' }
-         }
+            description: 'Requisição sem um Token válido',
+            schema: { message: 'Não possui credenciais de autenticação válidas para o recurso!' }
+        }
       * #swagger.responses[409] = {
-             description: 'CPF já existe na base de dados',
-             schema: { message: 'Solicitação atual conflitou com o recurso que está no servidor!' }
-         }
+            description: 'CPF já existe na base de dados',
+            schema: { message: 'Solicitação atual conflitou com o recurso que está no servidor!' }
+        }
       * #swagger.responses[500] = {
-             description: 'Erro interno',
-             schema: { message: 'Erro no servidor ao processar a solicitação!' }
-         }
+            description: 'Erro interno',
+            schema: { message: 'Erro no servidor ao processar a solicitação!' }
+        }
       */
     customerController.create
 );

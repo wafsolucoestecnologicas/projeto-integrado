@@ -125,7 +125,6 @@ router.post('/',
             schema: {
                 date: 'string',
                 value: 'decimal',
-                company: 'object',
                 property: 'object'
             }
         }
