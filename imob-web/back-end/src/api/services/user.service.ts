@@ -153,7 +153,12 @@ export class UserService {
             await this.repository.findOne({
                 relations: [
                     'company',
-                    'profile'
+                    'profile',
+                    'administrator',
+                    'manager',
+                    'advisor',
+                    'broker',
+                    'secretary'
                 ],
                 where: {
                     email: email
