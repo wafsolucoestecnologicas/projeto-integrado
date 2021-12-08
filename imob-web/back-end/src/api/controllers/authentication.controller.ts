@@ -44,12 +44,39 @@ export class AuthenticationController {
                         surname: userEntity.surname,
                         email: userEntity.email,
                         isAdmin: userEntity.profile.isAdmin,
-                        permissions: userEntity.profile.permissions
+                        permissions: userEntity.profile.permissions,
+                        administrator: userEntity?.administrator,
+                        manager: userEntity?.manager,
+                        advisor: userEntity?.advisor,
+                        broker: userEntity?.broker,
+                        secretary: userEntity?.secretary
                     });
 
                     jwt.setExpiredIn('1d');
 
-                    return response.status(200).json({ user: userEntity, token: jwt.generateToken() });
+                    return response.status(200).json({
+                        user: {
+                            id: userEntity.id,
+                            name: userEntity.name,
+                            surname: userEntity.surname,
+                            email: userEntity.email,
+                            isAdministrator: userEntity.isAdministrator,
+                            isManager: userEntity.isManager,
+                            isAdvisor: userEntity.isAdvisor,
+                            isBroker: userEntity.isBroker,
+                            isSecretary: userEntity.isSecretary,
+                            createdAt: userEntity.createdAt,
+                            updatedAt: userEntity.updatedAt
+                        },
+                        company: userEntity.company,
+                        profile: userEntity.profile,
+                        administrator: userEntity?.administrator,
+                        manager: userEntity?.manager,
+                        advisor: userEntity?.advisor,
+                        broker: userEntity?.broker,
+                        secretary: userEntity?.secretary,
+                        token: jwt.generateToken()
+                    });
                 } else {
                     return response.status(500).json({ message: `${statusMessages[500]} ${returnMessages[1]}` });
                 }
