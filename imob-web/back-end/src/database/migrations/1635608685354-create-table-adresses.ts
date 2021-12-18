@@ -77,7 +77,8 @@ export class createTableAdresses1635608685354 implements MigrationInterface {
                     {
                         name: 'complement',
                         type: 'varchar(50)',
-                        isNullable: false
+                        default: null,
+                        isNullable: true
                     },
                     {
                         name: 'number',
