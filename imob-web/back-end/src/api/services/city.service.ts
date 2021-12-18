@@ -51,6 +51,7 @@ export class CityService {
         const cityEntity: CityEntity =
             this.repository.create({
                 id: id,
+                state: data.state,
                 city: data.city.toLowerCase()
             });
 
