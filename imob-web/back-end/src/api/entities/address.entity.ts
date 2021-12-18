@@ -38,7 +38,8 @@ export class AddressEntity implements AddressModel {
     @Column({
         name: 'complement',
         type: 'text',
-        nullable: false,
+        default: null,
+        nullable: true,
         comment: 'Complemento do endereço'
     })
     public complement: string;
@@ -160,11 +161,5 @@ export class AddressEntity implements AddressModel {
     public property?: PropertyEntity;
 
     constructor() { }
-
-    @AfterLoad()
-    public convertValuesToUpperCase(): void {
-        if (this.street) this.street = this.street.toUpperCase();
-        if (this.complement) this.complement = this.complement.toUpperCase();
-    }
-
+    
 }
