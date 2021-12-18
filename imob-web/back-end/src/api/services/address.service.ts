@@ -34,8 +34,8 @@ export class AddressService {
                 owner: data?.owner,
                 customer: data?.customer,
                 property: data?.property,
-                street: data.street,
-                complement: data.complement,
+                street: data.street.toLowerCase(),
+                complement: data.complement.toLowerCase(),
                 number: data.number,
                 CEP: data.CEP,
                 isCompany: data.isCompany,
@@ -72,8 +72,9 @@ export class AddressService {
         const addressEntity: AddressEntity =
             this.repository.create({
                 id: id,
-                street: data.street,
-                complement: data.complement,
+                neighborhood: data.neighborhood,
+                street: data.street.toLowerCase(),
+                complement: data.complement.toLowerCase(),
                 number: data.number,
                 CEP: data.CEP,
                 isCompany: data.isCompany,
@@ -161,10 +162,10 @@ export class AddressService {
                     JSON.parse(JSON.stringify(data));
 
                 address.cep = parsed.cep;
-                address.logradouro = parsed.logradouro;
-                address.complemento = parsed.complemento;
-                address.bairro = parsed.bairro;
-                address.localidade = parsed.localidade;
+                address.logradouro = parsed.logradouro.toLowerCase();
+                address.complemento = parsed.complemento.toLowerCase();
+                address.bairro = parsed.bairro.toLowerCase();
+                address.localidade = parsed.localidade.toLowerCase();
                 address.uf = parsed.uf;
                 address.ibge = parsed.ibge;
                 address.gia = parsed.gia;
