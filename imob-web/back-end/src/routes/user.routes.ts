@@ -27,8 +27,8 @@ router.get('/',
 					'isAdvisor': false,
 					'isBroker': false,
 					'isSecretary': false,
-					'createdAt': '2021-11-27T18:12:44.177Z',
-					'updatedAt': '2021-11-27T18:12:44.177Z',
+					'createdAt': '2021-12-11T02:06:27.749Z',
+					'updatedAt': '2021-12-11T02:06:27.749Z',
 					'company': {
 						'id': 1,
 						'CNPJ': '00000000000000',
@@ -37,8 +37,8 @@ router.get('/',
 						'percentageCommissionReceivable': 0,
 						'percentageCommissionPayableForClosedDeals': 0,
 						'percentageCommissionPayableForPropertyCaptured': 0,
-						'createdAt': '2021-11-27T18:12:43.983Z',
-						'updatedAt': '2021-11-27T18:12:43.983Z'
+						'createdAt': '2021-12-11T02:06:27.567Z',
+						'updatedAt': '2021-12-11T02:06:27.567Z'
 					},
 					'profile': {
 						'id': 2,
@@ -55,7 +55,13 @@ router.get('/',
 								'customers',
 								'properties',
 								'leads',
-								'businesses'
+								'businesses',
+								'commissions-receivable',
+								'commissions-payable',
+								'adresses',
+								'neighborhoods',
+								'cities',
+								'states'
 							],
 							'read': [
 								'users',
@@ -69,9 +75,16 @@ router.get('/',
 								'customers',
 								'properties',
 								'leads',
-								'businesses'
+								'businesses',
+								'commissions-receivable',
+								'commissions-payable',
+								'adresses',
+								'neighborhoods',
+								'cities',
+								'states'
 							],
 							'update': [
+								'users',
 								'companies',
 								'managers',
 								'advisors',
@@ -81,9 +94,16 @@ router.get('/',
 								'customers',
 								'properties',
 								'leads',
-								'businesses'
+								'businesses',
+								'commissions-receivable',
+								'commissions-payable',
+								'adresses',
+								'neighborhoods',
+								'cities',
+								'states'
 							],
 							'delete': [
+								'users',
 								'companies',
 								'managers',
 								'advisors',
@@ -93,7 +113,13 @@ router.get('/',
 								'customers',
 								'properties',
 								'leads',
-								'businesses'
+								'businesses',
+								'commissions-receivable',
+								'commissions-payable',
+								'adresses',
+								'neighborhoods',
+								'cities',
+								'states'
 							],
 							'amount': [
 								'leads',
@@ -120,8 +146,8 @@ router.get('/',
 								'commissions-payable'
 							]
 						},
-						'createdAt': '2021-11-27T18:05:40.508Z',
-						'updatedAt': '2021-11-27T18:05:40.508Z'
+						'createdAt': '2021-12-11T02:05:52.482Z',
+						'updatedAt': '2021-12-11T02:05:52.482Z'
 					},
 					'administrator': 'null',
 					'manager': {
@@ -129,15 +155,15 @@ router.get('/',
 						'name': 'wellington',
 						'surname': 'felix',
 						'email': 'wellington.felix@gmail.com',
-						'birthDate': '2021-11-27',
+						'birthDate': '2021-12-10',
 						'isManager': true,
 						'RG': '000000000',
 						'CPF': '00000000000',
 						'landline': 'null',
 						'cellPhone': '00000000000',
 						'profession': 'null',
-						'createdAt': '2021-11-27T18:12:44.036Z',
-						'updatedAt': '2021-11-27T18:12:44.036Z'
+						'createdAt': '2021-12-11T02:06:27.627Z',
+						'updatedAt': '2021-12-11T02:06:27.628Z'
 					},
 					'advisor': 'null',
 					'broker': 'null',
@@ -166,29 +192,23 @@ router.post('/',
 	 * #swagger.produces = ['application/json']
 	 * #swagger.summary = 'Cria um novo usuário'
 	 * #swagger.description = 'Endpoint para criar um novo usuário'
-	 * #swagger.parameters['body'] = {
+	 * #swagger.parameters['createUser'] = {
 			in: 'body',
 			description: 'JSON com um objeto para criação de um usuário',
 			required: true,
 			type: 'object',
 			schema: {
-				name: 'string',
-				surname: 'string',
-				password: 'string',
-				company: {
-					id: 'integer'
-				},
-				profile: {
-					id: 'integer'
-				}
+				$ref: '#definitions/createUser'
 			}
 	   }
 	 * #swagger.responses[201] = {
 			description: 'Criação do usuário realizada com sucesso',
 			schema: {
-				'name': 'palloma',
+				'id': 1,
+				'uuid': '7fc5c053-722f-4481-8e69-32f13064b981',
+				'name': 'wellington',
 				'surname': 'felix',
-				'email': 'palloma.felix@gmail.com',
+				'email': 'wellington.felix@gmail.com',
 				'password': '',
 				'isAdministrator': false,
 				'isManager': true,
@@ -196,15 +216,15 @@ router.post('/',
 				'isBroker': false,
 				'isSecretary': false,
 				'company': {
-					'id': 2,
+					'id': 1,
 					'CNPJ': '00000000000000',
 					'corporateName': 'Empresa Cadastrada Automaticamente',
 					'stateRegistration': '0000000000',
 					'percentageCommissionReceivable': 0,
 					'percentageCommissionPayableForClosedDeals': 0,
 					'percentageCommissionPayableForPropertyCaptured': 0,
-					'createdAt': '2021-11-29T13:56:21.590Z',
-					'updatedAt': '2021-11-29T13:56:21.590Z'
+					'createdAt': '2021-12-11T02:06:27.567Z',
+					'updatedAt': '2021-12-11T02:06:27.567Z'
 				},
 				'profile': {
 					'id': 2,
@@ -221,7 +241,13 @@ router.post('/',
 							'customers',
 							'properties',
 							'leads',
-							'businesses'
+							'businesses',
+							'commissions-receivable',
+							'commissions-payable',
+							'adresses',
+							'neighborhoods',
+							'cities',
+							'states'
 						],
 						'read': [
 							'users',
@@ -235,9 +261,16 @@ router.post('/',
 							'customers',
 							'properties',
 							'leads',
-							'businesses'
+							'businesses',
+							'commissions-receivable',
+							'commissions-payable',
+							'adresses',
+							'neighborhoods',
+							'cities',
+							'states'
 						],
 						'update': [
+							'users',
 							'companies',
 							'managers',
 							'advisors',
@@ -247,9 +280,16 @@ router.post('/',
 							'customers',
 							'properties',
 							'leads',
-							'businesses'
+							'businesses',
+							'commissions-receivable',
+							'commissions-payable',
+							'adresses',
+							'neighborhoods',
+							'cities',
+							'states'
 						],
 						'delete': [
+							'users',
 							'companies',
 							'managers',
 							'advisors',
@@ -259,7 +299,13 @@ router.post('/',
 							'customers',
 							'properties',
 							'leads',
-							'businesses'
+							'businesses',
+							'commissions-receivable',
+							'commissions-payable',
+							'adresses',
+							'neighborhoods',
+							'cities',
+							'states'
 						],
 						'amount': [
 							'leads',
@@ -286,39 +332,37 @@ router.post('/',
 							'commissions-payable'
 						]
 					},
-					'createdAt': '2021-11-27T18:05:40.508Z',
-					'updatedAt': '2021-11-27T18:05:40.508Z'
+					'createdAt': '2021-12-11T02:05:52.482Z',
+					'updatedAt': '2021-12-11T02:05:52.482Z'
 				},
 				'manager': {
-					'name': 'palloma',
+					'name': 'wellington',
 					'surname': 'felix',
-					'email': 'palloma.felix@gmail.com',
-					'birthDate': '2021-11-29T13:56:21.647Z',
+					'email': 'wellington.felix@gmail.com',
+					'birthDate': '2021-12-11T02:06:27.625Z',
 					'isManager': true,
 					'RG': '000000000',
 					'CPF': '00000000000',
 					'cellPhone': '00000000000',
 					'company': {
-						'id': 2,
+						'id': 1,
 						'CNPJ': '00000000000000',
 						'corporateName': 'Empresa Cadastrada Automaticamente',
 						'stateRegistration': '0000000000',
 						'percentageCommissionReceivable': 0,
 						'percentageCommissionPayableForClosedDeals': 0,
 						'percentageCommissionPayableForPropertyCaptured': 0,
-						'createdAt': '2021-11-29T13:56:21.590Z',
-						'updatedAt': '2021-11-29T13:56:21.590Z'
+						'createdAt': '2021-12-11T02:06:27.567Z',
+						'updatedAt': '2021-12-11T02:06:27.567Z'
 					},
-					'createdAt': '2021-11-29T13:56:21.649Z',
-					'updatedAt': '2021-11-29T13:56:21.649Z',
+					'createdAt': '2021-12-11T02:06:27.627Z',
+					'updatedAt': '2021-12-11T02:06:27.628Z',
 					'landline': 'null',
 					'profession': 'null',
-					'id': 2
+					'id': 1
 				},
-				'createdAt': '2021-11-29T13:56:21.716Z',
-				'updatedAt': '2021-11-29T13:56:21.716Z',
-				'id': 2,
-				'uuid': '3d0967a8-c65a-4f29-a65e-41d00bdbaf8a'
+				'createdAt': '2021-12-11T02:06:27.749Z',
+				'updatedAt': '2021-12-11T02:06:27.749Z'
 			}
 	   }
 	 * #swagger.responses[400] = {
@@ -355,7 +399,10 @@ router.get('/:id',
 			in: 'path',
 			description: 'ID do usuário',
 			required: true,
-			type: 'integer'
+			type: 'integer',
+			schema: {
+				$ref: '#/definitions/id'
+			}
 	   }
 	 * #swagger.responses[200] = {
 			description: 'Busca por um usuário realizada com sucesso',
@@ -369,8 +416,8 @@ router.get('/:id',
 				'isAdvisor': false,
 				'isBroker': false,
 				'isSecretary': false,
-				'createdAt': '2021-11-27T18:12:44.177Z',
-				'updatedAt': '2021-11-27T18:12:44.177Z',
+				'createdAt': '2021-12-11T02:06:27.749Z',
+				'updatedAt': '2021-12-11T02:06:27.749Z',
 				'company': {
 					'id': 1,
 					'CNPJ': '00000000000000',
@@ -379,8 +426,8 @@ router.get('/:id',
 					'percentageCommissionReceivable': 0,
 					'percentageCommissionPayableForClosedDeals': 0,
 					'percentageCommissionPayableForPropertyCaptured': 0,
-					'createdAt': '2021-11-27T18:12:43.983Z',
-					'updatedAt': '2021-11-27T18:12:43.983Z'
+					'createdAt': '2021-12-11T02:06:27.567Z',
+					'updatedAt': '2021-12-11T02:06:27.567Z'
 				},
 				'profile': {
 					'id': 2,
@@ -397,7 +444,13 @@ router.get('/:id',
 							'customers',
 							'properties',
 							'leads',
-							'businesses'
+							'businesses',
+							'commissions-receivable',
+							'commissions-payable',
+							'adresses',
+							'neighborhoods',
+							'cities',
+							'states'
 						],
 						'read': [
 							'users',
@@ -411,9 +464,16 @@ router.get('/:id',
 							'customers',
 							'properties',
 							'leads',
-							'businesses'
+							'businesses',
+							'commissions-receivable',
+							'commissions-payable',
+							'adresses',
+							'neighborhoods',
+							'cities',
+							'states'
 						],
 						'update': [
+							'users',
 							'companies',
 							'managers',
 							'advisors',
@@ -423,9 +483,16 @@ router.get('/:id',
 							'customers',
 							'properties',
 							'leads',
-							'businesses'
+							'businesses',
+							'commissions-receivable',
+							'commissions-payable',
+							'adresses',
+							'neighborhoods',
+							'cities',
+							'states'
 						],
 						'delete': [
+							'users',
 							'companies',
 							'managers',
 							'advisors',
@@ -435,7 +502,13 @@ router.get('/:id',
 							'customers',
 							'properties',
 							'leads',
-							'businesses'
+							'businesses',
+							'commissions-receivable',
+							'commissions-payable',
+							'adresses',
+							'neighborhoods',
+							'cities',
+							'states'
 						],
 						'amount': [
 							'leads',
@@ -462,8 +535,8 @@ router.get('/:id',
 							'commissions-payable'
 						]
 					},
-					'createdAt': '2021-11-27T18:05:40.508Z',
-					'updatedAt': '2021-11-27T18:05:40.508Z'
+					'createdAt': '2021-12-11T02:05:52.482Z',
+					'updatedAt': '2021-12-11T02:05:52.482Z'
 				},
 				'administrator': 'null',
 				'manager': {
@@ -471,15 +544,15 @@ router.get('/:id',
 					'name': 'wellington',
 					'surname': 'felix',
 					'email': 'wellington.felix@gmail.com',
-					'birthDate': '2021-11-27',
+					'birthDate': '2021-12-10',
 					'isManager': true,
 					'RG': '000000000',
 					'CPF': '00000000000',
 					'landline': 'null',
 					'cellPhone': '00000000000',
 					'profession': 'null',
-					'createdAt': '2021-11-27T18:12:44.036Z',
-					'updatedAt': '2021-11-27T18:12:44.036Z'
+					'createdAt': '2021-12-11T02:06:27.627Z',
+					'updatedAt': '2021-12-11T02:06:27.628Z'
 				},
 				'advisor': 'null',
 				'broker': 'null',
@@ -517,18 +590,18 @@ router.put('/:id',
 			in: 'path',
 			description: 'ID do usuário',
 			required: true,
-			type: 'integer'
+			type: 'integer',
+			schema: {
+				$ref: '#/definitions/id'
+			}
 	   }
-	   * #swagger.parameters['body'] = {
+	   * #swagger.parameters['updateUser'] = {
 			in: 'body',
 			description: 'JSON com um objeto para atualização de um usuário',
 			required: true,
 			type: 'object',
 			schema: {
-				name: 'string',
-				surname: 'string',
-				email: 'string',
-				password: 'string'
+				$ref: '#/definitions/updateUser'
 			}
 	   }
 	 * #swagger.responses[200] = {
@@ -572,7 +645,10 @@ router.delete('/:id',
 			in: 'path',
 			description: 'ID do usuário',
 			required: true,
-			type: 'integer'
+			type: 'integer',
+			schema: {
+				$ref: '#/definitions/id'
+			}
 	   }
 	 * #swagger.responses[200] = {
 			description: 'Deleção do usuário realizada com sucesso',

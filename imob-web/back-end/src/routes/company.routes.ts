@@ -52,18 +52,13 @@ router.post('/',
      * #swagger.produces = ['application/json']
      * #swagger.summary = 'Cria uma nova imobiliária'
      * #swagger.description = 'Endpoint para criar uma nova imobiliária'
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['createCompany'] = {
             in: 'body',
             description: 'JSON com um objeto para criação de uma imobiliária',
             required: true,
             type: 'object',
             schema: {
-                CNPJ: 'string',
-                coporateName: 'string',
-                stateRegistration: 'string',
-                percentageCommissionReceivable: 'decimal',
-                percentageCommissionPayableForClosedDeals: 'decimal',
-                percentageCommissionPayableForPropertyCaptured: 'decimal'
+                $ref: '#/definitions/createCompany'
             }
         }
      * #swagger.responses[201] = {
@@ -114,7 +109,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID da imobiliária',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por uma imobiliária realizada com sucesso',
@@ -160,20 +158,18 @@ router.put('/:id',
             in: 'path',
             description: 'ID da imobiliária',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateCompany'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de uma imobiliária',
             required: true,
             type: 'object',
             schema: {
-                CNPJ: 'string',
-                coporateName: 'string',
-                stateRegistration: 'string',
-                percentageCommissionReceivable: 'decimal',
-                percentageCommissionPayableForClosedDeals: 'decimal',
-                percentageCommissionPayableForPropertyCaptured: 'decimal'
+                $ref: '#/definitions/updateCompany'
             }
         }
      * #swagger.responses[200] = {
@@ -219,7 +215,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID da imobiliária',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção da imobiliária realizada com sucesso',

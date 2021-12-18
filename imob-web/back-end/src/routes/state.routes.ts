@@ -19,7 +19,7 @@ router.get('/',
             schema: [
                 {
                     'id': 1,
-                    'state': 'ACRE',
+                    'state': 'acre',
                     'UF': 'AC'
                 }
             ]
@@ -50,13 +50,16 @@ router.get('/:id',
             in: 'path',
             description: 'ID do estado',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por um estado realizada com sucesso',
             schema: {
                 'id': 1,
-                'state': 'ACRE',
+                'state': 'acre',
                 'UF': 'AC'
             }
         }

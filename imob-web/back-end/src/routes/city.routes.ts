@@ -19,10 +19,10 @@ router.get('/',
             schema: [
                 {
                     'id': 1,
-                    'city': 'BELO HORIZONTE',
+                    'city': 'belo horizonte',
                     'state': {
                         'id': 12,
-                        'state': 'MINAS GERAIS',
+                        'state': 'minas gerais',
                         'UF': 'MG'
                     }
                 }
@@ -50,14 +50,13 @@ router.post('/',
       * #swagger.produces = ['application/json']
       * #swagger.summary = 'Cria uma nova cidade'
       * #swagger.description = 'Endpoint para criar uma nova cidade'
-      * #swagger.parameters['body'] = {
+      * #swagger.parameters['createCity'] = {
             in: 'body',
             description: 'JSON com um objeto para criação de uma cidade',
             required: true,
             type: 'object',
             schema: {
-                city: 'string',
-                state: 'object'
+                $ref: '#/definitions/createCity'
             }
         }
       * #swagger.responses[201] = {
@@ -100,16 +99,19 @@ router.get('/:id',
             in: 'path',
             description: 'ID da cidade',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por uma cidade realizada com sucesso',
             schema: {
                 'id': 1,
-                'city': 'BELO HORIZONTE',
+                'city': 'belo horizonte',
                 'state': {
                     'id': 12,
-                    'state': 'MINAS GERAIS',
+                    'state': 'minas gerais',
                     'UF': 'MG'
                 }
             }
@@ -144,22 +146,28 @@ router.put('/:id',
             in: 'path',
             description: 'ID da cidade',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateCity'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de uma cidade',
             required: true,
             type: 'object',
             schema: {
-                city: 'string'
+                $ref: '#/definitions/updateCity'
             }
         }
      * #swagger.responses[200] = {
             description: 'Atualização dos dados da cidade realizada com sucesso',
             schema: {
                 'id': 1,
-                'city': 'contagem'
+                'city': 'contagem',
+                'state': {
+                    'id': 12
+                }
             }
         }
      * #swagger.responses[400] = {
@@ -192,7 +200,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID da cidade',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção da cidade realizada com sucesso',

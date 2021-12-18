@@ -62,26 +62,13 @@ router.post('/',
       * #swagger.produces = ['application/json']
       * #swagger.summary = 'Cria um novo imóvel'
       * #swagger.description = 'Endpoint para criar um novo imóvel'
-      * #swagger.parameters['body'] = {
+      * #swagger.parameters['createProperty'] = {
             in: 'body',
             description: 'JSON com um objeto para criação de um imóvel',
             required: true,
             type: 'object',
             schema: {
-                description: 'string',
-                photos: 'json',
-                checked: 'boolean',
-                elevator: 'boolean',
-                bedrooms: 'integer',
-                bathrooms: 'integer',
-                suites: 'integer',
-                parkingLots: 'integer',
-                terrainArea: 'integer',
-                buildingArea: 'integer',
-                totalUtilTerrainArea: 'integer',
-                condominium: 'integer',
-                IPTU: 'integer',
-                value: 'integer'
+                $ref: '#/definitions/createProperty'
             }
         }
       * #swagger.responses[201] = {
@@ -98,12 +85,12 @@ router.post('/',
                 'bathrooms': 5,
                 'suites': 0,
                 'parkingLots': 2,
-                'terrainArea': '1000.00',
-                'buildingArea': '800.00',
-                'totalUtilTerrainArea': '1000.00',
-                'condominium': '0.00',
-                'IPTU': '0.00',
-                'value': '450000.00',
+                'terrainArea': 1000,
+                'buildingArea': 800,
+                'totalUtilTerrainArea': 1000,
+                'condominium': 0,
+                'IPTU': 0,
+                'value': 450000,
                 'company': {
                     'id': 1
                 },
@@ -144,7 +131,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID do imóvel',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por um imóvel realizada com sucesso',
@@ -200,28 +190,18 @@ router.put('/:id',
             in: 'path',
             description: 'ID do imóvel',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateProperty'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de um imóvel',
             required: true,
             type: 'object',
             schema: {
-                description: 'string',
-                photos: 'json',
-                checked: 'boolean',
-                elevator: 'boolean',
-                bedrooms: 'integer',
-                bathrooms: 'integer',
-                suites: 'integer',
-                parkingLots: 'integer',
-                terrainArea: 'integer',
-                buildingArea: 'integer',
-                totalUtilTerrainArea: 'integer',
-                condominium: 'integer',
-                IPTU: 'integer',
-                value: 'integer'
+                $ref: '#/definitions/updateProperty'
             }
         }
      * #swagger.responses[200] = {
@@ -232,7 +212,7 @@ router.put('/:id',
                 'photos': {
                     'paths': []
                 },
-                'checked': false,
+                'checked': true,
                 'elevator': true,
                 'bedrooms': 3,
                 'bathrooms': 3,
@@ -241,9 +221,9 @@ router.put('/:id',
                 'terrainArea': 1000,
                 'buildingArea': 800,
                 'totalUtilTerrainArea': 1000,
-                'condominium': 0,
-                'IPTU': 0,
-                'value': 450000,
+                'condominium': 250.50,
+                'IPTU': 1500.75,
+                'value': 500975.25,
                 'updatedAt': '2021-12-03T00:53:11.688Z'
             }
         }
@@ -277,7 +257,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID do imóvel',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção do imóvel realizada com sucesso',

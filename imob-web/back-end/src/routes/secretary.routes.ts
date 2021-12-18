@@ -12,7 +12,7 @@ router.get('/',
      * #swagger.method = 'get'
      * #swagger.consumes = ['application/json']
      * #swagger.produces = ['application/json']
-     * #swagger.summary = 'Busca por todos os secretárias'
+     * #swagger.summary = 'Busca por todos as secretárias'
      * #swagger.description = 'Endpoint para buscar por todas as secretárias'
      * #swagger.responses[200] = {
             description: 'Busca por todas as secretárias realizada com sucesso',
@@ -67,13 +67,16 @@ router.get('/:id',
      * #swagger.method = 'get'
      * #swagger.consumes = ['application/json']
      * #swagger.produces = ['application/json']
-     * #swagger.summary = 'Busca por um secretária'
+     * #swagger.summary = 'Busca por uma secretária'
      * #swagger.description = 'Endpoint para buscar por uma secretária'
      * #swagger.parameters['id'] = {
             in: 'path',
             description: 'ID da secretária',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por uma secretária realizada com sucesso',
@@ -128,29 +131,24 @@ router.put('/:id',
      * #swagger.method = 'put'
      * #swagger.consumes = ['application/json']
      * #swagger.produces = ['application/json']
-     * #swagger.summary = 'Atualiza os dados de um secretária'
+     * #swagger.summary = 'Atualiza os dados de uma secretária'
      * #swagger.description = 'Endpoint para atualizar os dados de uma secretária'
      * #swagger.parameters['id'] = {
             in: 'path',
             description: 'ID da secretária',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateSecretary'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de uma secretária',
             required: true,
             type: 'object',
             schema: {
-                name: 'string',
-                surname: 'string',
-                email: 'string',
-                birthDate: 'string',
-                RG: 'string',
-                CPF: 'string',
-                landline: 'string',
-                cellPhone: 'string',
-                profession: 'string'
+                $ref: '#/definitions/updateSecretary'
             }
         }
      * #swagger.responses[200] = {
@@ -163,9 +161,9 @@ router.put('/:id',
                 'birthDate': '2021-03-08',
                 'RG': '157882299',
                 'CPF': '20717934047',
-                'landline': '',
+                'landline': '3133228544',
                 'cellPhone': '31986857815',
-                'profession': '',
+                'profession': 'secretária',
                 'updatedAt': '2021-12-02T01:22:43.064Z'
             }
         }
@@ -193,13 +191,16 @@ router.delete('/:id',
      * #swagger.method = 'delete'
      * #swagger.consumes = ['application/json']
      * #swagger.produces = ['application/json']
-     * #swagger.summary = 'Deleta um secretária'
+     * #swagger.summary = 'Deleta uma secretária'
      * #swagger.description = 'Endpoint para deletar uma secretária'
      * #swagger.parameters['id'] = {
             in: 'path',
             description: 'ID da secretária',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção da secretária realizada com sucesso',

@@ -108,22 +108,13 @@ router.post('/',
       * #swagger.produces = ['application/json']
       * #swagger.summary = 'Cria uma nova lead'
       * #swagger.description = 'Endpoint para criar uma nova lead'
-      * #swagger.parameters['body'] = {
+      * #swagger.parameters['createLead'] = {
             in: 'body',
             description: 'JSON com um objeto para criação de uma lead',
             required: true,
             type: 'object',
             schema: {
-                name: 'string',
-                surname: 'string',
-                email: 'string',
-                source: 'integer',
-                landline: 'string',
-                cellPhone: 'string',
-                comments: 'string',
-                createdByAdministrator: 'boolean',
-                createdByManager: 'boolean',
-                createdBySecretary: 'boolean'
+                $ref: '#/definitions/createLead'
             }
         }
       * #swagger.responses[201] = {
@@ -184,7 +175,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID da lead',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por uma lead realizada com sucesso',
@@ -245,24 +239,18 @@ router.put('/:id',
             in: 'path',
             description: 'ID da lead',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateLead'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de uma lead',
             required: true,
             type: 'object',
             schema: {
-                name: 'string',
-                surname: 'string',
-                email: 'string',
-                source: 'integer',
-                landline: 'string',
-                cellPhone: 'string',
-                comments: 'string',
-                createdByAdministrator: 'boolean',
-                createdByManager: 'boolean',
-                createdBySecretary: 'boolean'
+                $ref: '#/definitions/updateLead'
             }
         }
      * #swagger.responses[200] = {
@@ -283,7 +271,7 @@ router.put('/:id',
             }
         }
      * #swagger.responses[400] = {
-            description: 'Requisição sem o ID da lead | ID da lead não encontrado na base de dados | Requisição com dados inválidos',
+            description: 'Requisição sem o ID da lead | ID da lead não encontrada na base de dados | Requisição com dados inválidos',
             schema: { message: 'O pedido não pôde ser entregue devido à sintaxe incorreta!' }
         }
      * #swagger.responses[401] = {
@@ -312,7 +300,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID da lead',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção da lead realizada com sucesso',

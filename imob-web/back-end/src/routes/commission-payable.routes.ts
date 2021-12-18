@@ -134,17 +134,13 @@ router.post('/',
       * #swagger.produces = ['application/json']
       * #swagger.summary = 'Cria uma nova comissão a pagar'
       * #swagger.description = 'Endpoint para criar uma nova comissão a pagar'
-      * #swagger.parameters['body'] = {
+      * #swagger.parameters['createCommissionPayable'] = {
             in: 'body',
             description: 'JSON com um objeto para criação de uma comissão a pagar',
             required: true,
             type: 'object',
             schema: {
-                date: 'string',
-                valueClosedDeals: 'decimal',
-                valuePropertyCaptured: 'decimal',
-                broker: 'object',
-                property: 'object'
+                $ref: '#/definitions/updateCommissionPayable'
             }
         }
       * #swagger.responses[201] = {
@@ -197,7 +193,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID da comissão a pagar',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por uma comissão a pagar realizada com sucesso',
@@ -287,17 +286,18 @@ router.put('/:id',
             in: 'path',
             description: 'ID da comissão a pagar',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateCommissionPayable'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de uma comissão a pagar',
             required: true,
             type: 'object',
             schema: {
-                date: 'string',
-                valueClosedDeals: 'decimal',
-                valuePropertyCaptured: 'decimal'
+                $ref: '#/definitions/updateCommissionPayable'
             }
         }
      * #swagger.responses[200] = {
@@ -340,7 +340,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID da comissão a pagar',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção da comissão a pagar realizada com sucesso',

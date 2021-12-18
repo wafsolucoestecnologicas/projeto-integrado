@@ -73,7 +73,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID do despachante',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por um despachante realizada com sucesso',
@@ -134,23 +137,18 @@ router.put('/:id',
             in: 'path',
             description: 'ID do despachante',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateAdvisor'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de um despachante',
             required: true,
             type: 'object',
             schema: {
-                name: 'string',
-                surname: 'string',
-                email: 'string',
-                birthDate: 'string',
-                RG: 'string',
-                CPF: 'string',
-                landline: 'string',
-                cellPhone: 'string',
-                profession: 'string'
+                $ref: '#/definitions/updateAdvisor'
             }
         }
      * #swagger.responses[200] = {
@@ -163,9 +161,9 @@ router.put('/:id',
                 'birthDate': '2021-03-08',
                 'RG': '157882299',
                 'CPF': '20717934047',
-                'landline': '',
+                'landline': '3133228544',
                 'cellPhone': '31986857815',
-                'profession': '',
+                'profession': 'despachante',
                 'updatedAt': '2021-12-02T01:08:46.606Z'
             }
         }
@@ -199,7 +197,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID do despachante',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção do despachante realizada com sucesso',

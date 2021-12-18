@@ -191,42 +191,13 @@ router.post('/',
       * #swagger.produces = ['application/json']
       * #swagger.summary = 'Cria um novo negócio'
       * #swagger.description = 'Endpoint para criar um novo negócio'
-      * #swagger.parameters['body'] = {
+      * #swagger.parameters['createBusiness'] = {
             in: 'body',
             description: 'JSON com um objeto para criação de um negócio',
             required: true,
             type: 'object',
             schema: {
-                status: 'integer',
-                dateVisit: 'date',
-                dateSale: 'date',
-                visitForm: 'string',
-                propertyRegistration: 'string',
-                propertySaleContract: 'string',
-                ITBI: 'string',
-                customerRG: 'string',
-                customerCPF: 'string',
-                customerAddressProof: 'string',
-                customerPayslip: 'string',
-                ownerRG: 'string',
-                ownerCPF: 'string',
-                ownerAddressProof: 'string',
-                ownerPayslip: 'string',
-                createdByAdministrator: 'boolean',
-                createdByManager: 'boolean',
-                createdBySecretary: 'boolean',
-                redirectedManagerId: 'integer',
-                redirectedAdvisorId: 'integer',
-                redirectedBrokerId: 'integer',
-                administrator: 'object',
-                manager: 'object',
-                advisor: 'object',
-                broker: 'object',
-                secretary: 'object',
-                owner: 'object',
-                customer: 'object',
-                property: 'object',
-                lead: 'object'
+                $ref: '#/definitions/createBusiness'
             }
         }
       * #swagger.responses[201] = {
@@ -309,7 +280,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID do negócio',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por um negócio realizada com sucesso',
@@ -448,44 +422,18 @@ router.put('/:id',
             in: 'path',
             description: 'ID do negócio',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateBusiness'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de um negócio',
             required: true,
             type: 'object',
             schema: {
-                status: 'integer',
-                dateVisit: 'date',
-                dateSale: 'date',
-                visitForm: 'string',
-                propertyRegistration: 'string',
-                propertySaleContract: 'string',
-                ITBI: 'string',
-                customerRG: 'string',
-                customerCPF: 'string',
-                customerAddressProof: 'string',
-                customerPayslip: 'string',
-                ownerRG: 'string',
-                ownerCPF: 'string',
-                ownerAddressProof: 'string',
-                ownerPayslip: 'string',
-                createdByAdministrator: 'boolean',
-                createdByManager: 'boolean',
-                createdBySecretary: 'boolean',
-                redirectedManagerId: 'integer',
-                redirectedAdvisorId: 'integer',
-                redirectedBrokerId: 'integer',
-                administrator: 'object',
-                manager: 'object',
-                advisor: 'object',
-                broker: 'object',
-                secretary: 'object',
-                owner: 'object',
-                customer: 'object',
-                property: 'object',
-                lead: 'object'
+                $ref: '#/definitions/updateBusiness'
             }
         }
      * #swagger.responses[200] = {
@@ -495,18 +443,18 @@ router.put('/:id',
                 'status': 0,
                 'dateVisit': '2021-11-15T15:30:00.000Z',
                 'dateSale': '2021-12-01T18:00:00.000Z',
-                'visitForm': 'null',
-                'propertyRegistration': 'null',
-                'propertySaleContract': 'null',
-                'ITBI': 'null',
-                'customerRG': 'null',
-                'customerCPF': 'null',
-                'customerAddressProof': 'null',
-                'customerPayslip': 'null',
-                'ownerRG': 'null',
-                'ownerCPF': 'null',
-                'ownerAddressProof': 'null',
-                'ownerPayslip': 'null',
+                'visitForm': '/forms/00000000000000/form.jpg',
+                'propertyRegistration': '/docs/00000000000000/property-registration.jpg',
+                'propertySaleContract': '/docs/00000000000000/property-sale.jpg',
+                'ITBI': '/docs/00000000000000/itbi.jpg',
+                'customerRG': '/docs/00000000000000/customer-rg.jpg',
+                'customerCPF': '/docs/00000000000000/customer-cpf.jpg',
+                'customerAddressProof': '/docs/00000000000000/customer-address-proof.jpg',
+                'customerPayslip': '/docs/00000000000000/customer-payslip.jpg',
+                'ownerRG': '/docs/00000000000000/owner-rg.jpg',
+                'ownerCPF': '/docs/00000000000000/owner-cpf.jpg',
+                'ownerAddressProof': '/docs/00000000000000/owner-address-proof.jpg',
+                'ownerPayslip': '/docs/00000000000000/owner-payslip.jpg',
                 'createdByAdministrator': false,
                 'createdByManager': true,
                 'createdBySecretary': false,
@@ -561,7 +509,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID do negócio',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção do negócio realizada com sucesso',
@@ -599,15 +550,18 @@ router.put('/transfer/manager/:id',
             in: 'path',
             description: 'ID do negócio',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['transferManager'] = {
             in: 'body',
             description: 'JSON com um objeto para transferência de um negócio',
             required: true,
             type: 'object',
             schema: {
-                manager: 'object'
+                $ref: '#/definitions/transferManager'
             }
         }
      * #swagger.responses[200] = {
@@ -646,15 +600,18 @@ router.put('/transfer/advisor/:id',
             in: 'path',
             description: 'ID do negócio',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['transferAdvisor'] = {
             in: 'body',
             description: 'JSON com um objeto para transferência de um negócio',
             required: true,
             type: 'object',
             schema: {
-                advisor: 'object'
+                $ref: '#/definitions/transferAdvisor'
             }
         }
      * #swagger.responses[200] = {
@@ -693,15 +650,18 @@ router.put('/transfer/broker/:id',
             in: 'path',
             description: 'ID do negócio',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['transferBroker'] = {
             in: 'body',
             description: 'JSON com um objeto para transferência de um negócio',
             required: true,
             type: 'object',
             schema: {
-                broker: 'object'
+                $ref: '#/definitions/transferBroker'
             }
         }
      * #swagger.responses[200] = {
@@ -740,7 +700,10 @@ router.put('/reject/:id',
             in: 'path',
             description: 'ID do negócio',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Rejeição do negócio realizada com sucesso',
@@ -778,7 +741,10 @@ router.put('/close/:id',
             in: 'path',
             description: 'ID do negócio',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Fechamento do negócio realizada com sucesso',

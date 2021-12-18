@@ -19,10 +19,10 @@ router.get('/',
             schema: [
                 {
                     'id': 1,
-                    'neighborhood': 'ITAIPÚ',
+                    'neighborhood': 'itaipú (barreiro)',
                     'city': {
                         'id': 1,
-                        'city': 'CONTAGEM'
+                        'city': 'contagem'
                     }
                 }
             ]
@@ -49,21 +49,20 @@ router.post('/',
       * #swagger.produces = ['application/json']
       * #swagger.summary = 'Cria um novo bairro'
       * #swagger.description = 'Endpoint para criar um novo bairro'
-      * #swagger.parameters['body'] = {
+      * #swagger.parameters['createNeighborhood'] = {
             in: 'body',
             description: 'JSON com um objeto para criação de um bairro',
             required: true,
             type: 'object',
             schema: {
-                neighborhood: 'string',
-                city: 'object'
+                $ref: '#/definitions/createNeighborhood'
             }
         }
       * #swagger.responses[201] = {
              description: 'Criação do bairro realizada com sucesso',
              schema: {
                 'id': 1,
-                'neighborhood': 'itaipú',
+                'neighborhood': 'itaipú (barreiro)',
                 'city': {
                     'id': 1
                 }
@@ -99,16 +98,19 @@ router.get('/:id',
             in: 'path',
             description: 'ID do bairro',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por um bairro realizada com sucesso',
             schema: {
                 'id': 1,
-                'neighborhood': 'ITAIPÚ',
+                'neighborhood': 'itaipú (barreiro)',
                 'city': {
                     'id': 1,
-                    'city': 'CONTAGEM'
+                    'city': 'contagem'
                 }
             }
         }
@@ -142,22 +144,28 @@ router.put('/:id',
             in: 'path',
             description: 'ID do bairro',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateNeighborhood'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de um bairro',
             required: true,
             type: 'object',
             schema: {
-                neighboorhod: 'string'
+                $ref: '#/definitions/updateNeighborhood'
             }
         }
      * #swagger.responses[200] = {
             description: 'Atualização dos dados do bairro realizada com sucesso',
             schema: {
                 'id': 1,
-                'neighborhood': 'riacho das pedras'
+                'neighborhood': 'riacho das pedras',
+                'city': {
+                    'id': 2
+                }
             }
         }
      * #swagger.responses[400] = {
@@ -190,7 +198,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID do bairro',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção do bairro realizada com sucesso',

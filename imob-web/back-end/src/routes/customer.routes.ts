@@ -67,21 +67,13 @@ router.post('/',
       * #swagger.produces = ['application/json']
       * #swagger.summary = 'Cria um novo cliente'
       * #swagger.description = 'Endpoint para criar um novo cliente'
-      * #swagger.parameters['body'] = {
+      * #swagger.parameters['createCustomer'] = {
             in: 'body',
             description: 'JSON com um objeto para criação de um cliente',
             required: true,
             type: 'object',
             schema: {
-                name: 'string',
-                surname: 'string',
-                email: 'string',
-                birthDate: 'string',
-                RG: 'string',
-                CPF: 'string',
-                landline: 'string',
-                cellPhone: 'string',
-                profession: 'string'
+                $ref: '#/definitions/createCustomer'
             }
         }
       * #swagger.responses[201] = {
@@ -139,7 +131,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID do cliente',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por um cliente realizada com sucesso',
@@ -200,23 +195,18 @@ router.put('/:id',
             in: 'path',
             description: 'ID do cliente',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateCustomer'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de um cliente',
             required: true,
             type: 'object',
             schema: {
-                name: 'string',
-                surname: 'string',
-                email: 'string',
-                birthDate: 'string',
-                RG: 'string',
-                CPF: 'string',
-                landline: 'string',
-                cellPhone: 'string',
-                profession: 'string'
+                $ref: '#/definitions/updateCustomer'
             }
         }
      * #swagger.responses[200] = {
@@ -265,7 +255,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID do cliente',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção do cliente realizada com sucesso',

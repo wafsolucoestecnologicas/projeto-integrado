@@ -128,7 +128,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID do perfil de usuário',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por um perfil de usuário realizada com sucesso',

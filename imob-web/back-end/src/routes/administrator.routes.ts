@@ -62,7 +62,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID do administrador',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por um administrador realizada com sucesso',
@@ -112,23 +115,18 @@ router.put('/:id',
             in: 'path',
             description: 'ID do administrador',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateAdministrator'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de um administrador',
             required: true,
             type: 'object',
             schema: {
-                name: 'string',
-                surname: 'string',
-                email: 'string',
-                birthDate: 'string',
-                RG: 'string',
-                CPF: 'string',
-                landline: 'string',
-                cellPhone: 'string',
-                profession: 'string'
+                $ref: '#definitions/updateAdministrator'
             }
         }
      * #swagger.responses[200] = {
@@ -141,7 +139,7 @@ router.put('/:id',
                 'birthDate': '1989-06-16',
                 'RG': '157882299',
                 'CPF': '09126126621',
-                'landline': '',
+                'landline': '3133228544',
                 'cellPhone': '31986857812',
                 'profession': 'desenvolvedor web',
                 'updatedAt': '2021-11-30T02:17:59.814Z'
@@ -177,7 +175,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID do administrador',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção do administrador realizada com sucesso',

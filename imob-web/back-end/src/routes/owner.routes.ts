@@ -68,22 +68,13 @@ router.post('/',
      * #swagger.produces = ['application/json']
      * #swagger.summary = 'Cria um novo proprietário'
      * #swagger.description = 'Endpoint para criar um novo proprietário'
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['createOwner'] = {
             in: 'body',
             description: 'JSON com um objeto para criação de um proprietário',
             required: true,
             type: 'object',
             schema: {
-                name: 'string',
-                surname: 'string',
-                email: 'string',
-                birthDate: 'string',
-                RG: 'string',
-                CPF: 'string',
-                landline: 'string',
-                cellPhone: 'string',
-                profession: 'string',
-                checked: 'boolean'
+                $ref: '#/definitions/createOwner'
             }
         }
      * #swagger.responses[201] = {
@@ -98,7 +89,7 @@ router.post('/',
                 'isOwner': true,
                 'RG': '157882299',
                 'CPF': '20717934047',
-                'landline': '          ',
+                'landline': '',
                 'cellPhone': '31986857815',
                 'profession': '',
                 'company': {
@@ -142,7 +133,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID do proprietário',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por um proprietário realizada com sucesso',
@@ -204,23 +198,18 @@ router.put('/:id',
             in: 'path',
             description: 'ID do proprietário',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateOwner'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de um proprietário',
             required: true,
             type: 'object',
             schema: {
-                name: 'string',
-                surname: 'string',
-                email: 'string',
-                birthDate: 'string',
-                RG: 'string',
-                CPF: 'string',
-                landline: 'string',
-                cellPhone: 'string',
-                profession: 'string'
+                $ref: '#/definitions/updateOwner'
             }
         }
      * #swagger.responses[200] = {
@@ -233,7 +222,7 @@ router.put('/:id',
                 'birthDate': '2021-03-08',
                 'RG': '157882299',
                 'CPF': '20717934047',
-                'landline': '3133228554',
+                'landline': '3133228544',
                 'cellPhone': '31986857815',
                 'profession': 'engenheiro civil',
                 'updatedAt': '2021-12-02T01:52:10.727Z'
@@ -269,7 +258,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID do proprietário',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção do proprietário realizada com sucesso',

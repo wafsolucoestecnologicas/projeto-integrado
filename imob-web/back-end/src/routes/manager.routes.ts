@@ -73,7 +73,10 @@ router.get('/:id',
             in: 'path',
             description: 'ID do gestor',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Busca por um gestor realizada com sucesso',
@@ -134,23 +137,18 @@ router.put('/:id',
             in: 'path',
             description: 'ID do gestor',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
-     * #swagger.parameters['body'] = {
+     * #swagger.parameters['updateManager'] = {
             in: 'body',
             description: 'JSON com um objeto para atualização de um gestor',
             required: true,
             type: 'object',
             schema: {
-                name: 'string',
-                surname: 'string',
-                email: 'string',
-                birthDate: 'string',
-                RG: 'string',
-                CPF: 'string',
-                landline: 'string',
-                cellPhone: 'string',
-                profession: 'string'
+                $ref: '#/definitions/updateManager'
             }
         }
      * #swagger.responses[200] = {
@@ -163,9 +161,9 @@ router.put('/:id',
                 'birthDate': '2021-03-08',
                 'RG': '157882299',
                 'CPF': '20717934047',
-                'landline': '',
+                'landline': '3133228544',
                 'cellPhone': '31986857815',
-                'profession': '',
+                'profession': 'gestor',
                 'updatedAt': '2021-12-01T00:11:59.520Z'
             }
         }
@@ -199,7 +197,10 @@ router.delete('/:id',
             in: 'path',
             description: 'ID do gestor',
             required: true,
-            type: 'integer'
+            type: 'integer',
+            schema: {
+                $ref: '#/definitions/id'
+            }
         }
      * #swagger.responses[200] = {
             description: 'Deleção do gestor realizada com sucesso',
