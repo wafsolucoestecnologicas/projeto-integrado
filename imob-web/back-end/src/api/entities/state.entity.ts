@@ -35,10 +35,5 @@ export class StateEntity implements StateModel {
     public UF: string;
 
     constructor() { }
-
-    @AfterLoad()
-    public convertStateToUpperCase(): void {
-        if (this.state) this.state = this.state.toUpperCase();
-    }
-
+    
 }

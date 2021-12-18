@@ -32,10 +32,5 @@ export class NeighborhoodEntity implements NeighborhoodModel {
     public city: CityEntity;
 
     constructor() { }
-
-    @AfterLoad()
-    public convertNeighborhoodToUpperCase(): void {
-        if (this.neighborhood) this.neighborhood = this.neighborhood.toUpperCase();
-    }
-
+    
 }

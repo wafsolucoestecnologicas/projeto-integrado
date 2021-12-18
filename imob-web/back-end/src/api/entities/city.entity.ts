@@ -32,10 +32,5 @@ export class CityEntity implements CityModel {
     public state: StateEntity;
 
     constructor() { }
-
-    @AfterLoad()
-    public convertCityToUpperCase(): void {
-        if (this.city) this.city = this.city.toUpperCase();
-    }
-
+    
 }
