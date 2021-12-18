@@ -51,6 +51,7 @@ export class NeighborhoodService {
         const neighborhoodEntity: NeighborhoodEntity =
             this.repository.create({
                 id: id,
+                city: data.city,
                 neighborhood: data.neighborhood.toLowerCase()
             });
 
