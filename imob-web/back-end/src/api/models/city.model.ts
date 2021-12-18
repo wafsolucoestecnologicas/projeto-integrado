@@ -4,6 +4,4 @@ export interface CityModel {
     id: number;
     city: string;
     state: StateEntity;
-
-    convertCityToUpperCase(): void;
 }

@@ -4,6 +4,4 @@ export interface NeighborhoodModel {
     id: number;
     neighborhood: string;
     city: CityEntity;
-
-    convertNeighborhoodToUpperCase(): void;
 }

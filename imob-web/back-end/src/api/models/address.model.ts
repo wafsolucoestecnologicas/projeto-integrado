@@ -31,8 +31,6 @@ export interface AddressModel {
     owner?: OwnerEntity;
     customer?: CustomerEntity;
     property?: PropertyEntity;
-
-    convertValuesToUpperCase(): void;
 }
 
 export interface ResponseViaCEPModel {
