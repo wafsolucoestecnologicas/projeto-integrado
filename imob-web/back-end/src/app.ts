@@ -3,7 +3,7 @@ import { ConnectionOptions, createConnection } from 'typeorm';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import swaggerUiExpress  from 'swagger-ui-express';
+import swaggerUiExpress from 'swagger-ui-express';
 
 import routes from './routes/index.routes';
 import authentication from './middlewares/authentication.middleware';
@@ -15,33 +15,65 @@ export class App {
 
     private port: number;
     private express: express.Application;
-    private options: ConnectionOptions;
+    private production: ConnectionOptions;
+    private development: ConnectionOptions;
 
     constructor() {
-        this.port = (CONFIGURATION.SERVER.PORT) ? CONFIGURATION.SERVER.PORT : 3000;
+        this.port = CONFIGURATION.SERVER.PORT;
         this.express = express();
-        this.options = {
-            type: 'postgres',
-            host: 'localhost',
-            port: 5432,
-            username: 'postgres',
-            password: 'admin',
-            database: 'imob_web',
-            synchronize: false,
-            logging: true,
-            entities: [
-                `${path.join(__dirname, 'api', 'entities', '*.ts')}`,
-                `${path.join(__dirname, 'api', 'entities', '*.js')}`
-            ],
-            migrations: [
-                `${path.join(__dirname, 'database', 'migrations', '*.ts')}`
-            ],
-            subscribers: [
-                `${path.join(__dirname, 'subscriber', '**', '*.ts')}`
-            ],
-            cli: {
-                migrationsDir: `${path.join(__dirname, 'database', 'migrations')}`
-            }
+
+        switch (CONFIGURATION.ENVIRONMENT) {
+            case 'production':
+                this.production = {
+                    type: 'postgres',
+                    host: CONFIGURATION.DATABASE.HOST,
+                    port: CONFIGURATION.DATABASE.PORT,
+                    username: CONFIGURATION.DATABASE.USERNAME,
+                    password: CONFIGURATION.DATABASE.PASSWORD,
+                    database: CONFIGURATION.DATABASE.NAME,
+                    synchronize: false,
+                    logging: true,
+                    entities: [
+                        `${path.join(__dirname, 'api', 'entities', '*.ts')}`,
+                        `${path.join(__dirname, 'api', 'entities', '*.js')}`
+                    ],
+                    migrations: [
+                        `${path.join(__dirname, 'database', 'migrations', '*.ts')}`
+                    ],
+                    subscribers: [
+                        `${path.join(__dirname, 'subscriber', '**', '*.ts')}`
+                    ],
+                    cli: {
+                        migrationsDir: `${path.join(__dirname, 'database', 'migrations')}`
+                    }
+                }
+                break;
+
+            case 'development':
+                this.development = {
+                    type: 'postgres',
+                    host: 'localhost',
+                    port: 5432,
+                    username: 'postgres',
+                    password: 'admin',
+                    database: 'imob_web',
+                    synchronize: false,
+                    logging: true,
+                    entities: [
+                        `${path.join(__dirname, 'api', 'entities', '*.ts')}`,
+                        `${path.join(__dirname, 'api', 'entities', '*.js')}`
+                    ],
+                    migrations: [
+                        `${path.join(__dirname, 'database', 'migrations', '*.ts')}`
+                    ],
+                    subscribers: [
+                        `${path.join(__dirname, 'subscriber', '**', '*.ts')}`
+                    ],
+                    cli: {
+                        migrationsDir: `${path.join(__dirname, 'database', 'migrations')}`
+                    }
+                }
+                break;
         }
 
         this.middlewares();
@@ -60,7 +92,7 @@ export class App {
     private database(): void {
         switch (CONFIGURATION.ENVIRONMENT) {
             case 'production':
-                createConnection()
+                createConnection(this.production)
                     .then(() => {
                         console.log('Conexão com o Banco de Dados Realizada com Sucesso!');
                     }).catch((error: any) => {
@@ -69,7 +101,7 @@ export class App {
                 break;
 
             case 'development':
-                createConnection(this.options)
+                createConnection(this.development)
                     .then(() => {
                         console.log('Conexão com o Banco de Dados Realizada com Sucesso!');
                     }).catch((error: any) => {
