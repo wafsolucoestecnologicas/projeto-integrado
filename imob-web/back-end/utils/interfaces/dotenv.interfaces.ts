@@ -4,7 +4,7 @@ export interface Configuration {
         PORT: number
     },
     DATABASE: {
-        URL: string,
+        URL: any,
         NAME: string,
         HOST: string,
         PORT: number,
