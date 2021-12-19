@@ -52,10 +52,10 @@ export class App {
             case 'development':
                 this.development = {
                     type: 'postgres',
-                    host: 'localhost',
+                    host: 'tcc-puc-minas-db.c79fjwhk0fpx.us-east-1.rds.amazonaws.com',
                     port: 5432,
-                    username: 'postgres',
-                    password: 'admin',
+                    username: 'tccpucminasadmin',
+                    password: '9MqS97pbzvjSQprORZ6t',
                     database: 'imob_web',
                     synchronize: false,
                     logging: true,
