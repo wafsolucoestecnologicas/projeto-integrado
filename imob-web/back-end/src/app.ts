@@ -19,18 +19,18 @@ export class App {
     private development: ConnectionOptions;
 
     constructor() {
-        this.port = CONFIGURATION.SERVER.PORT;
+        this.port = CONFIGURATION.SERVER.PORT || 3000;
         this.express = express();
 
         switch (CONFIGURATION.ENVIRONMENT) {
             case 'production':
                 this.production = {
                     type: 'postgres',
-                    host: CONFIGURATION.DATABASE.HOST,
-                    port: CONFIGURATION.DATABASE.PORT,
-                    username: CONFIGURATION.DATABASE.USERNAME,
-                    password: CONFIGURATION.DATABASE.PASSWORD,
-                    database: CONFIGURATION.DATABASE.NAME,
+                    host: 'tcc-puc-minas-db.c79fjwhk0fpx.us-east-1.rds.amazonaws.com',
+                    port: 5432,
+                    username: 'tccpucminasadmin',
+                    password: '9MqS97pbzvjSQprORZ6t',
+                    database: 'imob_web',
                     synchronize: false,
                     logging: true,
                     entities: [
@@ -52,10 +52,10 @@ export class App {
             case 'development':
                 this.development = {
                     type: 'postgres',
-                    host: 'tcc-puc-minas-db.c79fjwhk0fpx.us-east-1.rds.amazonaws.com',
+                    host: 'localhost',
                     port: 5432,
-                    username: 'tccpucminasadmin',
-                    password: '9MqS97pbzvjSQprORZ6t',
+                    username: 'postgres',
+                    password: 'admin',
                     database: 'imob_web',
                     synchronize: false,
                     logging: true,
