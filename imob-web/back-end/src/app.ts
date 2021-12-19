@@ -26,11 +26,6 @@ export class App {
             case 'production':
                 this.production = {
                     type: 'postgres',
-                    host: CONFIGURATION.DATABASE.HOST,
-                    port: CONFIGURATION.DATABASE.PORT,
-                    username: CONFIGURATION.DATABASE.USERNAME,
-                    password: CONFIGURATION.DATABASE.PASSWORD,
-                    database: CONFIGURATION.DATABASE.NAME,
                     synchronize: false,
                     logging: true,
                     entities: [
@@ -47,6 +42,8 @@ export class App {
                         migrationsDir: `${path.join(__dirname, 'database', 'migrations')}`
                     }
                 }
+
+                Object.assign(this.production, { url: CONFIGURATION.DATABASE.URL });
                 break;
 
             case 'development':
