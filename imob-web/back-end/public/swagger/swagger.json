@@ -5,7 +5,7 @@
     "title": "API IMOB Web",
     "description": "API para gestão de informações da plataforma IMOB Web"
   },
-  "host": "localhost:3000",
+  "host": "https://api-imob-web.herokuapp.com/",
   "basePath": "/",
   "tags": [
     {
@@ -127,7 +127,6 @@
             "in": "body",
             "description": "JSON com um objeto para autenticação",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/authentication"
             }
@@ -1466,9 +1465,8 @@
             "in": "body",
             "description": "JSON com um objeto para criação de um usuário",
             "required": true,
-            "type": "object",
             "schema": {
-              "$ref": "#definitions/createUser"
+              "$ref": "#/definitions/createUser"
             }
           }
         ],
@@ -2409,7 +2407,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um usuário",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateUser"
             }
@@ -2724,7 +2721,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de uma imobiliária",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/createCompany"
             }
@@ -2999,7 +2995,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de uma imobiliária",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateCompany"
             }
@@ -3482,9 +3477,8 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um administrador",
             "required": true,
-            "type": "object",
             "schema": {
-              "$ref": "#definitions/updateAdministrator"
+              "$ref": "#/definitions/updateAdministrator"
             }
           }
         ],
@@ -4063,7 +4057,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um gestor",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateManager"
             }
@@ -4644,7 +4637,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um despachante",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateAdvisor"
             }
@@ -5225,9 +5217,8 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um corretor",
             "required": true,
-            "type": "object",
             "schema": {
-              "$ref": "#definitions/updateBroker"
+              "$ref": "#/definitions/updateBroker"
             }
           }
         ],
@@ -5806,7 +5797,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de uma secretária",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateSecretary"
             }
@@ -6198,7 +6188,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de um proprietário",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/createOwner"
             }
@@ -6563,7 +6552,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um proprietário",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateOwner"
             }
@@ -6947,7 +6935,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de um cliente",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/createCustomer"
             }
@@ -7304,7 +7291,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um cliente",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateCustomer"
             }
@@ -7669,7 +7655,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de um imóvel",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/createProperty"
             }
@@ -8023,7 +8008,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um imóvel",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateProperty"
             }
@@ -8527,7 +8511,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de uma lead",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/createLead"
             }
@@ -8893,7 +8876,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de uma lead",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateLead"
             }
@@ -9693,7 +9675,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de um negócio",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/createBusiness"
             }
@@ -10431,7 +10412,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um negócio",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateBusiness"
             }
@@ -10760,7 +10740,6 @@
             "in": "body",
             "description": "JSON com um objeto para transferência de um negócio",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/transferManager"
             }
@@ -10864,7 +10843,6 @@
             "in": "body",
             "description": "JSON com um objeto para transferência de um negócio",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/transferAdvisor"
             }
@@ -10968,7 +10946,6 @@
             "in": "body",
             "description": "JSON com um objeto para transferência de um negócio",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/transferBroker"
             }
@@ -11534,7 +11511,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de uma comissão a receber",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/createCommissionReceivable"
             }
@@ -11900,7 +11876,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de uma comissão a receber",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateCommissionReceivable"
             }
@@ -12447,7 +12422,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de uma comissão a pagar",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateCommissionPayable"
             }
@@ -12887,7 +12861,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de uma comissão a pagar",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateCommissionPayable"
             }
@@ -13349,7 +13322,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de um endereço",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/createAddress"
             }
@@ -13681,7 +13653,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um endereço",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateAddress"
             }
@@ -14010,7 +13981,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de um bairro",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/createNeighborhood"
             }
@@ -14236,7 +14206,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de um bairro",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateNeighborhood"
             }
@@ -14525,7 +14494,6 @@
             "in": "body",
             "description": "JSON com um objeto para criação de uma cidade",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/createCity"
             }
@@ -14755,7 +14723,6 @@
             "in": "body",
             "description": "JSON com um objeto para atualização de uma cidade",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/updateCity"
             }
