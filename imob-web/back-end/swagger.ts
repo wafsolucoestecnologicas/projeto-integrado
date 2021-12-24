@@ -1,4 +1,5 @@
 import path from 'path';
+import CONFIGURATION from './config/dotenv';
 import swaggerAutogen from 'swagger-autogen';
 
 const options: any = {
@@ -36,7 +37,7 @@ const documentation: any = {
         title: 'API IMOB Web',
         description: 'API para gestão de informações da plataforma IMOB Web',
     },
-    host: 'localhost:3000',
+    host: (CONFIGURATION.ENVIRONMENT === 'production') ? 'https://api-imob-web.herokuapp.com/' : 'localhost:3000',
     basePath: '/',
     schemes: ['http', 'https'],
     consumes: ['application/json'],
