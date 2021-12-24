@@ -36,7 +36,7 @@ const documentation: any = {
         title: 'API IMOB Web',
         description: 'API para gestão de informações da plataforma IMOB Web',
     },
-    host: 'https://api-imob-web.herokuapp.com/',
+    host: 'api-imob-web.herokuapp.com',
     //host: 'localhost:3000',
     basePath: '/',
     schemes: ['http', 'https'],
