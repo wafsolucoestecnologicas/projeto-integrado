@@ -22,7 +22,7 @@ export class App {
 
     constructor() {
         this.port = CONFIGURATION.SERVER.PORT || 3000;
-        this.origins = ['http://localhost:3000', 'http://api-imob-web.herokuapp.com'];
+        this.origins = ['http://localhost:3000', 'https://api-imob-web.herokuapp.com'];
         this.options = { origin: this.origins };
         this.express = express();
 
