@@ -18,7 +18,7 @@ var swagger_json_1 = __importDefault(require("../public/swagger/swagger.json"));
 var App = /** @class */ (function () {
     function App() {
         this.port = dotenv_1.default.SERVER.PORT || 3000;
-        this.origins = ['http://localhost:3000', 'https://api-imob-web.herokuapp.com'];
+        this.origins = ['http://localhost:3000', 'http://api-imob-web.herokuapp.com'];
         this.options = { origin: this.origins };
         this.express = (0, express_1.default)();
         switch (dotenv_1.default.ENVIRONMENT) {
