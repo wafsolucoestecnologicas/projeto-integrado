@@ -18,6 +18,8 @@ var swagger_json_1 = __importDefault(require("../public/swagger/swagger.json"));
 var App = /** @class */ (function () {
     function App() {
         this.port = dotenv_1.default.SERVER.PORT || 3000;
+        this.origins = ['http://localhost:3000', 'https://api-imob-web.herokuapp.com'];
+        this.options = { origin: this.origins };
         this.express = (0, express_1.default)();
         switch (dotenv_1.default.ENVIRONMENT) {
             case 'production':
@@ -76,8 +78,8 @@ var App = /** @class */ (function () {
         this.listen();
     }
     App.prototype.middlewares = function () {
+        this.express.use((0, cors_1.default)(this.options));
         this.express.use(express_1.default.json());
-        this.express.use((0, cors_1.default)());
         this.express.use(authentication_middleware_1.default);
         this.express.use(manage_user_profile_middleware_1.default);
     };
