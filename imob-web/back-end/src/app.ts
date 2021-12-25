@@ -14,12 +14,16 @@ import swaggerFile from '../public/swagger/swagger.json';
 export class App {
 
     private port: number;
+    private origins: string[];
+    private options: cors.CorsOptions;
     private express: express.Application;
     private production: ConnectionOptions;
     private development: ConnectionOptions;
 
     constructor() {
         this.port = CONFIGURATION.SERVER.PORT || 3000;
+        this.origins = ['http://localhost:3000', 'https://api-imob-web.herokuapp.com'];
+        this.options = { origin: this.origins };
         this.express = express();
 
         switch (CONFIGURATION.ENVIRONMENT) {
@@ -82,8 +86,8 @@ export class App {
     }
 
     private middlewares(): void {
+        this.express.use(cors(this.options));
         this.express.use(express.json());
-        this.express.use(cors());
         this.express.use(authentication);
         this.express.use(manage);
     }
