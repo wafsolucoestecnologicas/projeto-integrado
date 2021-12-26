@@ -50,16 +50,13 @@ export class App {
                     synchronize: false,
                     logging: true,
                     entities: [
-                        `${path.join(__dirname, '..', 'dist', 'api', 'entities', '*.js')}`,
+                        `${path.join(__dirname, 'api', 'entities', '*.js')}`,
                     ],
                     migrations: [
-                        `${path.join(__dirname, '..', 'dist', 'database', 'migrations', '*.js')}`
-                    ],
-                    subscribers: [
-                        `${path.join(__dirname, '..', 'dist', 'subscriber', '**', '*.js')}`
+                        `${path.join(__dirname, 'database', 'migrations', '*.js')}`
                     ],
                     cli: {
-                        migrationsDir: `${path.join(__dirname, '..', 'dist', 'database', 'migrations')}`
+                        migrationsDir: `${path.join(__dirname, 'database', 'migrations')}`
                     }
                 }
                 break;
