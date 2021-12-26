@@ -45,16 +45,13 @@ var App = /** @class */ (function () {
                     synchronize: false,
                     logging: true,
                     entities: [
-                        "" + path_1.default.join(__dirname, '..', 'dist', 'api', 'entities', '*.js'),
+                        "" + path_1.default.join(__dirname, 'api', 'entities', '*.js'),
                     ],
                     migrations: [
-                        "" + path_1.default.join(__dirname, '..', 'dist', 'database', 'migrations', '*.js')
-                    ],
-                    subscribers: [
-                        "" + path_1.default.join(__dirname, '..', 'dist', 'subscriber', '**', '*.js')
+                        "" + path_1.default.join(__dirname, 'database', 'migrations', '*.js')
                     ],
                     cli: {
-                        migrationsDir: "" + path_1.default.join(__dirname, '..', 'dist', 'database', 'migrations')
+                        migrationsDir: "" + path_1.default.join(__dirname, 'database', 'migrations')
                     }
                 };
                 break;
