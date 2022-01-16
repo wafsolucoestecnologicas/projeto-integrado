@@ -11,9 +11,7 @@ export class JWT {
 
     constructor() {
         this.expiredIn = '';
-
-        /** @TODO Retirar a palavra secret */
-        this.privateKey = (CONFIGURATION.JWT.PRIVATE_KEY) ? CONFIGURATION.JWT.PRIVATE_KEY : 'secret';
+        this.privateKey = (CONFIGURATION.JWT.PRIVATE_KEY) ? CONFIGURATION.JWT.PRIVATE_KEY : '';
     }
 
     public getPayload(): Payload {
@@ -37,8 +35,7 @@ export class JWT {
     }
 
     public static checkToken(token: string): any {
-        /** @TODO Retirar a palavra secret  */
-        return jwt.verify(token, CONFIGURATION.JWT.PRIVATE_KEY || 'secret');
+        return jwt.verify(token, CONFIGURATION.JWT.PRIVATE_KEY);
     }
 
 }
