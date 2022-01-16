@@ -627,7 +627,7 @@ var documentation = {
         },
         createCompany: {
             $CNPJ: '75536670000126',
-            $coporateName: 'WAF Soluções Tecnologicas',
+            $corporateName: 'WAF Soluções Tecnologicas',
             $stateRegistration: '0467483802980',
             percentageCommissionReceivable: 5.5,
             percentageCommissionPayableForClosedDeals: 10.3,
@@ -635,7 +635,7 @@ var documentation = {
         },
         updateCompany: {
             $CNPJ: '75536670000126',
-            $coporateName: 'WAF Soluções Tecnologicas',
+            $corporateName: 'WAF Soluções Tecnologicas',
             $stateRegistration: '0467483802980',
             percentageCommissionReceivable: 10.5,
             percentageCommissionPayableForClosedDeals: 5,

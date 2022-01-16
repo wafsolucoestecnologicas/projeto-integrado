@@ -16483,7 +16483,7 @@
                     "type": "string",
                     "example": "75536670000126"
                 },
-                "coporateName": {
+                "corporateName": {
                     "type": "string",
                     "example": "WAF Soluções Tecnologicas"
                 },
@@ -16506,7 +16506,7 @@
             },
             "required": [
                 "CNPJ",
-                "coporateName",
+                "corporateName",
                 "stateRegistration"
             ]
         },
@@ -16517,7 +16517,7 @@
                     "type": "string",
                     "example": "75536670000126"
                 },
-                "coporateName": {
+                "corporateName": {
                     "type": "string",
                     "example": "WAF Soluções Tecnologicas"
                 },
@@ -16540,7 +16540,7 @@
             },
             "required": [
                 "CNPJ",
-                "coporateName",
+                "corporateName",
                 "stateRegistration"
             ]
         },

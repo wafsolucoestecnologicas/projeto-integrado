@@ -101,14 +101,12 @@ var createTableBusinesses1635608350277 = /** @class */ (function () {
                                 {
                                     name: 'customer_id',
                                     type: 'integer',
-                                    default: null,
-                                    isNullable: true
+                                    isNullable: false
                                 },
                                 {
                                     name: 'property_id',
                                     type: 'integer',
-                                    default: null,
-                                    isNullable: true
+                                    isNullable: false
                                 },
                                 {
                                     name: 'lead_id',

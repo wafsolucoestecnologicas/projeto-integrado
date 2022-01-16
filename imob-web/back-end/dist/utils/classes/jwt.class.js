@@ -9,8 +9,7 @@ var dotenv_1 = __importDefault(require("../../config/dotenv"));
 var JWT = /** @class */ (function () {
     function JWT() {
         this.expiredIn = '';
-        /** @TODO Retirar a palavra secret */
-        this.privateKey = (dotenv_1.default.JWT.PRIVATE_KEY) ? dotenv_1.default.JWT.PRIVATE_KEY : 'secret';
+        this.privateKey = (dotenv_1.default.JWT.PRIVATE_KEY) ? dotenv_1.default.JWT.PRIVATE_KEY : '';
     }
     JWT.prototype.getPayload = function () {
         return this.payload;
@@ -28,8 +27,7 @@ var JWT = /** @class */ (function () {
         return jsonwebtoken_1.default.sign(this.payload, this.privateKey, { expiresIn: this.expiredIn });
     };
     JWT.checkToken = function (token) {
-        /** @TODO Retirar a palavra secret  */
-        return jsonwebtoken_1.default.verify(token, dotenv_1.default.JWT.PRIVATE_KEY || 'secret');
+        return jsonwebtoken_1.default.verify(token, dotenv_1.default.JWT.PRIVATE_KEY);
     };
     return JWT;
 }());

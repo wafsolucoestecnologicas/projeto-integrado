@@ -97,7 +97,7 @@ var App = /** @class */ (function () {
             case 'production':
                 (0, typeorm_1.createConnection)(this.production)
                     .then(function () {
-                    console.log('Conexão com o Banco de Dados Realizada com Sucesso!');
+                    console.log('Conexão com o Banco de Dados de Produção Realizada com Sucesso!');
                 }).catch(function (error) {
                     console.log('Conexão com o Banco de Dados Não Realizada!', error);
                 });
@@ -105,7 +105,7 @@ var App = /** @class */ (function () {
             case 'development':
                 (0, typeorm_1.createConnection)(this.development)
                     .then(function () {
-                    console.log('Conexão com o Banco de Dados Realizada com Sucesso!');
+                    console.log('Conexão com o Banco de Dados de Desenvolvimento Realizada com Sucesso!');
                 }).catch(function (error) {
                     console.log('Conexão com o Banco de Dados Não Realizada!', error);
                 });
