@@ -106,7 +106,7 @@ export class App {
             case 'production':
                 createConnection(this.production)
                     .then(() => {
-                        console.log('Conexão com o Banco de Dados Realizada com Sucesso!');
+                        console.log('Conexão com o Banco de Dados de Produção Realizada com Sucesso!');
                     }).catch((error: any) => {
                         console.log('Conexão com o Banco de Dados Não Realizada!', error);
                     });
@@ -115,7 +115,7 @@ export class App {
             case 'development':
                 createConnection(this.development)
                     .then(() => {
-                        console.log('Conexão com o Banco de Dados Realizada com Sucesso!');
+                        console.log('Conexão com o Banco de Dados de Desenvolvimento Realizada com Sucesso!');
                     }).catch((error: any) => {
                         console.log('Conexão com o Banco de Dados Não Realizada!', error);
                     });
