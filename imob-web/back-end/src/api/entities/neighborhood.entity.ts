@@ -1,4 +1,4 @@
-import { Entity, Column, OneToOne, JoinColumn, AfterLoad } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
 import { NeighborhoodModel } from '../models/neighborhood.model';
 import { CityEntity } from './city.entity';
 

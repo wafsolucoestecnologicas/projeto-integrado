@@ -1,4 +1,4 @@
-import { Entity, Column, AfterLoad } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 import { StateModel } from '../models/state.model';
 
 @Entity({
