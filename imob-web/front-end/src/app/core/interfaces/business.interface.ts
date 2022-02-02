@@ -1,0 +1,45 @@
+import { Company } from './company.interface';
+import { Administrator } from './administrator.interface';
+import { Manager } from './manager.interface';
+import { Advisor } from './advisor.interface';
+import { Broker } from './broker.interface';
+import { Secretary } from './secretary.interface';
+import { Owner } from './owner.interface';
+import { Customer } from './customer.interface';
+import { Property } from './property.interface';
+import { Lead } from './lead.interface';
+
+export interface Business {
+    id?: number;
+    status: number;
+    dateVisit?: string;
+    dateSale?: string;
+    visitForm?: string;
+    propertyRegistration?: string;
+    propertySaleContract?: string;
+    ITBI?: string;
+    customerRG?: string;
+    customerCPF?: string;
+    customerAddressProof?: string;
+    customerPayslip?: string;
+    ownerRG?: string;
+    ownerCPF?: string;
+    ownerAddressProof?: string;
+    ownerPayslip?: string;
+    createdByAdministrator: boolean;
+    createdByManager: boolean;
+    createdBySecretary: boolean;
+    redirectedManagerId?: number;
+    redirectedAdvisorId?: number;
+    redirectedBrokerId?: number;
+    company: Company;
+    administrator?: Administrator;
+    manager?: Manager;
+    advisor?: Advisor;
+    broker?: Broker;
+    secretary?: Secretary;
+    owner: Owner;
+    customer: Customer;
+    property: Property;
+    lead: Lead;
+}
