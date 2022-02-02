@@ -461,8 +461,8 @@ const documentation: any = {
         Business: {
             $id: 1,
             $status: 4,
-            $dateVisit: '2021-12-01T14:00:00',
-            $dateSale: '2021-12-10T09:00:00',
+            dateVisit: '2021-12-01T14:00:00',
+            dateSale: '2021-12-10T09:00:00',
             visitForm: '/forms/31173962000176/form.jpg',
             propertyRegistration: '/docs/31173962000176/property-registration.jpg',
             propertySaleContract: '/docs/31173962000176/property-sale.jpg',
@@ -541,7 +541,7 @@ const documentation: any = {
         Address: {
             $id: 1,
             $street: 'avenida ibirapuera',
-            $complement: 'casa',
+            complement: 'casa',
             $number: '480',
             $CEP: '30692080',
             $isCompany: false,
@@ -588,16 +588,16 @@ const documentation: any = {
             }
         },
         City: {
-            id: 1,
-            city: 'belo horizonte',
-            state: {
+            $id: 1,
+            $city: 'belo horizonte',
+            $state: {
                 $ref: '#/definitions/State'
             }
         },
         State: {
-            id: 1,
-            state: 'minas gerais',
-            UF: 'MG'
+            $id: 1,
+            $state: 'minas gerais',
+            $UF: 'MG'
         },
         authentication: {
             $email: 'wellington.felix@gmail.com',
