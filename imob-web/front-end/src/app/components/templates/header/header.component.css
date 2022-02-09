@@ -1,0 +1,50 @@
+.mat-toolbar {
+	background-color: #e0e0e0;
+	border-bottom-color: rgba(0, 0, 0, 0.12);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+	height: 55px;
+}
+
+.mat-sidenav-content {
+	font-size: 100%;
+	text-align: center;
+}
+
+.mat-card {
+	box-shadow: none;
+    padding: 0px 0px 0px 14px;
+}
+
+.mat-icon {
+	vertical-align: middle;
+}
+
+.spacer {
+	flex: 1 1 auto;
+}
+
+.card {
+	background-color: #e0e0e0;
+	max-width: 400px;
+}
+
+.header-image {
+	border: none;
+	background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+	background-size: cover;
+}
+
+div {
+	overflow: inherit;
+}
+
+a {
+	font-size: 1rem;
+	text-decoration: none;
+	white-space: normal;
+}
+
+button {
+	min-width: min-content;
+}
