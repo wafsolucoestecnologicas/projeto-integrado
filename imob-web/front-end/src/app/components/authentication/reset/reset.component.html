@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="flex-container" fxLayout="column" fxLayoutAlign="none center">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <div>
+                <h1>Plataforma IMOB Web</h1>
+                <h2>Redefinir</h2>
+
+                <mat-form-field>
+                    <mat-label>E-mail</mat-label>
+                    <input
+                        type="email"
+                        formControlName="email"
+                        matInput
+                        placeholder="Ex: joao@exemplo.com"
+                        required />
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('email')?.touched &&
+                            formGroup.get('email')?.errors?.required">
+                        Campo obrigatório!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('email')?.touched &&
+                            formGroup.get('email')?.errors?.email">
+                        E-mail inválido!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div id="section-02">
+                <p>
+                    <button
+                        type="submit"
+                        color="primary"
+                        mat-stroked-button
+                        [disabled]="!formGroup.valid">
+                        Enviar
+                    </button>
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    Lembrou da senha? <a>Faça o login!</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
