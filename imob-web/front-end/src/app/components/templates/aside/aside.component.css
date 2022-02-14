@@ -1,12 +1,5 @@
-aside h2 {
-    border-bottom-color: rgba(0, 0, 0, 0.12);
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    text-align: center;
-}
-
 .sidenav {
-    background-color: #e0e0e0;
+    background-color: #3f51b5;
     border-right-color: rgba(0, 0, 0, 0.12);
     border-right-width: 1px;
     border-right-style: solid;
@@ -16,16 +9,18 @@ aside h2 {
 }
 
 .sidenav a {
+    color: #fff;
     font-size: 0.85rem;
     padding-left: 10px;
 }
 
 .sidenav a span {
+    color: #fff;
     padding-left: 5px;
 }
 
 .content {
-    background-color: #e8eaf6;
+    background-color: #fff;
     padding: 15px 15px 16px 30px;
 }
 
@@ -38,6 +33,7 @@ aside h2 {
 }
 
 .nav-list h4 {
+    color: #fff;
     margin: 0px;
     font-weight: 400;
 }

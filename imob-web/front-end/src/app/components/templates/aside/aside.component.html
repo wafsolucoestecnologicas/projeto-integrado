@@ -8,9 +8,6 @@
 			fixedLeftGap="50"
 			mode="side"
 			opened>
-			
-			<h2>Navegação</h2>
-
 			<mat-nav-list class="nav-list" role="navigation">
 				<ng-container *ngFor="let menu of menus">
 					<h4>{{ menu.title }}</h4>
@@ -30,7 +27,7 @@
 		</mat-sidenav>
 
 		<mat-sidenav-content class="content">
-			<imob-content></imob-content>
+			<router-outlet></router-outlet>
 		</mat-sidenav-content>
 	</mat-sidenav-container>
 </aside>
