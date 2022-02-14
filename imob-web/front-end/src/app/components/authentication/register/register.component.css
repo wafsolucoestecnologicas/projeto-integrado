@@ -1,0 +1,30 @@
+div.container {
+    margin: 0 auto;
+    width: 90%;
+}
+
+div.flex-container {
+    padding-top: 1%;
+}
+
+form {
+    background-color: #fff;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    padding: 1% 10% 4% 10%;
+}
+
+div h1 {
+    margin-bottom: 30%;
+}
+
+div#section-06 {
+    margin: 15% 0;
+}
+
+.mat-form-field,
+button {
+    width: 100%;
+}

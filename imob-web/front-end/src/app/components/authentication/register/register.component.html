@@ -1,0 +1,145 @@
+<div class="container">
+    <div class="flex-container" fxLayout="column" fxLayoutAlign="none center">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <div>
+                <h1>Plataforma IMOB Web</h1>
+                <h2>Cadastrar</h2>
+
+                <mat-form-field>
+                    <mat-label>Nome</mat-label>
+                    <input type="text" formControlName="name" matInput placeholder="Ex: João" required />
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('name')?.touched &&
+                            formGroup.get('name')?.errors?.required">
+                        Campo obrigatório!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field>
+                    <mat-label>Sobrenome</mat-label>
+                    <input
+                        type="text"
+                        formControlName="surname"
+                        matInput
+                        placeholder="Ex: Almeida"
+                        required />
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('surname')?.touched &&
+                            formGroup.get('surname')?.errors?.required">
+                        Campo obrigatório!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field>
+                    <mat-label>E-mail</mat-label>
+                    <input
+                        type="email"
+                        formControlName="email"
+                        matInput
+                        placeholder="Ex: joao@exemplo.com"
+                        required />
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('email')?.touched &&
+                            formGroup.get('email')?.errors?.required">
+                        Campo obrigatório!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('email')?.touched &&
+                            formGroup.get('email')?.errors?.email">
+                        E-mail inválido!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field>
+                    <mat-label>Senha</mat-label>
+                    <input
+                        type="password"
+                        formControlName="password"
+                        matInput
+                        placeholder="Ex: @34WEr@#$"
+                        required />
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('password')?.touched &&
+                            formGroup.get('password')?.errors?.required">
+                        Campo obrigatório!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('password')?.touched &&
+                            formGroup.get('password')?.errors?.minlength">
+                        A senha deve possuir no mínimo 8 caracteres!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('password')?.touched &&
+                            formGroup.get('password')?.errors?.maxlength">
+                        A senha deve possuir no máximo 25 caracteres!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field>
+                    <mat-label>Confirmação de Senha</mat-label>
+                    <input
+                        type="password"
+                        formControlName="confirm"
+                        matInput
+                        placeholder="Ex: @34WEr@#$"
+                        required
+                        (keyup)="checkPasswords()" />
+                    <mat-error *ngIf="showError">
+                        Senhas não conferem!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('confirm')?.touched &&
+                            formGroup.get('confirm')?.errors?.required">
+                        Campo obrigatório!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('confirm')?.touched &&
+                            formGroup.get('confirm')?.errors?.minlength">
+                        A senha deve possuir no mínimo 8 caracteres!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('confirm')?.touched &&
+                            formGroup.get('confirm')?.errors?.maxlength">
+                        A senha deve possuir no máximo 25 caracteres!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div id="section-06">
+                <p>
+                    <button
+                        type="submit"
+                        color="primary"
+                        mat-stroked-button
+                        [disabled]="!formGroup.valid">
+                        Enviar
+                    </button>
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    Já tem um conta? <a>Faça o login!</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
