@@ -1,0 +1,117 @@
+<div class="container">
+    <div class="flex-container" fxLayout="column" fxLayoutAlign="none center">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <div>
+                <h1>Plataforma IMOB Web</h1>
+                <h2>Entrar</h2>
+
+                <mat-form-field>
+                    <mat-label>E-mail</mat-label>
+                    <input
+                        type="email"
+                        formControlName="email"
+                        matInput
+                        placeholder="Ex: joao@exemplo.com"
+                        required />
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('email')?.touched &&
+                            formGroup.get('email')?.errors?.required">
+                        Campo obrigatório!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('email')?.touched &&
+                            formGroup.get('email')?.errors?.email">
+                        E-mail inválido!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field>
+                    <mat-label>Senha</mat-label>
+                    <input
+                        type="password"
+                        formControlName="password"
+                        matInput
+                        placeholder="Ex: @34WEr@#$"
+                        required />
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('password')?.touched &&
+                            formGroup.get('password')?.errors?.required">
+                        Campo obrigatório!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('password')?.touched &&
+                            formGroup.get('password')?.errors?.minlength">
+                        A senha deve possuir no mínimo 8 caracteres!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('password')?.touched &&
+                            formGroup.get('password')?.errors?.maxlength">
+                        A senha deve possuir no máximo 25 caracteres!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div id="section-03">
+                <p>
+                    <button
+                        type="submit"
+                        color="primary"
+                        mat-stroked-button
+                        [disabled]="!formGroup.valid">
+                        Enviar
+                    </button>
+                </p>
+
+                <p align="end">
+                    <a routerLink="/reset">Esqueceu sua senha?</a>
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <button
+                        type="button"
+                        color="primary"
+                        mat-raised-button>
+                        <a>Google</a>
+                    </button>
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <button
+                        type="button"
+                        color="primary"
+                        mat-raised-button>
+                        <a>Facebook</a>
+                    </button>
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <button
+                        type="button"
+                        color="primary"
+                        mat-raised-button>
+                        <a>Linkedin</a>
+                    </button>
+                </p>
+            </div>
+
+            <div id="section-07">
+                <p>
+                    Não tem uma conta? <a routerLink="/register">Cadastre-se agora!</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
