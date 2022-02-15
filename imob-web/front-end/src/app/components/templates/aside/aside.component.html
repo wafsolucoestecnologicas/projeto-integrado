@@ -1,33 +1,33 @@
 <aside>
-	<mat-sidenav-container class="container">
-		<mat-sidenav
-			class="sidenav"
-			fixedInViewport="true"
-			fixedTopGap="70"
-			fixedBottomGap="15"
-			fixedLeftGap="50"
-			mode="side"
-			opened>
-			<mat-nav-list class="nav-list" role="navigation">
-				<ng-container *ngFor="let menu of menus">
-					<h4>{{ menu.title }}</h4>
+    <mat-sidenav-container class="container">
+        <mat-sidenav
+            class="sidenav"
+            fixedInViewport="true"
+            fixedTopGap="70"
+            fixedBottomGap="15"
+            fixedLeftGap="50"
+            mode="side"
+            opened>
+            <mat-nav-list class="nav-list" role="navigation">
+                <ng-container *ngFor="let menu of menus">
+                    <h4>{{ menu.title }}</h4>
 
-					<ng-container *ngFor="let option of menu.options">
-						<mat-list-item class="mat-list">
-							<a [routerLink]="option.link">
-								<mat-icon>{{ option.icon }}</mat-icon>
-								<span>{{ option.name }}</span>
-							</a>
-						</mat-list-item>
-					</ng-container>
+                    <ng-container *ngFor="let option of menu.options">
+                        <mat-list-item class="mat-list">
+                            <a [routerLink]="option.link">
+                                <mat-icon>{{ option.icon }}</mat-icon>
+                                <span>{{ option.name }}</span>
+                            </a>
+                        </mat-list-item>
+                    </ng-container>
 
-					<br />
-				</ng-container>
-			</mat-nav-list>
-		</mat-sidenav>
+                    <br />
+                </ng-container>
+            </mat-nav-list>
+        </mat-sidenav>
 
-		<mat-sidenav-content class="content">
-			<router-outlet></router-outlet>
-		</mat-sidenav-content>
-	</mat-sidenav-container>
+        <mat-sidenav-content class="content">
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </aside>

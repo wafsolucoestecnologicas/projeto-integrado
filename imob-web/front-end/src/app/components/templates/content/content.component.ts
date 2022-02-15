@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'imob-content',
-	templateUrl: './content.component.html',
-	styleUrls: ['./content.component.css'],
+    selector: 'imob-content',
+    templateUrl: './content.component.html',
+    styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
 
-	constructor() {}
+    constructor() {}
 
-	ngOnInit(): void {}
+    public ngOnInit(): void {}
 	
 }
