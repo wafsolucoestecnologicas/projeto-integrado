@@ -1,6 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+
+import { Authentication } from 'src/app/core/interfaces/authentication.interface';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
     selector: 'imob-login',
@@ -13,7 +17,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     public formGroup: FormGroup;
 
     constructor(
-        private readonly _formBuilder: FormBuilder
+        private readonly _router: Router,
+        private readonly _formBuilder: FormBuilder,
+        private readonly _authenticationService: AuthenticationService
     ) {
         this.subscriptions = new Array<Subscription>();
     }
@@ -31,7 +37,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     public onSubmit(): void {
         if (this.formGroup.valid) {
-            console.log(this.formGroup.value);
+            const subscription: Subscription = this._authenticationService
+                .login(this.formGroup.value)
+                .subscribe((data: Authentication) => {
+                    if (data) this._router.navigate(['content']);
+                });
+
+            this.subscriptions.push(subscription);
         }
     }
     
