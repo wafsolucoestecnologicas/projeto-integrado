@@ -8,6 +8,9 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 
+import { AuthenticationService } from './core/services/authentication.service';
+import { AlertService } from './shared/services/alert.service';
+
 @NgModule({
 	declarations: [
 		AppComponent
@@ -19,7 +22,10 @@ import { AppComponent } from './app.component';
 		CoreModule,
 		SharedModule
 	],
-	providers: [],
+	providers: [
+		AuthenticationService,
+		AlertService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
