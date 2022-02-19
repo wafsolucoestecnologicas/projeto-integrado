@@ -7,11 +7,14 @@ import { environment } from 'src/environments/environment';
 import { API } from '../classes/api';
 import { User, CreateUser, DeleteUser } from '../interfaces/user.interface';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { UserRoutes } from '../enums/user.enum';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService extends API {
+
+    private ROUTES: typeof UserRoutes;
 
     constructor(
 		private readonly http: HttpClient,
@@ -20,11 +23,12 @@ export class UserService extends API {
         super();
 
         this.buildHeader();
+        this.ROUTES = UserRoutes;
     }
 
     public index(): Observable<User[]> {
         return this.http
-            .get<User[]>(`${environment.URL}/users`, {
+            .get<User[]>(`${environment.URL}/${this.ROUTES.USERS}`, {
                 headers: this.getterHeader
             })
             .pipe(
@@ -40,7 +44,7 @@ export class UserService extends API {
 
     public create(body: CreateUser): Observable<User> {
         return this.http
-            .post<User>(`${environment.URL}/users`, body, {
+            .post<User>(`${environment.URL}/${this.ROUTES.USERS}`, body, {
                 headers: this.getterHeader
             })
             .pipe(
@@ -62,7 +66,7 @@ export class UserService extends API {
 
     public read(id: number): Observable<User | undefined> {
 		return this.http
-            .get<User>(`${environment.URL}/users/${id}`, {
+            .get<User>(`${environment.URL}/${this.ROUTES.USERS}/${id}`, {
                 headers: this.getterHeader
             })
             .pipe(
@@ -78,7 +82,7 @@ export class UserService extends API {
 
     public update(id: number): Observable<User> {
 		return this.http
-            .put<User>(`${environment.URL}/users/${id}`, {
+            .put<User>(`${environment.URL}/${this.ROUTES.USERS}/${id}`, {
                 headers: this.getterHeader
             })
             .pipe(
@@ -94,7 +98,7 @@ export class UserService extends API {
 
     public delete(id: number): Observable<DeleteUser> {
 		return this.http
-            .delete<DeleteUser>(`${environment.URL}/users/${id}`, {
+            .delete<DeleteUser>(`${environment.URL}/${this.ROUTES.USERS}/${id}`, {
                 headers: this.getterHeader
             })
             .pipe(
