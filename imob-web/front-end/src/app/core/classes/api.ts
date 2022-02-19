@@ -8,24 +8,24 @@ export abstract class API {
 
     constructor() {
         this.header = new HttpHeaders();
-
-        this.header.set('Content-Type', 'application/json; charset=utf-8');
-		this.header.set('Accept', 'application/json');
-        this.header.set('Access-Control-Allow-Origin', `${environment.ORIGIN}`);
-        this.header.set('Access-Control-Allow-Credentials', 'true');
+        this.buildHeader();
     }
 
-	private set setterAuthorization(token: string) {
-		this.header.set('Authorization', `Bearer ${token}`);
-	}
+    public buildHeader(): void {
+        this.header.set('Content-Type', 'application/json; charset=utf-8');
+        this.header.set('Accept', 'application/json');
+        this.header.set('Access-Control-Allow-Origin', `${environment.ORIGIN}`);
+        this.header.set('Access-Control-Allow-Credentials', 'true');
 
-	public set setterToken(token: string) {
-		this.token = token;
-		this.setterAuthorization = this.token;
-	}
+        if (this.token) this.header.set('Authorization', `Bearer ${this.token}`);
+    }
+
+    public set setterToken(token: string) {
+        this.token = token;
+    }
 
     public get getterHeader(): HttpHeaders {
         return this.header;
     }
-
+    
 }
