@@ -31,8 +31,8 @@ export class AuthenticationService extends API {
     private advisor: Advisor | null;
     private broker: Broker | null;
     private secretary: Secretary | null;
+    private ROUTES: typeof AuthenticationRoutes;
     public loggedIn: boolean;
-    public ROUTES: typeof AuthenticationRoutes;
 
     constructor(
         private readonly http: HttpClient,
@@ -42,8 +42,8 @@ export class AuthenticationService extends API {
         super();
 
         this.buildHeader();
-        this.loggedIn = false;
         this.ROUTES = AuthenticationRoutes;
+        this.loggedIn = false;
     }
 
     public login(body: any): Observable<Authentication> {
