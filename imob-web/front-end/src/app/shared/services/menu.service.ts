@@ -13,81 +13,73 @@ export class MenuService {
 		this.menus = [
 			{
 				title: 'Gestão Interna',
+				icon: 'arrow_circle_down',
 				options: [
 					{
 						name: 'Gerenciar Gestores',
-						link: '/managers',
-						icon: 'supervisor_account'
+						link: '/managers'
 					},
 					{
 						name: 'Gerenciar Despachantes',
-						link: '/advisors',
-						icon: 'people'
+						link: '/advisors'
 					},
 					{
 						name: 'Gerenciar Corretores',
-						link: '/brokers',
-						icon: 'people_alt'
+						link: '/brokers'
 					},
 					{
 						name: 'Gerenciar Secretárias',
-						link: '/secretaries',
-						icon: 'people_outline'
+						link: '/secretaries'
 					},
 					{
 						name: 'Gerenciar Imobiliárias',
-						link: '/companies',
-						icon: 'store'
-					}
-				]
-			},
-			{
-				title: 'Gestão Financeira',
-				options: [
-					{
-						name: 'Gerenciar Negócios',
-						link: '/businesses',
-						icon: 'business'
+						link: '/companies'
 					}
 				]
 			},
 			{
 				title: 'Gestão Externa',
+				icon: 'arrow_circle_up',
 				options: [
 					{
 						name: 'Gerenciar Imóveis',
-						link: '/properties',
-						icon: 'apartment'
+						link: '/properties'
 					},
 					{
 						name: 'Gerenciar Proprietários',
-						link: '/owners',
-						icon: 'group'
+						link: '/owners'
 					},
 					{
 						name: 'Gerenciar Clientes',
-						link: '/customers',
-						icon: 'groups'
+						link: '/customers'
 					},
 					{
 						name: 'Gerenciar Leads',
-						link: '/leads',
-						icon: 'contacts'
+						link: '/leads'
+					}
+				]
+			},
+			{
+				title: 'Gestão Financeira',
+				icon: 'monetization_on',
+				options: [
+					{
+						name: 'Gerenciar Negócios',
+						link: '/businesses'
 					}
 				]
 			},
 			{
 				title: 'Relatórios',
+				icon: 'assignment',
 				options: [
 					{
 						name: 'Comissões a Receber',
-						link: '/commissions-receivable',
-						icon: 'attach_money'
+						link: '/commissions-receivable'
 					},
 					{
 						name: 'Comissões a Pagar',
-						link: '/commissions-payable',
-						icon: 'money_off_csred'
+						link: '/commissions-payable'
 					}
 				]
 			}
