@@ -3,25 +3,25 @@
         <mat-sidenav
             class="sidenav"
             fixedInViewport="true"
-            fixedTopGap="70"
+            fixedTopGap="65"
             fixedBottomGap="15"
             fixedLeftGap="50"
             mode="side"
             opened>
             <mat-nav-list class="nav-list" role="navigation">
                 <ng-container *ngFor="let menu of menus">
-                    <h4>{{ menu.title }}</h4>
-
+                    <h4>
+                        <mat-icon>{{ menu.icon }}</mat-icon>
+                        {{ menu.title }}
+                    </h4>
                     <ng-container *ngFor="let option of menu.options">
                         <mat-list-item class="mat-list">
                             <a [routerLink]="option.link">
-                                <mat-icon>{{ option.icon }}</mat-icon>
                                 <span>{{ option.name }}</span>
                             </a>
                         </mat-list-item>
                     </ng-container>
-
-                    <br />
+                    <br>
                 </ng-container>
             </mat-nav-list>
         </mat-sidenav>
