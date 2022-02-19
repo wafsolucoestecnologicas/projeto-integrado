@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 
 import { AuthenticationService } from './core/services/authentication.service';
+import { UserService } from './core/services/user.service';
 import { AlertService } from './shared/services/alert.service';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AlertService } from './shared/services/alert.service';
 	],
 	providers: [
 		AuthenticationService,
+		UserService,
 		AlertService
 	],
 	bootstrap: [AppComponent]
