@@ -25,3 +25,22 @@ export interface User {
     broker?: Broker;
     secretary?: Secretary;
 }
+
+export interface CreateUser {
+    name: string;
+    surname: string;
+    email: string;
+    password: string;
+    company: {
+        id: number;
+    },
+    profile: {
+        id: number;
+    }
+}
+
+export interface DeleteUser {
+    user: number;
+    person: number;
+    company: number;
+}
