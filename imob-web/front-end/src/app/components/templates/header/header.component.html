@@ -6,11 +6,11 @@
             </button>
         </div>
 
-        <span>
+        <!--<span>
             <a>
                 <img src="assets/img/logo.png" alt="Logo IMOB Web" width="100" height="100" />
             </a>
-        </span>
+        </span>-->
 
         <span class="spacer"></span>
 
@@ -39,6 +39,10 @@
 
         <mat-menu #menu="matMenu">
             <button mat-menu-item>
+                <span>Empresa</span>
+            </button>
+            
+            <button mat-menu-item (click)="logout()">
                 <span>Deslogar</span>
             </button>
         </mat-menu>
