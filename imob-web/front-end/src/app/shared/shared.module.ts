@@ -15,6 +15,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
 	declarations: [],
@@ -34,7 +37,9 @@ import { MatButtonModule } from '@angular/material/button';
 		MatSnackBarModule,
 		MatListModule,
 		MatIconModule,
-		MatButtonModule
+		MatButtonModule,
+		MatDialogModule,
+		NgxMaskModule.forChild()
 	],
 	exports: [
 		RouterModule,
@@ -51,7 +56,9 @@ import { MatButtonModule } from '@angular/material/button';
 		MatSnackBarModule,
 		MatListModule,
 		MatIconModule,
-		MatButtonModule
+		MatButtonModule,
+		MatDialogModule,
+		NgxMaskModule
 	]
 })
 export class SharedModule { }
