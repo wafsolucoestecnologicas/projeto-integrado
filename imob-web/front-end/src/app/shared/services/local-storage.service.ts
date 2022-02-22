@@ -13,7 +13,11 @@ export class LocalStorageService {
 
     public setItem(key: string, value: string): boolean {
         if (this.storage) {
-            this.storage.setItem(key, JSON.stringify(value));
+            if (key === 'token') {
+                this.storage.setItem(key, value);
+            } else {
+                this.storage.setItem(key, JSON.stringify(value));
+            }
 
             return true;
         }
@@ -23,6 +27,10 @@ export class LocalStorageService {
 
     public getItem(key: string): string | null {
         if (this.storage) {
+            if (key === 'token') {
+                return this.storage.getItem(key);
+            }
+
             return JSON.parse(JSON.stringify(this.storage.getItem(key)));
         }
 
@@ -48,5 +56,5 @@ export class LocalStorageService {
 
         return false;
     }
-	
+    
 }
