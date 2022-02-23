@@ -19,13 +19,17 @@ export class ResetComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.formGroup = this._formBuilder.group({
-            email: [null, [Validators.required, Validators.email]]
-        });
+        this.createFormGroup();
     }
 
     public ngOnDestroy(): void {
         this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+    }
+
+    private createFormGroup(): void {
+        this.formGroup = this._formBuilder.group({
+            email: [null, [Validators.required, Validators.email]]
+        });
     }
 
     public onSubmit(): void {

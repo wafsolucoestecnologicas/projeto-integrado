@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { User, CreateUser } from 'src/app/core/interfaces/user.interface';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -20,6 +21,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     constructor(
         private readonly _router: Router,
         private readonly _formBuilder: FormBuilder,
+        private readonly _alertService: AlertService,
         private readonly _userService: UserService
     ) {
         this.subscriptions = new Array<Subscription>();
@@ -27,6 +29,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
+        this.createFormGroup();
+    }
+
+    public ngOnDestroy(): void {
+        this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+    }
+
+    private createFormGroup(): void {
         this.formGroup = this._formBuilder.group({
             name: [null, [Validators.required]],
             surname: [null, [Validators.required]],
@@ -36,10 +46,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
             company: this._formBuilder.array([this.createCompany()]),
             profile: this._formBuilder.array([this.createProfile()])
         });
-    }
-
-    public ngOnDestroy(): void {
-        this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
     }
 
     private createCompany(): FormGroup {
@@ -54,7 +60,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         });
     }
 
-    private parseForm(form: any): CreateUser {
+    private parseFormGroup(form: any): CreateUser {
         return {
             name: form.name,
             surname: form.surname,
@@ -78,9 +84,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
             this.formGroup.get('confirm')?.disable();
 
             const subscription: Subscription = this._userService
-                .create(this.parseForm(this.formGroup.value))
+                .create(this.parseFormGroup(this.formGroup.value))
                 .subscribe((data: User) => {
-                    if (data) this._router.navigate(['login']);
+                    if (data) {
+                        this._alertService.openSnackBar(
+                            `Usuário ${data.name} ${data.surname} criado com sucesso!`
+                        );
+                        this._router.navigate(['login']);
+                    }
                 });
 
             this.subscriptions.push(subscription);
