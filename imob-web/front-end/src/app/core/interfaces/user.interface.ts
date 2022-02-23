@@ -39,6 +39,13 @@ export interface CreateUser {
     }
 }
 
+export interface UpdateUser {
+    name: string;
+    surname: string;
+    email: string;
+    password: string;
+}
+
 export interface DeleteUser {
     user: number;
     person: number;
