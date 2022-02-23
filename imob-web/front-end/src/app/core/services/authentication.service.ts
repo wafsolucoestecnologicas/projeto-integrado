@@ -4,7 +4,6 @@ import { take, map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-import { API } from '../classes/api';
 import { User } from '../interfaces/user.interface';
 import { Company } from '../interfaces/company.interface';
 import { Profile } from '../interfaces/profile.interface';
@@ -21,16 +20,16 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthenticationService extends API {
+export class AuthenticationService {
 
-    private user: User | null;
-    private company: Company | null;
-    private profile: Profile | null;
-    private administrator: Administrator | null;
-    private manager: Manager | null;
-    private advisor: Advisor | null;
-    private broker: Broker | null;
-    private secretary: Secretary | null;
+    private _user: User | null;
+    private _company: Company | null;
+    private _profile: Profile | null;
+    private _administrator: Administrator | null;
+    private _manager: Manager | null;
+    private _advisor: Advisor | null;
+    private _broker: Broker | null;
+    private _secretary: Secretary | null;
     private ROUTES: typeof AuthenticationRoutes;
     public loggedIn: boolean;
 
@@ -39,28 +38,27 @@ export class AuthenticationService extends API {
         private readonly _localStorageService: LocalStorageService,
         private readonly _alertService: AlertService
     ) {
-        super();
-
-        this.buildHeader();
         this.ROUTES = AuthenticationRoutes;
         this.loggedIn = false;
     }
 
     public login(body: any): Observable<Authentication> {
         return this.http
-            .post<Authentication>(`${environment.URL}/${this.ROUTES.AUTHENTICATION}`, body, {
-                headers: this.getterHeader
-            })
+            .post<Authentication>(`${environment.URL}/${this.ROUTES.AUTHENTICATION}`, body)
             .pipe(
                 take(1),
                 map((response: Authentication) => {
-                    this.data = response;
+                    this.user = response.user;
+                    this.company = response.company;
+                    this.profile = response.profile;
+                    this.administrator = response.administrator ? response.administrator : null;
+                    this.manager = response.manager ? response.manager : null;
+                    this.advisor = response.advisor ? response.advisor : null;
+                    this.broker = response.broker ? response.broker : null;
+                    this.secretary = response.secretary ? response.secretary : null;
                     this.loggedIn = true;
-                    this._localStorageService.setItem('token', response.token);
 
-                    this._alertService.openSnackBar(
-                        `Usuário ${response.user.name} ${response.user.surname} logado com sucesso!`
-                    );
+                    this._localStorageService.setItem('token', response.token);
 
                     return response;
                 }),
@@ -82,50 +80,72 @@ export class AuthenticationService extends API {
         this.broker = null;
         this.secretary = null;
         this.loggedIn = false;
+
         this._localStorageService.removeItem('token');
     }
 
-    private set data(data: Authentication) {
-        this.user = data.user;
-        this.company = data.company;
-        this.profile = data.profile;
-        this.administrator = data.administrator ? data.administrator : null;
-        this.manager = data.manager ? data.manager : null;
-        this.advisor = data.advisor ? data.advisor : null;
-        this.broker = data.broker ? data.broker : null;
-        this.secretary = data.secretary ? data.secretary : null;
+    public get user(): User | null {
+        return this._user;
     }
 
-    public get getterUser(): User | null {
-        return this.user;
+    public set user(user: User | null) {
+        this._user = user;
     }
 
-    public get getterCompany(): Company | null {
-        return this.company;
+    public get company(): Company | null {
+        return this._company;
     }
 
-    public get getterProfile(): Profile | null {
-        return this.profile;
+    public set company(company: Company | null) {
+        this._company = company;
     }
 
-    public get getterAdministrator(): Administrator | null {
-        return this.administrator;
+    public get profile(): Profile | null {
+        return this._profile;
     }
 
-    public get getterManager(): Manager | null {
-        return this.manager;
+    public set profile(profile: Profile | null) {
+        this._profile = profile;
     }
 
-    public get getterAdvisor(): Advisor | null {
-        return this.advisor;
+    public get administrator(): Administrator | null {
+        return this._administrator;
     }
 
-    public get getterBroker(): Broker | null {
-        return this.broker;
+    public set administrator(administrator: Administrator | null) {
+        this._administrator = administrator;
     }
 
-    public get getterSecretary(): Secretary | null {
-        return this.secretary;
+    public get manager(): Manager | null {
+        return this._manager;
+    }
+
+    public set manager(manager: Manager | null) {
+        this._manager = manager;
+    }
+
+    public get advisor(): Advisor | null {
+        return this._advisor;
+    }
+
+    public set advisor(advisor: Advisor | null) {
+        this._advisor = advisor;
+    }
+
+    public get broker(): Broker | null {
+        return this._broker;
+    }
+
+    public set broker(broker: Broker | null) {
+        this._broker = broker;
+    }
+
+    public get secretary(): Secretary | null {
+        return this._secretary;
+    }
+
+    public set secretary(secretary: Secretary | null) {
+        this._secretary = secretary;
     }
 
 }
