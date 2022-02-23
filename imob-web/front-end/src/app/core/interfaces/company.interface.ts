@@ -7,3 +7,25 @@ export interface Company {
     percentageCommissionPayableForClosedDeals?: number;
     percentageCommissionPayableForPropertyCaptured?: number;
 }
+
+export interface CreateCompany {
+    CNPJ: string;
+    corporateName: string;
+    stateRegistration: string;
+    percentageCommissionReceivable: number;
+    percentageCommissionPayableForClosedDeals: number;
+    percentageCommissionPayableForPropertyCaptured: number;
+}
+
+export interface UpdateCompany {
+    CNPJ: string;
+    corporateName: string;
+    stateRegistration: string;
+    percentageCommissionReceivable: number;
+    percentageCommissionPayableForClosedDeals: number;
+    percentageCommissionPayableForPropertyCaptured: number;
+}
+
+export interface DeleteCompany {
+    company: number;
+}
