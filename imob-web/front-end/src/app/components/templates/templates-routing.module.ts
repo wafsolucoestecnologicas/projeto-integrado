@@ -1,12 +1,21 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { ContentComponent } from "./content/content.component";
+import { ContentComponent } from './content/content.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: ContentComponent
+        component: ContentComponent,
+        children: [
+            {
+                path: 'managers',
+                loadChildren: () =>
+                    import('../managers/managers.module').then(
+                        (module) => module.ManagersModule
+                    )
+            }
+        ]
     }
 ];
 
