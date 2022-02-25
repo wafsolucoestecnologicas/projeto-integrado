@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { Company, CreateCompany, UpdateCompany, DeleteCompany } from '../interfaces/company.interface';
-import { AlertService } from 'src/app/shared/services/alert.service';
 import { CompanyRoutes } from '../enums/company.enum';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Injectable({
     providedIn: 'root'
