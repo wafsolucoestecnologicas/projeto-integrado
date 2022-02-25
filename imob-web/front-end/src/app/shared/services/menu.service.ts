@@ -17,23 +17,23 @@ export class MenuService {
 				options: [
 					{
 						name: 'Gerenciar Gestores',
-						link: '/managers'
+						link: 'managers'
 					},
 					{
 						name: 'Gerenciar Despachantes',
-						link: '/advisors'
+						link: 'advisors'
 					},
 					{
 						name: 'Gerenciar Corretores',
-						link: '/brokers'
+						link: 'brokers'
 					},
 					{
 						name: 'Gerenciar Secretárias',
-						link: '/secretaries'
+						link: 'secretaries'
 					},
 					{
 						name: 'Gerenciar Imobiliárias',
-						link: '/companies'
+						link: 'companies'
 					}
 				]
 			},
@@ -43,19 +43,19 @@ export class MenuService {
 				options: [
 					{
 						name: 'Gerenciar Imóveis',
-						link: '/properties'
+						link: 'properties'
 					},
 					{
 						name: 'Gerenciar Proprietários',
-						link: '/owners'
+						link: 'owners'
 					},
 					{
 						name: 'Gerenciar Clientes',
-						link: '/customers'
+						link: 'customers'
 					},
 					{
 						name: 'Gerenciar Leads',
-						link: '/leads'
+						link: 'leads'
 					}
 				]
 			},
@@ -65,7 +65,7 @@ export class MenuService {
 				options: [
 					{
 						name: 'Gerenciar Negócios',
-						link: '/businesses'
+						link: 'businesses'
 					}
 				]
 			},
@@ -75,11 +75,11 @@ export class MenuService {
 				options: [
 					{
 						name: 'Comissões a Receber',
-						link: '/commissions-receivable'
+						link: 'commissions-receivable'
 					},
 					{
 						name: 'Comissões a Pagar',
-						link: '/commissions-payable'
+						link: 'commissions-payable'
 					}
 				]
 			}
