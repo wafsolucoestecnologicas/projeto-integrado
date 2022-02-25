@@ -16,6 +16,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { NgxMaskModule } from 'ngx-mask';
 
@@ -39,6 +41,8 @@ import { NgxMaskModule } from 'ngx-mask';
 		MatIconModule,
 		MatButtonModule,
 		MatDialogModule,
+		MatTableModule,
+		MatPaginatorModule,
 		NgxMaskModule.forChild()
 	],
 	exports: [
@@ -58,6 +62,8 @@ import { NgxMaskModule } from 'ngx-mask';
 		MatIconModule,
 		MatButtonModule,
 		MatDialogModule,
+		MatTableModule,
+		MatPaginatorModule,
 		NgxMaskModule
 	]
 })
