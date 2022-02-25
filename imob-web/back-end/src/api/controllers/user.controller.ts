@@ -61,7 +61,7 @@ export class UserController {
                                 await companyService.create({
                                     CNPJ: '00000000000000',
                                     corporateName: 'Empresa Cadastrada Automaticamente',
-                                    stateRegistration: '0000000000',
+                                    stateRegistration: '0000000000000',
                                     percentageCommissionReceivable: 0,
                                     percentageCommissionPayableForClosedDeals: 0,
                                     percentageCommissionPayableForPropertyCaptured: 0
