@@ -1,6 +1,5 @@
-h2 {
-    border-bottom: solid thin black;
-    margin-bottom: 2%;
+.mat-toolbar {
+    height: 56px;
 }
 
 table {

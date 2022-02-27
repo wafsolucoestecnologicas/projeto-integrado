@@ -1,17 +1,18 @@
 <ng-container *ngIf="show">
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Gestores</mat-card-title>
-            <mat-card-subtitle>Gestão Interna de Gestores</mat-card-subtitle>
+            <mat-card-title>Gestão Interna</mat-card-title>
+            <mat-card-subtitle>Gerencimento de Gestores</mat-card-subtitle>
         </mat-card-header>
 
-        <mat-card-content>
-            <mat-table class="mat-elevation-z8" [dataSource]="dataSource">
-                <ng-container matColumnDef="id">
-                    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
-                </ng-container>
+        <br>
 
+        <mat-card-content class="mat-elevation-z4">
+            <mat-toolbar>
+                <span>Gestores</span>
+            </mat-toolbar>
+
+            <mat-table [dataSource]="dataSource">
                 <ng-container matColumnDef="name">
                     <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
                     <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
@@ -24,21 +25,48 @@
 
                 <ng-container matColumnDef="CPF">
                     <mat-header-cell *matHeaderCellDef>CPF</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{ element.CPF }}</mat-cell>
+                    <mat-cell *matCellDef="let element">{{ element.CPF | mask: MASKS.CPF }}</mat-cell>
                 </ng-container>
-
+                
                 <ng-container matColumnDef="email">
                     <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
                     <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
                 </ng-container>
 
+                <ng-container matColumnDef="cellPhone">
+                    <mat-header-cell *matHeaderCellDef>Celular</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.cellPhone | mask: MASKS.CELL_PHONE }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="options">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>visibility</mat-icon>
+                                <span>Visualizar</span>
+                            </button>
+
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Editar</span>
+                            </button>
+                        </mat-menu>
+                    </mat-cell>
+                </ng-container>
+
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
             </mat-table>
-        </mat-card-content>
-        <mat-paginator
+
+            <mat-paginator
                 showFirstLastButtons
                 [pageSizeOptions]="[5, 10, 20]">
             </mat-paginator>
+        </mat-card-content>
     </mat-card>
 </ng-container>
