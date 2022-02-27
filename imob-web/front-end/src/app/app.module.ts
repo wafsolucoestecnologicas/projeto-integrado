@@ -10,12 +10,14 @@ import { DialogsModule } from './components/dialogs/dialogs.module';
 
 import { AppComponent } from './app.component';
 
+import { HeaderInterceptor } from './shared/interceptors/header.interceptor';
+import { AuthenticationGuard } from './shared/guards/authentication.guard';
+import { ProfileGuard } from './shared/guards/profile.guard';
+
 import { AuthenticationService } from './core/services/authentication.service';
 import { UserService } from './core/services/user.service';
 import { CompanyService } from './core/services/company.service';
 import { AlertService } from './shared/services/alert.service';
-
-import { HeaderInterceptor } from './shared/interceptors/header.interceptor';
 
 @NgModule({
 	declarations: [
@@ -30,15 +32,17 @@ import { HeaderInterceptor } from './shared/interceptors/header.interceptor';
 		DialogsModule
 	],
 	providers: [
-		AuthenticationService,
-		UserService,
-		CompanyService,
-		AlertService,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: HeaderInterceptor,
 			multi: true
-		}
+		},
+		AuthenticationGuard,
+		ProfileGuard,
+		AuthenticationService,
+		UserService,
+		CompanyService,
+		AlertService
 	],
 	bootstrap: [AppComponent]
 })
