@@ -11,7 +11,7 @@ export class LocalStorageService {
         this.storage = window.localStorage;
     }
 
-    public setItem(key: string, value: string): boolean {
+    public setItem(key: string, value: any): boolean {
         if (this.storage) {
             if (key === 'token') {
                 this.storage.setItem(key, value);
