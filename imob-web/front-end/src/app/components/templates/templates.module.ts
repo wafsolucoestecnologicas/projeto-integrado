@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { AsideComponent } from './aside/aside.component';
 import { ContentComponent } from './content/content.component';
 
+import { MenuService } from './shared/services/menu.service';
 
 @NgModule({
 	declarations: [
@@ -25,5 +26,8 @@ import { ContentComponent } from './content/content.component';
 		AsideComponent,
 		ContentComponent
 	],
+	providers: [
+		MenuService
+	]
 })
 export class TemplatesModule {}
