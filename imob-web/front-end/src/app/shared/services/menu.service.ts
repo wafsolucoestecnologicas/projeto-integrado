@@ -16,6 +16,10 @@ export class MenuService {
 				icon: 'arrow_circle_down',
 				options: [
 					{
+						name: 'Gerenciar Usuários',
+						link: 'users'
+					},
+					{
 						name: 'Gerenciar Gestores',
 						link: 'managers'
 					},
