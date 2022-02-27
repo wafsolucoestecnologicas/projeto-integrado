@@ -5,7 +5,7 @@ import { ManagersRoutingModule } from './managers-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { ListManagersComponent } from './list-managers/list-managers.component';
-
+import { ManagersResolver } from './shared/resolvers/managers.resolver';
 
 @NgModule({
     declarations: [
@@ -15,6 +15,9 @@ import { ListManagersComponent } from './list-managers/list-managers.component';
         CommonModule,
         ManagersRoutingModule,
         SharedModule
+    ],
+    providers: [
+        ManagersResolver
     ]
 })
 export class ManagersModule {}
