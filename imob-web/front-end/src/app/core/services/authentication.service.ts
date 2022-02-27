@@ -58,6 +58,8 @@ export class AuthenticationService {
                     this.secretary = response.secretary ? response.secretary : null;
                     this.loggedIn = true;
 
+                    this._localStorageService.setItem('user', response.user);
+                    this._localStorageService.setItem('profile', response.profile);
                     this._localStorageService.setItem('token', response.token);
 
                     return response;
@@ -81,7 +83,7 @@ export class AuthenticationService {
         this.secretary = null;
         this.loggedIn = false;
 
-        this._localStorageService.removeItem('token');
+        this._localStorageService.clear();
     }
 
     public get user(): User | null {
