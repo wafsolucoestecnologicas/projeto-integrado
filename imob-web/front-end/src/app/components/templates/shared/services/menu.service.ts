@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Menu } from '../interfaces/menu.interface';
+import { Menu } from 'src/app/shared/interfaces/menu.interface';
 
 @Injectable({
 	providedIn: 'root'
