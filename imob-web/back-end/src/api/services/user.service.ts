@@ -2,6 +2,7 @@ import { getRepository, Repository, DeleteResult, EntityManager } from 'typeorm'
 import { UserEntity } from '../entities/user.entity';
 import { ProfileEnum } from '../models/profile.model';
 import bcrypt from 'bcryptjs';
+import { Payload } from '../../../utils/interfaces/jwt.interfaces';
 
 export class UserService {
 
@@ -11,7 +12,7 @@ export class UserService {
         this.repository = getRepository(UserEntity);
     }
 
-    public async index(): Promise<UserEntity[]> {
+    public async index(payload: Payload): Promise<UserEntity[]> {
         const userEntity: UserEntity[] =
             await this.repository.find({
                 select: [
@@ -35,7 +36,10 @@ export class UserService {
                     'advisor',
                     'broker',
                     'secretary'
-                ]
+                ],
+                where: {
+                    company: payload.company.id
+                }
             });
 
         return userEntity;
@@ -90,7 +94,7 @@ export class UserService {
         return result;
     }
 
-    public async read(id: number): Promise<UserEntity | undefined> {
+    public async read(id: number, payload: Payload): Promise<UserEntity | undefined> {
         const userEntity: UserEntity | undefined =
             await this.repository.findOne({
                 select: [
@@ -116,7 +120,8 @@ export class UserService {
                     'secretary'
                 ],
                 where: {
-                    id: id
+                    id: id,
+                    company: payload.company.id
                 }
             });
 

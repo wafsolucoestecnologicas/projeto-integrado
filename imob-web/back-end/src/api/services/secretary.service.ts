@@ -1,5 +1,6 @@
 import { getRepository, Repository, DeleteResult, EntityManager } from 'typeorm';
 import { SecretaryEntity } from '../entities/secretary.entity';
+import { Payload } from '../../../utils/interfaces/jwt.interfaces';
 
 export class SecretaryService {
 
@@ -9,7 +10,7 @@ export class SecretaryService {
         this.repository = getRepository(SecretaryEntity);
     }
 
-    public async index(): Promise<SecretaryEntity[]> {
+    public async index(payload: Payload): Promise<SecretaryEntity[]> {
         const secretaryEntity: SecretaryEntity[] =
             await this.repository.find({
                 relations: [
@@ -42,14 +43,15 @@ export class SecretaryService {
         return result;
     }
 
-    public async read(id: number): Promise<SecretaryEntity | undefined> {
+    public async read(id: number, payload: Payload): Promise<SecretaryEntity | undefined> {
         const secretaryEntity: SecretaryEntity | undefined =
             await this.repository.findOne({
                 relations: [
                     'company'
                 ],
                 where: {
-                    id: id
+                    id: id,
+                    company: payload.company.id
                 }
             });
 
