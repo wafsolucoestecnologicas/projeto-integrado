@@ -16,27 +16,27 @@ export class MenuService {
 				icon: 'arrow_circle_down',
 				options: [
 					{
-						name: 'Gerenciar Usuários',
+						name: 'Usuários',
 						link: 'users'
 					},
 					{
-						name: 'Gerenciar Gestores',
+						name: 'Gestores',
 						link: 'managers'
 					},
 					{
-						name: 'Gerenciar Despachantes',
+						name: 'Despachantes',
 						link: 'advisors'
 					},
 					{
-						name: 'Gerenciar Corretores',
+						name: 'Corretores',
 						link: 'brokers'
 					},
 					{
-						name: 'Gerenciar Secretárias',
+						name: 'Secretárias',
 						link: 'secretaries'
 					},
 					{
-						name: 'Gerenciar Imobiliárias',
+						name: 'Imobiliárias',
 						link: 'companies'
 					}
 				]
@@ -46,19 +46,19 @@ export class MenuService {
 				icon: 'arrow_circle_up',
 				options: [
 					{
-						name: 'Gerenciar Imóveis',
+						name: 'Imóveis',
 						link: 'properties'
 					},
 					{
-						name: 'Gerenciar Proprietários',
+						name: 'Proprietários',
 						link: 'owners'
 					},
 					{
-						name: 'Gerenciar Clientes',
+						name: 'Clientes',
 						link: 'customers'
 					},
 					{
-						name: 'Gerenciar Leads',
+						name: 'Leads',
 						link: 'leads'
 					}
 				]
@@ -68,7 +68,7 @@ export class MenuService {
 				icon: 'monetization_on',
 				options: [
 					{
-						name: 'Gerenciar Negócios',
+						name: 'Negócios',
 						link: 'businesses'
 					}
 				]
