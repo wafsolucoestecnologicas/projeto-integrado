@@ -4,7 +4,7 @@ import { take, map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-import { Manager, UpdateManager, DeleteManager } from '../interfaces/manager.interface';
+import { Manager, UpdateManager } from '../interfaces/manager.interface';
 import { ManagerRoutes } from '../enums/manager.enum';
 import { AlertService } from 'src/app/shared/services/alert.service';
 
@@ -28,7 +28,7 @@ export class ManagerService {
             map((response: Manager[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os gestores! - ${error.statusText}`
+                    `Ocorreu um erro ao listar os gestores! - ${error.message}`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class ManagerService {
             map((response: Manager) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar o gestor! - ${error.statusText}`
+                    `Ocorreu um erro ao listar o gestor! - ${error.message}`
                 )
             )
 		);
@@ -52,19 +52,7 @@ export class ManagerService {
             map((response: Manager) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o gestor! - ${error.statusText}`
-                )
-            )
-		);
-    }
-
-    public delete(id: number): Observable<DeleteManager> {
-        return this.http.delete<DeleteManager>(`${environment.URL}/${this.ROUTES.MANAGERS}/${id}`).pipe(
-			take(1),
-            map((response: DeleteManager) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deleltar o gestor! - ${error.statusText}`
+                    `Ocorreu um erro ao atualizar o gestor! - ${error.message}`
                 )
             )
 		);

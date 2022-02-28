@@ -28,7 +28,7 @@ export class CompanyService {
             map((response: Company[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar as imobiliárias! - ${error.statusText}`
+                    `Ocorreu um erro ao listar as imobiliárias! - ${error.message}`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class CompanyService {
             map((response: Company) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar a imobiliária! - ${error.statusText}`
+                    `Ocorreu um erro ao criar a imobiliária! - ${error.message}`
                 )
             )
         );
@@ -52,7 +52,7 @@ export class CompanyService {
             map((response: Company) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar a imobiliária! - ${error.statusText}`
+                    `Ocorreu um erro ao listar a imobiliária! - ${error.message}`
                 )
             )
         );
@@ -64,7 +64,7 @@ export class CompanyService {
             map((response: Company[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar a imobiliária! - ${error.statusText}`
+                    `Ocorreu um erro ao atualizar a imobiliária! - ${error.message}`
                 )
             )
         );
@@ -76,7 +76,7 @@ export class CompanyService {
             map((response: DeleteCompany) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deletar a imobiliária! - ${error.statusText}`
+                    `Ocorreu um erro ao deletar a imobiliária! - ${error.message}`
                 )
             )
         );

@@ -66,7 +66,7 @@ export class AuthenticationService {
                 }),
                 catchError((error: HttpErrorResponse) =>
                     this._alertService.openSnackBar(
-                        `Ocorreu um erro ao realizar o login! - ${error.statusText}`
+                        `Ocorreu um erro ao realizar o login! - ${error.message}`
                     )
                 )
             );
