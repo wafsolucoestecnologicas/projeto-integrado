@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthenticationGuard } from './shared/guards/authentication.guard';
+
 const routes: Routes = [
     {
         path: '',
@@ -11,6 +13,7 @@ const routes: Routes = [
     },
     {
         path: 'content',
+        canActivate: [AuthenticationGuard],
         loadChildren: () =>
             import('./components/templates/templates.module').then(
 				(module) => module.TemplatesModule
