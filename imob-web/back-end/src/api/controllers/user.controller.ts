@@ -29,7 +29,7 @@ export class UserController {
                 new UserService();
 
             const userEntity: UserEntity[] =
-                await userService.index();
+                await userService.index(request.payload);
 
             return response.status(200).json(userEntity);
         } catch (error: any) {
@@ -208,7 +208,7 @@ export class UserController {
 
             if (Number(request.params.id)) {
                 const userEntity: UserEntity | undefined =
-                    await userService.read(Number(request.params.id));
+                    await userService.read(Number(request.params.id), request.payload);
 
                 if (userEntity) userEntity.password = '';
 
@@ -265,7 +265,7 @@ export class UserController {
 
                 if (Number(request.params.id)) {
                     const userEntity: UserEntity | undefined =
-                        await userService.read(Number(request.params.id));
+                        await userService.read(Number(request.params.id), request.payload);
 
                     if (userEntity) {
                         const companyService: CompanyService =

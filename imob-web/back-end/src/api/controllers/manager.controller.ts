@@ -16,7 +16,7 @@ export class ManagerController {
                 new ManagerService();
 
             const managerEntity: ManagerEntity[] =
-                await managerService.index();
+                await managerService.index(request.payload);
 
             return response.status(200).json(managerEntity);
         } catch (error: any) {
@@ -61,7 +61,7 @@ export class ManagerController {
 
             if (Number(request.params.id)) {
                 const managerEntity: ManagerEntity | undefined =
-                    await managerService.read(Number(request.params.id));
+                    await managerService.read(Number(request.params.id), request.payload);
 
                 return response.status(200).json(managerEntity);
             } else {
@@ -114,7 +114,7 @@ export class ManagerController {
 
                 if (Number(request.params.id)) {
                     const managerEntity: ManagerEntity | undefined =
-                        await managerService.read(Number(request.params.id));
+                        await managerService.read(Number(request.params.id), request.payload);
 
                     if (managerEntity) {
                         const userService: UserService =

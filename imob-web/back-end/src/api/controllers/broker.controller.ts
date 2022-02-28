@@ -16,7 +16,7 @@ export class BrokerController {
                 new BrokerService();
 
             const brokerEntity: BrokerEntity[] =
-                await brokerService.index();
+                await brokerService.index(request.payload);
 
             return response.status(200).json(brokerEntity);
         } catch (error: any) {
@@ -61,7 +61,7 @@ export class BrokerController {
 
             if (Number(request.params.id)) {
                 const brokerEntity: BrokerEntity | undefined =
-                    await brokerService.read(Number(request.params.id));
+                    await brokerService.read(Number(request.params.id), request.payload);
 
                 return response.status(200).json(brokerEntity);
             } else {
@@ -114,7 +114,7 @@ export class BrokerController {
 
                 if (Number(request.params.id)) {
                     const brokerEntity: BrokerEntity | undefined =
-                        await brokerService.read(Number(request.params.id));
+                        await brokerService.read(Number(request.params.id), request.payload);
 
                     if (brokerEntity) {
                         const userService: UserService =

@@ -16,7 +16,7 @@ export class SecretaryController {
                 new SecretaryService();
 
             const secretaryEntity: SecretaryEntity[] =
-                await secretaryService.index();
+                await secretaryService.index(request.payload);
 
             return response.status(200).json(secretaryEntity);
         } catch (error: any) {
@@ -61,7 +61,7 @@ export class SecretaryController {
 
             if (Number(request.params.id)) {
                 const secretaryEntity: SecretaryEntity | undefined =
-                    await secretaryService.read(Number(request.params.id));
+                    await secretaryService.read(Number(request.params.id), request.payload);
 
                 return response.status(200).json(secretaryEntity);
             } else {
@@ -114,7 +114,7 @@ export class SecretaryController {
 
                 if (Number(request.params.id)) {
                     const secretaryEntity: SecretaryEntity | undefined =
-                        await secretaryService.read(Number(request.params.id));
+                        await secretaryService.read(Number(request.params.id), request.payload);
 
                     if (secretaryEntity) {
                         const userService: UserService =

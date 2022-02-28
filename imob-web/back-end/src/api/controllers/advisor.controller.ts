@@ -16,7 +16,7 @@ export class AdvisorController {
                 new AdvisorService();
 
             const advisorEntity: AdvisorEntity[] =
-                await advisorService.index();
+                await advisorService.index(request.payload);
 
             return response.status(200).json(advisorEntity);
         } catch (error: any) {
@@ -61,7 +61,7 @@ export class AdvisorController {
 
             if (Number(request.params.id)) {
                 const advisorEntity: AdvisorEntity | undefined =
-                    await advisorService.read(Number(request.params.id));
+                    await advisorService.read(Number(request.params.id), request.payload);
 
                 return response.status(200).json(advisorEntity);
             } else {
@@ -114,7 +114,7 @@ export class AdvisorController {
 
                 if (Number(request.params.id)) {
                     const advisorEntity: AdvisorEntity | undefined =
-                        await advisorService.read(Number(request.params.id));
+                        await advisorService.read(Number(request.params.id), request.payload);
 
                     if (advisorEntity) {
                         const userService: UserService =

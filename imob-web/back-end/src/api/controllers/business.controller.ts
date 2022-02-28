@@ -79,7 +79,7 @@ export class BusinessController {
 
                     if (request.body.manager && request.body.manager.id) {
                         const managerEntity: ManagerEntity | undefined =
-                            await managerService.read(request.body.manager.id);
+                            await managerService.read(request.body.manager.id, request.payload);
 
                         if (managerEntity) {
                             request.body.manager = managerEntity;
@@ -92,7 +92,7 @@ export class BusinessController {
 
                     if (request.body.advisor && request.body.advisor.id) {
                         const advisorEntity: AdvisorEntity | undefined =
-                            await advisorService.read(request.body.advisor.id);
+                            await advisorService.read(request.body.advisor.id, request.payload);
 
                         if (advisorEntity) {
                             request.body.advisor = advisorEntity;
@@ -105,7 +105,7 @@ export class BusinessController {
 
                     if (request.body.broker && request.body.broker.id) {
                         const brokerEntity: BrokerEntity | undefined =
-                            await brokerService.read(request.body.broker.id);
+                            await brokerService.read(request.body.broker.id, request.payload);
 
                         if (brokerEntity) {
                             request.body.broker = brokerEntity;
@@ -118,7 +118,7 @@ export class BusinessController {
 
                     if (request.body.secretary && request.body.secretary.id) {
                         const secretaryEntity: SecretaryEntity | undefined =
-                            await secretaryService.read(request.body.secretary.id);
+                            await secretaryService.read(request.body.secretary.id, request.payload);
 
                         if (secretaryEntity) {
                             request.body.secretary = secretaryEntity;
