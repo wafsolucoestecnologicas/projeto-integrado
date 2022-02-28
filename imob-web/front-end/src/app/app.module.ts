@@ -17,6 +17,10 @@ import { ProfileGuard } from './shared/guards/profile.guard';
 import { AuthenticationService } from './core/services/authentication.service';
 import { UserService } from './core/services/user.service';
 import { CompanyService } from './core/services/company.service';
+import { ManagerService } from './core/services/manager.service';
+import { AdvisorService } from './core/services/advisor.service';
+import { BrokerService } from './core/services/broker.service';
+import { SecretaryService } from './core/services/secretary.service';
 import { AlertService } from './shared/services/alert.service';
 
 @NgModule({
@@ -42,6 +46,10 @@ import { AlertService } from './shared/services/alert.service';
 		AuthenticationService,
 		UserService,
 		CompanyService,
+		ManagerService,
+		AdvisorService,
+		BrokerService,
+		SecretaryService,
 		AlertService
 	],
 	bootstrap: [AppComponent]
