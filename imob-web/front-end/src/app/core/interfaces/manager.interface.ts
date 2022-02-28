@@ -16,18 +16,13 @@ export interface Manager {
 }
 
 export interface UpdateManager {
-    name: string,
-    surname: string,
-    email: string,
-    birthDate: string,
-    RG: string,
-    CPF: string,
-    landline?: string,
-    cellPhone: string,
-    profession?: string
-}
-
-export interface DeleteManager {
-    user: number;
-    manager: number;
+    name: string;
+    surname: string;
+    email: string;
+    birthDate: string;
+    RG: string;
+    CPF: string;
+    landline: string;
+    cellPhone: string;
+    profession: string
 }

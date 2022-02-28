@@ -15,3 +15,32 @@ export interface Owner {
     profession?: string;
     company: Company
 }
+
+export interface CreateOwner {
+    name: string;
+    surname: string;
+    email: string;
+    birthDate: string;
+    checked: boolean;
+    RG: string;
+    CPF: string;
+    landline?: string;
+    cellPhone: string;
+    profession?: string;
+}
+
+export interface UpdateOwner {
+    name: string;
+    surname: string;
+    email: string;
+    birthDate: string;
+    RG: string;
+    CPF: string;
+    landline: string;
+    cellPhone: string;
+    profession: string;
+}
+
+export interface DeleteOwner {
+    owner: number;
+}

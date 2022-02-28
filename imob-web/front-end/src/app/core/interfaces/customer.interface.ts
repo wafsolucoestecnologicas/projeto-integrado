@@ -12,5 +12,33 @@ export interface Customer {
     landline?: string;
     cellPhone: string;
     profession?: string;
-    company: Company
+    company: Company;
+}
+
+export interface CreateCustomer {
+    name: string;
+    surname: string;
+    email: string;
+    birthDate: string;
+    RG: string;
+    CPF: string;
+    landline?: string;
+    cellPhone: string;
+    profession?: string;
+}
+
+export interface UpdateCustomer {
+    name: string;
+    surname: string;
+    email: string;
+    birthDate: string;
+    RG: string;
+    CPF: string;
+    landline: string;
+    cellPhone: string;
+    profession: string;
+}
+
+export interface DeleteCustomer {
+    customer: number;
 }
