@@ -9,12 +9,40 @@ const routes: Routes = [
         component: ContentComponent,
         children: [
             {
+                path: 'users',
+                loadChildren: () =>
+                    import('../users/users.module').then(
+                        (module) => module.UsersModule
+                    )
+            },
+            {
                 path: 'managers',
                 loadChildren: () =>
                     import('../managers/managers.module').then(
                         (module) => module.ManagersModule
                     )
-            }
+            },
+            {
+                path: 'advisors',
+                loadChildren: () =>
+                    import('../advisors/advisors.module').then(
+                        (module) => module.AdvisorsModule
+                    )
+            },
+            {
+                path: 'brokers',
+                loadChildren: () =>
+                    import('../brokers/brokers.module').then(
+                        (module) => module.BrokersModule
+                    )
+            },
+            {
+                path: 'secretaries',
+                loadChildren: () =>
+                    import('../secretaries/secretaries.module').then(
+                        (module) => module.SecretariesModule
+                    )
+            },
         ]
     }
 ];
