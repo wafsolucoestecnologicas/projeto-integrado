@@ -1,0 +1,93 @@
+<ng-container *ngIf="show">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Gestão Interna</mat-card-title>
+            <mat-card-subtitle>Gerencimento de Usuários</mat-card-subtitle>
+        </mat-card-header>
+
+        <br>
+
+        <mat-card-content class="mat-elevation-z4">
+            <mat-toolbar>
+                <span>Usuários</span>
+
+                <span class="spacer"></span>
+
+                <button mat-icon-button>
+                    <mat-icon>add_circle_outline</mat-icon>
+                </button>
+            </mat-toolbar>
+
+            <mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="name">
+                    <mat-header-cell class="align-left" *matHeaderCellDef>Nome</mat-header-cell>
+                    <mat-cell class="align-left" *matCellDef="let element">{{ element.name }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="surname">
+                    <mat-header-cell class="align-left" *matHeaderCellDef>Sobrenome</mat-header-cell>
+                    <mat-cell class="align-left" *matCellDef="let element">{{ element.surname }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="email">
+                    <mat-header-cell class="align-left" *matHeaderCellDef>E-mail</mat-header-cell>
+                    <mat-cell class="align-left" *matCellDef="let element">{{ element.email }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="isManager">
+                    <mat-header-cell class="align-center" *matHeaderCellDef>Gestor</mat-header-cell>
+                    <mat-cell class="align-center" *matCellDef="let element">{{ element.isManager | convertBoolean }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="isAdvisor">
+                    <mat-header-cell class="align-center" *matHeaderCellDef>Despachante</mat-header-cell>
+                    <mat-cell class="align-center" *matCellDef="let element">{{ element.isAdvisor | convertBoolean }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="isBroker">
+                    <mat-header-cell class="align-center" *matHeaderCellDef>Corretor</mat-header-cell>
+                    <mat-cell class="align-center" *matCellDef="let element">{{ element.isBroker | convertBoolean }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="isSecretary">
+                    <mat-header-cell class="align-center" *matHeaderCellDef>Secretária</mat-header-cell>
+                    <mat-cell class="align-center" *matCellDef="let element">{{ element.isSecretary | convertBoolean }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="options">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell class="align-center" *matCellDef="let element">
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>visibility</mat-icon>
+                                <span>Visualizar</span>
+                            </button>
+
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Editar</span>
+                            </button>
+
+                            <button mat-menu-item>
+                                <mat-icon>delete</mat-icon>
+                                <span>Excluir</span>
+                            </button>
+                        </mat-menu>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            </mat-table>
+
+            <mat-paginator
+                showFirstLastButtons
+                [pageSizeOptions]="[5, 10, 20]">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
