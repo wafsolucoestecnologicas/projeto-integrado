@@ -59,9 +59,16 @@ export class AuthenticationService {
                     this.loggedIn = true;
 
                     this._localStorageService.setItem('user', response.user);
+                    this._localStorageService.setItem('company', response.company);
                     this._localStorageService.setItem('profile', response.profile);
                     this._localStorageService.setItem('token', response.token);
 
+                    if (this.administrator) this._localStorageService.setItem('administrator', response.administrator);
+                    if (this.manager) this._localStorageService.setItem('manager', response.manager);
+                    if (this.advisor) this._localStorageService.setItem('advisor', response.advisor);
+                    if (this.broker) this._localStorageService.setItem('broker', response.broker);
+                    if (this.secretary) this._localStorageService.setItem('secretary', response.secretary);
+                    
                     return response;
                 }),
                 catchError((error: HttpErrorResponse) =>
