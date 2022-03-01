@@ -57,7 +57,7 @@ export class ListSecretariesComponent implements OnInit, AfterViewInit, OnDestro
     }
 
     public ngAfterViewInit(): void {
-        this.dataSource.paginator = this.paginator;
+        if (this.dataSource) this.dataSource.paginator = this.paginator;
     }
 
     public ngOnDestroy(): void {

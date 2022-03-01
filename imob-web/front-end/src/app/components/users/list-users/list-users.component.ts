@@ -59,7 +59,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public ngAfterViewInit(): void {
-        this.dataSource.paginator = this.paginator;
+        if (this.dataSource) this.dataSource.paginator = this.paginator;
     }
 
     public ngOnDestroy(): void {
