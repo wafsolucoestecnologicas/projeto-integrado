@@ -21,6 +21,8 @@ import { ManagerService } from './core/services/manager.service';
 import { AdvisorService } from './core/services/advisor.service';
 import { BrokerService } from './core/services/broker.service';
 import { SecretaryService } from './core/services/secretary.service';
+import { OwnerService } from './core/services/owner.service';
+import { CustomerService } from './core/services/customer.service';
 import { AlertService } from './shared/services/alert.service';
 
 @NgModule({
@@ -50,6 +52,8 @@ import { AlertService } from './shared/services/alert.service';
 		AdvisorService,
 		BrokerService,
 		SecretaryService,
+		OwnerService,
+		CustomerService,
 		AlertService
 	],
 	bootstrap: [AppComponent]
