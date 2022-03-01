@@ -43,6 +43,20 @@ const routes: Routes = [
                         (module) => module.SecretariesModule
                     )
             },
+            {
+                path: 'owners',
+                loadChildren: () =>
+                    import('../owners/owners.module').then(
+                        (module) => module.OwnersModule
+                    )
+            },
+            {
+                path: 'customers',
+                loadChildren: () =>
+                    import('../customers/customers.module').then(
+                        (module) => module.CustomersModule
+                    )
+            },
         ]
     }
 ];
