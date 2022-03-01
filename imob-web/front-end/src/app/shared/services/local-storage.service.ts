@@ -25,7 +25,7 @@ export class LocalStorageService {
         return false;
     }
 
-    public getItem(key: string): string | null {
+    public getItem(key: string): any {
         if (this.storage) {
             if (key === 'token') {
                 return this.storage.getItem(key);
