@@ -4,27 +4,35 @@ import { Observable } from 'rxjs';
 
 import { AlertService } from '../services/alert.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
 
-    private loggedIn: boolean;
-
     constructor(
         private readonly _router: Router,
         private readonly _alertService: AlertService,
-        private readonly _authenticationService: AuthenticationService
-    ) {
-        this.loggedIn = false;
-    }
+        private readonly _authenticationService: AuthenticationService,
+        private readonly _localStorageService: LocalStorageService
+    ) {}
 
     public canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean> | boolean {
-        this.loggedIn = this._authenticationService.loggedIn;
+        if (this._authenticationService.loggedIn) {
+            return true;
+        } else if (this._localStorageService.getItem('user')) {
+            this._authenticationService.user = this._localStorageService.getItem('user');
+            this._authenticationService.company = this._localStorageService.getItem('company');
+            this._authenticationService.profile = this._localStorageService.getItem('profile');
+            this._authenticationService.administrator = this._localStorageService.getItem('administrator');
+            this._authenticationService.manager = this._localStorageService.getItem('manager');
+            this._authenticationService.advisor = this._localStorageService.getItem('advisor');
+            this._authenticationService.broker = this._localStorageService.getItem('broker');
+            this._authenticationService.secretary = this._localStorageService.getItem('secretary');
+            this._authenticationService.loggedIn = true;
 
-        if (this.loggedIn) {
             return true;
         } else {
             this._alertService.openSnackBar('É necessário realizar o login na aplicação!');
