@@ -1,3 +1,7 @@
+.mat-sidenav-container {
+    min-height: 75vh !important;
+}
+
 .sidenav {
     background-color: rgb(63, 81, 181);
     border-right-color: rgba(0, 0, 0, 0.12);
@@ -29,7 +33,7 @@
 }
 
 .nav-list {
-    padding-left: 20px;
+    padding: 30px 0px 0px 20px;
 }
 
 .nav-list h4 {
@@ -40,4 +44,8 @@
 
 .mat-list a {
     font-weight: 300;
+}
+
+button {
+    margin-right: 15px;
 }

@@ -1,13 +1,60 @@
 <aside>
+    <div
+        fxShow="true"
+        fxHide.md="true"
+        fxHide.lg="true"
+        fxHide.xl="true"
+        fxLayoutAlign="end center">
+        <button
+            type="button"
+            color="primary"
+            mat-raised-button
+            (click)="sidenav.toggle()">
+            <ng-container *ngIf="!sidenav.opened">
+                <mat-icon>chevron_left</mat-icon>
+            </ng-container>
+
+            <ng-container *ngIf="sidenav.opened">
+                <mat-icon>chevron_right</mat-icon>
+            </ng-container>
+            Menu
+        </button>
+    </div>
+
     <mat-sidenav-container class="container">
         <mat-sidenav
+            fxShow="true"
+            fxHide.md="true"
+            fxHide.lg="true"
+            fxHide.xl="true"
+            mode="over"
+            opened="false"
+            position="end"
+            #sidenav>
+            <mat-nav-list>
+                <ng-container *ngFor="let menu of menus">
+                    <ng-container *ngFor="let option of menu.options">
+                        <mat-list-item class="mat-list">
+                            <a [routerLink]="option.link">
+                                <span>{{ option.name }}</span>
+                            </a>
+                        </mat-list-item>
+                    </ng-container>
+                </ng-container>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav
             class="sidenav"
+            fxHide.xs="true"
+            fxHide.sm="true"
             fixedInViewport="true"
-            fixedTopGap="79"
+            fixedTopGap="116.47"
             fixedBottomGap="15"
             fixedLeftGap="50"
             mode="side"
-            opened>
+            opened="true"
+            position="start">
             <mat-nav-list class="nav-list" role="navigation">
                 <ng-container *ngFor="let menu of menus">
                     <h4>
@@ -21,7 +68,6 @@
                             </a>
                         </mat-list-item>
                     </ng-container>
-                    <br>
                 </ng-container>
             </mat-nav-list>
         </mat-sidenav>
