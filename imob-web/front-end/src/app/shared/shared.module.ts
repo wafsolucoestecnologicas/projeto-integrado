@@ -18,11 +18,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { NgxMaskModule } from 'ngx-mask';
+import { FormatDateHourPipe } from './pipes/format-date-hour.pipe';
 
 @NgModule({
-	declarations: [],
+	declarations: [
+		FormatDateHourPipe
+	],
 	imports: [
 		CommonModule,
 		RouterModule,
@@ -43,9 +48,12 @@ import { NgxMaskModule } from 'ngx-mask';
 		MatDialogModule,
 		MatTableModule,
 		MatPaginatorModule,
+		MatSelectModule,
+		MatDividerModule,
 		NgxMaskModule.forChild()
 	],
 	exports: [
+		FormatDateHourPipe,
 		RouterModule,
 		HttpClientModule,
 		ReactiveFormsModule,
@@ -64,6 +72,8 @@ import { NgxMaskModule } from 'ngx-mask';
 		MatDialogModule,
 		MatTableModule,
 		MatPaginatorModule,
+		MatSelectModule,
+		MatDividerModule,
 		NgxMaskModule
 	]
 })
