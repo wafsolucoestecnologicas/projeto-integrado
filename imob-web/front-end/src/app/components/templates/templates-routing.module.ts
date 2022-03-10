@@ -57,6 +57,13 @@ const routes: Routes = [
                         (module) => module.CustomersModule
                     )
             },
+            {
+                path: 'companies',
+                loadChildren: () =>
+                    import('../companies/companies.module').then(
+                        (module) => module.CompaniesModule
+                    )
+            }
         ]
     }
 ];
