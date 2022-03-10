@@ -24,6 +24,8 @@ export interface User {
     advisor?: Advisor;
     broker?: Broker;
     secretary?: Secretary;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface CreateUser {
@@ -40,14 +42,15 @@ export interface CreateUser {
 }
 
 export interface UpdateUser {
+    id?: number;
     name: string;
     surname: string;
     email: string;
     password: string;
+    updatedAt?: string;
 }
 
 export interface DeleteUser {
     user: number;
     person: number;
-    company: number;
 }

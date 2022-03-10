@@ -4,3 +4,9 @@ export interface Profile {
     isAdmin: boolean;
     permissions: JSON;
 }
+
+export interface UserType {
+    disabled: boolean;
+    description: string;
+    value: number;
+}
