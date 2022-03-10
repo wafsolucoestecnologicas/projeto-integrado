@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { CompanyComponent } from '../../dialogs/company/company.component';
 
 @Component({
     selector: 'imob-header',
@@ -19,12 +18,6 @@ export class HeaderComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {}
-
-    public openDialog(): void {
-        this._matDialog.open(CompanyComponent, {
-            width: '700px'
-        });
-    }
 
     public logout(): void {
         this._authenticationService.logout();
