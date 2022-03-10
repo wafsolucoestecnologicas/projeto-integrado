@@ -6,7 +6,7 @@ import { AdvisorsResolver } from './shared/resolvers/advisors.resolver';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'list',
         component: ListAdvisorsComponent,
         resolve: {
             advisors: AdvisorsResolver
