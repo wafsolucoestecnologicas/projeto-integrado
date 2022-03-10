@@ -97,11 +97,7 @@
                         formControlName="confirm"
                         matInput
                         placeholder="Ex: @34WEr@#$"
-                        required
-                        (keyup)="checkPasswords()" />
-                    <mat-error *ngIf="showError">
-                        Senhas não conferem!
-                    </mat-error>
+                        required />
                     <mat-error
                         *ngIf="
                             formGroup.get('confirm')?.touched &&
@@ -119,6 +115,12 @@
                             formGroup.get('confirm')?.touched &&
                             formGroup.get('confirm')?.errors?.maxlength">
                         A senha deve possuir no máximo 25 caracteres!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="
+                            formGroup.get('confirm')?.touched &&
+                            formGroup.get('confirm')?.errors?.password">
+                        Senhas não conferem!
                     </mat-error>
                 </mat-form-field>
             </div>

@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { AlertService } from 'src/app/shared/services/alert.service';
+import { CustomValidations } from 'src/app/shared/validations/custom-validations';
 import { User, CreateUser } from 'src/app/core/interfaces/user.interface';
 import { UserService } from 'src/app/core/services/user.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
     selector: 'imob-register',
@@ -16,7 +17,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     private subscriptions: Subscription[];
     public formGroup: FormGroup;
-    public showError: boolean;
 
     constructor(
         private readonly _router: Router,
@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
         private readonly _userService: UserService
     ) {
         this.subscriptions = new Array<Subscription>();
-        this.showError = false;
     }
 
     public ngOnInit(): void {
@@ -42,7 +41,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             surname: [null, [Validators.required]],
             email: [null, [Validators.required, Validators.email]],
             password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
-            confirm: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
+            confirm: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(25), CustomValidations.checkPassword()]],
             company: this._formBuilder.array([this.createCompany()]),
             profile: this._formBuilder.array([this.createProfile()])
         });
@@ -71,18 +70,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
         };
     }
 
-    public checkPasswords(): void {
-        if (this.formGroup.get('password')?.value !== this.formGroup.get('confirm')?.value) {
-            this.showError = true;
-        } else {
-            this.showError = false;
-        }
-    }
-
     public onSubmit(): void {
-        if (this.formGroup.valid) {
-            this.formGroup.get('confirm')?.disable();
+        this.formGroup.get('confirm')?.disable();
 
+        if (this.formGroup.valid) {
             const subscription: Subscription = this._userService
                 .create(this.parseFormGroup(this.formGroup.value))
                 .subscribe((data: User) => {
