@@ -15,6 +15,7 @@ import { AuthenticationGuard } from './shared/guards/authentication.guard';
 import { ProfileGuard } from './shared/guards/profile.guard';
 
 import { AuthenticationService } from './core/services/authentication.service';
+import { ProfileService } from './core/services/profile.service';
 import { UserService } from './core/services/user.service';
 import { CompanyService } from './core/services/company.service';
 import { ManagerService } from './core/services/manager.service';
@@ -46,6 +47,7 @@ import { AlertService } from './shared/services/alert.service';
 		AuthenticationGuard,
 		ProfileGuard,
 		AuthenticationService,
+		ProfileService,
 		UserService,
 		CompanyService,
 		ManagerService,
