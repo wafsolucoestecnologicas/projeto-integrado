@@ -1,0 +1,205 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Gestão Interna</mat-card-title>
+        <mat-card-subtitle>Criação de Usuário</mat-card-subtitle>
+    </mat-card-header>
+
+    <br />
+
+    <mat-card-content class="mat-elevation-z4">
+        <mat-toolbar>
+            <span>Usuário</span>
+        </mat-toolbar>
+
+        <div class="container">
+            <div class="flex-container">
+                <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Nome</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="name"
+                                    matInput
+                                    placeholder="Ex: joao"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('name')?.touched &&
+                                        formGroup.get('name')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Sobrenome</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="surname"
+                                    matInput
+                                    placeholder="Ex: almeida"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('surname')?.touched &&
+                                        formGroup.get('surname')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>E-mail</mat-label>
+                                <input
+                                    type="email"
+                                    formControlName="email"
+                                    matInput
+                                    placeholder="Ex: joao@exemplo.com"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('email')?.touched &&
+                                        formGroup.get('email')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('email')?.touched &&
+                                        formGroup.get('email')?.errors?.email">
+                                    E-mail inválido!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Perfil de Usuário</mat-label>
+                                <mat-select formControlName="userType" (selectionChange)="setProfile()">
+                                    <ng-container *ngFor="let userType of usersTypes">
+                                        <mat-option [value]="userType.value" [disabled]="userType.disabled">
+                                            {{ userType.description }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Senha</mat-label>
+                                <input
+                                    type="password"
+                                    formControlName="password"
+                                    matInput
+                                    placeholder="Ex: @34WEr@#$"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('password')?.touched &&
+                                        formGroup.get('password')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('password')?.touched &&
+                                        formGroup.get('password')?.errors?.minlength">
+                                    A senha deve possuir no mínimo 8 caracteres!
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('password')?.touched &&
+                                        formGroup.get('password')?.errors?.maxlength">
+                                    A senha deve possuir no máximo 25 caracteres!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Confirmação de Senha</mat-label>
+                                <input
+                                    type="password"
+                                    formControlName="confirm"
+                                    matInput
+                                    placeholder="Ex: @34WEr@#$"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('confirm')?.touched &&
+                                        formGroup.get('confirm')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('confirm')?.touched &&
+                                        formGroup.get('confirm')?.errors?.minlength">
+                                    A senha deve possuir no mínimo 8 caracteres!
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('confirm')?.touched &&
+                                        formGroup.get('confirm')?.errors?.maxlength">
+                                    A senha deve possuir no máximo 25 caracteres!
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('confirm')?.touched &&
+                                        formGroup.get('confirm')?.errors?.password">
+                                    Senhas não conferem!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout.xs="column"
+                        fxLayout="row"
+                        fxLayoutGap="20px"
+                        fxLayoutAlign="end center">
+                        <div>
+                            <button
+                                type="button"
+                                mat-raised-button
+                                routerLink="/content/users/list">
+                                Cancelar
+                            </button>
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                mat-raised-button
+                                color="primary"
+                                [disabled]="!formGroup.valid">
+                                Salvar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
