@@ -6,7 +6,7 @@ import { SecretariesResolver } from './shared/resolvers/secretaries.resolver';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'list',
         component: ListSecretariesComponent,
         resolve: {
             secretaries: SecretariesResolver

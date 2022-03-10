@@ -6,7 +6,7 @@ import { BrokerResolver } from './shared/resolvers/broker.resolver';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'list',
         component: ListBrokersComponent,
         resolve: {
             brokers: BrokerResolver

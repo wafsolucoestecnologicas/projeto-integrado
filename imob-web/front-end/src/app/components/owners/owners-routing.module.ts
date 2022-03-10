@@ -6,7 +6,7 @@ import { OwnersResolver } from './shared/resolvers/owners.resolver';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'list',
         component: ListOwnersComponent,
         resolve: {
             owners: OwnersResolver

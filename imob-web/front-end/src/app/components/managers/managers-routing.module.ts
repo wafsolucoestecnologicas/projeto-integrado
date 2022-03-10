@@ -6,7 +6,7 @@ import { ManagersResolver } from './shared/resolvers/managers.resolver';
 
 const routes: Routes = [
 	{
-		path: '',
+		path: 'list',
 		component: ListManagersComponent,
 		resolve: {
 			managers: ManagersResolver
