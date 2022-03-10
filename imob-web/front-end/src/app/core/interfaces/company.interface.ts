@@ -6,6 +6,8 @@ export interface Company {
     percentageCommissionReceivable?: number;
     percentageCommissionPayableForClosedDeals?: number;
     percentageCommissionPayableForPropertyCaptured?: number;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface CreateCompany {
