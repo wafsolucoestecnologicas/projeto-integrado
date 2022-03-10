@@ -17,27 +17,27 @@ export class MenuService {
 				options: [
 					{
 						name: 'Usuários',
-						link: 'users'
+						link: 'users/list'
 					},
 					{
 						name: 'Gestores',
-						link: 'managers'
+						link: 'managers/list'
 					},
 					{
 						name: 'Despachantes',
-						link: 'advisors'
+						link: 'advisors/list'
 					},
 					{
 						name: 'Corretores',
-						link: 'brokers'
+						link: 'brokers/list'
 					},
 					{
 						name: 'Secretárias',
-						link: 'secretaries'
+						link: 'secretaries/list'
 					},
 					{
 						name: 'Imobiliárias',
-						link: 'companies'
+						link: 'companies/list'
 					}
 				]
 			},
@@ -47,19 +47,19 @@ export class MenuService {
 				options: [
 					{
 						name: 'Imóveis',
-						link: 'properties'
+						link: 'properties/list'
 					},
 					{
 						name: 'Proprietários',
-						link: 'owners'
+						link: 'owners/list'
 					},
 					{
 						name: 'Clientes',
-						link: 'customers'
+						link: 'customers/list'
 					},
 					{
 						name: 'Leads',
-						link: 'leads'
+						link: 'leads/list'
 					}
 				]
 			},
@@ -69,7 +69,7 @@ export class MenuService {
 				options: [
 					{
 						name: 'Negócios',
-						link: 'businesses'
+						link: 'businesses/list'
 					}
 				]
 			},
@@ -79,11 +79,11 @@ export class MenuService {
 				options: [
 					{
 						name: 'Comissões a Receber',
-						link: 'commissions-receivable'
+						link: 'commissions-receivable/list'
 					},
 					{
 						name: 'Comissões a Pagar',
-						link: 'commissions-payable'
+						link: 'commissions-payable/list'
 					}
 				]
 			}
