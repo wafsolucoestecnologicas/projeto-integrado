@@ -70,14 +70,14 @@ export class ListUsersComponent implements OnInit, AfterViewInit, OnDestroy {
         this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
     }
 
-    public redirectToEdit(id: number): void {
-        this._router.navigate([`${this.path}/edit`, id]);
-    }
-
     public redirectToView(id: number): void {
         this._router.navigate([`${this.path}/view`, id]);
     }
 
+    public redirectToEdit(id: number): void {
+        this._router.navigate([`${this.path}/edit`, id]);
+    }
+    
     public openDialog(id: number): void {
         const dialogRef: MatDialogRef<DeleteUserComponent> = this._matDialog
             .open(DeleteUserComponent, {
