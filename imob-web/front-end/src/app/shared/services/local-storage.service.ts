@@ -30,8 +30,8 @@ export class LocalStorageService {
             if (key === 'token') {
                 return this.storage.getItem(key);
             }
-
-            return JSON.parse(JSON.stringify(this.storage.getItem(key)));
+            
+            return JSON.parse(this.storage.getItem(key) as string);
         }
 
         return null;
