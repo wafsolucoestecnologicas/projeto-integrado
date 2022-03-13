@@ -1,5 +1,6 @@
 .mat-sidenav-container {
     min-height: 75vh !important;
+    background-color: #fff;
 }
 
 .sidenav {
