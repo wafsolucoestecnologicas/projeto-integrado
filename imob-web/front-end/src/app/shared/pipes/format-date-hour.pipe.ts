@@ -6,8 +6,10 @@ import * as moment from 'moment';
 })
 export class FormatDateHourPipe implements PipeTransform {
 
-    public transform(value: string): string {
-        return moment(value).format('DD/MM/YYYY HH:mm:ss');
+    public transform(value: string): string | null {
+        if (value) return moment(value).format('DD/MM/YYYY HH:mm:ss');
+
+        return null;
     }
 
 }
