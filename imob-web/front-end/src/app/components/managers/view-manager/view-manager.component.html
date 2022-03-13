@@ -1,0 +1,89 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Gestão Interna</mat-card-title>
+        <mat-card-subtitle>Visualização de Gestor</mat-card-subtitle>
+    </mat-card-header>
+
+    <br />
+
+    <mat-card-content class="mat-elevation-z4">
+        <mat-toolbar>
+            <span>Gestor</span>
+        </mat-toolbar>
+
+        <div class="container">
+            <div class="flex-container">
+                <mat-list>
+                    <mat-list-item>
+                        <strong>Nome:</strong>
+                        <span class="data">{{ manager.name }}</span>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <strong>Sobrenome:</strong>
+                        <span class="data">{{ manager.surname }}</span>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <strong>E-mail:</strong>
+                        <span class="data">{{ manager.email }}</span>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <strong>Nascimento:</strong>
+                        <span class="data">{{ manager.birthDate | formatDate }}</span>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <strong>RG:</strong>
+                        <span class="data">{{ manager.RG | mask: MASKS.RG }}</span>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <strong>CPF:</strong>
+                        <span class="data">{{ manager.CPF | mask: MASKS.CPF }}</span>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <strong>Telefone Fixo:</strong>
+                        <ng-container *ngIf="manager.landline">
+                            <span class="data">{{ manager.landline | mask: MASKS.LANDLINE }}</span>
+                        </ng-container>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <strong>Telefone Móvel:</strong>
+                        <span class="data">{{ manager.cellPhone | mask: MASKS.CELL_PHONE }}</span>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <strong>Profissão:</strong>
+                        <span class="data">{{ manager.profession }}</span>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <strong>Criado em:</strong>
+                        <span class="data">{{ manager.createdAt | formatDateHour }}</span>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <strong>Atualizado em:</strong>
+                        <span class="data">{{ manager.updatedAt | formatDateHour }}</span>
+                    </mat-list-item>
+                </mat-list>
+
+                <div
+                    fxLayout.xs="column"
+                    fxLayout="row"
+                    fxLayoutAlign="end center">
+                    <button
+                        type="button"
+                        mat-raised-button
+                        routerLink="/content/managers/list">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
