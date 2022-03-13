@@ -46,7 +46,7 @@ export class SecretaryService {
         );
     }
 
-    public update(body: UpdateSecretary, id: number): Observable<Secretary[]> {
+    public update(body: UpdateSecretary, id: number): Observable<Secretary> {
         return this.http
             .put<Secretary>(`${environment.URL}/${this.ROUTES.SECRETARIES}/${id}`, body)
             .pipe(
