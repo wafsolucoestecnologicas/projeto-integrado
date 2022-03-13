@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Profiles } from 'src/app/core/enums/profile.enum';
 
 import { User } from 'src/app/core/interfaces/user.interface';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { Profiles } from 'src/app/core/enums/profile.enum';
 
 @Component({
     selector: 'imob-view-user',
