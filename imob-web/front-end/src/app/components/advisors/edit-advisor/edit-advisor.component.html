@@ -1,0 +1,230 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Gestão Interna</mat-card-title>
+        <mat-card-subtitle>Edição de Despachante</mat-card-subtitle>
+    </mat-card-header>
+
+    <br />
+
+    <mat-card-content class="mat-elevation-z4">
+        <mat-toolbar>
+            <span>Despachante</span>
+        </mat-toolbar>
+
+        <div class="container">
+            <div class="flex-container">
+                <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Nome</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="name"
+                                    matInput
+                                    placeholder="Ex: joão"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('name')?.touched &&
+                                        formGroup.get('name')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Sobrenome</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="surname"
+                                    matInput
+                                    placeholder="Ex: almeida"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('surname')?.touched &&
+                                        formGroup.get('surname')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>E-mail</mat-label>
+                                <input
+                                    type="email"
+                                    formControlName="email"
+                                    matInput
+                                    placeholder="Ex: joao@exemplo.com"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('email')?.touched &&
+                                        formGroup.get('email')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('email')?.touched &&
+                                        formGroup.get('email')?.errors?.email">
+                                    E-mail inválido!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Nascimento</mat-label>
+                                <input type="date" formControlName="birthDate" matInput />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('birthDate')?.touched &&
+                                        formGroup.get('birthDate')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>RG</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="RG"
+                                    matInput
+                                    placeholder="Ex: 78598578"
+                                    [mask]="MASKS.RG" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('RG')?.touched &&
+                                        formGroup.get('RG')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>CPF</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="CPF"
+                                    matInput
+                                    placeholder="Ex: 091.261.244-78"
+                                    [mask]="MASKS.CPF" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('CPF')?.touched &&
+                                        formGroup.get('CPF')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Telefone Fixo</mat-label>
+                                <input
+                                    type="tel"
+                                    formControlName="landline"
+                                    matInput
+                                    placeholder="Ex: (31) 3322-5566"
+                                    [mask]="MASKS.LANDLINE" />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Telefone Móvel</mat-label>
+                                <input
+                                    type="tel"
+                                    formControlName="cellPhone"
+                                    matInput
+                                    placeholder="Ex: (31) 9 8685-8899"
+                                    [mask]="MASKS.CELL_PHONE" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('cellPhone')?.touched &&
+                                        formGroup.get('cellPhone')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px">
+                        <div fxFlex="100">
+                            <mat-form-field>
+                                <mat-label>Profissão</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="profession"
+                                    matInput
+                                    placeholder="Ex: Despachante" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout.xs="column"
+                        fxLayout="row"
+                        fxLayoutGap="20px"
+                        fxLayoutAlign="end center">
+                        <div>
+                            <button
+                                type="button"
+                                mat-raised-button
+                                routerLink="/content/advisors/list">
+                                Cancelar
+                            </button>
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                mat-raised-button
+                                color="primary"
+                                [disabled]="!formGroup.valid">
+                                Salvar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
