@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BrokerResolver } from './broker.resolver';
+import { BrokersResolver } from './brokers.resolver';
 
-describe('BrokerResolver', () => {
-    let resolver: BrokerResolver;
+describe('BrokersResolver', () => {
+    let resolver: BrokersResolver;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        resolver = TestBed.inject(BrokerResolver);
+        resolver = TestBed.inject(BrokersResolver);
     });
 
     it('should be created', () => {

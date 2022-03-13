@@ -6,7 +6,7 @@ import { Broker } from 'src/app/core/interfaces/broker.interface';
 import { BrokerService } from 'src/app/core/services/broker.service';
 
 @Injectable()
-export class BrokerResolver implements Resolve<Broker[]> {
+export class BrokersResolver implements Resolve<Broker[]> {
 
 	constructor(
 		private readonly _brokerService: BrokerService
