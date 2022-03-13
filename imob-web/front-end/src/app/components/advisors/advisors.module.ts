@@ -5,11 +5,17 @@ import { AdvisorsRoutingModule } from './advisors-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { ListAdvisorsComponent } from './list-advisors/list-advisors.component';
+import { ViewAdvisorComponent } from './view-advisor/view-advisor.component';
+import { EditAdvisorComponent } from './edit-advisor/edit-advisor.component';
+
 import { AdvisorsResolver } from './shared/resolvers/advisors.resolver';
+import { AdvisorResolver } from './shared/resolvers/advisor.resolver';
 
 @NgModule({
     declarations: [
-        ListAdvisorsComponent
+        ListAdvisorsComponent,
+        ViewAdvisorComponent,
+        EditAdvisorComponent
     ],
     imports: [
         CommonModule,
@@ -17,7 +23,8 @@ import { AdvisorsResolver } from './shared/resolvers/advisors.resolver';
         SharedModule
     ],
     providers: [
-        AdvisorsResolver
+        AdvisorsResolver,
+        AdvisorResolver
     ]
 })
 export class AdvisorsModule {}

@@ -5,11 +5,17 @@ import { ManagersRoutingModule } from './managers-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { ListManagersComponent } from './list-managers/list-managers.component';
+import { ViewManagerComponent } from './view-manager/view-manager.component';
+import { EditManagerComponent } from './edit-manager/edit-manager.component';
+
 import { ManagersResolver } from './shared/resolvers/managers.resolver';
+import { ManagerResolver } from './shared/resolvers/manager.resolver';
 
 @NgModule({
     declarations: [
-        ListManagersComponent
+        ListManagersComponent,
+        ViewManagerComponent,
+        EditManagerComponent
     ],
     imports: [
         CommonModule,
@@ -17,7 +23,8 @@ import { ManagersResolver } from './shared/resolvers/managers.resolver';
         SharedModule
     ],
     providers: [
-        ManagersResolver
+        ManagersResolver,
+        ManagerResolver
     ]
 })
 export class ManagersModule {}
