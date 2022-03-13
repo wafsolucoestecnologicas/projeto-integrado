@@ -23,10 +23,12 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { NgxMaskModule } from 'ngx-mask';
 import { FormatDateHourPipe } from './pipes/format-date-hour.pipe';
+import { FormatDatePipe } from './pipes/format-date.pipe';
 
 @NgModule({
 	declarations: [
-		FormatDateHourPipe
+		FormatDateHourPipe,
+  		FormatDatePipe
 	],
 	imports: [
 		CommonModule,
@@ -54,6 +56,7 @@ import { FormatDateHourPipe } from './pipes/format-date-hour.pipe';
 	],
 	exports: [
 		FormatDateHourPipe,
+		FormatDatePipe,
 		RouterModule,
 		HttpClientModule,
 		ReactiveFormsModule,
