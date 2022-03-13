@@ -44,6 +44,13 @@ const routes: Routes = [
                     )
             },
             {
+                path: 'companies',
+                loadChildren: () =>
+                    import('../companies/companies.module').then(
+                        (module) => module.CompaniesModule
+                    )
+            },
+            {
                 path: 'owners',
                 loadChildren: () =>
                     import('../owners/owners.module').then(
@@ -55,13 +62,6 @@ const routes: Routes = [
                 loadChildren: () =>
                     import('../customers/customers.module').then(
                         (module) => module.CustomersModule
-                    )
-            },
-            {
-                path: 'companies',
-                loadChildren: () =>
-                    import('../companies/companies.module').then(
-                        (module) => module.CompaniesModule
                     )
             }
         ]
