@@ -12,22 +12,20 @@ export interface Broker {
     landline?: string;
     cellPhone: string;
     profession?: string;
-    company: Company
+    company: Company,
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface UpdateBroker {
+    id?: number;
     name: string;
     surname: string;
     email: string;
     birthDate: string;
     RG: string;
     CPF: string;
-    landline: string;
+    landline?: string;
     cellPhone: string;
-    profession: string
-}
-
-export interface DeleteBroker {
-    user: number;
-    broker: number;
+    profession?: string
 }
