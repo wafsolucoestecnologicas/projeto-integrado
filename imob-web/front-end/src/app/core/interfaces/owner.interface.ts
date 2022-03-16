@@ -13,7 +13,9 @@ export interface Owner {
     landline?: string;
     cellPhone: string;
     profession?: string;
-    company: Company
+    company: Company,
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface CreateOwner {
@@ -30,15 +32,17 @@ export interface CreateOwner {
 }
 
 export interface UpdateOwner {
+    id?: number;
     name: string;
     surname: string;
     email: string;
     birthDate: string;
+    checked: boolean;
     RG: string;
     CPF: string;
-    landline: string;
+    landline?: string;
     cellPhone: string;
-    profession: string;
+    profession?: string;
 }
 
 export interface DeleteOwner {

@@ -13,6 +13,8 @@ export interface Customer {
     cellPhone: string;
     profession?: string;
     company: Company;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface CreateCustomer {
@@ -28,15 +30,16 @@ export interface CreateCustomer {
 }
 
 export interface UpdateCustomer {
+    id?: number;
     name: string;
     surname: string;
     email: string;
     birthDate: string;
     RG: string;
     CPF: string;
-    landline: string;
+    landline?: string;
     cellPhone: string;
-    profession: string;
+    profession?: string;
 }
 
 export interface DeleteCustomer {
