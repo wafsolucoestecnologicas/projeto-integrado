@@ -20,15 +20,18 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import { NgxMaskModule } from 'ngx-mask';
 import { FormatDateHourPipe } from './pipes/format-date-hour.pipe';
 import { FormatDatePipe } from './pipes/format-date.pipe';
+import { FormatPhonePipe } from './pipes/format-phone.pipe';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
 	declarations: [
 		FormatDateHourPipe,
-  		FormatDatePipe
+  		FormatDatePipe,
+    	FormatPhonePipe
 	],
 	imports: [
 		CommonModule,
@@ -52,11 +55,13 @@ import { FormatDatePipe } from './pipes/format-date.pipe';
 		MatPaginatorModule,
 		MatSelectModule,
 		MatDividerModule,
+		MatSlideToggleModule,
 		NgxMaskModule.forChild()
 	],
 	exports: [
 		FormatDateHourPipe,
 		FormatDatePipe,
+		FormatPhonePipe,
 		RouterModule,
 		HttpClientModule,
 		ReactiveFormsModule,
@@ -77,6 +82,7 @@ import { FormatDatePipe } from './pipes/format-date.pipe';
 		MatPaginatorModule,
 		MatSelectModule,
 		MatDividerModule,
+		MatSlideToggleModule,
 		NgxMaskModule
 	]
 })
