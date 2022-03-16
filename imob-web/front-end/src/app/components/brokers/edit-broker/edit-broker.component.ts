@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Data } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { Broker, UpdateBroker } from 'src/app/core/interfaces/broker.interface';
@@ -41,6 +41,8 @@ export class EditBrokerComponent implements OnInit, OnDestroy {
 			.subscribe((data: Data) => {
 				if (data && data['broker']) {
 					this.broker = data['broker'];
+                    this.broker.landline = this.broker.landline?.trim();
+
 					this.formGroup.patchValue(this.broker);
 				} else {
 					this._router.navigate([`${this.path}/list`]);

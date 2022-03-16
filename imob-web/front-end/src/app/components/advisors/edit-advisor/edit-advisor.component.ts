@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Data } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { Advisor, UpdateAdvisor } from 'src/app/core/interfaces/advisor.interface';
@@ -41,6 +41,8 @@ export class EditAdvisorComponent implements OnInit, OnDestroy {
 			.subscribe((data: Data) => {
 				if (data && data['advisor']) {
 					this.advisor = data['advisor'];
+                    this.advisor.landline = this.advisor.landline?.trim();
+
 					this.formGroup.patchValue(this.advisor);
 				} else {
 					this._router.navigate([`${this.path}/list`]);

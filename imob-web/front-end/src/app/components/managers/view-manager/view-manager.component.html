@@ -47,13 +47,13 @@
                     <mat-list-item>
                         <strong>Telefone Fixo:</strong>
                         <ng-container *ngIf="manager.landline">
-                            <span class="data">{{ manager.landline | mask: MASKS.LANDLINE }}</span>
+                            <span class="data">{{ manager.landline | formatPhone | mask: MASKS.LANDLINE }}</span>
                         </ng-container>
                     </mat-list-item>
 
                     <mat-list-item>
                         <strong>Telefone Móvel:</strong>
-                        <span class="data">{{ manager.cellPhone | mask: MASKS.CELL_PHONE }}</span>
+                        <span class="data">{{ manager.cellPhone | formatPhone | mask: MASKS.CELL_PHONE }}</span>
                     </mat-list-item>
 
                     <mat-list-item>

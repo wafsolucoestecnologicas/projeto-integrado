@@ -90,7 +90,11 @@
                         <div fxFlex="50">
                             <mat-form-field>
                                 <mat-label>Nascimento</mat-label>
-                                <input type="date" formControlName="birthDate" matInput />
+                                <input
+                                    type="date"
+                                    formControlName="birthDate"
+                                    matInput
+                                    required />
                                 <mat-error
                                     *ngIf="
                                         formGroup.get('birthDate')?.touched &&
@@ -115,6 +119,7 @@
                                     formControlName="RG"
                                     matInput
                                     placeholder="Ex: 78598578"
+                                    required
                                     [mask]="MASKS.RG" />
                                 <mat-error
                                     *ngIf="
@@ -133,6 +138,7 @@
                                     formControlName="CPF"
                                     matInput
                                     placeholder="Ex: 091.261.244-78"
+                                    required
                                     [mask]="MASKS.CPF" />
                                 <mat-error
                                     *ngIf="
@@ -170,6 +176,7 @@
                                     formControlName="cellPhone"
                                     matInput
                                     placeholder="Ex: (31) 9 8685-8899"
+                                    required
                                     [mask]="MASKS.CELL_PHONE" />
                                 <mat-error
                                     *ngIf="

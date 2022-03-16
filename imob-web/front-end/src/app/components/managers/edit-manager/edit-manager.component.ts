@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Data } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { Manager, UpdateManager } from 'src/app/core/interfaces/manager.interface';
@@ -41,6 +41,8 @@ export class EditManagerComponent implements OnInit, OnDestroy {
             .subscribe((data: Data) => {
                 if (data && data['manager']) {
                     this.manager = data['manager'];
+                    this.manager.landline = this.manager.landline?.trim();
+                    
                     this.formGroup.patchValue(this.manager);
                 } else {
                     this._router.navigate([`${this.path}/list`]);

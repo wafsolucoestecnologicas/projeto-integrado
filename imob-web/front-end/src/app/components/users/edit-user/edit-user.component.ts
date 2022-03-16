@@ -39,6 +39,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
             .subscribe((data: Data) => {
                 if (data && data['user']) {
                     this.user = data['user'];
+                    
                     this.formGroup.patchValue(this.user);
                 } else {
                     this._router.navigate([`${this.path}/list`]);

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Data } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { Secretary, UpdateSecretary } from 'src/app/core/interfaces/secretary.interface';
@@ -41,6 +41,8 @@ export class EditSecretaryComponent implements OnInit, OnDestroy {
 			.subscribe((data: Data) => {
 				if (data && data['secretary']) {
 					this.secretary = data['secretary'];
+                    this.secretary.landline = this.secretary.landline?.trim();
+                    
 					this.formGroup.patchValue(this.secretary);
 				} else {
 					this._router.navigate([`${this.path}/list`]);
