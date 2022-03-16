@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Router, ActivatedRoute, Data } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Data } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 
 import { Customer } from 'src/app/core/interfaces/customer.interface';
@@ -22,9 +22,11 @@ export class ListCustomersComponent implements OnInit, AfterViewInit, OnDestroy 
     private customers: Customer[];
     public dataSource: MatTableDataSource<Customer>;
     public displayedColumns: string[];
+    public path: string;
     public MASKS: typeof Masks;
 
     constructor(
+        private readonly _router: Router,
         private readonly _activatedRoute: ActivatedRoute,
         private readonly _alertService: AlertService
     ) {
@@ -38,6 +40,7 @@ export class ListCustomersComponent implements OnInit, AfterViewInit, OnDestroy 
             'cellPhone',
             'options'
         );
+        this.path = '/content/customers';
         this.MASKS = Masks;
     }
 
@@ -63,5 +66,13 @@ export class ListCustomersComponent implements OnInit, AfterViewInit, OnDestroy 
     public ngOnDestroy(): void {
         this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
     }
+
+    public redirectToView(id: number): void {
+		this._router.navigate([`${this.path}/view`, id]);
+	}
+
+	public redirectToEdit(id: number): void {
+		this._router.navigate([`${this.path}/edit`, id]);
+	}
 	
 }

@@ -12,7 +12,7 @@
 
             <span class="spacer"></span>
 
-            <button mat-icon-button>
+            <button mat-icon-button routerLink="../create">
                 <mat-icon>add_circle_outline</mat-icon>
             </button>
         </mat-toolbar>
@@ -51,12 +51,12 @@
                     </button>
 
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="redirectToView(element.id)">
                             <mat-icon>visibility</mat-icon>
                             <span>Visualizar</span>
                         </button>
 
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="redirectToEdit(element.id)">
                             <mat-icon>edit</mat-icon>
                             <span>Editar</span>
                         </button>
