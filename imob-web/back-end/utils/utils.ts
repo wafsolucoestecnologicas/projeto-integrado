@@ -1,3 +1,5 @@
+import { createConnection, ConnectionOptions, getConnectionOptions } from "typeorm";
+
 export const statusMessages: { [key: number]: string } = {
     400: 'O pedido não pôde ser entregue devido à sintaxe incorreta!',
     401: 'Não possui credenciais de autenticação válidas para o recurso!',
@@ -33,4 +35,10 @@ export const validateURLWithoutAuthentication = (url: string, method: string): b
     }
 
     return isValid;
+};
+
+export const createTypeORMConnection = async () => {
+    const options: ConnectionOptions = await getConnectionOptions(process.env.NODE_ENV);
+
+    return await createConnection({ ...options, name: 'default' });
 };
