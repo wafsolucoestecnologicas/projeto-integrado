@@ -10,7 +10,7 @@
 		"build": "sucrase ./src -d ./dist --transforms typescript,imports",
 		"typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
 		"swagger-autogen": "ts-node --files ./swagger.ts",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "jest --coverage --silent"
 	},
 	"keywords": [],
 	"author": "Wellington Felix <wafsolucoestecnologicas@gmail.com",
@@ -34,14 +34,19 @@
 		"@types/cors": "^2.8.12",
 		"@types/dotenv": "^8.2.0",
 		"@types/express": "^4.17.13",
+		"@types/jest": "^27.4.1",
 		"@types/jsonwebtoken": "^8.5.5",
 		"@types/node": "^16.9.1",
 		"@types/node-fetch": "^2.5.12",
+		"@types/supertest": "^2.0.12",
 		"@types/swagger-ui-express": "^4.1.3",
 		"concurrently": "^6.4.0",
+		"jest": "^27.5.1",
 		"nodemon": "^2.0.12",
 		"sucrase": "^3.20.1",
+		"supertest": "^6.2.2",
 		"swagger-autogen": "^2.13.0",
+		"ts-jest": "^27.1.4",
 		"ts-node": "^10.4.0",
 		"typescript": "^4.4.3"
 	}
