@@ -36,8 +36,7 @@ const documentation: any = {
         title: 'API IMOB Web',
         description: 'API para gestão de informações da plataforma IMOB Web',
     },
-    host: 'api-imob-web.herokuapp.com',
-    //host: 'localhost:3000',
+    host: (process.env.NODE_ENV === 'production') ? 'api-imob-web.herokuapp.com' : 'localhost:3000',
     basePath: '/',
     schemes: ['http', 'https'],
     consumes: ['application/json'],
@@ -619,7 +618,7 @@ const documentation: any = {
             $name: 'wellington',
             $surname: 'aparecido',
             $email: 'wellington.felix@gmail.com',
-            $password: '12345678'
+            password: '12345678'
         },
         createCompany: {
             $CNPJ: '75536670000126',
@@ -709,6 +708,7 @@ const documentation: any = {
             $surname: 'brito',
             $email: 'cesar.brito@gmail.com',
             $birthDate: '2021-03-08',
+            $checked: true,
             $RG: '157882299',
             $CPF: '20717934047',
             landline: '3133228544',
