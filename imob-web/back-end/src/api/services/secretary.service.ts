@@ -16,6 +16,9 @@ export class SecretaryService {
                 relations: [
                     'company'
                 ],
+                where: {
+                    company: payload.company.id
+                }
             });
 
         return secretaryEntity;

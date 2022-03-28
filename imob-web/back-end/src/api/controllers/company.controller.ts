@@ -14,7 +14,7 @@ export class CompanyController {
                 new CompanyService();
 
             const companyEntity: CompanyEntity[] =
-                await companyService.index();
+                await companyService.index(request.payload);
 
             return response.status(200).json(companyEntity);
         } catch (error: any) {
@@ -86,7 +86,7 @@ export class CompanyController {
     
                         if (result) {
                             const companyEntity: CompanyEntity =
-                                await companyService.udpate(Number(request.params.id), request.body, transaction);
+                                await companyService.update(Number(request.params.id), request.body, transaction);
     
                             return response.status(200).json(companyEntity);
                         } else {

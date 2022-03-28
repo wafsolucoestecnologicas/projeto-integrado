@@ -1,5 +1,6 @@
 import { Repository, getRepository, DeleteResult, EntityManager } from 'typeorm';
 import { CompanyEntity } from '../entities/company.entity';
+import { Payload } from '../../../utils/interfaces/jwt.interfaces';
 
 export class CompanyService {
 
@@ -9,9 +10,13 @@ export class CompanyService {
         this.repository = getRepository(CompanyEntity);
     }
 
-    public async index(): Promise<CompanyEntity[]> {
+    public async index(payload: Payload): Promise<CompanyEntity[]> {
         const companyEntity: CompanyEntity[] =
-            await this.repository.find();
+            await this.repository.find({
+                where: {
+                    id: payload.company.id
+                }
+            });
 
         return companyEntity;
     }
@@ -44,7 +49,7 @@ export class CompanyService {
         return companyEntity;
     }
 
-    public async udpate(id: number, data: CompanyEntity, transaction: EntityManager): Promise<CompanyEntity> {
+    public async update(id: number, data: CompanyEntity, transaction: EntityManager): Promise<CompanyEntity> {
         const companyEntity: CompanyEntity =
             this.repository.create({
                 id: id,

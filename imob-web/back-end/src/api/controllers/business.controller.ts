@@ -131,7 +131,7 @@ export class BusinessController {
 
                     if (request.body.owner && request.body.owner.id) {
                         const ownerEntity: OwnerEntity | undefined =
-                            await ownerService.read(request.body.owner.id);
+                            await ownerService.read(request.body.owner.id, request.payload);
 
                         if (ownerEntity) {
                             request.body.owner = ownerEntity;
@@ -144,7 +144,7 @@ export class BusinessController {
 
                     if (request.body.customer && request.body.customer.id) {
                         const customerEntity: CustomerEntity | undefined =
-                            await customerService.read(request.body.customer.id);
+                            await customerService.read(request.body.customer.id, request.payload);
 
                         if (customerEntity) {
                             request.body.customer = customerEntity;

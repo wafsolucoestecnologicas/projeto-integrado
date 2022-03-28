@@ -14,7 +14,7 @@ export class OwnerController {
                 new OwnerService();
 
             const ownerEntity: OwnerEntity[] =
-                await ownerService.index();
+                await ownerService.index(request.payload);
 
             return response.status(200).json(ownerEntity);
         } catch (error: any) {
@@ -61,7 +61,7 @@ export class OwnerController {
 
             if (Number(request.params.id)) {
                 const ownerEntity: OwnerEntity | undefined =
-                    await ownerService.read(Number(request.params.id));
+                    await ownerService.read(Number(request.params.id), request.payload);
 
                 return response.status(200).json(ownerEntity);
             } else {

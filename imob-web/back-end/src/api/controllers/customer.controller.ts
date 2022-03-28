@@ -14,7 +14,7 @@ export class CustomerController {
                 new CustomerService();
 
             const customerEntity: CustomerEntity[] =
-                await customerService.index();
+                await customerService.index(request.payload);
 
             return response.status(200).json(customerEntity);
         } catch (error: any) {
@@ -61,7 +61,7 @@ export class CustomerController {
 
             if (Number(request.params.id)) {
                 const customerEntity: CustomerEntity | undefined =
-                    await customerService.read(Number(request.params.id));
+                    await customerService.read(Number(request.params.id), request.payload);
 
                 return response.status(200).json(customerEntity);
             } else {

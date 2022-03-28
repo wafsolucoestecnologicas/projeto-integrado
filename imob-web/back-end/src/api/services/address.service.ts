@@ -35,7 +35,7 @@ export class AddressService {
                 customer: data?.customer,
                 property: data?.property,
                 street: data.street.toLowerCase(),
-                complement: data.complement.toLowerCase(),
+                complement: data.complement ? data.complement.toLowerCase() : '',
                 number: data.number,
                 CEP: data.CEP,
                 isCompany: data.isCompany,
@@ -74,7 +74,7 @@ export class AddressService {
                 id: id,
                 neighborhood: data.neighborhood,
                 street: data.street.toLowerCase(),
-                complement: data.complement.toLowerCase(),
+                complement: data.complement ? data.complement.toLowerCase() : '',
                 number: data.number,
                 CEP: data.CEP,
                 isCompany: data.isCompany,
@@ -162,10 +162,10 @@ export class AddressService {
                     JSON.parse(JSON.stringify(data));
 
                 address.cep = parsed.cep;
-                address.logradouro = parsed.logradouro.toLowerCase();
-                address.complemento = parsed.complemento.toLowerCase();
-                address.bairro = parsed.bairro.toLowerCase();
-                address.localidade = parsed.localidade.toLowerCase();
+                address.logradouro = parsed.logradouro ? parsed.logradouro.toLowerCase() : '';
+                address.complemento = parsed.complemento ? parsed.complemento.toLowerCase() : '';
+                address.bairro = parsed.bairro ? parsed.bairro.toLowerCase() : '';
+                address.localidade = parsed.localidade ? parsed.localidade.toLowerCase() : '';
                 address.uf = parsed.uf;
                 address.ibge = parsed.ibge;
                 address.gia = parsed.gia;

@@ -268,10 +268,6 @@ export class UserController {
                         await userService.read(Number(request.params.id), request.payload);
 
                     if (userEntity) {
-                        const companyService: CompanyService =
-                            new CompanyService();
-
-                        const companyId: number = userEntity.company.id;
                         const personId: number =
                             userEntity.administrator?.id ||
                             userEntity.manager?.id ||
@@ -327,13 +323,9 @@ export class UserController {
                                 break;
                         }
 
-                        const companyDeleteResult: DeleteResult =
-                            await companyService.delete(companyId, transaction);
-
                         return response.status(200).json({
                             user: userDeleteResult.affected,
-                            person: personDeleteResult.affected,
-                            company: companyDeleteResult.affected
+                            person: personDeleteResult.affected
                         });
                     } else {
                         return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[1]}` });

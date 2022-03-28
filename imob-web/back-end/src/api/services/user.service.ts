@@ -134,9 +134,10 @@ export class UserService {
                 id: id,
                 name: data.name.toLowerCase(),
                 surname: data.surname.toLowerCase(),
-                email: data.email.toLowerCase(),
-                password: data.password
+                email: data.email.toLowerCase()
             });
+
+        if (data.password) userEntity.password = data.password;
 
         const result: UserEntity =
             await transaction.save(userEntity);
@@ -255,8 +256,7 @@ export class UserService {
 
         if (!data.name ||
             !data.surname ||
-            !data.email ||
-            !data.password) {
+            !data.email) {
             isValid = false;
         }
 

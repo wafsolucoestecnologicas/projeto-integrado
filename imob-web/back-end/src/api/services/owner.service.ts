@@ -1,5 +1,6 @@
 import { getRepository, Repository, DeleteResult, EntityManager } from 'typeorm';
 import { OwnerEntity } from '../entities/owner.entity';
+import { Payload } from '../../../utils/interfaces/jwt.interfaces';
 
 export class OwnerService {
 
@@ -9,12 +10,15 @@ export class OwnerService {
         this.repository = getRepository(OwnerEntity);
     }
 
-    public async index(): Promise<OwnerEntity[]> {
+    public async index(payload: Payload): Promise<OwnerEntity[]> {
         const ownerEntity: OwnerEntity[] =
             await this.repository.find({
                 relations: [
                     'company'
                 ],
+                where: {
+                    company: payload.company.id
+                }
             });
 
         return ownerEntity;
@@ -43,14 +47,15 @@ export class OwnerService {
         return result;
     }
 
-    public async read(id: number): Promise<OwnerEntity | undefined> {
+    public async read(id: number, payload: Payload): Promise<OwnerEntity | undefined> {
         const ownerEntity: OwnerEntity | undefined =
             await this.repository.findOne({
                 relations: [
                     'company'
                 ],
                 where: {
-                    id: id
+                    id: id,
+                    company: payload.company.id
                 }
             });
 
@@ -65,12 +70,12 @@ export class OwnerService {
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
                 birthDate: data.birthDate,
+                checked: data.checked,
                 RG: data.RG,
                 CPF: data.CPF,
                 landline: data.landline,
                 cellPhone: data.cellPhone,
-                profession: data.profession,
-                checked: data.checked
+                profession: data.profession
             });
 
         const result: OwnerEntity =
