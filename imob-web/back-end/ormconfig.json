@@ -1,4 +1,6 @@
-{
+[
+  {
+    "name": "production",
     "type": "postgres",
     "host": "tcc-puc-minas-db-1.c79fjwhk0fpx.us-east-1.rds.amazonaws.com",
     "port": 5432,
@@ -7,16 +9,28 @@
     "database": "imob_web",
     "synchronize": false,
     "logging": true,
-    "entities": [
-        "dist/src/api/entities/*.js"
-    ],
-    "migrations": [
-        "dist/src/database/migrations/*.js"
-    ],
-    "subscribers": [
-        "src/subscriber/**/*.ts"
-    ],
+    "entities": ["dist/src/api/entities/*.js"],
+    "migrations": ["dist/src/database/migrations/*.js"],
+    "subscribers": ["src/subscriber/**/*.ts"],
     "cli": {
-        "migrationsDir": "src/database/migrations"
+      "migrationsDir": "src/database/migrations"
     }
-}
+  },
+  {
+    "name": "development",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "admin",
+    "database": "imob_web",
+    "synchronize": false,
+    "logging": true,
+    "entities": ["src/api/entities/*.ts"],
+    "migrations": ["src/database/migrations/*.ts"],
+    "subscribers": ["src/subscriber/**/*.ts"],
+    "cli": {
+      "migrationsDir": "src/database/migrations"
+    }
+  }
+]
