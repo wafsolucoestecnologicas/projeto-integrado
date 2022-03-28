@@ -2537,10 +2537,6 @@
                 "person": {
                   "type": "number",
                   "example": 1
-                },
-                "company": {
-                  "type": "number",
-                  "example": 1
                 }
               },
               "xml": {
@@ -16143,8 +16139,6 @@
       "required": [
         "id",
         "status",
-        "dateVisit",
-        "dateSale",
         "createdByAdministrator",
         "createdByManager",
         "createdBySecretary",
@@ -16310,7 +16304,6 @@
       "required": [
         "id",
         "street",
-        "complement",
         "number",
         "CEP",
         "isCompany",
@@ -16360,7 +16353,12 @@
         "state": {
           "$ref": "#/definitions/State"
         }
-      }
+      },
+      "required": [
+        "id",
+        "city",
+        "state"
+      ]
     },
     "State": {
       "type": "object",
@@ -16377,7 +16375,12 @@
           "type": "string",
           "example": "MG"
         }
-      }
+      },
+      "required": [
+        "id",
+        "state",
+        "UF"
+      ]
     },
     "authentication": {
       "type": "object",
@@ -16472,8 +16475,7 @@
       "required": [
         "name",
         "surname",
-        "email",
-        "password"
+        "email"
       ]
     },
     "createCompany": {
@@ -16868,6 +16870,10 @@
           "type": "string",
           "example": "2021-03-08"
         },
+        "checked": {
+          "type": "boolean",
+          "example": true
+        },
         "RG": {
           "type": "string",
           "example": "157882299"
@@ -16894,6 +16900,7 @@
         "surname",
         "email",
         "birthDate",
+        "checked",
         "RG",
         "CPF",
         "cellPhone"
