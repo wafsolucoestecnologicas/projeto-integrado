@@ -654,8 +654,7 @@ router.delete('/:id',
 			description: 'Deleção do usuário realizada com sucesso',
 			schema: {
 				'user': 1,
-				'person': 1,
-				'company': 1
+				'person': 1
 			}
 	   }
 	 * #swagger.responses[400] = {
