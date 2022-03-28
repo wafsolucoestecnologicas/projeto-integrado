@@ -150,7 +150,7 @@ export class App {
     private listen(): void {
         this.express.listen(this.port, () => {
             console.log(`Servidor Rodando na Porta ${this.port}!`);
-        })
+        });
     }
 
     public startApp(): express.Application {
