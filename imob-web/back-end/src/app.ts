@@ -24,17 +24,17 @@ export class App {
         this.port = CONFIGURATION.SERVER.PORT || 3000;
         this.origins = ['http://localhost:4200', 'https://imob-web.herokuapp.com', 'http://localhost:3000', 'https://api-imob-web.herokuapp.com'];
         this.options = {
-            allowedHeaders: [
+            /*allowedHeaders: [
                 'Origin',
                 'X-Requested-With',
                 'Content-Type',
                 'Accept',
                 'X-Access-Token'
-            ],
+            ],*/
             credentials: true,
-            methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-            origin: this.origins,
-            preflightContinue: false
+            //methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+            origin: ['*'],
+            //preflightContinue: false
         };
         this.express = express();
 
