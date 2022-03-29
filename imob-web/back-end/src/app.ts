@@ -95,8 +95,8 @@ export class App {
     }
 
     private middlewares(): void {
-        this.express.use(cors(this.options));
         this.express.use(express.json());
+        this.express.use(cors());
         this.express.use(authentication);
         this.express.use(manage);
     }
