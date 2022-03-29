@@ -55,6 +55,7 @@ describe("Suíte de testes do módulo de gestor", () => {
     manager.landline = "";
     manager.cellPhone = "31987901406";
     manager.profession = "";
+    manager.company = company;
 
     connection.transaction(async (transaction: EntityManager) => {
       const result: ManagerEntity = await service.create(manager, transaction);
