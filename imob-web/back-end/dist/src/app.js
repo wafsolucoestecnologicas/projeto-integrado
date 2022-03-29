@@ -87,8 +87,8 @@ var App = /** @class */ (function () {
         this.listen();
     }
     App.prototype.middlewares = function () {
-        this.express.use((0, cors_1.default)(this.options));
         this.express.use(express_1.default.json());
+        this.express.use((0, cors_1.default)());
         this.express.use(authentication_middleware_1.default);
         this.express.use(manage_user_profile_middleware_1.default);
     };
