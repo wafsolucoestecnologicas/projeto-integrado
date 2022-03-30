@@ -9,6 +9,7 @@ import { AsideComponent } from './aside/aside.component';
 import { ContentComponent } from './content/content.component';
 
 import { MenuService } from './shared/services/menu.service';
+import { LoaderModule } from '../loader/loader.module';
 
 @NgModule({
 	declarations: [
@@ -19,7 +20,8 @@ import { MenuService } from './shared/services/menu.service';
 	imports: [
 		CommonModule,
 		TemplatesRoutingModule,
-		SharedModule
+		SharedModule,
+		LoaderModule
 	],
 	exports: [
 		HeaderComponent,
