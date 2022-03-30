@@ -1,0 +1,7 @@
+div.container {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    margin: -25px 0px 0px -25px;
+    z-index: 5000;
+}
