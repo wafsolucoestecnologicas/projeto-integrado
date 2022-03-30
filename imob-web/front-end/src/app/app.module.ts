@@ -24,6 +24,7 @@ import { SecretaryService } from './core/services/secretary.service';
 import { OwnerService } from './core/services/owner.service';
 import { CustomerService } from './core/services/customer.service';
 import { AlertService } from './shared/services/alert.service';
+import { LoaderService } from './core/services/loader.service';
 
 @NgModule({
 	declarations: [
@@ -54,7 +55,8 @@ import { AlertService } from './shared/services/alert.service';
 		SecretaryService,
 		OwnerService,
 		CustomerService,
-		AlertService
+		AlertService,
+		LoaderService
 	],
 	bootstrap: [AppComponent]
 })
