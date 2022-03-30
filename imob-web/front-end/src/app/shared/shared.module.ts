@@ -21,6 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { FormatDateHourPipe } from './pipes/format-date-hour.pipe';
 import { FormatDatePipe } from './pipes/format-date.pipe';
@@ -56,6 +57,7 @@ import { NgxMaskModule } from 'ngx-mask';
 		MatSelectModule,
 		MatDividerModule,
 		MatSlideToggleModule,
+		MatProgressSpinnerModule,
 		NgxMaskModule.forChild()
 	],
 	exports: [
@@ -83,6 +85,7 @@ import { NgxMaskModule } from 'ngx-mask';
 		MatSelectModule,
 		MatDividerModule,
 		MatSlideToggleModule,
+		MatProgressSpinnerModule,
 		NgxMaskModule
 	]
 })
