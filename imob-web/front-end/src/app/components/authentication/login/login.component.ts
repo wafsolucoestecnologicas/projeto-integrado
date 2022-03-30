@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                         this._alertService.openSnackBar(
                             `Usuário ${data.user.name} ${data.user.surname} logado com sucesso!`
                         );
-                        this._router.navigate(['content']);
+                        this._router.navigate(['content/users/list']);
                     }
                 });
 
