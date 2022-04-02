@@ -165,7 +165,7 @@ export class UserEntity implements UserModel {
     @BeforeInsert()
     @BeforeUpdate()
     public encryptPassword(): void {
-        this.password = bcrypt.hashSync(this.password, 8);
+        if (this.password) this.password = bcrypt.hashSync(this.password, 8);
     }
 
     @BeforeInsert()
