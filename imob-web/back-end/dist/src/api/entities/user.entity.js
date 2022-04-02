@@ -26,7 +26,8 @@ var UserEntity = /** @class */ (function () {
     function UserEntity() {
     }
     UserEntity.prototype.encryptPassword = function () {
-        this.password = bcryptjs_1.default.hashSync(this.password, 8);
+        if (this.password)
+            this.password = bcryptjs_1.default.hashSync(this.password, 8);
     };
     UserEntity.prototype.setCreatedAt = function () {
         this.createdAt = new Date();

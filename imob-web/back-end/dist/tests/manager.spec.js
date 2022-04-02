@@ -108,6 +108,7 @@ describe("Suíte de testes do módulo de gestor", function () {
             manager.landline = "";
             manager.cellPhone = "31987901406";
             manager.profession = "";
+            manager.company = company;
             connection.transaction(function (transaction) { return __awaiter(void 0, void 0, void 0, function () {
                 var result;
                 return __generator(this, function (_a) {
