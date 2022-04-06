@@ -88,7 +88,7 @@ export class EditCompanyComponent implements OnInit, OnDestroy {
             .data
             .subscribe((data: Data) => {
                 if (data && data['adresses'] && data['adresses'].length > 0) {
-                    this.address = data['adresses'].filter((address: Address) => address.isCompany)[0];
+                    this.address = data['adresses'].filter((address: Address) => this.company.id === address.company.id && address.isCompany)[0];
 
                     if (this.address) {
                         this.loadNeighborhoodsData();
@@ -251,6 +251,8 @@ export class EditCompanyComponent implements OnInit, OnDestroy {
                 .subscribe((data: Address) => {
                     if (data) {
                         this.address = data;
+                        this._router.navigate([`${this.path}/list`]);
+                        this._alertService.openSnackBar('Imobiliária atualizada com sucesso!');
                     }
                 });
 
