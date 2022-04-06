@@ -7,6 +7,9 @@ import { EditBrokerComponent } from './edit-broker/edit-broker.component';
 
 import { BrokerResolver } from './shared/resolvers/broker.resolver';
 import { BrokersResolver } from './shared/resolvers/brokers.resolver';
+import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
+import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
+import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
 const routes: Routes = [
     {
@@ -20,14 +23,20 @@ const routes: Routes = [
         path: 'view/:id',
         component: ViewBrokerComponent,
         resolve: {
-            broker: BrokerResolver
+            broker: BrokerResolver,
+            adresses: AdressesResolver,
+            neighborhoods: NeighborhoodsResolver,
+            cities: CitiesResolver
         }
     },
     {
         path: 'edit/:id',
         component: EditBrokerComponent,
         resolve: {
-            broker: BrokerResolver
+            broker: BrokerResolver,
+            adresses: AdressesResolver,
+            neighborhoods: NeighborhoodsResolver,
+            cities: CitiesResolver
         }
     }
 ];
