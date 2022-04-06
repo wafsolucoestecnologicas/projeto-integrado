@@ -70,6 +70,43 @@
                         <strong>Atualizado em:</strong>
                         <span class="data">{{ advisor.updatedAt | formatDateHour }}</span>
                     </mat-list-item>
+
+                    <ng-container *ngIf="address">
+                        <mat-list-item>
+                            <strong>CEP:</strong>
+                            <span class="data">{{ address.CEP | mask: MASKS.CEP }}</span>
+                        </mat-list-item>
+    
+                        <mat-list-item>
+                            <strong>Avenida/Rua:</strong>
+                            <span class="data">{{ address.street }}</span>
+                        </mat-list-item>
+    
+                        <mat-list-item>
+                            <strong>Complemento:</strong>
+                            <span class="data">{{ address.complement }}</span>
+                        </mat-list-item>
+    
+                        <mat-list-item>
+                            <strong>Número:</strong>
+                            <span class="data">{{ address.number }}</span>
+                        </mat-list-item>
+    
+                        <mat-list-item>
+                            <strong>Bairro:</strong>
+                            <span class="data">{{ address.neighborhood.neighborhood }}</span>
+                        </mat-list-item>
+    
+                        <mat-list-item>
+                            <strong>Cidade:</strong>
+                            <span class="data">{{ city.city }}</span>
+                        </mat-list-item>
+    
+                        <mat-list-item>
+                            <strong>Estado:</strong>
+                            <span class="data">{{ state.UF }}</span>
+                        </mat-list-item>
+                    </ng-container>
                 </mat-list>
 
                 <div
