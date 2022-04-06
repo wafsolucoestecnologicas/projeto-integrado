@@ -10,6 +10,9 @@ import { EditManagerComponent } from './edit-manager/edit-manager.component';
 
 import { ManagersResolver } from './shared/resolvers/managers.resolver';
 import { ManagerResolver } from './shared/resolvers/manager.resolver';
+import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
+import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
+import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
 @NgModule({
     declarations: [
@@ -24,7 +27,10 @@ import { ManagerResolver } from './shared/resolvers/manager.resolver';
     ],
     providers: [
         ManagersResolver,
-        ManagerResolver
+        ManagerResolver,
+        AdressesResolver,
+		NeighborhoodsResolver,
+		CitiesResolver
     ]
 })
 export class ManagersModule {}

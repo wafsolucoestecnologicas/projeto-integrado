@@ -7,6 +7,9 @@ import { EditManagerComponent } from './edit-manager/edit-manager.component';
 
 import { ManagerResolver } from './shared/resolvers/manager.resolver';
 import { ManagersResolver } from './shared/resolvers/managers.resolver';
+import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
+import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
+import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
 const routes: Routes = [
     {
@@ -20,14 +23,20 @@ const routes: Routes = [
         path: 'view/:id',
         component: ViewManagerComponent,
         resolve: {
-            manager: ManagerResolver
+            manager: ManagerResolver,
+            adresses: AdressesResolver,
+            neighborhoods: NeighborhoodsResolver,
+            cities: CitiesResolver
         }
     },
     {
         path: 'edit/:id',
         component: EditManagerComponent,
         resolve: {
-            manager: ManagerResolver
+            manager: ManagerResolver,
+            adresses: AdressesResolver,
+            neighborhoods: NeighborhoodsResolver,
+            cities: CitiesResolver
         }
     }
 ];
