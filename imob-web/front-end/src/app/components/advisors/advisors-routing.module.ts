@@ -7,6 +7,9 @@ import { EditAdvisorComponent } from './edit-advisor/edit-advisor.component';
 
 import { AdvisorResolver } from './shared/resolvers/advisor.resolver';
 import { AdvisorsResolver } from './shared/resolvers/advisors.resolver';
+import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
+import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
+import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
 const routes: Routes = [
     {
@@ -20,14 +23,20 @@ const routes: Routes = [
         path: 'view/:id',
         component: ViewAdvisorComponent,
         resolve: {
-            advisor: AdvisorResolver
+            advisor: AdvisorResolver,
+            adresses: AdressesResolver,
+            neighborhoods: NeighborhoodsResolver,
+            cities: CitiesResolver
         }
     },
     {
         path: 'edit/:id',
         component: EditAdvisorComponent,
         resolve: {
-            advisor: AdvisorResolver
+            advisor: AdvisorResolver,
+            adresses: AdressesResolver,
+            neighborhoods: NeighborhoodsResolver,
+            cities: CitiesResolver
         }
     }
 ];

@@ -10,6 +10,9 @@ import { EditAdvisorComponent } from './edit-advisor/edit-advisor.component';
 
 import { AdvisorsResolver } from './shared/resolvers/advisors.resolver';
 import { AdvisorResolver } from './shared/resolvers/advisor.resolver';
+import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
+import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
+import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
 @NgModule({
     declarations: [
@@ -24,7 +27,10 @@ import { AdvisorResolver } from './shared/resolvers/advisor.resolver';
     ],
     providers: [
         AdvisorsResolver,
-        AdvisorResolver
+        AdvisorResolver,
+        AdressesResolver,
+		NeighborhoodsResolver,
+		CitiesResolver
     ]
 })
 export class AdvisorsModule {}
