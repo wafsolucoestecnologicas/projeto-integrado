@@ -5,3 +5,17 @@ export interface City {
     city: string;
     state: State;
 }
+
+export interface CreateCity {
+    city: string;
+    state: State;
+}
+
+export interface UpdateCity {
+    city: string;
+    state: State;
+}
+
+export interface DeleteCity {
+    city: number;
+}
