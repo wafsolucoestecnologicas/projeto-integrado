@@ -140,6 +140,7 @@ export class EditManagerComponent implements OnInit, OnDestroy {
     private createFormGroup(): void {
         this.formGroup = this._formBuilder.group({
             manager: this._formBuilder.group({
+                id: [null, [Validators.required]],
                 name: [null, [Validators.required]],
                 surname: [null, [Validators.required]],
                 email: [null, [Validators.required, Validators.email]],
@@ -205,6 +206,7 @@ export class EditManagerComponent implements OnInit, OnDestroy {
             isCustomer: false,
             isProperty: false,
             company: form.company,
+            manager: form.manager,
             neighborhood
         };
     }

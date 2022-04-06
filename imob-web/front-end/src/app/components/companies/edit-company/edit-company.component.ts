@@ -6,17 +6,8 @@ import { Subscription } from 'rxjs';
 import { Company, UpdateCompany } from 'src/app/core/interfaces/company.interface';
 import { State } from 'src/app/core/interfaces/state.interface';
 import { City, CreateCity, UpdateCity } from 'src/app/core/interfaces/city.interface';
-import {
-    Neighborhood,
-    CreateNeighborhood,
-    UpdateNeighborhood
-} from 'src/app/core/interfaces/neighborhood.interface';
-import {
-    Address,
-    CreateAddress,
-    ResponseViaCEPModel,
-    UpdateAddress
-} from 'src/app/core/interfaces/address.interface';
+import { Neighborhood, CreateNeighborhood, UpdateNeighborhood } from 'src/app/core/interfaces/neighborhood.interface';
+import { Address, CreateAddress, UpdateAddress, ResponseViaCEPModel } from 'src/app/core/interfaces/address.interface';
 import { CompanyService } from 'src/app/core/services/company.service';
 import { AddressService } from 'src/app/core/services/address.service';
 import { NeighborhoodService } from 'src/app/core/services/neighborhood.service';
