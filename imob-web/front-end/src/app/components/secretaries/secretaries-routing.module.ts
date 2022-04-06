@@ -7,6 +7,9 @@ import { EditSecretaryComponent } from './edit-secretary/edit-secretary.componen
 
 import { SecretariesResolver } from './shared/resolvers/secretaries.resolver';
 import { SecretaryResolver } from './shared/resolvers/secretary.resolver';
+import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
+import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
+import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
 const routes: Routes = [
     {
@@ -20,14 +23,20 @@ const routes: Routes = [
         path: 'view/:id',
         component: ViewSecretaryComponent,
         resolve: {
-            secretary: SecretaryResolver
+            secretary: SecretaryResolver,
+            adresses: AdressesResolver,
+            neighborhoods: NeighborhoodsResolver,
+            cities: CitiesResolver
         }
     },
     {
         path: 'edit/:id',
         component: EditSecretaryComponent,
         resolve: {
-            secretary: SecretaryResolver
+            secretary: SecretaryResolver,
+            adresses: AdressesResolver,
+            neighborhoods: NeighborhoodsResolver,
+            cities: CitiesResolver
         }
     }
 ];

@@ -10,6 +10,9 @@ import { EditSecretaryComponent } from './edit-secretary/edit-secretary.componen
 
 import { SecretariesResolver } from './shared/resolvers/secretaries.resolver';
 import { SecretaryResolver } from './shared/resolvers/secretary.resolver';
+import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
+import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
+import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
 @NgModule({
     declarations: [
@@ -24,7 +27,10 @@ import { SecretaryResolver } from './shared/resolvers/secretary.resolver';
 	],
     providers: [
 		SecretariesResolver,
-		SecretaryResolver
+		SecretaryResolver,
+		AdressesResolver,
+		NeighborhoodsResolver,
+		CitiesResolver
 	]
 })
 export class SecretariesModule {}
