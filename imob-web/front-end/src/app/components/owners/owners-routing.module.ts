@@ -8,6 +8,9 @@ import { EditOwnerComponent } from './edit-owner/edit-owner.component';
 
 import { OwnerResolver } from './shared/resolvers/owner.resolver';
 import { OwnersResolver } from './shared/resolvers/owners.resolver';
+import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
+import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
+import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
 const routes: Routes = [
     {
@@ -25,14 +28,20 @@ const routes: Routes = [
         path: 'view/:id',
         component: ViewOwnerComponent,
         resolve: {
-            owner: OwnerResolver
+            owner: OwnerResolver,
+            adresses: AdressesResolver,
+            neighborhoods: NeighborhoodsResolver,
+            cities: CitiesResolver
         }
     },
     {
         path: 'edit/:id',
         component: EditOwnerComponent,
         resolve: {
-            owner: OwnerResolver
+            owner: OwnerResolver,
+            adresses: AdressesResolver,
+            neighborhoods: NeighborhoodsResolver,
+            cities: CitiesResolver
         }
     }
 ];

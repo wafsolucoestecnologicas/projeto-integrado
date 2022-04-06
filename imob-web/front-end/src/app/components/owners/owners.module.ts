@@ -12,6 +12,9 @@ import { FormatCheckedPipe } from './shared/pipes/format-checked.pipe';
 
 import { OwnersResolver } from './shared/resolvers/owners.resolver';
 import { OwnerResolver } from './shared/resolvers/owner.resolver';
+import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
+import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
+import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
 @NgModule({
     declarations: [
@@ -28,7 +31,10 @@ import { OwnerResolver } from './shared/resolvers/owner.resolver';
 	],
 	providers: [
 		OwnersResolver,
-		OwnerResolver
+		OwnerResolver,
+		AdressesResolver,
+		NeighborhoodsResolver,
+		CitiesResolver
 	]
 })
 export class OwnersModule {}
