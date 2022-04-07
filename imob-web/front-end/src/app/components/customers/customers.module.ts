@@ -11,6 +11,9 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 
 import { CustomersResolver } from './shared/resolvers/customers.resolver';
 import { CustomerResolver } from './shared/resolvers/customer.resolver';
+import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
+import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
+import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
 @NgModule({
     declarations: [
@@ -26,7 +29,10 @@ import { CustomerResolver } from './shared/resolvers/customer.resolver';
 	],
     providers: [
 		CustomersResolver,
-		CustomerResolver
+		CustomerResolver,
+    AdressesResolver,
+		NeighborhoodsResolver,
+		CitiesResolver
 	]
 })
 export class CustomersModule {}
