@@ -28,11 +28,11 @@ import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 		SharedModule
 	],
     providers: [
-		CustomersResolver,
-		CustomerResolver,
-    AdressesResolver,
-		NeighborhoodsResolver,
-		CitiesResolver
-	]
+        CustomersResolver,
+        CustomerResolver,
+        AdressesResolver,
+        NeighborhoodsResolver,
+        CitiesResolver
+    ]
 })
 export class CustomersModule {}
