@@ -1,0 +1,11 @@
+.mat-toolbar {
+    height: 56px;
+}
+
+table {
+    width: 90%;
+}
+
+.mat-column-email {
+    flex: 0 0 20%;
+}
