@@ -36,8 +36,8 @@ export class ListManagersComponent implements OnInit, AfterViewInit, OnDestroy {
             'name',
             'surname',
             'CPF',
-            'email',
             'cellPhone',
+            'email',
             'options'
         );
         this.path = '/content/managers';

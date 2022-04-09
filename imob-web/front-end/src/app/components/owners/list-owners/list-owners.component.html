@@ -33,21 +33,21 @@
                 <mat-cell class="align-left" *matCellDef="let element">{{ element.CPF | mask: MASKS.CPF }}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="email">
-                <mat-header-cell class="align-left" *matHeaderCellDef>E-mail</mat-header-cell>
-                <mat-cell class="align-left" *matCellDef="let element">{{ element.email }}</mat-cell>
-            </ng-container>
-
             <ng-container matColumnDef="cellPhone">
                 <mat-header-cell class="align-left" *matHeaderCellDef>Celular</mat-header-cell>
                 <mat-cell class="align-left" *matCellDef="let element">{{ element.cellPhone | mask: MASKS.CELL_PHONE }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="checked">
-                <mat-header-cell class="align-center" *matHeaderCellDef>Cadastro</mat-header-cell>
-                <mat-cell class="align-center" *matCellDef="let element">{{ element.checked | formatChecked }}</mat-cell>
+                <mat-header-cell class="align-left" *matHeaderCellDef>Cadastro</mat-header-cell>
+                <mat-cell class="align-left" *matCellDef="let element">{{ element.checked | formatChecked }}</mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="email">
+                <mat-header-cell class="align-left" *matHeaderCellDef>E-mail</mat-header-cell>
+                <mat-cell class="align-left" *matCellDef="let element">{{ element.email }}</mat-cell>
+            </ng-container>
+            
             <ng-container matColumnDef="options">
                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
                 <mat-cell class="align-center" *matCellDef="let element">
@@ -64,6 +64,11 @@
                         <button mat-menu-item (click)="redirectToEdit(element.id)">
                             <mat-icon>edit</mat-icon>
                             <span>Editar</span>
+                        </button>
+
+                        <button mat-menu-item (click)="openDialog(element.id)">
+                            <mat-icon>delete</mat-icon>
+                            <span>Excluir</span>
                         </button>
                     </mat-menu>
                 </mat-cell>

@@ -4,8 +4,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 
+import { DeleteOwnerComponent } from '../delete-owner/delete-owner.component';
 import { Owner } from 'src/app/core/interfaces/owner.interface';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Masks } from 'src/app/shared/enums/masks.enum';
 
 @Component({
@@ -19,6 +21,7 @@ export class ListOwnersComponent implements OnInit, AfterViewInit, OnDestroy {
     public paginator: MatPaginator;
 
     private subscriptions: Subscription[];
+    private owner: Owner | undefined;
     private owners: Owner[];
     public dataSource: MatTableDataSource<Owner>;
     public displayedColumns: string[];
@@ -28,7 +31,8 @@ export class ListOwnersComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor(
         private readonly _router: Router,
         private readonly _activatedRoute: ActivatedRoute,
-        private readonly _alertService: AlertService
+        private readonly _alertService: AlertService,
+        public _matDialog: MatDialog
     ) {
         this.subscriptions = new Array<Subscription>();
         this.owners = new Array<Owner>();
@@ -36,9 +40,9 @@ export class ListOwnersComponent implements OnInit, AfterViewInit, OnDestroy {
             'name',
             'surname',
             'CPF',
-            'email',
             'cellPhone',
             'checked',
+            'email',
             'options'
         );
         this.path = '/content/owners';
@@ -77,5 +81,29 @@ export class ListOwnersComponent implements OnInit, AfterViewInit, OnDestroy {
 	public redirectToEdit(id: number): void {
 		this._router.navigate([`${this.path}/edit`, id]);
 	}
+
+    public openDialog(id: number): void {
+        const dialogRef: MatDialogRef<DeleteOwnerComponent> = this._matDialog
+            .open(DeleteOwnerComponent, {
+                width: '600px',
+                data: {
+                    owner: this.owners.find((owner: Owner) => owner.id === id)
+                }
+            });
+
+        const subscription: Subscription = dialogRef
+            .afterClosed()
+            .subscribe((id: number) => {
+                this.owner = this.owners.find((owner: Owner) => owner.id === id);
+
+                if (this.owner) {
+                    this.owners = this.owners.filter((owner: Owner) => owner.id !== id);
+                    this.dataSource.data.splice(this.dataSource.data.indexOf(this.owner, 1));
+                    this.dataSource._updateChangeSubscription();
+                }
+            });
+
+        this.subscriptions.push(subscription);
+    }
 
 }

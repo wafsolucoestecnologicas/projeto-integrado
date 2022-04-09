@@ -28,29 +28,29 @@
                 <mat-cell class="align-left" *matCellDef="let element">{{ element.surname }}</mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="isManager">
+                <mat-header-cell class="align-left width-10" *matHeaderCellDef>Gestor</mat-header-cell>
+                <mat-cell class="align-left" *matCellDef="let element">{{ element.isManager | formatUserType }}</mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="isAdvisor">
+                <mat-header-cell class="align-left width-10" *matHeaderCellDef>Despachante</mat-header-cell>
+                <mat-cell class="align-left" *matCellDef="let element">{{ element.isAdvisor | formatUserType }}</mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="isBroker">
+                <mat-header-cell class="align-left width-10" *matHeaderCellDef>Corretor</mat-header-cell>
+                <mat-cell class="align-left" *matCellDef="let element">{{ element.isBroker | formatUserType }}</mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="isSecretary">
+                <mat-header-cell class="align-left width-10" *matHeaderCellDef>Secretária</mat-header-cell>
+                <mat-cell class="align-left" *matCellDef="let element">{{ element.isSecretary | formatUserType }}</mat-cell>
+            </ng-container>
+            
             <ng-container matColumnDef="email">
                 <mat-header-cell class="align-left" *matHeaderCellDef>E-mail</mat-header-cell>
                 <mat-cell class="align-left" *matCellDef="let element">{{ element.email }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="isManager">
-                <mat-header-cell class="align-center width-10" *matHeaderCellDef>Gestor</mat-header-cell>
-                <mat-cell class="align-center" *matCellDef="let element">{{ element.isManager | formatUserType }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="isAdvisor">
-                <mat-header-cell class="align-center width-10" *matHeaderCellDef>Despachante</mat-header-cell>
-                <mat-cell class="align-center" *matCellDef="let element">{{ element.isAdvisor | formatUserType }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="isBroker">
-                <mat-header-cell class="align-center width-10" *matHeaderCellDef>Corretor</mat-header-cell>
-                <mat-cell class="align-center" *matCellDef="let element">{{ element.isBroker | formatUserType }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="isSecretary">
-                <mat-header-cell class="align-center width-10" *matHeaderCellDef>Secretária</mat-header-cell>
-                <mat-cell class="align-center" *matCellDef="let element">{{ element.isSecretary | formatUserType }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="options">

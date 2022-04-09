@@ -36,8 +36,8 @@ export class ListAdvisorsComponent implements OnInit, AfterViewInit, OnDestroy {
             'name',
             'surname',
             'CPF',
-            'email',
             'cellPhone',
+            'email',
             'options'
         );
         this.path = '/content/advisors';

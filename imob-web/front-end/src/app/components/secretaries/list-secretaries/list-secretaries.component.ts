@@ -36,8 +36,8 @@ export class ListSecretariesComponent implements OnInit, AfterViewInit, OnDestro
             'name',
             'surname',
             'CPF',
-            'email',
             'cellPhone',
+            'email',
             'options'
         );
         this.path = '/content/secretaries';

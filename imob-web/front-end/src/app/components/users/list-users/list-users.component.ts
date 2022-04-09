@@ -37,11 +37,11 @@ export class ListUsersComponent implements OnInit, AfterViewInit, OnDestroy {
         this.displayedColumns = new Array<string>(
             'name',
             'surname',
-            'email',
             'isManager',
             'isAdvisor',
             'isBroker',
             'isSecretary',
+            'email',
             'options'
         );
         this.path = '/content/users';
