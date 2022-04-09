@@ -8,6 +8,7 @@ import { CreateCustomerComponent } from './create-customer/create-customer.compo
 import { ListCustomersComponent } from './list-customers/list-customers.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
+import { DeleteCustomerComponent } from './delete-customer/delete-customer.component';
 
 import { CustomersResolver } from './shared/resolvers/customers.resolver';
 import { CustomerResolver } from './shared/resolvers/customer.resolver';
@@ -20,7 +21,8 @@ import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
         CreateCustomerComponent,
         ListCustomersComponent,
         ViewCustomerComponent,
-        EditCustomerComponent
+        EditCustomerComponent,
+        DeleteCustomerComponent
     ],
     imports: [
 		CommonModule,

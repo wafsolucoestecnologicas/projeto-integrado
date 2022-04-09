@@ -15,6 +15,7 @@ import { OwnerResolver } from './shared/resolvers/owner.resolver';
 import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
 import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
 import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
+import { DeleteOwnerComponent } from './delete-owner/delete-owner.component';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 		ListOwnersComponent,
 		ViewOwnerComponent,
     	EditOwnerComponent,
+    	DeleteOwnerComponent,
   		FormatCheckedPipe
 	],
     imports: [
