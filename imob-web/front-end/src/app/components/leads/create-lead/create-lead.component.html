@@ -1,0 +1,188 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Gestão Externa</mat-card-title>
+        <mat-card-subtitle>Criação de Lead</mat-card-subtitle>
+    </mat-card-header>
+
+    <br />
+
+    <mat-card-content class="mat-elevation-z4">
+        <mat-toolbar>
+            <span>Lead</span>
+        </mat-toolbar>
+
+        <div class="container">
+            <div class="flex-container">
+                <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="lead">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Nome</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="name"
+                                    matInput
+                                    placeholder="Ex: joão"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('lead')?.get('name')?.touched &&
+                                        formGroup.get('lead')?.get('name')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Sobrenome</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="surname"
+                                    matInput
+                                    placeholder="Ex: almeida"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('lead')?.get('surname')?.touched &&
+                                        formGroup.get('lead')?.get('surname')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="lead">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>E-mail</mat-label>
+                                <input
+                                    type="email"
+                                    formControlName="email"
+                                    matInput
+                                    placeholder="Ex: joao@exemplo.com"
+                                    required />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('lead')?.get('email')?.touched &&
+                                        formGroup.get('lead')?.get('email')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('lead')?.get('email')?.touched &&
+                                        formGroup.get('lead')?.get('email')?.errors?.email">
+                                    E-mail inválido!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Origem</mat-label>
+                                <mat-select formControlName="source">
+                                    <ng-container *ngFor="let source of sources; let index = index;">
+                                        <mat-option [value]="index">
+                                            {{ source }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="lead">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Telefone Fixo</mat-label>
+                                <input
+                                    type="tel"
+                                    formControlName="landline"
+                                    matInput
+                                    placeholder="Ex: (31) 3322-5566"
+                                    [mask]="MASKS.LANDLINE" />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Telefone Móvel</mat-label>
+                                <input
+                                    type="tel"
+                                    formControlName="cellPhone"
+                                    matInput
+                                    placeholder="Ex: (31) 9 8685-8899"
+                                    required
+                                    [mask]="MASKS.CELL_PHONE" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('lead')?.get('cellPhone')?.touched &&
+                                        formGroup.get('lead')?.get('cellPhone')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="lead">
+                        <div fxFlex="100">
+                            <mat-form-field>
+                                <mat-label>Comentários</mat-label>
+                                <textarea formControlName="comments" matInput></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout.xs="column"
+                        fxLayout="row"
+                        fxLayoutGap="20px"
+                        fxLayoutAlign="end center">
+                        <div>
+                            <button
+                                type="button"
+                                mat-raised-button
+                                routerLink="/content/leads/list">
+                                Cancelar
+                            </button>
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                mat-raised-button
+                                color="primary"
+                                [disabled]="!formGroup.valid">
+                                Salvar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
