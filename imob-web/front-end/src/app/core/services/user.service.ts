@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { User, CreateUser, UpdateUser, DeleteUser } from '../interfaces/user.interface';
-import { UserRoutes } from '../enums/user.enum';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { UserRoutes } from '../enums/user.enum';
 
 @Injectable({
     providedIn: 'root'
