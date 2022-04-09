@@ -32,8 +32,8 @@
                                     required />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('name')?.touched &&
-                                        formGroup.get('name')?.errors?.required">
+                                        formGroup.get('manager')?.get('name')?.touched &&
+                                        formGroup.get('manager')?.get('name')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -50,8 +50,8 @@
                                     required />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('surname')?.touched &&
-                                        formGroup.get('surname')?.errors?.required">
+                                        formGroup.get('manager')?.get('surname')?.touched &&
+                                        formGroup.get('manager')?.get('surname')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -76,14 +76,14 @@
                                     required />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('email')?.touched &&
-                                        formGroup.get('email')?.errors?.required">
+                                        formGroup.get('manager')?.get('email')?.touched &&
+                                        formGroup.get('manager')?.get('email')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('email')?.touched &&
-                                        formGroup.get('email')?.errors?.email">
+                                        formGroup.get('manager')?.get('email')?.touched &&
+                                        formGroup.get('manager')?.get('email')?.errors?.email">
                                     E-mail inválido!
                                 </mat-error>
                             </mat-form-field>
@@ -99,8 +99,8 @@
                                     required />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('birthDate')?.touched &&
-                                        formGroup.get('birthDate')?.errors?.required">
+                                        formGroup.get('manager')?.get('birthDate')?.touched &&
+                                        formGroup.get('manager')?.get('birthDate')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -126,8 +126,8 @@
                                     [mask]="MASKS.RG" />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('RG')?.touched &&
-                                        formGroup.get('RG')?.errors?.required">
+                                        formGroup.get('manager')?.get('RG')?.touched &&
+                                        formGroup.get('manager')?.get('RG')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -145,8 +145,8 @@
                                     [mask]="MASKS.CPF" />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('CPF')?.touched &&
-                                        formGroup.get('CPF')?.errors?.required">
+                                        formGroup.get('manager')?.get('CPF')?.touched &&
+                                        formGroup.get('manager')?.get('CPF')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -184,8 +184,8 @@
                                     [mask]="MASKS.CELL_PHONE" />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('cellPhone')?.touched &&
-                                        formGroup.get('cellPhone')?.errors?.required">
+                                        formGroup.get('manager')?.get('cellPhone')?.touched &&
+                                        formGroup.get('manager')?.get('cellPhone')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>

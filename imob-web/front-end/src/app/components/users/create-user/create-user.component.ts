@@ -92,10 +92,8 @@ export class CreateUserComponent implements OnInit, OnDestroy {
                 .create(this.parseFormGroup(this.formGroup.value))
                 .subscribe((data: User) => {
                     if (data) {
-                        this._alertService.openSnackBar(
-                            `Usuário ${data.name} ${data.surname} criado com sucesso!`
-                        );
                         this._router.navigate(['content/users/list']);
+                        this._alertService.openSnackBar(`Usuário ${data.name} ${data.surname} criado com sucesso!`);
                     }
                 });
 
