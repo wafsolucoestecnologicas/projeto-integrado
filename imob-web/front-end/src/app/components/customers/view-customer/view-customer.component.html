@@ -13,110 +13,122 @@
 
         <div class="container">
             <div class="flex-container">
-                <mat-list>
-                    <mat-list-item>
-                        <strong>Nome:</strong>
-                        <span class="data">{{ customer.name }}</span>
-                    </mat-list-item>
+                <div
+                    fxLayout="column"
+                    fxLayout.lg="row"
+                    fxLayout.xl="row">
+                    <div fxFlex="50">
+                        <mat-list>
+                            <mat-list-item>
+                                <strong>Nome:</strong>
+                                <span class="data">{{ customer.name }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Sobrenome:</strong>
-                        <span class="data">{{ customer.surname }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Sobrenome:</strong>
+                                <span class="data">{{ customer.surname }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>E-mail:</strong>
-                        <span class="data">{{ customer.email }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>E-mail:</strong>
+                                <span class="data">{{ customer.email }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Nascimento:</strong>
-                        <span class="data">{{ customer.birthDate | formatDate }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Nascimento:</strong>
+                                <span class="data">{{ customer.birthDate | formatDate }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>RG:</strong>
-                        <span class="data">{{ customer.RG | mask: MASKS.RG }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>RG:</strong>
+                                <span class="data">{{ customer.RG | mask: MASKS.RG }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>CPF:</strong>
-                        <span class="data">{{ customer.CPF | mask: MASKS.CPF }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>CPF:</strong>
+                                <span class="data">{{ customer.CPF | mask: MASKS.CPF }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Telefone Fixo:</strong>
-                        <ng-container *ngIf="customer.landline">
-                            <span class="data">{{ customer.landline | formatPhone | mask: MASKS.LANDLINE }}</span>
-                        </ng-container>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Telefone Fixo:</strong>
+                                <ng-container *ngIf="customer.landline">
+                                    <span class="data">{{
+                                        customer.landline | formatPhone | mask: MASKS.LANDLINE
+                                    }}</span>
+                                </ng-container>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Telefone Móvel:</strong>
-                        <span class="data">{{ customer.cellPhone | formatPhone | mask: MASKS.CELL_PHONE }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Telefone Móvel:</strong>
+                                <span class="data">{{
+                                    customer.cellPhone | formatPhone | mask: MASKS.CELL_PHONE
+                                }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Profissão:</strong>
-                        <span class="data">{{ customer.profession }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Profissão:</strong>
+                                <span class="data">{{ customer.profession }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Criado em:</strong>
-                        <span class="data">{{ customer.createdAt | formatDateHour }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Criado em:</strong>
+                                <span class="data">{{ customer.createdAt | formatDateHour }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Atualizado em:</strong>
-                        <span class="data">{{ customer.updatedAt | formatDateHour }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Atualizado em:</strong>
+                                <span class="data">{{ customer.updatedAt | formatDateHour }}</span>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
 
-                    <ng-container *ngIf="address">
-                        <mat-list-item>
-                            <strong>CEP:</strong>
-                            <span class="data">{{ address.CEP | mask: MASKS.CEP }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Avenida/Rua:</strong>
-                            <span class="data">{{ address.street }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Complemento:</strong>
-                            <span class="data">{{ address.complement }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Número:</strong>
-                            <span class="data">{{ address.number }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Bairro:</strong>
-                            <span class="data">{{ address.neighborhood.neighborhood }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Cidade:</strong>
-                            <span class="data">{{ city.city }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Estado:</strong>
-                            <span class="data">{{ state.UF }}</span>
-                        </mat-list-item>
-                    </ng-container>
-                </mat-list>
+                    <div fxFlex="50">
+                        <mat-list>
+                            <ng-container *ngIf="address">
+                                <mat-list-item>
+                                    <strong>CEP:</strong>
+                                    <span class="data">{{ address.CEP | mask: MASKS.CEP }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Avenida/Rua:</strong>
+                                    <span class="data">{{ address.street }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Complemento:</strong>
+                                    <span class="data">{{ address.complement }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Número:</strong>
+                                    <span class="data">{{ address.number }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Bairro:</strong>
+                                    <span class="data">{{ address.neighborhood.neighborhood }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Cidade:</strong>
+                                    <span class="data">{{ city.city }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Estado:</strong>
+                                    <span class="data">{{ state.UF }}</span>
+                                </mat-list-item>
+                            </ng-container>
+                        </mat-list>
+                    </div>
+                </div>
 
                 <div
                     fxLayout.xs="column"
                     fxLayout="row"
                     fxLayoutAlign="end center">
-                    <button
-                        type="button"
-                        mat-raised-button
-                        routerLink="/content/customers/list">
+                    <button type="button" mat-raised-button routerLink="/content/customers/list">
                         Cancelar
                     </button>
                 </div>

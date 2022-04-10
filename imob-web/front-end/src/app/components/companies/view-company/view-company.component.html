@@ -13,93 +13,107 @@
 
         <div class="container">
             <div class="flex-container">
-                <mat-list>
-                    <mat-list-item>
-                        <strong>CNPJ:</strong>
-                        <span class="data">{{ company.CNPJ | mask: MASKS.CNPJ }}</span>
-                    </mat-list-item>
+                <div
+                    fxLayout="column"
+                    fxLayout.lg="row"
+                    fxLayout.xl="row">
+                    <div fxFlex="50">
+                        <mat-list>
+                            <mat-list-item>
+                                <strong>CNPJ:</strong>
+                                <span class="data">{{ company.CNPJ | mask: MASKS.CNPJ }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Razão Social:</strong>
-                        <span class="data">{{ company.corporateName }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Razão Social:</strong>
+                                <span class="data">{{ company.corporateName }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Inscrição Estadual:</strong>
-                        <span class="data">{{ company.stateRegistration | mask: MASKS.STATE_REGISTRATION }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Inscrição Estadual:</strong>
+                                <span class="data">{{
+                                    company.stateRegistration | mask: MASKS.STATE_REGISTRATION
+                                }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Percentual de Comissão a Receber:</strong>
-                        <span class="data">{{ company.percentageCommissionReceivable }}%</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Percentual de Comissão a Receber:</strong>
+                                <span class="data">{{ company.percentageCommissionReceivable }}%</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Percentual de Comissão a Pagar por Negócios Fechados:</strong>
-                        <span class="data">{{ company.percentageCommissionPayableForClosedDeals }}%</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Percentual de Comissão a Pagar por Negócios Fechados:</strong>
+                                <span class="data"
+                                    >{{ company.percentageCommissionPayableForClosedDeals }}%</span
+                                >
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Percentual de Comissão a Pagar por Imóveis Captados:</strong>
-                        <span class="data">{{ company.percentageCommissionPayableForPropertyCaptured }}%</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Percentual de Comissão a Pagar por Imóveis Captados:</strong>
+                                <span class="data"
+                                    >{{ company.percentageCommissionPayableForPropertyCaptured }}%</span
+                                >
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Criado em:</strong>
-                        <span class="data">{{ company.createdAt | formatDateHour }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Criado em:</strong>
+                                <span class="data">{{ company.createdAt | formatDateHour }}</span>
+                            </mat-list-item>
 
-                    <mat-list-item>
-                        <strong>Atualizado em:</strong>
-                        <span class="data">{{ company.updatedAt | formatDateHour }}</span>
-                    </mat-list-item>
+                            <mat-list-item>
+                                <strong>Atualizado em:</strong>
+                                <span class="data">{{ company.updatedAt | formatDateHour }}</span>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
 
-                    <ng-container *ngIf="address">
-                        <mat-list-item>
-                            <strong>CEP:</strong>
-                            <span class="data">{{ address.CEP | mask: MASKS.CEP }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Avenida/Rua:</strong>
-                            <span class="data">{{ address.street }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Complemento:</strong>
-                            <span class="data">{{ address.complement }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Número:</strong>
-                            <span class="data">{{ address.number }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Bairro:</strong>
-                            <span class="data">{{ address.neighborhood.neighborhood }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Cidade:</strong>
-                            <span class="data">{{ city.city }}</span>
-                        </mat-list-item>
-    
-                        <mat-list-item>
-                            <strong>Estado:</strong>
-                            <span class="data">{{ state.UF }}</span>
-                        </mat-list-item>
-                    </ng-container>
-                </mat-list>
+                    <div fxFlex="50">
+                        <mat-list>
+                            <ng-container *ngIf="address">
+                                <mat-list-item>
+                                    <strong>CEP:</strong>
+                                    <span class="data">{{ address.CEP | mask: MASKS.CEP }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Avenida/Rua:</strong>
+                                    <span class="data">{{ address.street }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Complemento:</strong>
+                                    <span class="data">{{ address.complement }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Número:</strong>
+                                    <span class="data">{{ address.number }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Bairro:</strong>
+                                    <span class="data">{{ address.neighborhood.neighborhood }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Cidade:</strong>
+                                    <span class="data">{{ city.city }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Estado:</strong>
+                                    <span class="data">{{ state.UF }}</span>
+                                </mat-list-item>
+                            </ng-container>
+                        </mat-list>
+                    </div>
+                </div>
 
                 <div
                     fxLayout.xs="column"
                     fxLayout="row"
                     fxLayoutAlign="end center">
-                    <button
-                        type="button"
-                        mat-raised-button
-                        routerLink="/content/companies/list">
+                    <button type="button" mat-raised-button routerLink="/content/companies/list">
                         Cancelar
                     </button>
                 </div>
