@@ -69,6 +69,10 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
             .subscribe((data: Data) => {
                 if (data && data['leads'] && data['leads'].length > 0) {
                     this.leads = data['leads'];
+                    this.leads = this.leads.filter((lead: Lead) => !lead.registered);
+
+                    if (this.leads.length === 0)
+                        this._alertService.openSnackBar('Todas as leads já foram cadastradas como clientes!');
                 } else {
                     this._alertService.openSnackBar('Não existem leads cadastradas na base de dados!');
                 }
