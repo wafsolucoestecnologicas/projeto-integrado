@@ -1,4 +1,5 @@
 import { CompanyEntity } from '../entities/company.entity';
+import { OwnerEntity } from '../entities/owner.entity';
 import { AdministratorEntity } from '../entities/administrator.entity';
 import { ManagerEntity } from '../entities/manager.entity';
 import { AdvisorEntity } from '../entities/advisor.entity';
@@ -24,6 +25,7 @@ export interface PropertyModel {
     createdAt: Date;
     updatedAt: Date;
     company: CompanyEntity;
+    owner: OwnerEntity;
     administrator?: AdministratorEntity;
     manager?: ManagerEntity;
     advisor?: AdvisorEntity;

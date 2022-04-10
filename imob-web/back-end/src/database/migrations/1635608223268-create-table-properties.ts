@@ -23,6 +23,11 @@ export class createTableProperties1635608223268 implements MigrationInterface {
                         isNullable: false
                     },
                     {
+                        name: 'owner_id',
+                        type: 'integer',
+                        isNullable: false
+                    },
+                    {
                         name: 'administrator_id',
                         type: 'integer',
                         default: null,
@@ -152,6 +157,13 @@ export class createTableProperties1635608223268 implements MigrationInterface {
                         columnNames: ['company_id'],
                         referencedSchema: 'business',
                         referencedTableName: 'business.companies',
+                        referencedColumnNames: ['id']
+                    },
+                    {
+                        name: 'fk_owner_id',
+                        columnNames: ['owner_id'],
+                        referencedSchema: 'persons',
+                        referencedTableName: 'persons.owners',
                         referencedColumnNames: ['id']
                     },
                     {

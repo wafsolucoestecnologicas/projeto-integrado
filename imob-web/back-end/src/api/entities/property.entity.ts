@@ -1,6 +1,7 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn, AfterLoad } from 'typeorm';
 import { PropertyModel } from '../models/property.model';
 import { CompanyEntity } from './company.entity';
+import { OwnerEntity } from './owner.entity';
 import { AdministratorEntity } from './administrator.entity';
 import { ManagerEntity } from './manager.entity';
 import { AdvisorEntity } from './advisor.entity';
@@ -171,6 +172,10 @@ export class PropertyEntity implements PropertyModel {
     @OneToOne(() => CompanyEntity)
     @JoinColumn({ name: 'company_id' })
     public company: CompanyEntity;
+
+    @OneToOne(() => OwnerEntity)
+    @JoinColumn({ name: 'owner_id' })
+    public owner: OwnerEntity;
 
     @OneToOne(() => AdministratorEntity)
     @JoinColumn({ name: 'administrator_id' })

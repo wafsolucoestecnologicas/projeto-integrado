@@ -20,6 +20,7 @@ export class PropertyService {
         const propertyEntity: PropertyEntity =
             this.repository.create({
                 company: data.company,
+                owner: data.owner,
                 administrator: data?.administrator,
                 manager: data?.manager,
                 advisor: data?.advisor,
@@ -61,6 +62,7 @@ export class PropertyService {
     public async update(id: number, data: PropertyEntity, transaction: EntityManager): Promise<PropertyEntity> {
         const propertyEntity: PropertyEntity =
             this.repository.create({
+                owner: data.owner,
                 id: id,
                 description: data.description.toLowerCase(),
                 photos: data.photos,
