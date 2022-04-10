@@ -354,7 +354,8 @@ export class EditCustomerComponent implements OnInit, OnDestroy {
     }
 
     public search(): void {
-        if (this.formGroup.get('address')?.get('CEP')?.value.length === 8) {
+        if (this.formGroup.get('address')?.get('CEP')?.value &&
+            this.formGroup.get('address')?.get('CEP')?.value.length === 8) {
             const subscription: Subscription = this._addressService
                 .search(this.formGroup.get('address')?.get('CEP')?.value)
                 .subscribe((data: ResponseViaCEPModel) => {
