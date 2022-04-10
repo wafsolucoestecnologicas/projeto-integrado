@@ -14,7 +14,8 @@ export class CustomerService {
         const customerEntity: CustomerEntity[] =
             await this.repository.find({
                 relations: [
-                    'company'
+                    'company',
+                    'lead'
                 ],
                 where: {
                     company: payload.company.id
@@ -28,6 +29,7 @@ export class CustomerService {
         const customerEntity: CustomerEntity =
             this.repository.create({
                 company: data.company,
+                lead: data.lead,
                 name: data.name.toLowerCase(),
                 surname: data.surname.toLowerCase(),
                 email: data.email.toLowerCase(),
@@ -50,7 +52,8 @@ export class CustomerService {
         const customerEntity: CustomerEntity | undefined =
             await this.repository.findOne({
                 relations: [
-                    'company'
+                    'company',
+                    'lead'
                 ],
                 where: {
                     id: id,

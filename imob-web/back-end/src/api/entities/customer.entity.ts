@@ -1,6 +1,7 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate, OneToOne, JoinColumn } from 'typeorm';
 import { CustomerModel } from '../models/customer.model';
 import { CompanyEntity } from './company.entity';
+import { LeadEntity } from './lead.entity';
 
 @Entity({
     schema: 'persons',
@@ -124,6 +125,10 @@ export class CustomerEntity implements CustomerModel {
     @OneToOne(() => CompanyEntity)
     @JoinColumn({ name: 'company_id' })
     public company: CompanyEntity;
+
+    @OneToOne(() => LeadEntity)
+    @JoinColumn({ name: 'lead_id' })
+    public lead: LeadEntity;
 
     constructor() { }
 

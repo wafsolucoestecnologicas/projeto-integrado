@@ -23,6 +23,11 @@ export class createTableCustomers1635608181824 implements MigrationInterface {
                         isNullable: false
                     },
                     {
+                        name: 'lead_id',
+                        type: 'integer',
+                        isNullable: false
+                    },
+                    {
                         name: 'name',
                         type: 'varchar(50)',
                         isNullable: false
@@ -92,6 +97,13 @@ export class createTableCustomers1635608181824 implements MigrationInterface {
                         columnNames: ['company_id'],
                         referencedSchema: 'business',
                         referencedTableName: 'business.companies',
+                        referencedColumnNames: ['id']
+                    },
+                    {
+                        name: 'fk_lead_id',
+                        columnNames: ['lead_id'],
+                        referencedSchema: 'business',
+                        referencedTableName: 'business.leads',
                         referencedColumnNames: ['id']
                     }
                 ]
