@@ -20,8 +20,7 @@ export class BusinessService {
                     'company',
                     'owner',
                     'customer',
-                    'property',
-                    'lead'
+                    'property'
                 ]
             });
 
@@ -40,7 +39,6 @@ export class BusinessService {
                 owner: data.owner,
                 customer: data.customer,
                 property: data.property,
-                lead: data.lead,
                 status: data.status,
                 dateVisit: data.dateVisit,
                 dateSale: data.dateSale,
@@ -80,8 +78,7 @@ export class BusinessService {
                     'company',
                     'owner',
                     'customer',
-                    'property',
-                    'lead'
+                    'property'
                 ]
             });
 
@@ -99,7 +96,6 @@ export class BusinessService {
                 owner: data.owner,
                 customer: data.customer,
                 property: data.property,
-                lead: data.lead,
                 status: data.status,
                 dateVisit: data.dateVisit,
                 dateSale: data.dateSale,

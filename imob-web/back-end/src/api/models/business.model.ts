@@ -43,7 +43,6 @@ export interface BusinessModel {
     owner: OwnerEntity;
     customer: CustomerEntity;
     property: PropertyEntity;
-    lead: LeadEntity;
 
     convertDatesToTimestamp(): void;
     setCreatedAt(): void;

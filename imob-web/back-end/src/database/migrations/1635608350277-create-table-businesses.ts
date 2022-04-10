@@ -68,11 +68,6 @@ export class createTableBusinesses1635608350277 implements MigrationInterface {
                         isNullable: false
                     },
                     {
-                        name: 'lead_id',
-                        type: 'integer',
-                        isNullable: false
-                    },
-                    {
                         name: 'status',
                         type: 'smallint',
                         isNullable: false
@@ -260,13 +255,6 @@ export class createTableBusinesses1635608350277 implements MigrationInterface {
                         columnNames: ['customer_id'],
                         referencedSchema: 'persons',
                         referencedTableName: 'persons.customers',
-                        referencedColumnNames: ['id']
-                    },
-                    {
-                        name: 'fk_lead_id',
-                        columnNames: ['lead_id'],
-                        referencedSchema: 'business',
-                        referencedTableName: 'business.leads',
                         referencedColumnNames: ['id']
                     },
                     {

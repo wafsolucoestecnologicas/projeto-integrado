@@ -9,7 +9,6 @@ import { SecretaryEntity } from './secretary.entity';
 import { OwnerEntity } from './owner.entity';
 import { CustomerEntity } from './customer.entity';
 import { PropertyEntity } from './property.entity';
-import { LeadEntity } from './lead.entity';
 
 @Entity({
     schema: 'business',
@@ -267,10 +266,6 @@ export class BusinessEntity implements BusinessModel {
     @OneToOne(() => PropertyEntity)
     @JoinColumn({ name: 'property_id' })
     public property: PropertyEntity;
-
-    @OneToOne(() => LeadEntity)
-    @JoinColumn({ name: 'lead_id' })
-    public lead: LeadEntity;
 
     constructor() { }
 
