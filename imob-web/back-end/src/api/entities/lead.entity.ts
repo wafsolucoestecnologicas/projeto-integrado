@@ -106,6 +106,14 @@ export class LeadEntity implements LeadModel {
     public createdBySecretary: boolean;
 
     @Column({
+        name: 'registered',
+        type: 'bool',
+        nullable: false,
+        comment: 'Confirmação da criação de um cliente utilizando a lead'
+    })
+    public registered: boolean;
+
+    @Column({
         name: 'created_at',
         type: 'timestamp',
         nullable: false,

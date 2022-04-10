@@ -14,7 +14,7 @@ export class LeadController {
                 new LeadService();
 
             const leadEntity: LeadEntity[] =
-                await leadService.index();
+                await leadService.index(request.payload);
 
             return response.status(200).json(leadEntity);
         } catch (error: any) {
@@ -90,6 +90,11 @@ export class LeadController {
                             leadService.validateData(request.body);
 
                         if (result) {
+                            request.body.company = request.payload.company;
+                            request.body.administrator = request.payload?.administrator;
+                            request.body.manager = request.payload?.manager;
+                            request.body.secretary = request.payload?.secretary;
+
                             const leadEntity: LeadEntity =
                                 await leadService.update(Number(request.params.id), request.body, transaction);
 

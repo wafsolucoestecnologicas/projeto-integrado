@@ -15,6 +15,7 @@ export interface LeadModel {
     createdByAdministrator: boolean;
     createdByManager: boolean;
     createdBySecretary: boolean;
+    registered: boolean;
     createdAt: Date;
     updatedAt: Date;
     company: CompanyEntity;

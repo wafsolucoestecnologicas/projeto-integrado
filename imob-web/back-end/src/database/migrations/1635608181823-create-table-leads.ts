@@ -94,6 +94,11 @@ export class createTableLeads1635608181823 implements MigrationInterface {
                         isNullable: false
                     },
                     {
+                        name: 'registered',
+                        type: 'boolean',
+                        isNullable: false
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         isNullable: false

@@ -1,5 +1,6 @@
 import { DeleteResult, EntityManager, getRepository, Repository } from 'typeorm'
 import { LeadEntity } from '../entities/lead.entity'
+import { Payload } from '../../../utils/interfaces/jwt.interfaces';
 import moment from 'moment';
 
 export class LeadService {
@@ -10,12 +11,15 @@ export class LeadService {
         this.repository = getRepository(LeadEntity);
     }
 
-    public async index(): Promise<LeadEntity[]> {
+    public async index(payload: Payload): Promise<LeadEntity[]> {
         const leadEntity: LeadEntity[] =
             await this.repository.find({
                 relations: [
                     'company'
-                ]
+                ],
+                where: {
+                    company: payload.company.id
+                }
             });
 
         return leadEntity;
@@ -34,10 +38,11 @@ export class LeadService {
                 source: data.source,
                 landline: data.landline,
                 cellPhone: data.cellPhone,
-                comments: data.comments.toLowerCase(),
+                comments: data.comments ? data.comments.toLowerCase() : '',
                 createdByAdministrator: data.createdByAdministrator,
                 createdByManager: data.createdByManager,
-                createdBySecretary: data.createdBySecretary
+                createdBySecretary: data.createdBySecretary,
+                registered: data.registered
             });
 
         const result: LeadEntity =
@@ -53,7 +58,9 @@ export class LeadService {
                     id: id
                 },
                 relations: [
-                    'company'
+                    'company',
+                    'manager',
+                    'secretary'
                 ]
             });
 
@@ -63,6 +70,7 @@ export class LeadService {
     public async update(id: number, data: LeadEntity, transaction: EntityManager): Promise<LeadEntity> {
         const leadEntity: LeadEntity =
             this.repository.create({
+                company: data.company,
                 id: id,
                 name: data.name.toLowerCase(),
                 surname: data.surname.toLowerCase(),
@@ -70,10 +78,8 @@ export class LeadService {
                 source: data.source,
                 landline: data.landline,
                 cellPhone: data.cellPhone,
-                comments: data.comments.toLowerCase(),
-                createdByAdministrator: data.createdByAdministrator,
-                createdByManager: data.createdByManager,
-                createdBySecretary: data.createdBySecretary
+                comments: data.comments ? data.comments.toLowerCase() : '',
+                registered: data.registered
             });
 
         const result: LeadEntity =
@@ -103,7 +109,8 @@ export class LeadService {
             !data.hasOwnProperty('comments') ||
             !data.hasOwnProperty('createdByAdministrator') ||
             !data.hasOwnProperty('createdByManager') ||
-            !data.hasOwnProperty('createdBySecretary')) {
+            !data.hasOwnProperty('createdBySecretary') ||
+            !data.hasOwnProperty('registered')) {
             isValid = false;
         }
 
