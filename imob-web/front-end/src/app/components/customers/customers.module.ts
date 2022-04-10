@@ -12,6 +12,7 @@ import { DeleteCustomerComponent } from './delete-customer/delete-customer.compo
 
 import { CustomersResolver } from './shared/resolvers/customers.resolver';
 import { CustomerResolver } from './shared/resolvers/customer.resolver';
+import { LeadsResolver } from '../leads/shared/resolvers/leads.resolver';
 import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
 import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
 import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
@@ -32,6 +33,7 @@ import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
     providers: [
         CustomersResolver,
         CustomerResolver,
+        LeadsResolver,
         AdressesResolver,
         NeighborhoodsResolver,
         CitiesResolver

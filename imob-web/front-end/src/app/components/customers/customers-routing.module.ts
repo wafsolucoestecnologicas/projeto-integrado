@@ -12,10 +12,15 @@ import { AdressesResolver } from 'src/app/shared/resolvers/adresses.resolver';
 import { NeighborhoodsResolver } from 'src/app/shared/resolvers/neighborhoods.resolver';
 import { CitiesResolver } from 'src/app/shared/resolvers/cities.resolver';
 
+import { LeadsResolver } from '../leads/shared/resolvers/leads.resolver';
+
 const routes: Routes = [
     {
         path: 'create',
-        component: CreateCustomerComponent
+        component: CreateCustomerComponent,
+        resolve: {
+            leads: LeadsResolver
+        }
     },
     {
         path: 'list',
