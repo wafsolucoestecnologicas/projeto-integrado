@@ -77,7 +77,8 @@ export class EditLeadComponent implements OnInit, OnDestroy {
 				comments: [null, []],
 				createdByAdministrator: [null, [Validators.required]],
 				createdByManager: [null, [Validators.required]],
-				createdBySecretary: [null, [Validators.required]]
+				createdBySecretary: [null, [Validators.required]],
+				registered: [null, [Validators.required]]
 			})
 		});
 	}
@@ -93,7 +94,8 @@ export class EditLeadComponent implements OnInit, OnDestroy {
 			comments: form.lead.comments,
 			createdByAdministrator: form.lead.createdByAdministrator,
 			createdByManager: form.lead.createdByManager,
-			createdBySecretary: form.lead.createdBySecretary
+			createdBySecretary: form.lead.createdBySecretary,
+			registered: form.lead.registered
 		};
 	}
 

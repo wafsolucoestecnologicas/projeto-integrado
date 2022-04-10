@@ -21,7 +21,7 @@
                         fxLayoutGap.lg="20px"
                         fxLayoutGap.xl="20px"
                         formGroupName="lead">
-                        <div fxFlex="50">
+                        <div fxFlex="33.33">
                             <mat-form-field>
                                 <mat-label>Nome</mat-label>
                                 <input
@@ -39,7 +39,7 @@
                             </mat-form-field>
                         </div>
 
-                        <div fxFlex="50">
+                        <div fxFlex="33.33">
                             <mat-form-field>
                                 <mat-label>Sobrenome</mat-label>
                                 <input
@@ -55,6 +55,12 @@
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <mat-slide-toggle formControlName="registered" [disabled]="true">
+                                Cadastrado como Cliente?
+                            </mat-slide-toggle>
                         </div>
                     </div>
 
