@@ -19,7 +19,29 @@
                         fxLayout.lg="row"
                         fxLayout.xl="row"
                         fxLayoutGap.lg="20px"
-                        fxLayoutGap.xl="20px">
+                        fxLayoutGap.xl="20px"
+                        formGroupName="customer">
+                        <div fxFlex="100">
+                            <mat-form-field>
+                                <mat-label>Lead</mat-label>
+                                <mat-select formControlName="lead" (selectionChange)="setCustomer()">
+                                    <ng-container *ngFor="let lead of leads" >
+                                        <mat-option [value]="lead">
+                                            {{ lead.name }} {{ lead.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="customer">
                         <div fxFlex="50">
                             <mat-form-field>
                                 <mat-label>Nome</mat-label>
@@ -31,8 +53,8 @@
                                     required />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('name')?.touched &&
-                                        formGroup.get('name')?.errors?.required">
+                                        formGroup.get('customer')?.get('name')?.touched &&
+                                        formGroup.get('customer')?.get('name')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -49,8 +71,8 @@
                                     required />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('surname')?.touched &&
-                                        formGroup.get('surname')?.errors?.required">
+                                        formGroup.get('customer')?.get('surname')?.touched &&
+                                        formGroup.get('customer')?.get('surname')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -62,7 +84,8 @@
                         fxLayout.lg="row"
                         fxLayout.xl="row"
                         fxLayoutGap.lg="20px"
-                        fxLayoutGap.xl="20px">
+                        fxLayoutGap.xl="20px"
+                        formGroupName="customer">
                         <div fxFlex="50">
                             <mat-form-field>
                                 <mat-label>E-mail</mat-label>
@@ -74,14 +97,14 @@
                                     required />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('email')?.touched &&
-                                        formGroup.get('email')?.errors?.required">
+                                        formGroup.get('customer')?.get('email')?.touched &&
+                                        formGroup.get('customer')?.get('email')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('email')?.touched &&
-                                        formGroup.get('email')?.errors?.email">
+                                        formGroup.get('customer')?.get('email')?.touched &&
+                                        formGroup.get('customer')?.get('email')?.errors?.email">
                                     E-mail inválido!
                                 </mat-error>
                             </mat-form-field>
@@ -97,8 +120,8 @@
                                     required />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('birthDate')?.touched &&
-                                        formGroup.get('birthDate')?.errors?.required">
+                                        formGroup.get('customer')?.get('birthDate')?.touched &&
+                                        formGroup.get('customer')?.get('birthDate')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -110,7 +133,8 @@
                         fxLayout.lg="row"
                         fxLayout.xl="row"
                         fxLayoutGap.lg="20px"
-                        fxLayoutGap.xl="20px">
+                        fxLayoutGap.xl="20px"
+                        formGroupName="customer">
                         <div fxFlex="50">
                             <mat-form-field>
                                 <mat-label>RG</mat-label>
@@ -123,8 +147,8 @@
                                     [mask]="MASKS.RG" />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('RG')?.touched &&
-                                        formGroup.get('RG')?.errors?.required">
+                                        formGroup.get('customer')?.get('RG')?.touched &&
+                                        formGroup.get('customer')?.get('RG')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -142,8 +166,8 @@
                                     [mask]="MASKS.CPF" />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('CPF')?.touched &&
-                                        formGroup.get('CPF')?.errors?.required">
+                                        formGroup.get('customer')?.get('CPF')?.touched &&
+                                        formGroup.get('customer')?.get('CPF')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -155,7 +179,8 @@
                         fxLayout.lg="row"
                         fxLayout.xl="row"
                         fxLayoutGap.lg="20px"
-                        fxLayoutGap.xl="20px">
+                        fxLayoutGap.xl="20px"
+                        formGroupName="customer">
                         <div fxFlex="50">
                             <mat-form-field>
                                 <mat-label>Telefone Fixo</mat-label>
@@ -180,8 +205,8 @@
                                     [mask]="MASKS.CELL_PHONE" />
                                 <mat-error
                                     *ngIf="
-                                        formGroup.get('cellPhone')?.touched &&
-                                        formGroup.get('cellPhone')?.errors?.required">
+                                        formGroup.get('customer')?.get('cellPhone')?.touched &&
+                                        formGroup.get('customer')?.get('cellPhone')?.errors?.required">
                                     Campo obrigatório!
                                 </mat-error>
                             </mat-form-field>
@@ -193,7 +218,8 @@
                         fxLayout.lg="row"
                         fxLayout.xl="row"
                         fxLayoutGap.lg="20px"
-                        fxLayoutGap.xl="20px">
+                        fxLayoutGap.xl="20px"
+                        formGroupName="customer">
                         <div fxFlex="100">
                             <mat-form-field>
                                 <mat-label>Profissão</mat-label>
@@ -202,6 +228,153 @@
                                     formControlName="profession"
                                     matInput
                                     placeholder="Ex: Advogado" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="address">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>CEP</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="CEP"
+                                    matInput
+                                    placeholder="Ex: 31370-505"
+                                    [mask]="MASKS.CEP"
+                                    required
+                                    (keyup)="search()" />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('CEP')?.touched &&
+                                            formGroup.get('address')?.get('CEP')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Avenida/Rua</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="street"
+                                    matInput
+                                    placeholder="Ex: Rua José Simplício Moreira"
+                                    required />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('street')?.touched &&
+                                            formGroup.get('address')?.get('street')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div fxLayout="column" fxLayout.lg="row" fxLayout.xl="row" formGroupName="address">
+                        <div fxFlex="100">
+                            <mat-form-field>
+                                <mat-label>Complemento</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="complement"
+                                    matInput
+                                    placeholder="Ex: Próximo ao Centro Esportivo" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="address">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Número</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="number"
+                                    matInput
+                                    placeholder="Ex: 600"
+                                    required />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('number')?.touched &&
+                                            formGroup.get('address')?.get('number')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Bairro</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="neighborhood"
+                                    matInput
+                                    placeholder="Ex: Trevo"
+                                    required />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('neighborhood')?.touched &&
+                                            formGroup.get('address')?.get('neighborhood')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="address">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Cidade</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="city"
+                                    matInput
+                                    placeholder="Ex: Belo Horizonte"
+                                    required />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('city')?.touched &&
+                                            formGroup.get('address')?.get('city')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Estado</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="state"
+                                    matInput
+                                    placeholder="Ex: Minas Gerais"
+                                    required />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('state')?.touched &&
+                                            formGroup.get('address')?.get('state')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
                             </mat-form-field>
                         </div>
                     </div>
