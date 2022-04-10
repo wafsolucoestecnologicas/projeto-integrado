@@ -15,6 +15,7 @@ export interface Lead {
     createdByAdministrator: boolean;
     createdByManager: boolean;
     createdBySecretary: boolean;
+    registered: boolean;
     company: Company;
     administrator?: Administrator;
     manager?: Manager;
@@ -34,6 +35,7 @@ export interface CreateLead {
     createdByAdministrator: boolean;
     createdByManager: boolean;
     createdBySecretary: boolean;
+    registered: boolean;
     administrator?: Administrator;
     manager?: Manager;
     secretary?: Secretary;
@@ -50,6 +52,7 @@ export interface UpdateLead {
     createdByAdministrator: boolean;
     createdByManager: boolean;
     createdBySecretary: boolean;
+    registered: boolean;
 }
 
 export interface DeleteLead {
