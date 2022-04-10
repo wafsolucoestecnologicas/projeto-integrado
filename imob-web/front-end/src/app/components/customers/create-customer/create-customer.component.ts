@@ -4,12 +4,13 @@ import { Router, ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { CreateCustomer, Customer } from 'src/app/core/interfaces/customer.interface';
-import { Lead } from 'src/app/core/interfaces/lead.interface';
+import { Lead, UpdateLead } from 'src/app/core/interfaces/lead.interface';
 import { State } from 'src/app/core/interfaces/state.interface';
 import { City, CreateCity } from 'src/app/core/interfaces/city.interface';
 import { CreateNeighborhood, Neighborhood } from 'src/app/core/interfaces/neighborhood.interface';
 import { Address, CreateAddress, ResponseViaCEPModel } from 'src/app/core/interfaces/address.interface';
 import { CustomerService } from 'src/app/core/services/customer.service';
+import { LeadService } from 'src/app/core/services/lead.service';
 import { AddressService } from 'src/app/core/services/address.service';
 import { NeighborhoodService } from 'src/app/core/services/neighborhood.service';
 import { CityService } from 'src/app/core/services/city.service';
@@ -27,6 +28,7 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription[];
     public formGroup: FormGroup;
     public customer: Customer;
+    public lead: Lead;
     public leads: Lead[];
     public state: State;
     public city: City;
@@ -40,6 +42,7 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
         private readonly _formBuilder: FormBuilder,
         private readonly _activatedRoutes: ActivatedRoute,
         private readonly _customerService: CustomerService,
+        private readonly _leadService: LeadService,
         private readonly _addressService: AddressService,
         private readonly _neighborhoodService: NeighborhoodService,
         private readonly _cityService: CityService,
@@ -116,6 +119,22 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
         };
     }
 
+    private parseLead(form: any): UpdateLead {
+		return {
+			name: form.customer.lead.name,
+			surname: form.customer.lead.surname,
+			email: form.customer.lead.email,
+			source: form.customer.lead.source,
+			landline: form.customer.lead.landline,
+			cellPhone: form.customer.lead.cellPhone,
+			comments: form.customer.lead.comments,
+			createdByAdministrator: form.customer.lead.createdByAdministrator,
+			createdByManager: form.customer.lead.createdByManager,
+			createdBySecretary: form.customer.lead.createdBySecretary,
+			registered: true
+		};
+	}
+
     private parseCity(city: string, state: State): CreateCity {
         return {
             city,
@@ -157,11 +176,25 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
                 if (data) {
                     this.customer = data;
                     this.formGroup.get('customer')?.patchValue(this.customer);
-                    this.findState();
+                    this.updateLead();
                 }
             });
 
         this.subscriptions.push(subscription);
+    }
+
+    private updateLead(): void {
+        if (this.lead.id) {
+            const subscription: Subscription = this._leadService
+                .update(this.parseLead(this.formGroup.value), this.lead.id)
+                .subscribe((data: UpdateLead) => {
+                    if (data) {
+                        this.findState();
+                    }
+                });
+
+            this.subscriptions.push(subscription);
+        }
     }
 
     private createAddress(): void {
@@ -243,13 +276,13 @@ export class CreateCustomerComponent implements OnInit, OnDestroy {
     }
 
     public setCustomer(): void {
-        const lead: Lead = this.formGroup.get('customer')?.get('lead')?.value;
+        this.lead = this.formGroup.get('customer')?.get('lead')?.value;
 
-        this.formGroup.get('customer')?.get('name')?.setValue(lead.name);
-        this.formGroup.get('customer')?.get('surname')?.setValue(lead.surname);
-        this.formGroup.get('customer')?.get('email')?.setValue(lead.email);
-        this.formGroup.get('customer')?.get('landline')?.setValue(lead.landline);
-        this.formGroup.get('customer')?.get('cellPhone')?.setValue(lead.cellPhone);
+        this.formGroup.get('customer')?.get('name')?.setValue(this.lead.name);
+        this.formGroup.get('customer')?.get('surname')?.setValue(this.lead.surname);
+        this.formGroup.get('customer')?.get('email')?.setValue(this.lead.email);
+        this.formGroup.get('customer')?.get('landline')?.setValue(this.lead.landline);
+        this.formGroup.get('customer')?.get('cellPhone')?.setValue(this.lead.cellPhone);
     }
 
     public onSubmit(): void {
