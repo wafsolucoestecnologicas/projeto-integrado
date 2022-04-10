@@ -1,5 +1,6 @@
 import { Repository, getRepository, DeleteResult, EntityManager } from 'typeorm';
 import { AddressEntity } from '../entities/address.entity';
+import { Payload } from '../../../utils/interfaces/jwt.interfaces';
 import { ResponseViaCEPModel } from '../models/address.model';
 import fetch, { Response } from 'node-fetch';
 
@@ -11,12 +12,23 @@ export class AddressService {
         this.repository = getRepository(AddressEntity);
     }
 
-    public async index(): Promise<AddressEntity[]> {
+    public async index(payload: Payload): Promise<AddressEntity[]> {
         const addressEntity: AddressEntity[] =
             await this.repository.find({
                 relations: [
-                    'neighborhood'
-                ]
+                    'company',
+                    'neighborhood',
+                    'manager',
+                    'advisor',
+                    'broker',
+                    'secretary',
+                    'owner',
+                    'customer',
+                    'property'
+                ],
+                where: {
+                    company: payload.company.id
+                }
             });
 
         return addressEntity;

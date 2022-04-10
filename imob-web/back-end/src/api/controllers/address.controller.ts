@@ -15,7 +15,7 @@ export class AddressController {
                 new AddressService();
 
             const addressEntity: AddressEntity[] =
-                await addressService.index();
+                await addressService.index(request.payload);
 
             return response.status(200).json(addressEntity);
         } catch (error: any) {
