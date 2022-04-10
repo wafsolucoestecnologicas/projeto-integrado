@@ -1,4 +1,5 @@
 import { Company } from './company.interface';
+import { Lead } from './lead.interface';
 
 export interface Customer {
     id?: number;
@@ -13,6 +14,7 @@ export interface Customer {
     cellPhone: string;
     profession?: string;
     company: Company;
+    lead: Lead;
     createdAt: string;
     updatedAt: string;
 }
@@ -27,6 +29,7 @@ export interface CreateCustomer {
     landline?: string;
     cellPhone: string;
     profession?: string;
+    lead: Lead;
 }
 
 export interface UpdateCustomer {
