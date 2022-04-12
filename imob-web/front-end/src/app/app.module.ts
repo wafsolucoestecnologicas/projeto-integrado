@@ -23,6 +23,7 @@ import { BrokerService } from './core/services/broker.service';
 import { SecretaryService } from './core/services/secretary.service';
 import { OwnerService } from './core/services/owner.service';
 import { CustomerService } from './core/services/customer.service';
+import { PropertyService } from './core/services/property.service';
 import { LeadService } from './core/services/lead.service';
 import { AddressService } from './core/services/address.service';
 import { NeighborhoodService } from './core/services/neighborhood.service';
@@ -61,6 +62,7 @@ import { LoaderService } from './core/services/loader.service';
 		OwnerService,
 		CustomerService,
 		LeadService,
+		PropertyService,
 		AddressService,
 		NeighborhoodService,
 		CityService,
