@@ -51,6 +51,13 @@ const routes: Routes = [
                     )
             },
             {
+                path: 'properties',
+                loadChildren: () =>
+                    import('../properties/properties.module').then(
+                        (module) => module.PropertiesModule
+                    )
+            },
+            {
                 path: 'owners',
                 loadChildren: () =>
                     import('../owners/owners.module').then(
