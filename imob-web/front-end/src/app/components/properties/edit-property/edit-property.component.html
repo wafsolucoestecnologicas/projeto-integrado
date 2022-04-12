@@ -1,0 +1,404 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Gestão Externa</mat-card-title>
+        <mat-card-subtitle>Edição de Imóvel</mat-card-subtitle>
+    </mat-card-header>
+
+    <br />
+
+    <mat-card-content class="mat-elevation-z4">
+        <mat-toolbar>
+            <span>Imóvel</span>
+        </mat-toolbar>
+
+        <div class="container">
+            <div class="flex-container">
+                <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="property">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Descrição</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="description"
+                                    matInput
+                                    placeholder="Ex: Imóvel situado na região central de Belo Horizonte" />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-slide-toggle formControlName="checked">
+                                Cadastro Conferido?
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="property">
+                        <div fxFlex="100">
+                            <mat-form-field>
+                                <mat-label>Fotos</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="photos"
+                                    matInput />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="property">
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>Quartos</mat-label>
+                                <input
+                                    type="number"
+                                    formControlName="bedrooms"
+                                    matInput />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>Banheiros</mat-label>
+                                <input
+                                    type="number"
+                                    formControlName="bathrooms"
+                                    matInput />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>Suítes</mat-label>
+                                <input
+                                    type="number"
+                                    formControlName="suites"
+                                    matInput />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="property">
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>Vagas de Estacionamento</mat-label>
+                                <input
+                                    type="number"
+                                    formControlName="parkingLots"
+                                    matInput />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>Área do Terreno</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="terrainArea"
+                                    matInput
+                                    prefix="M²"
+                                    mask="separator.2"
+                                    thousandSeparator="." />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <mat-slide-toggle formControlName="elevator">
+                                Possui Elevador?
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="property">
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>Área Construída</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="buildingArea"
+                                    matInput
+                                    prefix="M²"
+                                    mask="separator.2"
+                                    thousandSeparator="." />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>Área Útil Total do Terreno</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="totalUtilTerrainArea"
+                                    matInput
+                                    prefix="M²"
+                                    mask="separator.2"
+                                    thousandSeparator="." />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>Valor do Imóvel</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="value"
+                                    matInput
+                                    prefix="R$"
+                                    mask="separator.2"
+                                    thousandSeparator="." />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="property">
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>Condomínio</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="condominium"
+                                    matInput
+                                    prefix="R$"
+                                    mask="separator.2"
+                                    thousandSeparator="." />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>IPTU</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="IPTU"
+                                    matInput
+                                    prefix="R$"
+                                    mask="separator.2"
+                                    thousandSeparator="." />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <mat-form-field>
+                                <mat-label>Proprietário</mat-label>
+                                <mat-select formControlName="owner" [(ngModel)]="owner.id">
+                                    <ng-container *ngFor="let owner of owners">
+                                        <mat-option [value]="owner.id">
+                                            {{ owner.name }} {{ owner.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="address">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>CEP</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="CEP"
+                                    matInput
+                                    placeholder="Ex: 31370-505"
+                                    [mask]="MASKS.CEP"
+                                    required
+                                    (keyup)="search()" />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('CEP')?.touched &&
+                                            formGroup.get('address')?.get('CEP')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Avenida/Rua</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="street"
+                                    matInput
+                                    placeholder="Ex: Rua José Simplício Moreira"
+                                    required />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('street')?.touched &&
+                                            formGroup.get('address')?.get('street')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div fxLayout="column" fxLayout.lg="row" fxLayout.xl="row" formGroupName="address">
+                        <div fxFlex="100">
+                            <mat-form-field>
+                                <mat-label>Complemento</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="complement"
+                                    matInput
+                                    placeholder="Ex: Próximo ao Centro Esportivo" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="address">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Número</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="number"
+                                    matInput
+                                    placeholder="Ex: 600"
+                                    required />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('number')?.touched &&
+                                            formGroup.get('address')?.get('number')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Bairro</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="neighborhood"
+                                    matInput
+                                    placeholder="Ex: Trevo"
+                                    required />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('neighborhood')?.touched &&
+                                            formGroup.get('address')?.get('neighborhood')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="address">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Cidade</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="city"
+                                    matInput
+                                    placeholder="Ex: Belo Horizonte"
+                                    required />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('city')?.touched &&
+                                            formGroup.get('address')?.get('city')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Estado</mat-label>
+                                <input
+                                    type="text"
+                                    formControlName="state"
+                                    matInput
+                                    placeholder="Ex: Minas Gerais"
+                                    required />
+                                    <mat-error
+                                        *ngIf="
+                                            formGroup.get('address')?.get('state')?.touched &&
+                                            formGroup.get('address')?.get('state')?.errors?.required">
+                                        Campo obrigatório!
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout.xs="column"
+                        fxLayout="row"
+                        fxLayoutGap="20px"
+                        fxLayoutAlign="end center">
+                        <div>
+                            <button
+                                type="button"
+                                mat-raised-button
+                                routerLink="/content/properties/list">
+                                Cancelar
+                            </button>
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                mat-raised-button
+                                color="primary"
+                                [disabled]="!formGroup.valid">
+                                Salvar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
