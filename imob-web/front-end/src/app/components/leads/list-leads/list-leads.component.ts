@@ -10,11 +10,11 @@ import { Lead } from 'src/app/core/interfaces/lead.interface';
 import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
-    selector: 'imob-list-lead',
-    templateUrl: './list-lead.component.html',
-    styleUrls: ['./list-lead.component.css']
+    selector: 'imob-list-leads',
+    templateUrl: './list-leads.component.html',
+    styleUrls: ['./list-leads.component.css']
 })
-export class ListLeadComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ListLeadsComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	@ViewChild(MatPaginator)
 	public paginator: MatPaginator;
