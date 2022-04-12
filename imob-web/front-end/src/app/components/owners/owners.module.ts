@@ -8,7 +8,6 @@ import { CreateOwnerComponent } from './create-owner/create-owner.component';
 import { ListOwnersComponent } from './list-owners/list-owners.component';
 import { ViewOwnerComponent } from './view-owner/view-owner.component';
 import { EditOwnerComponent } from './edit-owner/edit-owner.component';
-import { FormatCheckedPipe } from './shared/pipes/format-checked.pipe';
 
 import { OwnersResolver } from './shared/resolvers/owners.resolver';
 import { OwnerResolver } from './shared/resolvers/owner.resolver';
@@ -23,8 +22,7 @@ import { DeleteOwnerComponent } from './delete-owner/delete-owner.component';
 		ListOwnersComponent,
 		ViewOwnerComponent,
     	EditOwnerComponent,
-    	DeleteOwnerComponent,
-  		FormatCheckedPipe
+    	DeleteOwnerComponent
 	],
     imports: [
 		CommonModule,
