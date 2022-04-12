@@ -5,7 +5,7 @@ import { LeadsRoutingModule } from './leads-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CreateLeadComponent } from './create-lead/create-lead.component';
-import { ListLeadComponent } from './list-lead/list-lead.component';
+import { ListLeadsComponent } from './list-leads/list-leads.component';
 import { ViewLeadComponent } from './view-lead/view-lead.component';
 import { EditLeadComponent } from './edit-lead/edit-lead.component';
 import { DeleteLeadComponent } from './delete-lead/delete-lead.component';
@@ -17,7 +17,7 @@ import { LeadResolver } from './shared/resolvers/lead.resolver';
 @NgModule({
     declarations: [
 		CreateLeadComponent,
-		ListLeadComponent,
+		ListLeadsComponent,
 		ViewLeadComponent,
 		EditLeadComponent,
 		DeleteLeadComponent,

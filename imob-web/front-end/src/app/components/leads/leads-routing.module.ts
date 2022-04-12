@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CreateLeadComponent } from './create-lead/create-lead.component';
-import { ListLeadComponent } from './list-lead/list-lead.component';
+import { ListLeadsComponent } from './list-leads/list-leads.component';
 import { ViewLeadComponent } from './view-lead/view-lead.component';
 import { EditLeadComponent } from './edit-lead/edit-lead.component';
 
@@ -16,7 +16,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'list',
-		component: ListLeadComponent,
+		component: ListLeadsComponent,
 		resolve: {
 			leads: LeadsResolver
 		}
