@@ -27,12 +27,14 @@ import { FormatDateHourPipe } from './pipes/format-date-hour.pipe';
 import { FormatDatePipe } from './pipes/format-date.pipe';
 import { FormatPhonePipe } from './pipes/format-phone.pipe';
 import { NgxMaskModule } from 'ngx-mask';
+import { FormatCheckedPipe } from './pipes/format-checked.pipe';
 
 @NgModule({
 	declarations: [
 		FormatDateHourPipe,
   		FormatDatePipe,
-    	FormatPhonePipe
+    	FormatPhonePipe,
+		FormatCheckedPipe
 	],
 	imports: [
 		CommonModule,
@@ -64,6 +66,7 @@ import { NgxMaskModule } from 'ngx-mask';
 		FormatDateHourPipe,
 		FormatDatePipe,
 		FormatPhonePipe,
+		FormatCheckedPipe,
 		RouterModule,
 		HttpClientModule,
 		ReactiveFormsModule,
