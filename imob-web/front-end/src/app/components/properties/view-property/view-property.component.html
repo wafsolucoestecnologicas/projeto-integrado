@@ -1,0 +1,198 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Gestão Externa</mat-card-title>
+        <mat-card-subtitle>Visualização de Imóvel</mat-card-subtitle>
+    </mat-card-header>
+
+    <br />
+
+    <mat-card-content class="mat-elevation-z4">
+        <mat-toolbar>
+            <span>Imóvel</span>
+        </mat-toolbar>
+
+        <div class="container">
+            <div class="flex-container">
+                <div
+                    fxLayout="column"
+                    fxLayout.lg="row"
+                    fxLayout.xl="row">
+                    <div fxFlex="33.33">
+                        <mat-list>
+                            <mat-list-item>
+                                <strong>Descrição:</strong>
+                                <span class="data">{{ property.description }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Cadastro:</strong>
+                                <span class="data">{{ property.checked | formatChecked }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Elevador:</strong>
+                                <span class="data">{{ property.elevator ? 'sim' : 'não' }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Quartos:</strong>
+                                <span class="data">{{ property.bedrooms }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Banheiros:</strong>
+                                <span class="data">{{ property.bathrooms }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Suítes:</strong>
+                                <span class="data">{{ property.suites }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Vagas de Estacionamento:</strong>
+                                <span class="data">{{ property.parkingLots }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Área do Terreno:</strong>
+                                <span class="data">M² {{ property.terrainArea }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Área Construída:</strong>
+                                <span class="data">M² {{ property.buildingArea }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Área Útil Total do Terreno:</strong>
+                                <span class="data">M² {{ property.totalUtilTerrainArea }}</span>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+
+                    <div fxFlex="33.33">
+                        <mat-list>
+                            <mat-list-item>
+                                <strong>Condomínio:</strong>
+                                <ng-container *ngIf="property.condominium; else condominium">
+                                    <span class="data">R$ {{ property.condominium | mask: 'separator.2':'.' }}</span>
+                                </ng-container>
+
+                                <ng-template #condominium>
+                                    <span class="data">R$ 0</span>
+                                </ng-template>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>IPTU:</strong>
+                                <ng-container *ngIf="property.IPTU; else IPTU">
+                                    <span class="data">R$ {{ property.IPTU | mask: 'separator.2':'.' }}</span>
+                                </ng-container>
+
+                                <ng-template #IPTU>
+                                    <span class="data">R$ 0</span>
+                                </ng-template>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Valor do Imóvel:</strong>
+                                <ng-container *ngIf="property.value; else value">
+                                    <span class="data">R$ {{ property.value | mask: 'separator.2':'.' }}</span>
+                                </ng-container>
+
+                                <ng-template #value>
+                                    <span class="data">R$ 0</span>
+                                </ng-template>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Proprietário:</strong>
+                                <span class="data">{{ property.owner.name }} {{ property.owner.surname }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Criado por:</strong>
+                                <ng-container *ngIf="property.administrator">
+                                    <span class="data">{{ property.administrator.name }} {{ property.administrator.surname }}</span>
+                                </ng-container>
+
+                                <ng-container *ngIf="property.manager">
+                                    <span class="data">{{ property.manager.name }} {{ property.manager.surname }}</span>
+                                </ng-container>
+
+                                <ng-container *ngIf="property.broker">
+                                    <span class="data">{{ property.broker.name }} {{ property.broker.surname }}</span>
+                                </ng-container>
+
+                                <ng-container *ngIf="property.secretary">
+                                    <span class="data">{{ property.secretary.name }} {{ property.secretary.surname }}</span>
+                                </ng-container>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Criado em:</strong>
+                                <span class="data">{{ property.createdAt | formatDateHour }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Atualizado em:</strong>
+                                <span class="data">{{ property.updatedAt | formatDateHour }}</span>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+
+                    <div fxFlex="33.33">
+                        <mat-list>
+                            <ng-container *ngIf="address">
+                                <mat-list-item>
+                                    <strong>CEP:</strong>
+                                    <span class="data">{{ address.CEP | mask: MASKS.CEP }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Avenida/Rua:</strong>
+                                    <span class="data">{{ address.street }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Complemento:</strong>
+                                    <span class="data">{{ address.complement }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Número:</strong>
+                                    <span class="data">{{ address.number }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Bairro:</strong>
+                                    <span class="data">{{ address.neighborhood.neighborhood }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Cidade:</strong>
+                                    <span class="data">{{ city.city }}</span>
+                                </mat-list-item>
+
+                                <mat-list-item>
+                                    <strong>Estado:</strong>
+                                    <span class="data">{{ state.UF }}</span>
+                                </mat-list-item>
+                            </ng-container>
+                        </mat-list>
+                    </div>
+                </div>
+
+                <div
+                    fxLayout.xs="column"
+                    fxLayout="row"
+                    fxLayoutAlign="end center">
+                    <button type="button" mat-raised-button routerLink="/content/properties/list">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
