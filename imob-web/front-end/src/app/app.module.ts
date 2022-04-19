@@ -24,7 +24,10 @@ import { SecretaryService } from './core/services/secretary.service';
 import { OwnerService } from './core/services/owner.service';
 import { CustomerService } from './core/services/customer.service';
 import { PropertyService } from './core/services/property.service';
+import { BusinessService } from './core/services/business.service';
 import { LeadService } from './core/services/lead.service';
+import { CommissionReceivableService } from './core/services/commission-receivable.service';
+import { CommissionPayableService } from './core/services/commission-payable.service';
 import { AddressService } from './core/services/address.service';
 import { NeighborhoodService } from './core/services/neighborhood.service';
 import { CityService } from './core/services/city.service';
@@ -61,8 +64,11 @@ import { LoaderService } from './core/services/loader.service';
 		SecretaryService,
 		OwnerService,
 		CustomerService,
-		LeadService,
 		PropertyService,
+		BusinessService,
+		LeadService,
+		CommissionReceivableService,
+		CommissionPayableService,
 		AddressService,
 		NeighborhoodService,
 		CityService,
