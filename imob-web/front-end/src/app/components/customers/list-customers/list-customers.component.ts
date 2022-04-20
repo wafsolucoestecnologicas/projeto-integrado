@@ -2,12 +2,12 @@ import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild } from '@angular
 import { Router, ActivatedRoute, Data } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
 import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
 import { Customer } from 'src/app/core/interfaces/customer.interface';
 import { AlertService } from 'src/app/shared/services/alert.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Masks } from 'src/app/shared/enums/masks.enum';
 
 @Component({

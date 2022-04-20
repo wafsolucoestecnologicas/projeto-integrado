@@ -30,7 +30,7 @@
             
             <ng-container matColumnDef="value">
                 <mat-header-cell class="align-center width-10" *matHeaderCellDef>Valor do Imóvel</mat-header-cell>
-                <mat-cell class="align-center" *matCellDef="let element">R$ {{ element.value | mask: 'separator.2':'.'}}</mat-cell>
+                <mat-cell class="align-center" *matCellDef="let element">R$ {{ element.value | mask: 'separator.2':'.' }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="checked">
