@@ -77,6 +77,27 @@ const routes: Routes = [
                     import('../leads/leads.module').then(
                         (module) => module.LeadsModule
                     )
+            },
+            {
+                path: 'businesses',
+                loadChildren: () =>
+                    import('../businesses/businesses.module').then(
+                        (module) => module.BusinessesModule
+                    )
+            },
+            {
+                path: 'commissions-receivable',
+                loadChildren: () =>
+                    import('../commissions-receivable/commissions-receivable.module').then(
+                        (module) => module.CommissionsReceivableModule
+                    )
+            },
+            {
+                path: 'commissions-payable',
+                loadChildren: () =>
+                    import('../commissions-payable/commissions-payable.module').then(
+                        (module) => module.CommissionsPayableModule
+                    )
             }
         ]
     }
