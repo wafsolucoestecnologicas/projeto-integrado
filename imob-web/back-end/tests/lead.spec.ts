@@ -6,9 +6,11 @@ import { ManagerEntity } from "../src/api/entities/manager.entity";
 import { SecretaryEntity } from "../src/api/entities/secretary.entity";
 import { LeadEntity } from "../src/api/entities/lead.entity";
 import { LeadService } from "../src/api/services/lead.service";
+import { Payload } from "../utils/classes/payload.class";
 
 describe("Suíte de testes do módulo de lead", () => {
   let connection: Connection;
+  let payload: Payload;
   let company: CompanyEntity;
   let manager: ManagerEntity;
   let secretary: SecretaryEntity;
@@ -21,6 +23,7 @@ describe("Suíte de testes do módulo de lead", () => {
   });
 
   beforeEach(() => {
+    payload = new Payload();
     company = new CompanyEntity();
     manager = new ManagerEntity();
     secretary = new SecretaryEntity();
@@ -35,7 +38,7 @@ describe("Suíte de testes do módulo de lead", () => {
     const expected = 1;
 
     connection.transaction(async (transaction: EntityManager) => {
-      const result: LeadEntity[] = await service.index();
+      const result: LeadEntity[] = await service.index(payload);
 
       expect(result.length).toBeGreaterThanOrEqual(expected);
     });
