@@ -55,17 +55,26 @@ export class createTableBusinesses1635608350277 implements MigrationInterface {
                     {
                         name: 'owner_id',
                         type: 'integer',
-                        isNullable: false
+                        default: null,
+                        isNullable: true
                     },
                     {
                         name: 'customer_id',
                         type: 'integer',
-                        isNullable: false
+                        default: null,
+                        isNullable: true
+                    },
+                    {
+                        name: 'lead_id',
+                        type: 'integer',
+                        default: null,
+                        isNullable: true
                     },
                     {
                         name: 'property_id',
                         type: 'integer',
-                        isNullable: false
+                        default: null,
+                        isNullable: true
                     },
                     {
                         name: 'status',
@@ -86,73 +95,73 @@ export class createTableBusinesses1635608350277 implements MigrationInterface {
                     },
                     {
                         name: 'visit_form',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'property_registration',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'property_sale_contract',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'itbi',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'customer_rg',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'customer_cpf',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'customer_address_proof',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'customer_payslip',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'owner_rg',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'owner_cpf',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'owner_address_proof',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
                     {
                         name: 'owner_payslip',
-                        type: 'varchar(50)',
+                        type: 'varchar(200)',
                         default: null,
                         isNullable: true
                     },
@@ -255,6 +264,13 @@ export class createTableBusinesses1635608350277 implements MigrationInterface {
                         columnNames: ['customer_id'],
                         referencedSchema: 'persons',
                         referencedTableName: 'persons.customers',
+                        referencedColumnNames: ['id']
+                    },
+                    {
+                        name: 'fk_lead_id',
+                        columnNames: ['lead_id'],
+                        referencedSchema: 'business',
+                        referencedTableName: 'business.leads',
                         referencedColumnNames: ['id']
                     },
                     {
