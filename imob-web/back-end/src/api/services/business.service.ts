@@ -3,6 +3,7 @@ import { BusinessEntity } from '../entities/business.entity';
 import { ManagerEntity } from '../entities/manager.entity';
 import { AdvisorEntity } from '../entities/advisor.entity';
 import { BrokerEntity } from '../entities/broker.entity';
+import { Payload } from '../../../utils/interfaces/jwt.interfaces';
 import moment from 'moment';
 
 export class BusinessService {
@@ -13,15 +14,22 @@ export class BusinessService {
         this.repository = getRepository(BusinessEntity);
     }
 
-    public async index(): Promise<BusinessEntity[]> {
+    public async index(payload: Payload): Promise<BusinessEntity[]> {
         const businessEntity: BusinessEntity[] =
             await this.repository.find({
                 relations: [
                     'company',
-                    'owner',
+                    'manager',
+                    'advisor',
+                    'broker',
                     'customer',
+                    'lead',
+                    'owner',
                     'property'
-                ]
+                ],
+                where: {
+                    company: payload.company.id
+                }
             });
 
         return businessEntity;
@@ -38,6 +46,7 @@ export class BusinessService {
                 secretary: data?.secretary,
                 owner: data.owner,
                 customer: data.customer,
+                lead: data.lead,
                 property: data.property,
                 status: data.status,
                 dateVisit: data.dateVisit,
@@ -76,8 +85,12 @@ export class BusinessService {
                 },
                 relations: [
                     'company',
-                    'owner',
+                    'manager',
+                    'advisor',
+                    'broker',
                     'customer',
+                    'lead',
+                    'owner',
                     'property'
                 ]
             });
@@ -95,6 +108,7 @@ export class BusinessService {
                 secretary: data?.secretary,
                 owner: data.owner,
                 customer: data.customer,
+                lead: data.lead,
                 property: data.property,
                 status: data.status,
                 dateVisit: data.dateVisit,
