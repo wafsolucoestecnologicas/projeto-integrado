@@ -8,6 +8,7 @@ import { BrokerEntity } from './broker.entity';
 import { SecretaryEntity } from './secretary.entity';
 import { OwnerEntity } from './owner.entity';
 import { CustomerEntity } from './customer.entity';
+import { LeadEntity } from './lead.entity';
 import { PropertyEntity } from './property.entity';
 
 @Entity({
@@ -257,15 +258,19 @@ export class BusinessEntity implements BusinessModel {
 
     @OneToOne(() => OwnerEntity)
     @JoinColumn({ name: 'owner_id' })
-    public owner: OwnerEntity;
+    public owner?: OwnerEntity;
 
     @OneToOne(() => CustomerEntity)
     @JoinColumn({ name: 'customer_id' })
-    public customer: CustomerEntity;
+    public customer?: CustomerEntity;
+
+    @OneToOne(() => LeadEntity)
+    @JoinColumn({ name: 'lead_id' })
+    public lead?: LeadEntity;
 
     @OneToOne(() => PropertyEntity)
     @JoinColumn({ name: 'property_id' })
-    public property: PropertyEntity;
+    public property?: PropertyEntity;
 
     constructor() { }
 

@@ -6,8 +6,8 @@ import { BrokerEntity } from '../entities/broker.entity';
 import { SecretaryEntity } from '../entities/secretary.entity';
 import { OwnerEntity } from '../entities/owner.entity';
 import { CustomerEntity } from '../entities/customer.entity';
-import { PropertyEntity } from '../entities/property.entity';
 import { LeadEntity } from '../entities/lead.entity';
+import { PropertyEntity } from '../entities/property.entity';
 
 export interface BusinessModel {
     id: number;
@@ -40,9 +40,10 @@ export interface BusinessModel {
     advisor?: AdvisorEntity;
     broker?: BrokerEntity;
     secretary?: SecretaryEntity;
-    owner: OwnerEntity;
-    customer: CustomerEntity;
-    property: PropertyEntity;
+    owner?: OwnerEntity;
+    customer?: CustomerEntity;
+    lead?: LeadEntity;
+    property?: PropertyEntity;
 
     convertDatesToTimestamp(): void;
     setCreatedAt(): void;
