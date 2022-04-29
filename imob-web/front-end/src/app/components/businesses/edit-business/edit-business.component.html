@@ -1,0 +1,602 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Gestão Financeira</mat-card-title>
+        <mat-card-subtitle>Edição de Negócio</mat-card-subtitle>
+    </mat-card-header>
+
+    <br />
+
+    <mat-card-content class="mat-elevation-z4">
+        <mat-toolbar>
+            <span>Negócio</span>
+        </mat-toolbar>
+
+        <div class="container">
+            <div class="flex-container">
+                <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="100">
+                            <mat-form-field>
+                                <mat-label>Gestor</mat-label>
+                                <mat-select formControlName="manager" (selectionChange)="redirectManager()">
+                                    <ng-container *ngFor="let manager of managers">
+                                        <mat-option [value]="manager.id">
+                                            {{ manager.name }} {{ manager.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('manager')?.touched &&
+                                        formGroup.get('business')?.get('manager')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Despachante</mat-label>
+                                <mat-select formControlName="advisor" (selectionChange)="redirectAdvisor()" [disabled]="!isManager && !isAdvisor">
+                                    <ng-container *ngFor="let advisor of advisors">
+                                        <mat-option [value]="advisor.id">
+                                            {{ advisor.name }} {{ advisor.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('advisor')?.touched &&
+                                        formGroup.get('business')?.get('advisor')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Corretor</mat-label>
+                                <mat-select formControlName="broker">
+                                    <ng-container *ngFor="let broker of brokers">
+                                        <mat-option [value]="broker.id">
+                                            {{ broker.name }} {{ broker.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('broker')?.touched &&
+                                        formGroup.get('business')?.get('broker')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Imóvel</mat-label>
+                                <mat-select formControlName="property" (selectionChange)="setOwner()">
+                                    <ng-container *ngFor="let property of properties">
+                                        <mat-option [value]="property.id">
+                                            {{ property.id }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('property')?.touched &&
+                                        formGroup.get('business')?.get('property')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Proprietário</mat-label>
+                                <mat-select formControlName="owner" [disabled]="true">
+                                    <ng-container *ngFor="let owner of owners">
+                                        <mat-option [value]="owner.id">
+                                            {{ owner.name }} {{ owner.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('owner')?.touched &&
+                                        formGroup.get('business')?.get('owner')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Cliente</mat-label>
+                                <mat-select formControlName="customer" (selectionChange)="setLead()">
+                                    <ng-container *ngFor="let customer of customers">
+                                        <mat-option [value]="customer.id">
+                                            {{ customer.name }} {{ customer.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('customer')?.touched &&
+                                        formGroup.get('business')?.get('customer')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Lead</mat-label>
+                                <mat-select formControlName="lead" [disabled]="true">
+                                    <ng-container *ngFor="let lead of leads">
+                                        <mat-option [value]="lead.id">
+                                            {{ lead.name }} {{ lead.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('lead')?.touched &&
+                                        formGroup.get('business')?.get('lead')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="100">
+                            <mat-form-field>
+                                <mat-label>Status</mat-label>
+                                <mat-select formControlName="status" (selectionChange)="setValidatorForDateSale()" required>
+                                    <ng-container *ngFor="let status of status; let index = index">
+                                        <mat-option [value]="index">
+                                            {{ status }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Data da Visita</mat-label>
+                                <input
+                                    type="date"
+                                    formControlName="dateVisit"
+                                    matInput />
+                                    <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('dateVisit')?.touched &&
+                                        formGroup.get('business')?.get('dateVisit')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Data da Venda</mat-label>
+                                <input
+                                    type="date"
+                                    formControlName="dateSale"
+                                    matInput />
+                                    <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('dateSale')?.touched &&
+                                        formGroup.get('business')?.get('dateSale')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="33.33">
+                            <label>Formulário de Visita</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('visitForm')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('visitForm')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('visitForm', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('visitForm')?.touched &&
+                                        formGroup.get('business')?.get('visitForm')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <label>Matrícula do Imóvel</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('propertyRegistration')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('propertyRegistration')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('propertyRegistration', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('propertyRegistration')?.touched &&
+                                        formGroup.get('business')?.get('propertyRegistration')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <label>Contrato de Venda</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('propertySaleContract')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('propertySaleContract')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('propertySaleContract', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('propertySaleContract')?.touched &&
+                                        formGroup.get('business')?.get('propertySaleContract')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="33.33">
+                            <label>Documento de ITBI</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('ITBI')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('ITBI')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('ITBI', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('ITBI')?.touched &&
+                                        formGroup.get('business')?.get('ITBI')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <label>RG do Cliente</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('customerRG')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('customerRG')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('customerRG', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('customerRG')?.touched &&
+                                        formGroup.get('business')?.get('customerRG')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <label>CPF do Cliente</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('customerCPF')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('customerCPF')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('customerCPF', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('customerCPF')?.touched &&
+                                        formGroup.get('business')?.get('customerCPF')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="33.33">
+                            <label>Comprovante de Endereço do Cliente</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('customerAddressProof')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('customerAddressProof')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('customerAddressProof', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('customerAddressProof')?.touched &&
+                                        formGroup.get('business')?.get('customerAddressProof')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <label>Contra Cheque do Cliente</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('customerPayslip')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('customerPayslip')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('customerPayslip', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('customerPayslip')?.touched &&
+                                        formGroup.get('business')?.get('customerPayslip')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <label>RG do Proprietário</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('ownerRG')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('ownerRG')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('ownerRG', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('ownerRG')?.touched &&
+                                        formGroup.get('business')?.get('ownerRG')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="33.33">
+                            <label>CPF do Proprietário</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('ownerCPF')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('ownerCPF')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('ownerCPF', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('ownerCPF')?.touched &&
+                                        formGroup.get('business')?.get('ownerCPF')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <label>Comprovante de Endereço do Proprietário</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('ownerAddressProof')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('ownerAddressProof')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('ownerAddressProof', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('ownerAddressProof')?.touched &&
+                                        formGroup.get('business')?.get('ownerAddressProof')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+
+                        <div fxFlex="33.33">
+                            <label>Contra Cheque do Proprietário</label>
+                            <ng-container *ngIf="formGroup.get('business')?.get('ownerPayslip')?.value">
+                                <button
+                                    type="button"
+                                    mat-raised-button
+                                    color="accent"
+                                    (click)="downloadFile(formGroup.get('business')?.get('ownerPayslip')?.value)">
+                                    Download
+                                </button>
+                            </ng-container>
+
+                            <input
+                                type="file"
+                                (change)="onFileSelected('ownerPayslip', $event)" />
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('ownerPayslip')?.touched &&
+                                        formGroup.get('business')?.get('ownerPayslip')?.errors?.required
+                                    ">
+                                    Campo obrigatório!
+                                </mat-error>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout.xs="column"
+                        fxLayout="row"
+                        fxLayoutGap="20px"
+                        fxLayoutAlign="end center">
+                        <div>
+                            <button
+                                type="button"
+                                mat-raised-button
+                                routerLink="/content/businesses/list">
+                                Cancelar
+                            </button>
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                mat-raised-button
+                                color="primary"
+                                [disabled]="!formGroup.valid">
+                                Salvar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
