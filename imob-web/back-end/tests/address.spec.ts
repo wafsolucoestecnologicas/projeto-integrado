@@ -6,10 +6,11 @@ import { NeighborhoodEntity } from "../src/api/entities/neighborhood.entity";
 import { ManagerEntity } from "../src/api/entities/manager.entity";
 import { AddressEntity } from "../src/api/entities/address.entity";
 import { AddressService } from "../src/api/services/address.service";
-import { ResponseViaCEPModel } from "../src/api/models/address.model";
+import { Payload } from "../utils/classes/payload.class";
 
 describe("Suíte de testes do módulo de endereço", () => {
   let connection: Connection;
+  let payload: Payload;
   let company: CompanyEntity;
   let neighborhood: NeighborhoodEntity;
   let manager: ManagerEntity;
@@ -22,6 +23,7 @@ describe("Suíte de testes do módulo de endereço", () => {
   });
 
   beforeEach(() => {
+    payload = new Payload();
     company = new CompanyEntity();
     neighborhood = new NeighborhoodEntity();
     manager = new ManagerEntity();
@@ -36,7 +38,7 @@ describe("Suíte de testes do módulo de endereço", () => {
     const expected = 1;
 
     connection.transaction(async (transaction: EntityManager) => {
-      const result: AddressEntity[] = await service.index();
+      const result: AddressEntity[] = await service.index(payload);
 
       expect(result.length).toBeGreaterThanOrEqual(expected);
     });

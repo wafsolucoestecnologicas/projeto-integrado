@@ -10,9 +10,11 @@ import { CustomerEntity } from "../src/api/entities/customer.entity";
 import { LeadEntity } from "../src/api/entities/lead.entity";
 import { BusinessEntity } from "../src/api/entities/business.entity";
 import { BusinessService } from "../src/api/services/business.service";
+import { Payload } from "../utils/classes/payload.class";
 
 describe("Suíte de testes do módulo de negócio", () => {
   let connection: Connection;
+  let payload: Payload;
   let company: CompanyEntity;
   let manager: ManagerEntity;
   let broker: BrokerEntity;
@@ -29,6 +31,7 @@ describe("Suíte de testes do módulo de negócio", () => {
   });
 
   beforeEach(() => {
+    payload = new Payload();
     company = new CompanyEntity();
     manager = new ManagerEntity();
     broker = new BrokerEntity();
@@ -47,7 +50,7 @@ describe("Suíte de testes do módulo de negócio", () => {
     const expected = 1;
 
     connection.transaction(async (transaction: EntityManager) => {
-      const result: BusinessEntity[] = await service.index();
+      const result: BusinessEntity[] = await service.index(payload);
 
       expect(result.length).toBeGreaterThanOrEqual(expected);
     });

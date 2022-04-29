@@ -6,10 +6,12 @@ import { BrokerEntity } from "../src/api/entities/broker.entity";
 import { PropertyEntity } from "../src/api/entities/property.entity";
 import { CommissionPayableEntity } from "../src/api/entities/commission-payable.entity";
 import { CommissionPayableService } from "../src/api/services/commission-payable.service";
+import { Payload } from "../utils/classes/payload.class";
 
 
 describe("Suíte de testes do módulo de comissões a pagar", () => {
   let connection: Connection;
+  let payload: Payload;
   let company: CompanyEntity;
   let broker: BrokerEntity;
   let property: PropertyEntity;
@@ -22,6 +24,7 @@ describe("Suíte de testes do módulo de comissões a pagar", () => {
   });
 
   beforeEach(() => {
+    payload = new Payload();
     company = new CompanyEntity();
     broker = new BrokerEntity();
     property = new PropertyEntity();
@@ -36,7 +39,7 @@ describe("Suíte de testes do módulo de comissões a pagar", () => {
     const expected = 1;
 
     connection.transaction(async (transaction: EntityManager) => {
-      const result: CommissionPayableEntity[] = await service.index();
+      const result: CommissionPayableEntity[] = await service.index(payload);
 
       expect(result.length).toBeGreaterThanOrEqual(expected);
     });

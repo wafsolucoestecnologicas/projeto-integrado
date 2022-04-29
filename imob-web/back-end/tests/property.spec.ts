@@ -6,9 +6,11 @@ import { ManagerEntity } from "../src/api/entities/manager.entity";
 import { SecretaryEntity } from "../src/api/entities/secretary.entity";
 import { PropertyEntity } from "../src/api/entities/property.entity";
 import { PropertyService } from "../src/api/services/property.service";
+import { Payload } from "../utils/classes/payload.class";
 
 describe("Suíte de testes do módulo de imóvel", () => {
   let connection: Connection;
+  let payload: Payload;
   let company: CompanyEntity;
   let manager: ManagerEntity;
   let secretary: SecretaryEntity;
@@ -21,6 +23,7 @@ describe("Suíte de testes do módulo de imóvel", () => {
   });
 
   beforeEach(() => {
+    payload = new Payload();
     company = new CompanyEntity();
     manager = new ManagerEntity();
     secretary = new SecretaryEntity();
@@ -35,7 +38,7 @@ describe("Suíte de testes do módulo de imóvel", () => {
     const expected = 1;
 
     connection.transaction(async (transaction: EntityManager) => {
-      const result: PropertyEntity[] = await service.index();
+      const result: PropertyEntity[] = await service.index(payload);
 
       expect(result.length).toBeGreaterThanOrEqual(expected);
     });
@@ -97,7 +100,7 @@ describe("Suíte de testes do módulo de imóvel", () => {
     property.manager = manager;
 
     connection.transaction(async (transaction: EntityManager) => {
-      const result: PropertyEntity | undefined = await service.read(id);
+      const result: PropertyEntity | undefined = await service.read(id, payload);
 
       expect(result).toBe(expected);
     });
