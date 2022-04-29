@@ -79,8 +79,10 @@ export class App {
     }
 
     private middlewares(): void {
+        this.express.use(express.urlencoded({ extended: true }));
         this.express.use(express.json());
-        this.express.use(cors());
+        this.express.use(cors({ origin: '*' }));
+        this.express.use(express.static(path.join(__dirname, '..', 'public')));
         this.express.use(authentication);
         this.express.use(manage);
     }
