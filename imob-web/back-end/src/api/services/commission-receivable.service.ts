@@ -1,5 +1,6 @@
 import { DeleteResult, EntityManager, getRepository, Repository } from 'typeorm'
 import { CommissionReceivableEntity } from '../entities/commission-receivable.entity'
+import { Payload } from '../../../utils/interfaces/jwt.interfaces';
 import moment from 'moment';
 
 export class CommissionReceivableService {
@@ -10,13 +11,16 @@ export class CommissionReceivableService {
         this.repository = getRepository(CommissionReceivableEntity);
     }
 
-    public async index(): Promise<CommissionReceivableEntity[]> {
+    public async index(payalod: Payload): Promise<CommissionReceivableEntity[]> {
         const commissionReceivableEntity: CommissionReceivableEntity[] =
             await this.repository.find({
                 relations: [
                     'company',
                     'property'
-                ]
+                ],
+                where: {
+                    company: payalod.company.id
+                }
             });
 
         return commissionReceivableEntity;

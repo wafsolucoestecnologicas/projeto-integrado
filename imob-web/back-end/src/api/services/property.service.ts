@@ -1,4 +1,5 @@
 import { DeleteResult, EntityManager, getRepository, Repository } from 'typeorm'
+import { Payload } from '../../../utils/interfaces/jwt.interfaces';
 import { PropertyEntity } from '../entities/property.entity'
 
 export class PropertyService {
@@ -9,9 +10,22 @@ export class PropertyService {
         this.repository = getRepository(PropertyEntity);
     }
 
-    public async index(): Promise<PropertyEntity[]> {
+    public async index(payload: Payload): Promise<PropertyEntity[]> {
         const propertyEntity: PropertyEntity[] =
-            await this.repository.find();
+            await this.repository.find({
+                relations: [
+                    'company',
+                    'owner',
+                    'administrator',
+                    'manager',
+                    'advisor',
+                    'broker',
+                    'secretary'
+                ],
+                where: {
+                    company: payload.company.id
+                }
+            });
 
         return propertyEntity;
     }
@@ -26,7 +40,7 @@ export class PropertyService {
                 advisor: data?.advisor,
                 broker: data?.broker,
                 secretary: data?.secretary,
-                description: data.description.toLowerCase(),
+                description: data.description ? data.description.toLowerCase() : '',
                 photos: data.photos,
                 checked: data.checked,
                 elevator: data.elevator,
@@ -37,9 +51,9 @@ export class PropertyService {
                 terrainArea: data.terrainArea,
                 buildingArea: data.buildingArea,
                 totalUtilTerrainArea: data.totalUtilTerrainArea,
-                condominium: data.condominium,
-                IPTU: data.IPTU,
-                value: data.value
+                condominium: Number(data.condominium),
+                IPTU: Number(data.IPTU),
+                value: Number(data.value)
             });
 
         const result: PropertyEntity =
@@ -48,11 +62,21 @@ export class PropertyService {
         return result;
     }
 
-    public async read(id: number): Promise<PropertyEntity | undefined> {
+    public async read(id: number, payload: Payload): Promise<PropertyEntity | undefined> {
         const propertyEntity: PropertyEntity | undefined =
             await this.repository.findOne({
+                relations: [
+                    'company',
+                    'owner',
+                    'administrator',
+                    'manager',
+                    'advisor',
+                    'broker',
+                    'secretary'
+                ],
                 where: {
-                    id: id
+                    id: id,
+                    company: payload.company.id
                 }
             });
 
