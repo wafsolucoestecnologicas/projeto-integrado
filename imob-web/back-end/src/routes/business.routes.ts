@@ -1,8 +1,13 @@
 import { Router } from 'express';
 import { BusinessController } from '../api/controllers/business.controller';
+import uploads from '../../config/multer';
 
 const businessController: BusinessController = new BusinessController();
 const router: Router = Router();
+
+router.post('/upload', uploads.single('file'), businessController.upload);
+
+router.get('/download', businessController.download);
 
 router.get('/amount',
     /**
