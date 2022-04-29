@@ -15,13 +15,16 @@ export class HeaderInterceptor implements HttpInterceptor {
         private readonly _loaderService: LoaderService
 	) {}
 	
-    private createHeader(): HttpHeaders {
+    private createHeader(request: HttpRequest<any>): HttpHeaders {
 		let header: HttpHeaders = new HttpHeaders();
 		
-        header = header.set('Content-Type', 'application/json; charset=utf-8');
+        if (!request.url.includes('upload')) {
+            header = header.set('Content-Type', 'application/json; charset=utf-8');
+        }
+
         header = header.set('Accept', 'application/json');
         header = header.set('Access-Control-Allow-Origin', `${environment.ORIGIN}`);
-		
+
 		const token: string | null = this._localStorageService.getItem('token');
 
         if (token) header = header.set('Authorization', `Bearer ${token}`);
@@ -33,7 +36,7 @@ export class HeaderInterceptor implements HttpInterceptor {
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         request = request.clone({
-            headers: this.createHeader()
+            headers: this.createHeader(request)
         });
 
         return next.handle(request).pipe(
