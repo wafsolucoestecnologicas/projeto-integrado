@@ -1,0 +1,231 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Gestão Financeira</mat-card-title>
+        <mat-card-subtitle>Criação de Negócio</mat-card-subtitle>
+    </mat-card-header>
+
+    <br />
+
+    <mat-card-content class="mat-elevation-z4">
+        <mat-toolbar>
+            <span>Negócio</span>
+        </mat-toolbar>
+
+        <div class="container">
+            <div class="flex-container">
+                <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Gestor</mat-label>
+                                <mat-select formControlName="manager" [disabled]="true">
+                                    <ng-container *ngFor="let manager of managers">
+                                        <mat-option [value]="manager.id">
+                                            {{ manager.name }} {{ manager.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Despachante</mat-label>
+                                <mat-select formControlName="advisor" [disabled]="true">
+                                    <ng-container *ngFor="let advisor of advisors">
+                                        <mat-option [value]="advisor.id">
+                                            {{ advisor.name }} {{ advisor.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Corretor</mat-label>
+                                <mat-select formControlName="broker" (selectionChange)="redirectBroker()" required>
+                                    <ng-container *ngFor="let broker of brokers">
+                                        <mat-option [value]="broker.id">
+                                            {{ broker.name }} {{ broker.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('broker')?.touched &&
+                                        formGroup.get('business')?.get('broker')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Proprietário</mat-label>
+                                <mat-select formControlName="owner" [disabled]="true">
+                                    <ng-container *ngFor="let owner of owners">
+                                        <mat-option [value]="owner.id">
+                                            {{ owner.name }} {{ owner.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="100">
+                            <mat-form-field>
+                                <mat-label>Imóvel</mat-label>
+                                <mat-select formControlName="property" [disabled]="true">
+                                    <ng-container *ngFor="let property of properties">
+                                        <mat-option [value]="property.id">
+                                            {{ property.id }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Cliente</mat-label>
+                                <mat-select formControlName="customer" (selectionChange)="setLead()">
+                                    <ng-container *ngFor="let customer of customers">
+                                        <mat-option [value]="customer.id">
+                                            {{ customer.name }} {{ customer.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Lead</mat-label>
+                                <mat-select formControlName="lead" (selectionChange)="setCustomer()" required>
+                                    <ng-container *ngFor="let lead of leads">
+                                        <mat-option [value]="lead.id">
+                                            {{ lead.name }} {{ lead.surname }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="
+                                        formGroup.get('business')?.get('lead')?.touched &&
+                                        formGroup.get('business')?.get('lead')?.errors?.required">
+                                    Campo obrigatório!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="100">
+                            <mat-form-field>
+                                <mat-label>Status</mat-label>
+                                <mat-select formControlName="status" required>
+                                    <ng-container *ngFor="let status of status; let index = index">
+                                        <mat-option [value]="index" [disabled]="index !== 0">
+                                            {{ status }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout="column"
+                        fxLayout.lg="row"
+                        fxLayout.xl="row"
+                        fxLayoutGap.lg="20px"
+                        fxLayoutGap.xl="20px"
+                        formGroupName="business">
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Data da Visita</mat-label>
+                                <input
+                                    type="date"
+                                    formControlName="dateVisit"
+                                    matInput
+                                    readonly />
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="50">
+                            <mat-form-field>
+                                <mat-label>Data da Venda</mat-label>
+                                <input
+                                    type="date"
+                                    formControlName="dateSale"
+                                    matInput
+                                    readonly />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div
+                        fxLayout.xs="column"
+                        fxLayout="row"
+                        fxLayoutGap="20px"
+                        fxLayoutAlign="end center">
+                        <div>
+                            <button
+                                type="button"
+                                mat-raised-button
+                                routerLink="/content/businesss/list">
+                                Cancelar
+                            </button>
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                mat-raised-button
+                                color="primary"
+                                [disabled]="!formGroup.valid">
+                                Salvar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
