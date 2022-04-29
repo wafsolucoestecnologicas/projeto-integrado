@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { take, map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -123,16 +123,39 @@ export class BusinessService {
             );
     }
 
-    public upload(files: Set<File>): Observable<any> {
+    public upload(file: File, id: number): Observable<any> {
         const formData = new FormData();
 
-        files.forEach((file: File) => {
-            formData.append('file', file, file.name);
-        })
+        formData.append('file', file, file.name);
 
-        const request = new HttpRequest('POST', `${environment.URL}/${this.ROUTES.UPLOAD}`, formData);
+        return this.http.post<any>(`${environment.URL}/${this.ROUTES.UPLOAD}`, formData, {
+            params: {
+                id: id
+            }
+        }).pipe(
+            map((response: any) => response),
+            catchError((error: HttpErrorResponse) =>
+                this._alertService.openSnackBar(
+                    `Ocorreu um erro ao realizar o upload do arquivo! - ${error.message}`
+                )
+            )
+        );
+    }
 
-        return this.http.request(request);
+    public download(path: string): Observable<ArrayBuffer> {
+        return this.http.get(`${environment.URL}/${this.ROUTES.DOWNLOAD}`, {
+            responseType: 'arraybuffer',
+            params: {
+                path
+            }
+        }).pipe(
+            map((response: ArrayBuffer) => response),
+            catchError((error: HttpErrorResponse) =>
+                this._alertService.openSnackBar(
+                    `Ocorreu um erro ao realizar o download do arquivo! - ${error.message}`
+                )
+            )
+        );
     }
 
     public index(): Observable<Business[]> {
