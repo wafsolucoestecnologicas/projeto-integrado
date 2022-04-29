@@ -14,7 +14,7 @@ export class CommissionReceivableController {
                 new CommissionReceivableService();
 
             const commissionReceivableEntity: CommissionReceivableEntity[] =
-                await commissionReceivableService.index();
+                await commissionReceivableService.index(request.payload);
 
             return response.status(200).json(commissionReceivableEntity);
         } catch (error: any) {

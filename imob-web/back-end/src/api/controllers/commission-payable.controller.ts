@@ -14,7 +14,7 @@ export class CommissionPayableController {
                 new CommissionPayableService();
 
             const commissionPayableEntity: CommissionPayableEntity[] =
-                await commissionPayableService.index();
+                await commissionPayableService.index(request.payload);
 
             return response.status(200).json(commissionPayableEntity);
         } catch (error: any) {

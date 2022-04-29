@@ -14,7 +14,7 @@ export class PropertyController {
                 new PropertyService();
 
             const propertyEntity: PropertyEntity[] =
-                await propertyService.index();
+                await propertyService.index(request.payload);
 
             return response.status(200).json(propertyEntity);
         } catch (error: any) {
@@ -58,7 +58,7 @@ export class PropertyController {
 
             if (Number(request.params.id)) {
                 const propertyEntity: PropertyEntity | undefined =
-                    await propertyService.read(Number(request.params.id));
+                    await propertyService.read(Number(request.params.id), request.payload);
 
                 return response.status(200).json(propertyEntity);
             } else {
