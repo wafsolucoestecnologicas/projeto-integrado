@@ -792,10 +792,7 @@ const documentation: any = {
             $source: 1,
             landline: '3133228544',
             $cellPhone: '31996214031',
-            comments: 'está interessado no imóvel do bairro serra',
-            $createdByAdministrator: false,
-            $createdByManager: true,
-            $createdBySecretary: false
+            comments: 'está interessado no imóvel do bairro serra'
         },
         createBusiness: {
             $status: 0,
