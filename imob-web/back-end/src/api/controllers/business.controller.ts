@@ -32,7 +32,7 @@ export class BusinessController {
                 new BusinessService();
 
             const businessEntity: BusinessEntity[] =
-                await businessService.index();
+                await businessService.index(request.payload);
 
             return response.status(200).json(businessEntity);
         } catch (error: any) {
@@ -157,7 +157,7 @@ export class BusinessController {
 
                     if (request.body.property && request.body.property.id) {
                         const propertyEntity: PropertyEntity | undefined =
-                            await propertyService.read(request.body.property.id);
+                            await propertyService.read(request.body.property.id, request.payload);
 
                         if (propertyEntity) {
                             request.body.property = propertyEntity;
@@ -414,6 +414,29 @@ export class BusinessController {
             } else {
                 return response.status(400).json({ message: `${statusMessages[400]} ${returnMessages[0]}` });
             }
+        } catch (error: any) {
+            return response.status(500).json({ message: error.message });
+        }
+    }
+
+    public async upload(request: Request, response: Response): Promise<Response> {
+        try {
+            const id = request.query.id;
+            const CNPJ = request.payload.company.CNPJ;
+            const filename = request.file?.originalname;
+            const path = `public/uploads/businesses/${CNPJ}/${id}/${filename}`;
+
+            return response.status(200).json({ path: path });
+        } catch (error: any) {
+            return response.status(500).json({ message: error.message });
+        }
+    }
+
+    public async download(request: Request, response: Response): Promise<any> {
+        try {
+            const path = request.query.path;
+
+            return response.status(200).download(`${path}`);
         } catch (error: any) {
             return response.status(500).json({ message: error.message });
         }
