@@ -1,0 +1,16 @@
+.mat-toolbar {
+    height: 56px;
+}
+
+table {
+    width: 90%;
+}
+
+.mat-column-name,
+.mat-column-surname,
+.mat-column-isManager,
+.mat-column-isAdvisor,
+.mat-column-isBroker,
+.mat-column-isSecretary {
+    flex: 0 0 12%;
+}
