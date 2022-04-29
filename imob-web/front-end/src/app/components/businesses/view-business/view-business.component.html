@@ -1,0 +1,128 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Gestão Financeira</mat-card-title>
+        <mat-card-subtitle>Visualização de Negócio</mat-card-subtitle>
+    </mat-card-header>
+
+    <br />
+
+    <mat-card-content class="mat-elevation-z4">
+        <mat-toolbar>
+            <span>Negócio</span>
+        </mat-toolbar>
+
+        <div class="container">
+            <div class="flex-container">
+                <div
+                    fxLayout="column"
+                    fxLayout.lg="row"
+                    fxLayout.xl="row">
+                    <div fxFlex="50">
+                        <mat-list>
+                            <mat-list-item>
+                                <strong>Status:</strong>
+                                <span class="data">{{ business.status | formatStatus }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Data da Visita:</strong>
+                                <span class="data">{{ business.dateVisit }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Data da Venda:</strong>
+                                <span class="data">{{ business.dateSale }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Formulário de Visita:</strong>
+                                <span class="data">{{ business.visitForm }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Matrículo do Imóvel:</strong>
+                                <span class="data">{{ business.propertyRegistration }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Contrato de Venda:</strong>
+                                <span class="data">{{ business.propertySaleContract }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Documento de ITBI:</strong>
+                                <span class="data">{{ business.ITBI }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Criado em:</strong>
+                                <span class="data">{{ business.createdAt | formatDateHour }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Atualizado em:</strong>
+                                <span class="data">{{ business.updatedAt | formatDateHour }}</span>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+
+                    <div fxFlex="50">
+                        <mat-list>
+                            <mat-list-item>
+                                <strong>RG do Cliente:</strong>
+                                <span class="data">{{ business.customerRG }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>CPF do Cliente:</strong>
+                                <span class="data">{{ business.customerCPF }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Comprovante de Endereço do Cliente:</strong>
+                                <span class="data">{{ business.customerAddressProof }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Contra Cheque do Cliente:</strong>
+                                <span class="data">{{ business.customerPayslip }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>RG do Proprietário:</strong>
+                                <span class="data">{{ business.ownerRG }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>CPF do Proprietário:</strong>
+                                <span class="data">{{ business.ownerCPF }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Comprovante de Endereço do Proprietário:</strong>
+                                <span class="data">{{ business.ownerAddressProof }}</span>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <strong>Contra Cheque do Proprietário:</strong>
+                                <span class="data">{{ business.ownerPayslip }}</span>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </div>
+
+                <div
+                    fxLayout.xs="column"
+                    fxLayout="row"
+                    fxLayoutAlign="end center">
+                    <button
+                        type="button"
+                        mat-raised-button
+                        routerLink="/content/businesses/list">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
