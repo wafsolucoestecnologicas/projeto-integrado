@@ -6,5 +6,6 @@ export enum BusinessRoutes {
     TRANSFER_BROKER = 'businesses/transfer/broker',
     REJECT_BUSINESS = 'businesses/reject',
     CLOSE_BUSINESS = 'businesses/close',
-    UPLOAD = 'businesses/upload'
+    UPLOAD = 'businesses/upload',
+    DOWNLOAD = 'businesses/download'
 }
