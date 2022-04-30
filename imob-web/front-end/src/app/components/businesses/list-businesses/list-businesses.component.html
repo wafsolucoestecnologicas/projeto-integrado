@@ -61,15 +61,17 @@
                             <span>Visualizar</span>
                         </button>
 
-                        <button mat-menu-item (click)="redirectToEdit(element.id)">
-                            <mat-icon>edit</mat-icon>
-                            <span>Editar</span>
-                        </button>
-
-                        <button mat-menu-item (click)="openDialog(element.id)">
-                            <mat-icon>delete</mat-icon>
-                            <span>Excluir</span>
-                        </button>
+                        <ng-container *ngIf="element.status !== 3 && element.status !== 4">
+                            <button mat-menu-item (click)="redirectToEdit(element.id)">
+                                <mat-icon>edit</mat-icon>
+                                <span>Editar</span>
+                            </button>
+    
+                            <button mat-menu-item (click)="openDialog(element.id)">
+                                <mat-icon>delete</mat-icon>
+                                <span>Excluir</span>
+                            </button>
+                        </ng-container>
                     </mat-menu>
                 </mat-cell>
             </ng-container>
