@@ -13,8 +13,12 @@ import { Owner } from 'src/app/core/interfaces/owner.interface';
 import { Customer } from 'src/app/core/interfaces/customer.interface';
 import { Lead } from 'src/app/core/interfaces/lead.interface';
 import { Property } from 'src/app/core/interfaces/property.interface';
+import { CommissionReceivable, CreateCommissionReceivable } from 'src/app/core/interfaces/commission-receivable.interface';
+import { CommissionPayable, CreateCommissionPayable } from 'src/app/core/interfaces/commission-payable.interface';
 import { BusinessService } from 'src/app/core/services/business.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { CommissionReceivableService } from 'src/app/core/services/commission-receivable.service';
+import { CommissionPayableService } from 'src/app/core/services/commission-payable.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
@@ -47,6 +51,8 @@ export class EditBusinessComponent implements OnInit, OnDestroy {
         private readonly _formBuilder: FormBuilder,
         private readonly _businessService: BusinessService,
 		private readonly _authenticationService: AuthenticationService,
+		private readonly _commissionReceivableService: CommissionReceivableService,
+		private readonly _commissionPayableService: CommissionPayableService,
         private readonly _alertService: AlertService,
 		@Inject(DOCUMENT) private document: Document
 	) {
@@ -361,6 +367,33 @@ export class EditBusinessComponent implements OnInit, OnDestroy {
 		};
 	}
 
+	private parseCommissionReceivable(form: any): CreateCommissionReceivable {
+		const property: Property = this.properties.filter((property: Property) => property.id === form.business.property)[0];
+		const value = property.value || 0;
+		const percentage = this._authenticationService.company?.percentageCommissionReceivable || 0;
+
+		return {
+			date: form.business.dateSale,
+			value: (value * percentage) / 100,
+			property: property
+		};
+	}
+
+	private parseCommissionPayable(form: any): CreateCommissionPayable {
+		const broker: Broker = this.brokers.filter((broker: Broker) => broker.id === form.business.broker)[0];
+		const property: Property = this.properties.filter((property: Property) => property.id === form.business.property)[0];
+		const value = property.value || 0;
+		const percentage = this._authenticationService.company?.percentageCommissionPayableForClosedDeals || 0;
+
+		return {
+			date: form.business.dateSale,
+			valueClosedDeals: (value * percentage) / 100,
+			valuePropertyCaptured: 0,
+			broker: broker,
+			property: property
+		};
+	}
+
 	private updateBusiness(): void {
 		if (this.business.id) {
 			const subscription: Subscription = this._businessService
@@ -374,6 +407,22 @@ export class EditBusinessComponent implements OnInit, OnDestroy {
 
             this.subscriptions.push(subscription);
 		}
+	}
+
+	private createCommissionReceivable(): void {
+		const subscription: Subscription = this._commissionReceivableService
+			.create(this.parseCommissionReceivable(this.formGroup.value))
+			.subscribe((data: CommissionReceivable) => {});
+
+		this.subscriptions.push(subscription);
+	}
+
+	private createCommissionPayable(): void {
+		const subscription: Subscription = this._commissionPayableService
+			.create(this.parseCommissionPayable(this.formGroup.value))
+			.subscribe((data: CommissionPayable) => {});
+
+		this.subscriptions.push(subscription);
 	}
 
 	public redirectManager(): void {
@@ -462,6 +511,11 @@ export class EditBusinessComponent implements OnInit, OnDestroy {
 
 	public onSubmit(): void {
 		if (this.formGroup.valid) {
+			if (Number(this.formGroup.get('business')?.get('status')?.value) === 4) {
+				this.createCommissionReceivable();
+				this.createCommissionPayable();
+			}
+
 			this.updateBusiness();
 		}
 	}
