@@ -47,7 +47,7 @@ export class BusinessService {
             map((response: AmountBusiness) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao buscar a quantidade total de negócios! - ${error.message}`
+                    `Ocorreu um erro ao buscar a quantidade total de negócios!`
                 )
             )
         );
@@ -61,7 +61,7 @@ export class BusinessService {
                 map((response: TransferManager) => response),
                 catchError((error: HttpErrorResponse) =>
                     this._alertService.openSnackBar(
-                        `Ocorreu um erro ao transferir um negócio para um gestor! - ${error.message}`
+                        `Ocorreu um erro ao transferir um negócio para um gestor!`
                     )
                 )
             );
@@ -75,7 +75,7 @@ export class BusinessService {
                 map((response: TransferAdvisor) => response),
                 catchError((error: HttpErrorResponse) =>
                     this._alertService.openSnackBar(
-                        `Ocorreu um erro ao transferir um negócio para um despachante! - ${error.message}`
+                        `Ocorreu um erro ao transferir um negócio para um despachante!`
                     )
                 )
             );
@@ -89,7 +89,7 @@ export class BusinessService {
                 map((response: TransferBroker) => response),
                 catchError((error: HttpErrorResponse) =>
                     this._alertService.openSnackBar(
-                        `Ocorreu um erro ao transferir um negócio para um corretor! - ${error.message}`
+                        `Ocorreu um erro ao transferir um negócio para um corretor!`
                     )
                 )
             );
@@ -103,7 +103,7 @@ export class BusinessService {
                 map((response: RejectBusiness) => response),
                 catchError((error: HttpErrorResponse) =>
                     this._alertService.openSnackBar(
-                        `Ocorreu um erro ao rejetiar um negócio! - ${error.message}`
+                        `Ocorreu um erro ao rejetiar um negócio!`
                     )
                 )
             );
@@ -117,7 +117,7 @@ export class BusinessService {
                 map((response: CloseBusiness) => response),
                 catchError((error: HttpErrorResponse) =>
                     this._alertService.openSnackBar(
-                        `Ocorreu um erro ao fechar um negócio! - ${error.message}`
+                        `Ocorreu um erro ao fechar um negócio!`
                     )
                 )
             );
@@ -136,7 +136,7 @@ export class BusinessService {
             map((response: any) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao realizar o upload do arquivo! - ${error.message}`
+                    `Ocorreu um erro ao realizar o upload do arquivo!`
                 )
             )
         );
@@ -152,7 +152,7 @@ export class BusinessService {
             map((response: ArrayBuffer) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao realizar o download do arquivo! - ${error.message}`
+                    `Ocorreu um erro ao realizar o download do arquivo!`
                 )
             )
         );
@@ -164,7 +164,7 @@ export class BusinessService {
             map((response: Business[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os negócios! - ${error.message}`
+                    `Ocorreu um erro ao listar os negócios!`
                 )
             )
         );
@@ -175,7 +175,9 @@ export class BusinessService {
             take(1),
             map((response: Business) => response),
             catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(`Ocorreu um erro ao criar o negócio! - ${error.message}`)
+                this._alertService.openSnackBar(
+                    `Ocorreu um erro ao criar o negócio!`
+                )
             )
         );
     }
@@ -186,7 +188,7 @@ export class BusinessService {
             map((response: Business) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar o negócio! - ${error.message}`
+                    `Ocorreu um erro ao listar o negócio!`
                 )
             )
         );
@@ -198,7 +200,7 @@ export class BusinessService {
             map((response: Business) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o negócio! - ${error.message}`
+                    `Ocorreu um erro ao atualizar o negócio!`
                 )
             )
         );
@@ -212,7 +214,7 @@ export class BusinessService {
                 map((response: DeleteBusiness) => response),
                 catchError((error: HttpErrorResponse) =>
                     this._alertService.openSnackBar(
-                        `Ocorreu um erro ao deletar o negócio! - ${error.message}`
+                        `Ocorreu um erro ao deletar o negócio!`
                     )
                 )
             );

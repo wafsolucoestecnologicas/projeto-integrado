@@ -32,7 +32,7 @@ export class AddressService {
             map((response: ResponseViaCEPModel) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao buscar o endereço do CEP! - ${error.message}`
+                    `Ocorreu um erro ao buscar o endereço do CEP!`
                 )
             )
         );
@@ -44,7 +44,7 @@ export class AddressService {
             map((response: Address[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os endereços! - ${error.message}`
+                    `Ocorreu um erro ao listar os endereços!`
                 )
             )
         );
@@ -56,7 +56,7 @@ export class AddressService {
             map((response: Address) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar um endereço! - ${error.message}`
+                    `Ocorreu um erro ao criar um endereço!`
                 )
             )
         );
@@ -68,7 +68,7 @@ export class AddressService {
             map((response: Address) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar o endereço! - ${error.message}`
+                    `Ocorreu um erro ao listar o endereço!`
                 )
             )
         );
@@ -80,7 +80,7 @@ export class AddressService {
             map((response: Address) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o endereço! - ${error.message}`
+                    `Ocorreu um erro ao atualizar o endereço!`
                 )
             )
         );
@@ -92,7 +92,7 @@ export class AddressService {
             map((response: DeleteAddress) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deletar o endereço! - ${error.message}`
+                    `Ocorreu um erro ao deletar o endereço!`
                 )
             )
         );

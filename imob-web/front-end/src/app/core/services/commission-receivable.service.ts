@@ -32,7 +32,7 @@ export class CommissionReceivableService {
             map((response: Receivable) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao buscar os totais de comissões a receber! - ${error.message}`
+                    `Ocorreu um erro ao buscar os totais de comissões a receber!`
                 )
             )
         );
@@ -44,7 +44,7 @@ export class CommissionReceivableService {
             map((response: CommissionReceivable[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar as comissões a receber! - ${error.message}`
+                    `Ocorreu um erro ao listar as comissões a receber!`
                 )
             )
         );
@@ -56,7 +56,7 @@ export class CommissionReceivableService {
             map((response: CommissionReceivable) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar a comissão a receber! - ${error.message}`
+                    `Ocorreu um erro ao criar a comissão a receber!`
                 )
             )
         );
@@ -68,7 +68,7 @@ export class CommissionReceivableService {
             map((response: CommissionReceivable) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar a comissão a receber! - ${error.message}`
+                    `Ocorreu um erro ao listar a comissão a receber!`
                 )
             )
         );
@@ -80,7 +80,7 @@ export class CommissionReceivableService {
             map((response: CommissionReceivable) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar a comissão a receber! - ${error.message}`
+                    `Ocorreu um erro ao atualizar a comissão a receber!`
                 )
             )
         );
@@ -92,7 +92,7 @@ export class CommissionReceivableService {
             map((response: DeleteCommissionReceivable) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deletar a comissão a receber! - ${error.message}`
+                    `Ocorreu um erro ao deletar a comissão a receber!`
                 )
             )
         );

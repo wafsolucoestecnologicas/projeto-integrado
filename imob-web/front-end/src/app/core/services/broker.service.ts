@@ -28,7 +28,7 @@ export class BrokerService {
             map((response: Broker[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os corretores! - ${error.message}`
+                    `Ocorreu um erro ao listar os corretores!`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class BrokerService {
             map((response: Broker) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar o corretor! - ${error.message}`
+                    `Ocorreu um erro ao listar o corretor!`
                 )
             )
         );
@@ -52,7 +52,7 @@ export class BrokerService {
             map((response: Broker) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o corretor! - ${error.message}`
+                    `Ocorreu um erro ao atualizar o corretor!`
                 )
             )
         );

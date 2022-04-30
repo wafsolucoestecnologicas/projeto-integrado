@@ -28,7 +28,7 @@ export class NeighborhoodService {
             map((response: Neighborhood[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os bairros! - ${error.message}`
+                    `Ocorreu um erro ao listar os bairros!`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class NeighborhoodService {
             map((response: Neighborhood) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar um bairro! - ${error.message}`
+                    `Ocorreu um erro ao criar um bairro!`
                 )
             )
         );
@@ -51,7 +51,7 @@ export class NeighborhoodService {
             take(1),
             map((response: Neighborhood) => response),
             catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(`Ocorreu um erro ao listar o bairro! - ${error.message}`)
+                this._alertService.openSnackBar(`Ocorreu um erro ao listar o bairro!`)
             )
         );
     }
@@ -62,7 +62,7 @@ export class NeighborhoodService {
             map((response: Neighborhood) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o bairro! - ${error.message}`
+                    `Ocorreu um erro ao atualizar o bairro!`
                 )
             )
         );
@@ -74,7 +74,7 @@ export class NeighborhoodService {
             map((response: DeleteNeighborhood) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deletar o bairro! - ${error.message}`
+                    `Ocorreu um erro ao deletar o bairro!`
                 )
             )
         );

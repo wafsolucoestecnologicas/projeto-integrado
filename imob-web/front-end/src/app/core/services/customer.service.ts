@@ -28,7 +28,7 @@ export class CustomerService {
             map((response: Customer[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os clientes! - ${error.message}`
+                    `Ocorreu um erro ao listar os clientes!`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class CustomerService {
             map((response: Customer) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar o cliente! - ${error.message}`
+                    `Ocorreu um erro ao criar o cliente!`
                 )
             )
         );
@@ -52,7 +52,7 @@ export class CustomerService {
             map((response: Customer) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar o cliente! - ${error.message}`
+                    `Ocorreu um erro ao listar o cliente!`
                 )
             )
         );
@@ -64,7 +64,7 @@ export class CustomerService {
             map((response: Customer[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o cliente! - ${error.message}`
+                    `Ocorreu um erro ao atualizar o cliente!`
                 )
             )
         );
@@ -78,7 +78,7 @@ export class CustomerService {
                 map((response: DeleteCustomer) => response),
                 catchError((error: HttpErrorResponse) =>
                     this._alertService.openSnackBar(
-                        `Ocorreu um erro ao deletar o cliente! - ${error.message}`
+                        `Ocorreu um erro ao deletar o cliente!`
                     )
                 )
             );

@@ -40,7 +40,7 @@ export class LeadService {
             map((response: AmountLeads) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao buscar o total de leads! - ${error.message}`
+                    `Ocorreu um erro ao buscar o total de leads!`
                 )
             )
         );
@@ -52,7 +52,7 @@ export class LeadService {
             map((response: Lead[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar as leads! - ${error.message}`
+                    `Ocorreu um erro ao listar as leads!`
                 )
             )
         );
@@ -64,7 +64,7 @@ export class LeadService {
             map((response: Lead) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar a lead! - ${error.message}`
+                    `Ocorreu um erro ao criar a lead!`
                 )
             )
         );
@@ -76,7 +76,7 @@ export class LeadService {
             map((response: Lead) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar a lead! - ${error.message}`
+                    `Ocorreu um erro ao listar a lead!`
                 )
             )
         );
@@ -88,7 +88,7 @@ export class LeadService {
             map((response: Lead) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar a lead! - ${error.message}`
+                    `Ocorreu um erro ao atualizar a lead!`
                 )
             )
         );
@@ -100,7 +100,7 @@ export class LeadService {
             map((response: DeleteLead) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deletar a lead! - ${error.message}`
+                    `Ocorreu um erro ao deletar a lead!`
                 )
             )
         );

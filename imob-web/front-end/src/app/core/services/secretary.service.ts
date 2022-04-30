@@ -28,7 +28,7 @@ export class SecretaryService {
             map((response: Secretary[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar as secretárias! - ${error.message}`
+                    `Ocorreu um erro ao listar as secretárias!`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class SecretaryService {
             map((response: Secretary) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar a secretária! - ${error.message}`
+                    `Ocorreu um erro ao listar a secretária!`
                 )
             )
         );
@@ -54,7 +54,7 @@ export class SecretaryService {
                 map((response: Secretary) => response),
                 catchError((error: HttpErrorResponse) =>
                     this._alertService.openSnackBar(
-                        `Ocorreu um erro ao atualizar a secretária! - ${error.message}`
+                        `Ocorreu um erro ao atualizar a secretária!`
                     )
                 )
             );

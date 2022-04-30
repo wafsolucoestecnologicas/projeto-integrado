@@ -28,7 +28,7 @@ export class CityService {
             map((response: City[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar as cidades! - ${error.message}`
+                    `Ocorreu um erro ao listar as cidades!`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class CityService {
             map((response: City) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar uma cidade! - ${error.message}`
+                    `Ocorreu um erro ao criar uma cidade!`
                 )
             )
         );
@@ -52,7 +52,7 @@ export class CityService {
             map((response: City) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar a cidade! - ${error.message}`
+                    `Ocorreu um erro ao listar a cidade!`
                 )
             )
         );
@@ -64,7 +64,7 @@ export class CityService {
             map((response: City) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar a cidade! - ${error.message}`
+                    `Ocorreu um erro ao atualizar a cidade!`
                 )
             )
         );
@@ -76,7 +76,7 @@ export class CityService {
             map((response: DeleteCity) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deletar a cidade! - ${error.message}`
+                    `Ocorreu um erro ao deletar a cidade!`
                 )
             )
         );

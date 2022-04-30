@@ -28,7 +28,7 @@ export class UserService {
             map((response: User[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os usuários! - ${error.message}`
+                    `Ocorreu um erro ao listar os usuários!`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class UserService {
             map((response: User) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar o usuário! - ${error.message}`
+                    `Ocorreu um erro ao criar o usuário!`
                 )
             )
         );
@@ -52,7 +52,7 @@ export class UserService {
             map((response: User) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar o usuário! - ${error.message}`
+                    `Ocorreu um erro ao listar o usuário!`
                 )
             )
         );
@@ -64,7 +64,7 @@ export class UserService {
             map((response: User) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o usuário! - ${error.message}`
+                    `Ocorreu um erro ao atualizar o usuário!`
                 )
             )
         );
@@ -76,7 +76,7 @@ export class UserService {
             map((response: DeleteUser) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deletar o usuário! - ${error.message}`
+                    `Ocorreu um erro ao deletar o usuário!`
                 )
             )
         );

@@ -32,7 +32,7 @@ export class CommissionPayableService {
             map((response: Payable) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao buscar os totais de comissões a pagar! - ${error.message}`
+                    `Ocorreu um erro ao buscar os totais de comissões a pagar!`
                 )
             )
         );
@@ -44,7 +44,7 @@ export class CommissionPayableService {
             map((response: CommissionPayable[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar as comissões a pagar! - ${error.message}`
+                    `Ocorreu um erro ao listar as comissões a pagar!`
                 )
             )
         );
@@ -56,7 +56,7 @@ export class CommissionPayableService {
             map((response: CommissionPayable) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar a comissão a pagar! - ${error.message}`
+                    `Ocorreu um erro ao criar a comissão a pagar!`
                 )
             )
         );
@@ -68,7 +68,7 @@ export class CommissionPayableService {
             map((response: CommissionPayable) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar a comissão a pagar! - ${error.message}`
+                    `Ocorreu um erro ao listar a comissão a pagar!`
                 )
             )
         );
@@ -80,7 +80,7 @@ export class CommissionPayableService {
             map((response: CommissionPayable) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar a comissão a pagar! - ${error.message}`
+                    `Ocorreu um erro ao atualizar a comissão a pagar!`
                 )
             )
         );
@@ -92,7 +92,7 @@ export class CommissionPayableService {
             map((response: DeleteCommissionPayable) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deletar a comissão a pagar! - ${error.message}`
+                    `Ocorreu um erro ao deletar a comissão a pagar!`
                 )
             )
         );

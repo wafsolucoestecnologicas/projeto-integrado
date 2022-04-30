@@ -28,7 +28,7 @@ export class PropertyService {
             map((response: Property[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os imóveis! - ${error.message}`
+                    `Ocorreu um erro ao listar os imóveis!`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class PropertyService {
             map((response: Property) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar o imóvel! - ${error.message}`
+                    `Ocorreu um erro ao criar o imóvel!`
                 )
             )
         );
@@ -52,7 +52,7 @@ export class PropertyService {
             map((response: Property) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar o imóvel! - ${error.message}`
+                    `Ocorreu um erro ao listar o imóvel!`
                 )
             )
         );
@@ -64,7 +64,7 @@ export class PropertyService {
             map((response: Property) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o imóvel! - ${error.message}`
+                    `Ocorreu um erro ao atualizar o imóvel!`
                 )
             )
         );
@@ -76,7 +76,7 @@ export class PropertyService {
             map((response: DeleteProperty) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deletar o imóvel! - ${error.message}`
+                    `Ocorreu um erro ao deletar o imóvel!`
                 )
             )
         );

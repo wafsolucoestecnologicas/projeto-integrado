@@ -27,7 +27,7 @@ export class StateService {
             map((response: State[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os estados! - ${error.message}`
+                    `Ocorreu um erro ao listar os estados!`
                 )
             )
         );
@@ -39,7 +39,7 @@ export class StateService {
             map((response: State) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar o estado! - ${error.message}`
+                    `Ocorreu um erro ao listar o estado!`
                 )
             )
         );

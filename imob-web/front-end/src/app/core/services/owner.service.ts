@@ -28,7 +28,7 @@ export class OwnerService {
             map((response: Owner[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os proprietários! - ${error.message}`
+                    `Ocorreu um erro ao listar os proprietários!`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class OwnerService {
             map((response: Owner) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao criar o proprietário! - ${error.message}`
+                    `Ocorreu um erro ao criar o proprietário!`
                 )
             )
         );
@@ -52,7 +52,7 @@ export class OwnerService {
             map((response: Owner) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar o proprietário! - ${error.message}`
+                    `Ocorreu um erro ao listar o proprietário!`
                 )
             )
         );
@@ -64,7 +64,7 @@ export class OwnerService {
             map((response: Owner[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o proprietário! - ${error.message}`
+                    `Ocorreu um erro ao atualizar o proprietário!`
                 )
             )
         );
@@ -76,7 +76,7 @@ export class OwnerService {
             map((response: DeleteOwner) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao deletar o proprietário! - ${error.message}`
+                    `Ocorreu um erro ao deletar o proprietário!`
                 )
             )
         );

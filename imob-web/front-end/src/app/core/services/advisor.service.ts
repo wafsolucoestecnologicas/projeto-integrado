@@ -28,7 +28,7 @@ export class AdvisorService {
             map((response: Advisor[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os despachantes! - ${error.message}`
+                    `Ocorreu um erro ao listar os despachantes!`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class AdvisorService {
             map((response: Advisor) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao lista o despachante! - ${error.message}`
+                    `Ocorreu um erro ao lista o despachante!`
                 )
             )
         );
@@ -52,7 +52,7 @@ export class AdvisorService {
             map((response: Advisor) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o despachante! - ${error.message}`
+                    `Ocorreu um erro ao atualizar o despachante!`
                 )
             )
         );

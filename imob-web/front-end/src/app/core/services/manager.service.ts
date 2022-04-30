@@ -28,7 +28,7 @@ export class ManagerService {
             map((response: Manager[]) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar os gestores! - ${error.message}`
+                    `Ocorreu um erro ao listar os gestores!`
                 )
             )
         );
@@ -40,7 +40,7 @@ export class ManagerService {
             map((response: Manager) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao listar o gestor! - ${error.message}`
+                    `Ocorreu um erro ao listar o gestor!`
                 )
             )
 		);
@@ -52,7 +52,7 @@ export class ManagerService {
             map((response: Manager) => response),
             catchError((error: HttpErrorResponse) =>
                 this._alertService.openSnackBar(
-                    `Ocorreu um erro ao atualizar o gestor! - ${error.message}`
+                    `Ocorreu um erro ao atualizar o gestor!`
                 )
             )
 		);
