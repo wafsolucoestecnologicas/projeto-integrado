@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
+import * as moment from 'moment';
 
 import { Property, CreateProperty } from 'src/app/core/interfaces/property.interface';
 import { Owner } from 'src/app/core/interfaces/owner.interface';
@@ -9,7 +10,10 @@ import { State } from 'src/app/core/interfaces/state.interface';
 import { City, CreateCity } from 'src/app/core/interfaces/city.interface';
 import { Neighborhood, CreateNeighborhood } from 'src/app/core/interfaces/neighborhood.interface';
 import { Address, CreateAddress, ResponseViaCEPModel } from 'src/app/core/interfaces/address.interface';
+import { CommissionPayable, CreateCommissionPayable } from 'src/app/core/interfaces/commission-payable.interface';
+import { Broker } from 'src/app/core/interfaces/broker.interface';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { CommissionPayableService } from 'src/app/core/services/commission-payable.service';
 import { PropertyService } from 'src/app/core/services/property.service';
 import { AddressService } from 'src/app/core/services/address.service';
 import { NeighborhoodService } from 'src/app/core/services/neighborhood.service';
@@ -35,12 +39,14 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
     public neighborhood: Neighborhood;
     public address: Address;
     public path: string;
+    public isBroker: boolean;
     public MASKS: typeof Masks;
 
     constructor(
         private readonly _router: Router,
         private readonly _formBuilder: FormBuilder,
 		private readonly _authenticationService: AuthenticationService,
+        private readonly _commissionPayableService: CommissionPayableService,
         private readonly _activatedRoutes: ActivatedRoute,
         private readonly _propertyService: PropertyService,
         private readonly _addressService: AddressService,
@@ -51,6 +57,7 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
     ) {
         this.subscriptions = new Array<Subscription>();
         this.path = 'content/properties';
+        this.isBroker = (this._authenticationService?.broker) ? true : false;
         this.MASKS = Masks;
     }
 
@@ -139,6 +146,21 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
 		};
     }
 
+    private parseCommissionPayable(form: any): CreateCommissionPayable {
+        const property: Property = form.property;
+        const broker: Broker = this._authenticationService?.broker as Broker;
+        const value = form.property.value || 0;
+        const percentage = this._authenticationService.company?.percentageCommissionPayableForPropertyCaptured || 0;
+
+        return {
+            date: moment().format('YYYY-MM-DD'),
+            valueClosedDeals: 0,
+            valuePropertyCaptured: (value * percentage) / 100,
+            broker: broker,
+            property: property
+        };
+    }
+
     private parseCity(city: string, state: State): CreateCity {
         return {
             city,
@@ -181,8 +203,20 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
                     this.property = data;
                     this.formGroup.get('property')?.patchValue(this.property);
 					this.findState();
+
+                    if (this.isBroker && data.value) {
+                        this.createCommissionPayable();
+                    }
                 }
             });
+
+        this.subscriptions.push(subscription);
+    }
+
+    private createCommissionPayable(): void {
+        const subscription: Subscription = this._commissionPayableService
+            .create(this.parseCommissionPayable(this.formGroup.value))
+            .subscribe((data: CommissionPayable) => {});
 
         this.subscriptions.push(subscription);
     }
