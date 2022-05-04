@@ -1,3 +1,5 @@
 export enum PropertyRoutes {
-    PROPERTIES = 'properties'
+    PROPERTIES = 'properties',
+    UPLOAD = 'properties/upload',
+    DOWNLOAD = 'properties/download'
 }
