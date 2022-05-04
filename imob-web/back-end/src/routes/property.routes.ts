@@ -1,8 +1,13 @@
 import { Router } from 'express';
 import { PropertyController } from '../api/controllers/property.controller';
+import uploads from '../../config/multer';
 
 const propertyController: PropertyController = new PropertyController();
 const router: Router = Router();
+
+router.post('/upload', uploads.array('files'), propertyController.upload);
+
+router.get('/download', propertyController.download);
 
 router.get('/',
     /**
