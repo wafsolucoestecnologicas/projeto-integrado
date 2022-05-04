@@ -22,6 +22,43 @@ export class PropertyService {
 		this.ROUTES = PropertyRoutes;
 	}
 
+    public upload(files: Set<File>, id: number): Observable<any> {
+        const formData = new FormData();
+
+        files.forEach((file: File) => {
+            formData.append('files', file, file.name);
+        });
+
+        return this.http.post<any>(`${environment.URL}/${this.ROUTES.UPLOAD}`, formData, {
+            params: {
+                id: id
+            }
+        }).pipe(
+            map((response: any) => response),
+            catchError((error: HttpErrorResponse) =>
+                this._alertService.openSnackBar(
+                    `Ocorreu um erro ao realizar o upload do arquivo!`
+                )
+            )
+        );
+    }
+
+    public download(path: string): Observable<ArrayBuffer> {
+        return this.http.get(`${environment.URL}/${this.ROUTES.DOWNLOAD}`, {
+            responseType: 'arraybuffer',
+            params: {
+                path
+            }
+        }).pipe(
+            map((response: ArrayBuffer) => response),
+            catchError((error: HttpErrorResponse) =>
+                this._alertService.openSnackBar(
+                    `Ocorreu um erro ao realizar o download do arquivo!`
+                )
+            )
+        );
+    }
+
 	public index(): Observable<Property[]> {
         return this.http.get<Property[]>(`${environment.URL}/${this.ROUTES.PROPERTIES}`).pipe(
             take(1),
