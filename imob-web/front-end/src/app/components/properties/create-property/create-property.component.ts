@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 
-import { Property, CreateProperty } from 'src/app/core/interfaces/property.interface';
+import { Property, CreateProperty, UpdateProperty } from 'src/app/core/interfaces/property.interface';
 import { Owner } from 'src/app/core/interfaces/owner.interface';
 import { State } from 'src/app/core/interfaces/state.interface';
 import { City, CreateCity } from 'src/app/core/interfaces/city.interface';
@@ -30,6 +30,7 @@ import { Masks } from 'src/app/shared/enums/masks.enum';
 export class CreatePropertyComponent implements OnInit, OnDestroy {
 
     private subscriptions: Subscription[];
+    private files: Set<File>;
     public formGroup: FormGroup;
     public property: Property;
     public owner: Owner;
@@ -38,6 +39,7 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
     public city: City;
     public neighborhood: Neighborhood;
     public address: Address;
+    public preview: any[];
     public path: string;
     public isBroker: boolean;
     public MASKS: typeof Masks;
@@ -56,6 +58,7 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
         private readonly _alertService: AlertService
     ) {
         this.subscriptions = new Array<Subscription>();
+        this.preview = new Array<any>();
         this.path = 'content/properties';
         this.isBroker = (this._authenticationService?.broker) ? true : false;
         this.MASKS = Masks;
@@ -89,7 +92,7 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
             property: this._formBuilder.group({
                 id: [null, []],
 				description: [null, []],
-				photos: [null, []],
+				photos: [[], []],
 				checked: [false, []],
 				elevator: [false, []],
 				bedrooms: [0, []],
@@ -121,7 +124,7 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
         });
     }
 
-    private parseProperty(form: any): CreateProperty {
+    private parseCreateProperty(form: any): CreateProperty {
         return {
 			description: form.property.description,
 			photos: form.property.photos,
@@ -144,6 +147,26 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
 			broker: form.property.broker,
 			secretary: form.property.secretary
 		};
+    }
+
+    private parseUpdateProperty(form: any): UpdateProperty {
+        return {
+            description: form.property.description,
+			photos: form.property.photos,
+			checked: form.property.checked,
+			elevator: form.property.elevator,
+			bedrooms: form.property.bedrooms,
+			bathrooms: form.property.bathrooms,
+			suites: form.property.suites,
+			parkingLots: form.property.parkingLots,
+			terrainArea: form.property.terrainArea,
+			buildingArea: form.property.buildingArea,
+			totalUtilTerrainArea: form.property.totalUtilTerrainArea,
+			condominium: form.property.condominium,
+			IPTU: form.property.IPTU,
+			value: form.property.value,
+			owner: form.property.owner
+        };
     }
 
     private parseCommissionPayable(form: any): CreateCommissionPayable {
@@ -197,12 +220,13 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
 
     private createProperty(): void {
         const subscription: Subscription = this._propertyService
-            .create(this.parseProperty(this.formGroup.value))
+            .create(this.parseCreateProperty(this.formGroup.value))
             .subscribe((data: Property) => {
                 if (data) {
                     this.property = data;
                     this.formGroup.get('property')?.patchValue(this.property);
 					this.findState();
+                    this.uploadFiles();
 
                     if (this.isBroker && data.value) {
                         this.createCommissionPayable();
@@ -211,6 +235,16 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
             });
 
         this.subscriptions.push(subscription);
+    }
+
+    private updateProperty(): void {
+        if (this.property.id) {
+            const subscription: Subscription = this._propertyService
+                .update(this.parseUpdateProperty(this.formGroup.value), this.property.id)
+                .subscribe((data: UpdateProperty) => {});
+
+            this.subscriptions.push(subscription);
+        }
     }
 
     private createCommissionPayable(): void {
@@ -280,6 +314,32 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
         this.subscriptions.push(subscription);
     }
 
+    private uploadFiles(): void {
+		if (this.property.id && this.files && this.files.size > 0) {
+			const subscription: Subscription = this._propertyService
+				.upload(this.files, this.property.id)
+				.subscribe((data: any) => {
+					if (data) {
+                        if (this.property.photos) {
+                            const photos: Array<string> = this.formGroup.get('property')?.get('photos')?.value
+                                .map((photo: string) => {
+                                    photo = `${data.path}/${photo}`;
+
+                                    return photo;
+                                });
+
+                            this.formGroup.get('property')?.get('photos')?.setValue(JSON.stringify(photos));
+                            this.updateProperty();
+                        }
+
+						this._alertService.openSnackBar('Arquivos carregados com sucesso!')
+					}
+				});
+
+			this.subscriptions.push(subscription);
+		}
+	}
+
     public search(): void {
         if (this.formGroup.get('address')?.get('CEP')?.value &&
             this.formGroup.get('address')?.get('CEP')?.value.length === 8) {
@@ -302,6 +362,42 @@ export class CreatePropertyComponent implements OnInit, OnDestroy {
             this.subscriptions.push(subscription);
         }
     }
+
+    public onFileSelected(event: Event): void {
+		if ((<HTMLInputElement>event.target).files) {
+            const photos: Array<string> = new Array<string>();
+			const files: FileList = (<HTMLInputElement>event.target).files as FileList;
+
+			if (files.length > 0) {
+                this.preview = [];
+                this.files = new Set();
+
+                for (let index = 0; index < files.length; index++) {
+                    const element = files[index];
+
+                    if (element.type !== 'image/jpeg') {
+                        (<HTMLInputElement>event.target).value = '';
+                        this._alertService.openSnackBar(`O arquivo ${element.name} não foi importado! É suportado apenas arquivos .jpeg.`);
+
+                        continue;
+                    } else {
+                        photos.push(element.name);
+                        this.files.add(element);
+                        const fileReader = new FileReader();
+
+                        fileReader.readAsDataURL(element);
+                        fileReader.onloadend = () => {
+                            if (fileReader.result) {
+                                this.preview.push(fileReader.result);
+                            }
+                        };
+                    }
+                }
+
+                this.formGroup.get('property')?.get('photos')?.setValue(photos);
+			}
+		}
+	}
 
     public onSubmit(): void {
         if (this.formGroup.valid) {
