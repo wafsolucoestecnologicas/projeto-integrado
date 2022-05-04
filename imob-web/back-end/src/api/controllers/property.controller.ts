@@ -123,4 +123,26 @@ export class PropertyController {
         });
     }
 
+    public async upload(request: Request, response: Response): Promise<Response> {
+        try {
+            const id = request.query.id;
+            const CNPJ = request.payload.company.CNPJ;
+            const path = `public/uploads/properties/${CNPJ}/${id}`;
+
+            return response.status(200).json({ path: path });
+        } catch (error: any) {
+            return response.status(500).json({ message: error.message });
+        }
+    }
+
+    public async download(request: Request, response: Response): Promise<any> {
+        try {
+            const path = request.query.path;
+
+            return response.status(200).download(`${path}`);
+        } catch (error: any) {
+            return response.status(500).json({ message: error.message });
+        }
+    }
+
 }
