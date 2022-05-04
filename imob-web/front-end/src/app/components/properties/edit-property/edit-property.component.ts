@@ -25,6 +25,7 @@ import { Masks } from 'src/app/shared/enums/masks.enum';
 export class EditPropertyComponent implements OnInit, OnDestroy {
 
 	private subscriptions: Subscription[];
+    private files: Set<File>;
     public formGroup: FormGroup;
     public property: Property;
 	public owner: Owner;
@@ -33,6 +34,7 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
     public city: City;
     public neighborhood: Neighborhood;
     public address: Address;
+    public preview: any[];
     public path: string;
     public MASKS: typeof Masks;
 
@@ -48,6 +50,7 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
         private readonly _alertService: AlertService
 	) {
 		this.subscriptions = new Array<Subscription>();
+        this.preview = new Array<any>();
         this.path = '/content/properties';
         this.MASKS = Masks;
 	}
@@ -71,6 +74,14 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
 					this.formGroup.get('property')?.patchValue(this.property);
 
 					this.loadOwners();
+
+                    if (this.property.photos) {
+                        const photos: Array<string> = JSON.parse(String(this.property.photos));
+
+                        photos.forEach((path: string) => {
+                            this.downloadFile(path);
+                        });
+                    }
 				} else {
 					this._router.navigate([`${this.path}/list`]);
 					this._alertService.openSnackBar('Imóvel não encontrado na base de dados!');
@@ -260,6 +271,16 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
         };
     }
 
+    private updatePhotos(): void {
+        if (this.property.id) {
+            const subscription: Subscription = this._propertyService
+                .update(this.parseProperty(this.formGroup.value), this.property.id)
+                .subscribe((data: UpdateProperty) => {});
+
+            this.subscriptions.push(subscription);
+        }
+    }
+
     private updateProperty(): void {
         if (this.property.id) {
             const subscription: Subscription = this._propertyService
@@ -271,6 +292,8 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
                         } else {
                             this.findState(true);
                         }
+
+                        this.uploadFiles();
                     }
                 });
 
@@ -384,6 +407,32 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
         this.subscriptions.push(subscription);
     }
 
+    private uploadFiles(): void {
+		if (this.property.id && this.files && this.files.size > 0) {
+			const subscription: Subscription = this._propertyService
+				.upload(this.files, this.property.id)
+				.subscribe((data: any) => {
+					if (data) {
+                        if (this.property.photos) {
+                            const photos: Array<string> = this.formGroup.get('property')?.get('photos')?.value
+                                .map((photo: string) => {
+                                    photo = `${data.path}/${photo}`;
+
+                                    return photo;
+                                });
+
+                            this.formGroup.get('property')?.get('photos')?.setValue(JSON.stringify(photos));
+                            this.updatePhotos();
+                        }
+
+                        this._alertService.openSnackBar('Arquivos carregados com sucesso!')
+					}
+				});
+
+			this.subscriptions.push(subscription);
+		}
+	}
+
     public search(): void {
         if (this.formGroup.get('address')?.get('CEP')?.value &&
             this.formGroup.get('address')?.get('CEP')?.value.length === 8) {
@@ -406,6 +455,62 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
             this.subscriptions.push(subscription);
         }
     }
+
+    public downloadFile(path: string): void {
+		const subscription: Subscription = this._propertyService
+			.download(path)
+			.subscribe((data: ArrayBuffer) => {
+				if (data) {
+					const file: Blob = new Blob([data], { type: 'image/jpeg' });
+					const fileReader = new FileReader();
+
+                    fileReader.readAsDataURL(file);
+                    fileReader.onloadend = () => {
+                        if (fileReader.result) {
+                            this.preview.push(fileReader.result);
+                        }
+                    }
+				}
+			});
+
+		this.subscriptions.push(subscription);
+	}
+
+    public onFileSelected(event: Event): void {
+		if ((<HTMLInputElement>event.target).files) {
+            const photos: Array<string> = new Array<string>();
+			const files: FileList = (<HTMLInputElement>event.target).files as FileList;
+
+			if (files.length > 0) {
+                this.preview = [];
+                this.files = new Set();
+
+                for (let index = 0; index < files.length; index++) {
+                    const element = files[index];
+
+                    if (element.type !== 'image/jpeg') {
+                        (<HTMLInputElement>event.target).value = '';
+                        this._alertService.openSnackBar(`O arquivo ${element.name} não foi importado! É suportado apenas arquivos .jpeg.`);
+
+                        continue;
+                    } else {
+                        photos.push(element.name);
+                        this.files.add(element);
+                        const fileReader = new FileReader();
+
+                        fileReader.readAsDataURL(element);
+                        fileReader.onloadend = () => {
+                            if (fileReader.result) {
+                                this.preview.push(fileReader.result);
+                            }
+                        };
+                    }
+                }
+
+                this.formGroup.get('property')?.get('photos')?.setValue(photos);
+			}
+		}
+	}
 
     public onSubmit(): void {
         if (this.formGroup.valid) {
