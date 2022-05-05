@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 
 import { HeaderInterceptor } from './shared/interceptors/header.interceptor';
 import { AuthenticationGuard } from './shared/guards/authentication.guard';
-import { ProfileGuard } from './shared/guards/profile.guard';
 
 import { AuthenticationService } from './core/services/authentication.service';
 import { ProfileService } from './core/services/profile.service';
@@ -53,7 +52,6 @@ import { LoaderService } from './core/services/loader.service';
 			multi: true
 		},
 		AuthenticationGuard,
-		ProfileGuard,
 		AuthenticationService,
 		ProfileService,
 		UserService,
