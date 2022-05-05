@@ -26,11 +26,17 @@ export class CompanyService {
         return this.http.get<Company[]>(`${environment.URL}/${this.ROUTES.COMPANIES}`).pipe(
             take(1),
             map((response: Company[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar as imobiliárias!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -38,11 +44,17 @@ export class CompanyService {
         return this.http.post<Company>(`${environment.URL}/${this.ROUTES.COMPANIES}`, body).pipe(
             take(1),
             map((response: Company) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar a imobiliária!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -50,11 +62,17 @@ export class CompanyService {
         return this.http.get<Company>(`${environment.URL}/${this.ROUTES.COMPANIES}/${id}`).pipe(
             take(1),
             map((response: Company) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar a imobiliária!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -62,11 +80,17 @@ export class CompanyService {
         return this.http.put<Company[]>(`${environment.URL}/${this.ROUTES.COMPANIES}/${id}`, body).pipe(
             take(1),
             map((response: Company[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar a imobiliária!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -74,11 +98,17 @@ export class CompanyService {
         return this.http.delete<DeleteCompany>(`${environment.URL}/${this.ROUTES.COMPANIES}/${id}`).pipe(
             take(1),
             map((response: DeleteCompany) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao deletar a imobiliária!`
-                )
-            )
+                );
+            })
         );
     }
     

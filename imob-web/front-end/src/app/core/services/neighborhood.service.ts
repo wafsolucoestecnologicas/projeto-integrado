@@ -26,11 +26,17 @@ export class NeighborhoodService {
         return this.http.get<Neighborhood[]>(`${environment.URL}/${this.ROUTES.NEIGHBORHOODS}`).pipe(
             take(1),
             map((response: Neighborhood[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar os bairros!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -38,11 +44,17 @@ export class NeighborhoodService {
         return this.http.post<Neighborhood>(`${environment.URL}/${this.ROUTES.NEIGHBORHOODS}`, body).pipe(
             take(1),
             map((response: Neighborhood) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+                
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar um bairro!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -50,9 +62,17 @@ export class NeighborhoodService {
         return this.http.get<Neighborhood>(`${environment.URL}/${this.ROUTES.NEIGHBORHOODS}/${id}`).pipe(
             take(1),
             map((response: Neighborhood) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(`Ocorreu um erro ao listar o bairro!`)
-            )
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
+                    `Ocorreu um erro ao listar o bairro!`
+                );
+            })
         );
     }
 
@@ -60,11 +80,17 @@ export class NeighborhoodService {
         return this.http.put<Neighborhood>(`${environment.URL}/${this.ROUTES.NEIGHBORHOODS}/${id}`, body).pipe(
             take(1),
             map((response: Neighborhood) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar o bairro!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -72,11 +98,17 @@ export class NeighborhoodService {
         return this.http.delete<DeleteNeighborhood>(`${environment.URL}/${this.ROUTES.NEIGHBORHOODS}/${id}`).pipe(
             take(1),
             map((response: DeleteNeighborhood) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao deletar o bairro!`
-                )
-            )
+                );
+            })
         );
     }
     

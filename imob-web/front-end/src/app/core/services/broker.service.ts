@@ -26,11 +26,17 @@ export class BrokerService {
         return this.http.get<Broker[]>(`${environment.URL}/${this.ROUTES.BROKERS}`).pipe(
             take(1),
             map((response: Broker[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar os corretores!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -38,11 +44,17 @@ export class BrokerService {
         return this.http.get<Broker>(`${environment.URL}/${this.ROUTES.BROKERS}/${id}`).pipe(
             take(1),
             map((response: Broker) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar o corretor!`
-                )
-            )
+                );
+            })
         );
     }
 

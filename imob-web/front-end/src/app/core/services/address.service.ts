@@ -30,11 +30,17 @@ export class AddressService {
 		}).pipe(
             take(1),
             map((response: ResponseViaCEPModel) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao buscar o endereço do CEP!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -42,11 +48,17 @@ export class AddressService {
         return this.http.get<Address[]>(`${environment.URL}/${this.ROUTES.ADRESSES}`).pipe(
             take(1),
             map((response: Address[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar os endereços!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -54,11 +66,17 @@ export class AddressService {
         return this.http.post<Address>(`${environment.URL}/${this.ROUTES.ADRESSES}`, body).pipe(
             take(1),
             map((response: Address) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar um endereço!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -66,11 +84,17 @@ export class AddressService {
         return this.http.get<Address>(`${environment.URL}/${this.ROUTES.ADRESSES}/${id}`).pipe(
             take(1),
             map((response: Address) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar o endereço!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -78,11 +102,17 @@ export class AddressService {
         return this.http.put<Address>(`${environment.URL}/${this.ROUTES.ADRESSES}/${id}`, body).pipe(
             take(1),
             map((response: Address) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar o endereço!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -90,11 +120,17 @@ export class AddressService {
         return this.http.delete<DeleteAddress>(`${environment.URL}/${this.ROUTES.ADRESSES}/${id}`).pipe(
             take(1),
             map((response: DeleteAddress) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao deletar o endereço!`
-                )
-            )
+                );
+            })
         );
     }
 

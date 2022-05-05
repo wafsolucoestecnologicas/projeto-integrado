@@ -45,11 +45,17 @@ export class BusinessService {
         return this.http.get<AmountBusiness>(`${environment.URL}/${this.ROUTES.AMOUNT}`).pipe(
             take(1),
             map((response: AmountBusiness) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao buscar a quantidade total de negócios!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -59,11 +65,17 @@ export class BusinessService {
             .pipe(
                 take(1),
                 map((response: TransferManager) => response),
-                catchError((error: HttpErrorResponse) =>
-                    this._alertService.openSnackBar(
+                catchError((error: HttpErrorResponse) => {
+                    if (error.status === 401 && error.statusText === 'Unauthorized') {
+                        return this._alertService.openSnackBar(
+                            `${error.error.message}`
+                        );
+                    }
+
+                    return this._alertService.openSnackBar(
                         `Ocorreu um erro ao transferir um negócio para um gestor!`
-                    )
-                )
+                    );
+                })
             );
     }
 
@@ -73,11 +85,17 @@ export class BusinessService {
             .pipe(
                 take(1),
                 map((response: TransferAdvisor) => response),
-                catchError((error: HttpErrorResponse) =>
-                    this._alertService.openSnackBar(
+                catchError((error: HttpErrorResponse) => {
+                    if (error.status === 401 && error.statusText === 'Unauthorized') {
+                        return this._alertService.openSnackBar(
+                            `${error.error.message}`
+                        );
+                    }
+
+                    return this._alertService.openSnackBar(
                         `Ocorreu um erro ao transferir um negócio para um despachante!`
-                    )
-                )
+                    );
+                })
             );
     }
 
@@ -87,11 +105,17 @@ export class BusinessService {
             .pipe(
                 take(1),
                 map((response: TransferBroker) => response),
-                catchError((error: HttpErrorResponse) =>
-                    this._alertService.openSnackBar(
+                catchError((error: HttpErrorResponse) => {
+                    if (error.status === 401 && error.statusText === 'Unauthorized') {
+                        return this._alertService.openSnackBar(
+                            `${error.error.message}`
+                        );
+                    }
+
+                    return this._alertService.openSnackBar(
                         `Ocorreu um erro ao transferir um negócio para um corretor!`
-                    )
-                )
+                    );
+                })
             );
     }
 
@@ -101,11 +125,17 @@ export class BusinessService {
             .pipe(
                 take(1),
                 map((response: RejectBusiness) => response),
-                catchError((error: HttpErrorResponse) =>
-                    this._alertService.openSnackBar(
+                catchError((error: HttpErrorResponse) => {
+                    if (error.status === 401 && error.statusText === 'Unauthorized') {
+                        return this._alertService.openSnackBar(
+                            `${error.error.message}`
+                        );
+                    }
+
+                    return this._alertService.openSnackBar(
                         `Ocorreu um erro ao rejetiar um negócio!`
-                    )
-                )
+                    );
+                })
             );
     }
 
@@ -115,11 +145,17 @@ export class BusinessService {
             .pipe(
                 take(1),
                 map((response: CloseBusiness) => response),
-                catchError((error: HttpErrorResponse) =>
-                    this._alertService.openSnackBar(
+                catchError((error: HttpErrorResponse) => {
+                    if (error.status === 401 && error.statusText === 'Unauthorized') {
+                        return this._alertService.openSnackBar(
+                            `${error.error.message}`
+                        );
+                    }
+
+                    return this._alertService.openSnackBar(
                         `Ocorreu um erro ao fechar um negócio!`
-                    )
-                )
+                    );
+                })
             );
     }
 
@@ -134,11 +170,17 @@ export class BusinessService {
             }
         }).pipe(
             map((response: any) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao realizar o upload do arquivo!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -150,11 +192,17 @@ export class BusinessService {
             }
         }).pipe(
             map((response: ArrayBuffer) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao realizar o download do arquivo!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -162,11 +210,17 @@ export class BusinessService {
         return this.http.get<Business[]>(`${environment.URL}/${this.ROUTES.BUSINESSES}`).pipe(
             take(1),
             map((response: Business[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar os negócios!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -174,11 +228,17 @@ export class BusinessService {
         return this.http.post<Business>(`${environment.URL}/${this.ROUTES.BUSINESSES}`, body).pipe(
             take(1),
             map((response: Business) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar o negócio!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -186,11 +246,17 @@ export class BusinessService {
         return this.http.get<Business>(`${environment.URL}/${this.ROUTES.BUSINESSES}/${id}`).pipe(
             take(1),
             map((response: Business) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar o negócio!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -198,11 +264,17 @@ export class BusinessService {
         return this.http.put<Business>(`${environment.URL}/${this.ROUTES.BUSINESSES}/${id}`, body).pipe(
             take(1),
             map((response: Business) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar o negócio!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -212,11 +284,17 @@ export class BusinessService {
             .pipe(
                 take(1),
                 map((response: DeleteBusiness) => response),
-                catchError((error: HttpErrorResponse) =>
-                    this._alertService.openSnackBar(
+                catchError((error: HttpErrorResponse) => {
+                    if (error.status === 401 && error.statusText === 'Unauthorized') {
+                        return this._alertService.openSnackBar(
+                            `${error.error.message}`
+                        );
+                    }
+
+                    return this._alertService.openSnackBar(
                         `Ocorreu um erro ao deletar o negócio!`
-                    )
-                )
+                    );
+                })
             );
     }
 

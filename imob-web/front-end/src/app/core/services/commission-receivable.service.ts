@@ -30,11 +30,17 @@ export class CommissionReceivableService {
 		}).pipe(
             take(1),
             map((response: Receivable) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao buscar os totais de comissões a receber!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -42,11 +48,17 @@ export class CommissionReceivableService {
         return this.http.get<CommissionReceivable[]>(`${environment.URL}/${this.ROUTES.COMMISSIONS_RECEIVABLE}`).pipe(
             take(1),
             map((response: CommissionReceivable[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar as comissões a receber!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -54,11 +66,17 @@ export class CommissionReceivableService {
         return this.http.post<CommissionReceivable>(`${environment.URL}/${this.ROUTES.COMMISSIONS_RECEIVABLE}`, body).pipe(
             take(1),
             map((response: CommissionReceivable) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar a comissão a receber!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -66,11 +84,17 @@ export class CommissionReceivableService {
         return this.http.get<CommissionReceivable>(`${environment.URL}/${this.ROUTES.COMMISSIONS_RECEIVABLE}/${id}`).pipe(
             take(1),
             map((response: CommissionReceivable) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar a comissão a receber!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -78,11 +102,17 @@ export class CommissionReceivableService {
         return this.http.put<CommissionReceivable>(`${environment.URL}/${this.ROUTES.COMMISSIONS_RECEIVABLE}/${id}`, body).pipe(
             take(1),
             map((response: CommissionReceivable) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar a comissão a receber!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -90,11 +120,17 @@ export class CommissionReceivableService {
         return this.http.delete<DeleteCommissionReceivable>(`${environment.URL}/${this.ROUTES.COMMISSIONS_RECEIVABLE}/${id}`).pipe(
             take(1),
             map((response: DeleteCommissionReceivable) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao deletar a comissão a receber!`
-                )
-            )
+                );
+            })
         );
     }
 

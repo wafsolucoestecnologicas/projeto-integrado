@@ -30,11 +30,17 @@ export class CommissionPayableService {
 		}).pipe(
             take(1),
             map((response: Payable) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao buscar os totais de comissões a pagar!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -42,11 +48,17 @@ export class CommissionPayableService {
         return this.http.get<CommissionPayable[]>(`${environment.URL}/${this.ROUTES.COMMISSIONS_PAYABLE}`).pipe(
             take(1),
             map((response: CommissionPayable[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar as comissões a pagar!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -54,11 +66,17 @@ export class CommissionPayableService {
         return this.http.post<CommissionPayable>(`${environment.URL}/${this.ROUTES.COMMISSIONS_PAYABLE}`, body).pipe(
             take(1),
             map((response: CommissionPayable) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar a comissão a pagar!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -66,11 +84,17 @@ export class CommissionPayableService {
         return this.http.get<CommissionPayable>(`${environment.URL}/${this.ROUTES.COMMISSIONS_PAYABLE}/${id}`).pipe(
             take(1),
             map((response: CommissionPayable) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar a comissão a pagar!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -78,11 +102,17 @@ export class CommissionPayableService {
         return this.http.put<CommissionPayable>(`${environment.URL}/${this.ROUTES.COMMISSIONS_PAYABLE}/${id}`, body).pipe(
             take(1),
             map((response: CommissionPayable) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar a comissão a pagar!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -90,11 +120,17 @@ export class CommissionPayableService {
         return this.http.delete<DeleteCommissionPayable>(`${environment.URL}/${this.ROUTES.COMMISSIONS_PAYABLE}/${id}`).pipe(
             take(1),
             map((response: DeleteCommissionPayable) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao deletar a comissão a pagar!`
-                )
-            )
+                );
+            })
         );
     }
 

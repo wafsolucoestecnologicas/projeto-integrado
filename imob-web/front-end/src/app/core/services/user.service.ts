@@ -26,11 +26,17 @@ export class UserService {
         return this.http.get<User[]>(`${environment.URL}/${this.ROUTES.USERS}`).pipe(
             take(1),
             map((response: User[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar os usuários!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -38,11 +44,17 @@ export class UserService {
         return this.http.post<User>(`${environment.URL}/${this.ROUTES.USERS}`, body).pipe(
             take(1),
             map((response: User) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar o usuário!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -50,11 +62,17 @@ export class UserService {
         return this.http.get<User>(`${environment.URL}/${this.ROUTES.USERS}/${id}`).pipe(
             take(1),
             map((response: User) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar o usuário!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -62,11 +80,17 @@ export class UserService {
         return this.http.put<User>(`${environment.URL}/${this.ROUTES.USERS}/${id}`, body).pipe(
             take(1),
             map((response: User) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar o usuário!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -74,11 +98,17 @@ export class UserService {
         return this.http.delete<DeleteUser>(`${environment.URL}/${this.ROUTES.USERS}/${id}`).pipe(
             take(1),
             map((response: DeleteUser) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao deletar o usuário!`
                 )
-            )
+            })
         );
     }
     

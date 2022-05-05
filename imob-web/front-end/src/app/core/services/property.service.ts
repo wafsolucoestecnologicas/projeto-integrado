@@ -35,11 +35,17 @@ export class PropertyService {
             }
         }).pipe(
             map((response: any) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao realizar o upload do arquivo!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -51,11 +57,17 @@ export class PropertyService {
             }
         }).pipe(
             map((response: ArrayBuffer) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao realizar o download do arquivo!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -63,11 +75,17 @@ export class PropertyService {
         return this.http.get<Property[]>(`${environment.URL}/${this.ROUTES.PROPERTIES}`).pipe(
             take(1),
             map((response: Property[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar os imóveis!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -75,11 +93,17 @@ export class PropertyService {
         return this.http.post<Property>(`${environment.URL}/${this.ROUTES.PROPERTIES}`, body).pipe(
             take(1),
             map((response: Property) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar o imóvel!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -87,11 +111,17 @@ export class PropertyService {
         return this.http.get<Property>(`${environment.URL}/${this.ROUTES.PROPERTIES}/${id}`).pipe(
             take(1),
             map((response: Property) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar o imóvel!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -99,11 +129,17 @@ export class PropertyService {
         return this.http.put<Property>(`${environment.URL}/${this.ROUTES.PROPERTIES}/${id}`, body).pipe(
             take(1),
             map((response: Property) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+                
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar o imóvel!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -111,11 +147,17 @@ export class PropertyService {
         return this.http.delete<DeleteProperty>(`${environment.URL}/${this.ROUTES.PROPERTIES}/${id}`).pipe(
             take(1),
             map((response: DeleteProperty) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao deletar o imóvel!`
-                )
-            )
+                );
+            })
         );
     }
 

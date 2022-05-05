@@ -26,11 +26,17 @@ export class CityService {
         return this.http.get<City[]>(`${environment.URL}/${this.ROUTES.CITIES}`).pipe(
             take(1),
             map((response: City[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar as cidades!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -38,11 +44,17 @@ export class CityService {
         return this.http.post<City>(`${environment.URL}/${this.ROUTES.CITIES}`, body).pipe(
             take(1),
             map((response: City) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar uma cidade!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -50,11 +62,17 @@ export class CityService {
         return this.http.get<City>(`${environment.URL}/${this.ROUTES.CITIES}/${id}`).pipe(
             take(1),
             map((response: City) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar a cidade!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -62,11 +80,17 @@ export class CityService {
         return this.http.put<City>(`${environment.URL}/${this.ROUTES.CITIES}/${id}`, body).pipe(
             take(1),
             map((response: City) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar a cidade!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -74,11 +98,17 @@ export class CityService {
         return this.http.delete<DeleteCity>(`${environment.URL}/${this.ROUTES.CITIES}/${id}`).pipe(
             take(1),
             map((response: DeleteCity) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao deletar a cidade!`
-                )
-            )
+                );
+            })
         );
     }
 

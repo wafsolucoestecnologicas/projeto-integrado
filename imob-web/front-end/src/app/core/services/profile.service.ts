@@ -42,4 +42,5 @@ export class ProfileService {
 	public get usersTypes(): UserType[] {
 		return this._usersTypes;
 	}
+	
 }

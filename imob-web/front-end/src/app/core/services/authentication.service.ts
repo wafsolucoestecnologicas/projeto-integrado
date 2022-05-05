@@ -71,11 +71,17 @@ export class AuthenticationService {
                     
                     return response;
                 }),
-                catchError((error: HttpErrorResponse) =>
-                    this._alertService.openSnackBar(
+                catchError((error: HttpErrorResponse) => {
+                    if (error.status === 401 && error.statusText === 'Unauthorized') {
+                        return this._alertService.openSnackBar(
+                            `${error.error.message}`
+                        );
+                    }
+
+                    return this._alertService.openSnackBar(
                         `Ocorreu um erro ao realizar o login!`
-                    )
-                )
+                    );
+                })
             );
     }
 

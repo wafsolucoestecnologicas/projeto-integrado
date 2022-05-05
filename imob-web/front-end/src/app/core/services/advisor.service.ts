@@ -26,11 +26,17 @@ export class AdvisorService {
         return this.http.get<Advisor[]>(`${environment.URL}/${this.ROUTES.ADVISORS}`).pipe(
             take(1),
             map((response: Advisor[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar os despachantes!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -38,11 +44,17 @@ export class AdvisorService {
         return this.http.get<Advisor>(`${environment.URL}/${this.ROUTES.ADVISORS}/${id}`).pipe(
             take(1),
             map((response: Advisor) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao lista o despachante!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -50,11 +62,17 @@ export class AdvisorService {
         return this.http.put<Advisor>(`${environment.URL}/${this.ROUTES.ADVISORS}/${id}`, body).pipe(
             take(1),
             map((response: Advisor) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar o despachante!`
-                )
-            )
+                );
+            })
         );
     }
     

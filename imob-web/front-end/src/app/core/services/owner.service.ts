@@ -26,11 +26,17 @@ export class OwnerService {
         return this.http.get<Owner[]>(`${environment.URL}/${this.ROUTES.OWNERS}`).pipe(
             take(1),
             map((response: Owner[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar os proprietários!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -38,11 +44,17 @@ export class OwnerService {
         return this.http.post<Owner>(`${environment.URL}/${this.ROUTES.OWNERS}`, body).pipe(
             take(1),
             map((response: Owner) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar o proprietário!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -50,11 +62,17 @@ export class OwnerService {
         return this.http.get<Owner>(`${environment.URL}/${this.ROUTES.OWNERS}/${id}`).pipe(
             take(1),
             map((response: Owner) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar o proprietário!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -62,11 +80,17 @@ export class OwnerService {
         return this.http.put<Owner[]>(`${environment.URL}/${this.ROUTES.OWNERS}/${id}`, body).pipe(
             take(1),
             map((response: Owner[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar o proprietário!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -74,11 +98,17 @@ export class OwnerService {
         return this.http.delete<DeleteOwner>(`${environment.URL}/${this.ROUTES.OWNERS}/${id}`).pipe(
             take(1),
             map((response: DeleteOwner) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao deletar o proprietário!`
-                )
-            )
+                );
+            })
         );
     }
     

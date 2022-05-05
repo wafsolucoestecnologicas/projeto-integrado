@@ -26,11 +26,17 @@ export class ManagerService {
         return this.http.get<Manager[]>(`${environment.URL}/${this.ROUTES.MANAGERS}`).pipe(
             take(1),
             map((response: Manager[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar os gestores!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -38,11 +44,17 @@ export class ManagerService {
         return this.http.get<Manager>(`${environment.URL}/${this.ROUTES.MANAGERS}/${id}`).pipe(
 			take(1),
             map((response: Manager) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar o gestor!`
-                )
-            )
+                );
+            })
 		);
     }
 
@@ -50,11 +62,17 @@ export class ManagerService {
         return this.http.put<Manager>(`${environment.URL}/${this.ROUTES.MANAGERS}/${id}`, body).pipe(
 			take(1),
             map((response: Manager) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar o gestor!`
-                )
-            )
+                );
+            })
 		);
     }
 	

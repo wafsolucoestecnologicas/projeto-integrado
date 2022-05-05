@@ -38,11 +38,17 @@ export class LeadService {
 		}).pipe(
             take(1),
             map((response: AmountLeads) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao buscar o total de leads!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -50,11 +56,17 @@ export class LeadService {
         return this.http.get<Lead[]>(`${environment.URL}/${this.ROUTES.LEADS}`).pipe(
             take(1),
             map((response: Lead[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar as leads!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -62,11 +74,17 @@ export class LeadService {
         return this.http.post<Lead>(`${environment.URL}/${this.ROUTES.LEADS}`, body).pipe(
             take(1),
             map((response: Lead) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao criar a lead!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -74,11 +92,17 @@ export class LeadService {
         return this.http.get<Lead>(`${environment.URL}/${this.ROUTES.LEADS}/${id}`).pipe(
             take(1),
             map((response: Lead) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar a lead!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -86,11 +110,17 @@ export class LeadService {
         return this.http.put<Lead>(`${environment.URL}/${this.ROUTES.LEADS}/${id}`, body).pipe(
             take(1),
             map((response: Lead) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao atualizar a lead!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -98,11 +128,17 @@ export class LeadService {
         return this.http.delete<DeleteLead>(`${environment.URL}/${this.ROUTES.LEADS}/${id}`).pipe(
             take(1),
             map((response: DeleteLead) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao deletar a lead!`
-                )
-            )
+                );
+            })
         );
     }
 

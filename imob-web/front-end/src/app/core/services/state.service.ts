@@ -25,11 +25,17 @@ export class StateService {
         return this.http.get<State[]>(`${environment.URL}/${this.ROUTES.STATES}`).pipe(
             take(1),
             map((response: State[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar os estados!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -37,11 +43,17 @@ export class StateService {
         return this.http.get<State>(`${environment.URL}/${this.ROUTES.STATES}/${id}`).pipe(
             take(1),
             map((response: State) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar o estado!`
-                )
-            )
+                );
+            })
         );
     }
 

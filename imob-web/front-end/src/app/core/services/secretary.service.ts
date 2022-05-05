@@ -26,11 +26,17 @@ export class SecretaryService {
         return this.http.get<Secretary[]>(`${environment.URL}/${this.ROUTES.SECRETARIES}`).pipe(
             take(1),
             map((response: Secretary[]) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar as secretárias!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -38,11 +44,17 @@ export class SecretaryService {
         return this.http.get<Secretary>(`${environment.URL}/${this.ROUTES.SECRETARIES}/${id}`).pipe(
             take(1),
             map((response: Secretary) => response),
-            catchError((error: HttpErrorResponse) =>
-                this._alertService.openSnackBar(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
                     `Ocorreu um erro ao listar a secretária!`
-                )
-            )
+                );
+            })
         );
     }
 
@@ -52,11 +64,17 @@ export class SecretaryService {
             .pipe(
                 take(1),
                 map((response: Secretary) => response),
-                catchError((error: HttpErrorResponse) =>
-                    this._alertService.openSnackBar(
+                catchError((error: HttpErrorResponse) => {
+                    if (error.status === 401 && error.statusText === 'Unauthorized') {
+                        return this._alertService.openSnackBar(
+                            `${error.error.message}`
+                        );
+                    }
+
+                    return this._alertService.openSnackBar(
                         `Ocorreu um erro ao atualizar a secretária!`
-                    )
-                )
+                    );
+                })
             );
     }
 
