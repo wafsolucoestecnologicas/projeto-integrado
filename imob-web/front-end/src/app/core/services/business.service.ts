@@ -41,10 +41,23 @@ export class BusinessService {
         this.ROUTES = BusinessRoutes;
     }
 
-    public amount(): Observable<AmountBusiness> {
-        return this.http.get<AmountBusiness>(`${environment.URL}/${this.ROUTES.AMOUNT}`).pipe(
+    public amount(month: string): Observable<AmountBusiness> {
+        return this.http.get<AmountBusiness>(`${environment.URL}/${this.ROUTES.AMOUNT}`, {
+            params: {
+                month
+            }
+        }).pipe(
             take(1),
-            map((response: AmountBusiness) => response),
+            map((response: AmountBusiness) => {
+                response.totalAmountBusinesses = (response.totalAmountBusinesses) > 0 ? response.totalAmountBusinesses : 0;
+                response.totalAmountClosed = (response.totalAmountClosed) > 0 ? response.totalAmountClosed : 0;
+                response.totalAmountProposal = (response.totalAmountProposal) > 0 ? response.totalAmountProposal : 0;
+                response.totalAmountProspecting = (response.totalAmountProspecting) > 0 ? response.totalAmountProspecting : 0;
+                response.totalAmountRejected = (response.totalAmountRejected) > 0 ? response.totalAmountRejected : 0;
+                response.totalAmountVisit = (response.totalAmountVisit) > 0 ? response.totalAmountVisit : 0;
+
+                return response;
+            }),
             catchError((error: HttpErrorResponse) => {
                 if (error.status === 401 && error.statusText === 'Unauthorized') {
                     return this._alertService.openSnackBar(
