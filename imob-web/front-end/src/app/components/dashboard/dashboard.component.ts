@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     public colorScheme: any;
     public showBusinessGraphic: boolean;
     public showLeadGraphic: boolean;
+    public isManager: boolean;
 
     constructor(
         private readonly _formBuilder: FormBuilder,
@@ -69,6 +70,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         };
         this.showBusinessGraphic = false;
         this.showLeadGraphic = false;
+        this.isManager = this._authenticationService?.manager ? true : false;
     }
 
     public ngOnInit(): void {
