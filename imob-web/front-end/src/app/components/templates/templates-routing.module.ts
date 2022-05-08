@@ -9,6 +9,13 @@ const routes: Routes = [
         component: ContentComponent,
         children: [
             {
+                path: 'dashboard',
+                loadChildren: () =>
+                    import('../dashboard/dashboard.module').then(
+                        (module) => module.DashboardModule
+                    )
+            },
+            {
                 path: 'users',
                 loadChildren: () =>
                     import('../users/users.module').then(
