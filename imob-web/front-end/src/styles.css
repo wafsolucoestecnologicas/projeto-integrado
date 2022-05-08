@@ -30,3 +30,23 @@ body {
     display: flex;
     justify-content: flex-end;
 }
+
+.total-label {
+    margin-top: 7.92% !important;
+}
+
+.legend-item {
+    margin-right: 30% !important;
+}
+
+.item-label {
+    margin: 5% 0% !important;
+}
+
+.advanced-pie-legend .legend-items-container .legend-items {
+    overflow: initial !important;
+}
+
+.advanced-pie-legend {
+    width: 15rem !important;
+}
