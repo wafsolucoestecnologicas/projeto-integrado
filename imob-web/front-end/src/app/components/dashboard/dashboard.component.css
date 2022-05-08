@@ -1,0 +1,28 @@
+.container {
+    padding: 1.5%;
+}
+
+.mat-toolbar {
+    height: 56px;
+}
+
+.margin-top {
+    margin-top: 50px;
+}
+
+.border-right {
+    border-right: 3px solid #e3e4e8;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+
+.result {
+    font-size: 3rem;
+    color: #e3e4e8;
+    margin-right: 50px;
+    vertical-align: middle;
+}
+
+.advanced-pie-legend .legend-items-container .legend-items {
+    overflow: hidden;
+}
