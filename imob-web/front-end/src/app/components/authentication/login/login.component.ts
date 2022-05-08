@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                         );
 
                         if (data?.manager) {
-                            this._router.navigate(['content/users/list']);
+                            this._router.navigate(['content/dashboard']);
                         } else {
                             this._router.navigate(['content']);
                         }
