@@ -1,25 +1,17 @@
 <header>
     <mat-toolbar color="primary">
+        <span class="spacer"></span>
+        
         <div fxShow="true" fxHide.xs="true" fxHide.sm="true">
-            <a mat-button>
+            <a mat-button routerLink="/content/dashboard">
                 <mat-icon>dashboard</mat-icon>
                 Dashboard
             </a>
             <a mat-button>
-                <mat-icon>manage_search</mat-icon>
-                Pesquisa de Imóveis
-            </a>
-            <a mat-button>
-                <mat-icon>person_search</mat-icon>
-                Pesquisa de Leads
+                <mat-icon>apartment</mat-icon>
+                Imóveis
             </a>
         </div>
-
-        <span class="spacer"></span>
-
-        <mat-card class="card">
-            <div class="header-image" mat-card-avatar></div>
-        </mat-card>
 
         <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
