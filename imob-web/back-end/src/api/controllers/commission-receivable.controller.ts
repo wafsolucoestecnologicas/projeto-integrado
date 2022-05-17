@@ -8,6 +8,20 @@ export class CommissionReceivableController {
 
     constructor() { }
 
+    public async sale(request: Request, response: Response): Promise<Response> {
+        try {
+            const commissionReceivableService: CommissionReceivableService =
+                new CommissionReceivableService();
+
+            const commissionReceivableEntity: CommissionReceivableEntity[] =
+                await commissionReceivableService.sale(request.params.cnpj);
+
+            return response.status(200).json(commissionReceivableEntity);
+        } catch (error: any) {
+            return response.status(500).json({ message: error.message });
+        }
+    }
+
     public async index(request: Request, response: Response): Promise<Response> {
         try {
             const commissionReceivableService: CommissionReceivableService =

@@ -8,6 +8,20 @@ export class PropertyController {
 
     constructor() { }
 
+    public async sale(request: Request, response: Response): Promise<Response> {
+        try {
+            const propertyService: PropertyService =
+                new PropertyService();
+
+            const propertyEntity: PropertyEntity[] =
+                await propertyService.sale(request.params.cnpj);
+
+            return response.status(200).json(propertyEntity);
+        } catch (error: any) {
+            return response.status(500).json({ message: error.message });
+        }
+    }
+
     public async index(request: Request, response: Response): Promise<Response> {
         try {
             const propertyService: PropertyService =
