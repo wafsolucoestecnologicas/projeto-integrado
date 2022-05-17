@@ -23,6 +23,7 @@ export const validateURLWithoutAuthentication = (url: string, method: string): b
 
     const paths: string[] = [
         'docs',
+        'upload',
         'authentications',
         'users'
     ];
@@ -30,6 +31,14 @@ export const validateURLWithoutAuthentication = (url: string, method: string): b
 
     if (path === 'users') {
         isValid = paths.includes(path) && method === 'POST';
+    } else if (path === 'properties' && url.split('/').length === 4) {
+        const path = url.split('/')[3];
+
+        isValid = path === 'sale';
+    } else if (path === 'commissions-receivable' && url.split('/').length === 4) {
+        const path = url.split('/')[3];
+
+        isValid = path === 'sale';
     } else {
         isValid = paths.includes(path);
     }
