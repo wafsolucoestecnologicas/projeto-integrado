@@ -4,6 +4,8 @@ import { CommissionReceivableController } from '../api/controllers/commission-re
 const commissionReceivableController: CommissionReceivableController = new CommissionReceivableController();
 const router: Router = Router();
 
+router.get('/:cnpj/sale', commissionReceivableController.sale);
+
 router.get('/receivable',
     /**
      * #swagger.security = [{ 'Token': [] }]

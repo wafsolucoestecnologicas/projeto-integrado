@@ -9,6 +9,8 @@ router.post('/upload', uploads.array('files'), propertyController.upload);
 
 router.get('/download', propertyController.download);
 
+router.get('/:cnpj/sale', propertyController.sale);
+
 router.get('/',
     /**
      * #swagger.security = [{ 'Token': [] }]
