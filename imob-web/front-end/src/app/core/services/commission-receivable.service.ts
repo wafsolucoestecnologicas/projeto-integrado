@@ -44,6 +44,24 @@ export class CommissionReceivableService {
         );
     }
 
+    public sale(CNPJ: string): Observable<CommissionReceivable[]> {
+        return this.http.get<CommissionReceivable[]>(`${environment.URL}/${this.ROUTES.COMMISSIONS_RECEIVABLE}/${CNPJ}/sale`).pipe(
+            take(1),
+            map((response: CommissionReceivable[]) => response),
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
+                    `Ocorreu um erro ao listar as comissões a receber!`
+                );
+            })
+        );
+    }
+
 	public index(): Observable<CommissionReceivable[]> {
         return this.http.get<CommissionReceivable[]>(`${environment.URL}/${this.ROUTES.COMMISSIONS_RECEIVABLE}`).pipe(
             take(1),

@@ -71,6 +71,24 @@ export class PropertyService {
         );
     }
 
+    public sale(CNPJ: string): Observable<Property[]> {
+        return this.http.get<Property[]>(`${environment.URL}/${this.ROUTES.PROPERTIES}/${CNPJ}/sale`).pipe(
+            take(1),
+            map((response: Property[]) => response),
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401 && error.statusText === 'Unauthorized') {
+                    return this._alertService.openSnackBar(
+                        `${error.error.message}`
+                    );
+                }
+
+                return this._alertService.openSnackBar(
+                    `Ocorreu um erro ao listar os imóveis!`
+                );
+            })
+        );
+    }
+
 	public index(): Observable<Property[]> {
         return this.http.get<Property[]>(`${environment.URL}/${this.ROUTES.PROPERTIES}`).pipe(
             take(1),
