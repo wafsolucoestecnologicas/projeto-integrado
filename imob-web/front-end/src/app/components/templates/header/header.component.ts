@@ -11,11 +11,15 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 })
 export class HeaderComponent implements OnInit {
 
+    public pathPropertiesForSale: string;
+
     constructor(
         private readonly _router: Router,
         private readonly _authenticationService: AuthenticationService,
         public _matDialog: MatDialog
-    ) {}
+    ) {
+        this.pathPropertiesForSale = `/properties-for-sale/${this._authenticationService.company?.CNPJ}`;
+    }
 
     public ngOnInit(): void {}
 
