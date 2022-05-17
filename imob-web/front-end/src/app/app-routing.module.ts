@@ -12,6 +12,13 @@ const routes: Routes = [
             )
     },
     {
+        path: 'properties-for-sale/:cnpj',
+        loadChildren: () =>
+            import('./components/properties-for-sale/properties-for-sale.module').then(
+                (module) => module.PropertiesForSaleModule
+            )
+    },
+    {
         path: 'content',
         canActivate: [AuthenticationGuard],
         loadChildren: () =>
