@@ -10,6 +10,22 @@ export class PropertyService {
         this.repository = getRepository(PropertyEntity);
     }
 
+    public async sale(CNPJ: string): Promise<PropertyEntity[]> {
+        const propertyEntity: PropertyEntity[] =
+            await this.repository.find({
+                relations: [
+                    'company'
+                ],
+                where: {
+                    company: {
+                        CNPJ: CNPJ
+                    }
+                }
+            });
+
+        return propertyEntity;
+    }
+
     public async index(payload: Payload): Promise<PropertyEntity[]> {
         const propertyEntity: PropertyEntity[] =
             await this.repository.find({

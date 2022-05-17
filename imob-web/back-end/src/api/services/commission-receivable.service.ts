@@ -11,6 +11,23 @@ export class CommissionReceivableService {
         this.repository = getRepository(CommissionReceivableEntity);
     }
 
+    public async sale(CNPJ: string): Promise<CommissionReceivableEntity[]> {
+        const commissionReceivableEntity: CommissionReceivableEntity[] =
+            await this.repository.find({
+                relations: [
+                    'company',
+                    'property'
+                ],
+                where: {
+                    company: {
+                        CNPJ: CNPJ
+                    }
+                }
+            });
+
+        return commissionReceivableEntity;
+    }
+
     public async index(payalod: Payload): Promise<CommissionReceivableEntity[]> {
         const commissionReceivableEntity: CommissionReceivableEntity[] =
             await this.repository.find({
