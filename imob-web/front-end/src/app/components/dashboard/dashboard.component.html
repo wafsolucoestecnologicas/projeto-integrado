@@ -114,10 +114,10 @@
                             fxLayout="column"
                             fxLayout.lg="row"
                             fxLayout.xl="row">
-                            <div fxFlex="100" fxLayoutAlign="center center">
+                            <div fxFlex="100" fxLayoutAlign="start center">
                                 <ng-container *ngIf="showBusinessGraphic">
                                     <ngx-charts-advanced-pie-chart
-                                        [view]="[900, 300]"
+                                        [view]="[600, 300]"
                                         [scheme]="colorScheme"
                                         [results]="businessesData"
                                         [gradient]="true">
@@ -257,10 +257,10 @@
                         fxLayout="column"
                         fxLayout.lg="row"
                         fxLayout.xl="row">
-                        <div fxFlex="100" fxLayoutAlign="center center">
+                        <div fxFlex="100" fxLayoutAlign="start center">
                             <ng-container *ngIf="showLeadGraphic">
                                 <ngx-charts-advanced-pie-chart
-                                    [view]="[900, 300]"
+                                    [view]="[600, 300]"
                                     [scheme]="colorScheme"
                                     [results]="leadsData"
                                     [gradient]="true">
