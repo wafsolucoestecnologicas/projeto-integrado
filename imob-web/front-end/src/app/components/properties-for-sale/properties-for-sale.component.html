@@ -1,0 +1,91 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Imóveis à Venda</mat-card-title>
+        <mat-card-subtitle>Imóveis disponíveis para compra</mat-card-subtitle>
+    </mat-card-header>
+
+    <br />
+
+    <mat-card-content class="mat-elevation-z4">
+        <mat-toolbar>
+            <span>Imóveis</span>
+        </mat-toolbar>
+
+        <div class="container">
+            <div class="flex-container">
+                <ng-container *ngIf="propertiesForSale && propertiesForSale.length > 0">
+                    <ng-container *ngFor="let property of propertiesForSale">
+                        <div
+                            fxLayout="column"
+                            fxLayout.lg="row"
+                            fxLayout.xl="row">
+                            <div fxFlex="100">
+                                <mat-card>
+                                    <mat-card-title-group>
+                                        <mat-card-title>R$ {{ property.value || 0 | mask: 'separator.2':'.' }}</mat-card-title>
+                                        <mat-card-subtitle>Descrição: {{ property.description }}</mat-card-subtitle>
+                                        <mat-card-subtitle>Endereço: {{ searchAddress(property.id || 0) }}</mat-card-subtitle>
+                                    </mat-card-title-group>
+
+                                    <mat-card-content>
+                                        <div
+                                            fxLayout="column"
+                                            fxLayout.lg="row"
+                                            fxLayout.xl="row"
+                                            fxLayoutGap.lg="10px"
+                                            fxLayoutGap.xl="10px">
+                                            <ng-container *ngIf="property.photos && countPhotos(property.photos) > 0">
+                                                <ng-container *ngFor="let photo of parsePhotos(property.photos)">
+                                                    <div fxFlex="20">
+                                                        <mat-card>
+                                                            <img
+                                                                mat-card-image
+                                                                [src]="photo"
+                                                                alt="image"
+                                                                width="50"
+                                                                height="150"
+                                                                (click)="openDialog(photo)" />
+                                                        </mat-card>
+                                                    </div>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+
+                                        <br>
+
+                                        <div
+                                            fxLayout="column"
+                                            fxLayout.lg="row"
+                                            fxLayout.xl="row">
+                                            <div fxFlex="33.33">
+                                                <p><span>Possui Elevador</span>: {{ property.elevator ? 'Sim' : 'Não' }}</p>
+                                                <p><span>Quartos</span>: {{ property.bedrooms }}</p>
+                                                <p><span>Banheiros</span>: {{ property.bathrooms }}</p>
+                                                <p><span>Suítes</span>: {{ property.suites }}</p>
+                                            </div>
+                                            
+                                            <div fxFlex="33.33">
+                                                <p><span>Vagas de Estacionamento</span>: {{ property.parkingLots }}</p>
+                                                <p><span>Área do Terreno</span>: M² {{ property.terrainArea }}</p>
+                                                <p><span>Área Construída</span>: M² {{ property.buildingArea }}</p>
+                                                <p><span>Área Útil Total do Terreno</span>: M² {{ property.totalUtilTerrainArea }}</p>
+                                            </div>
+
+                                            <div fxFlex="33.33">
+                                                <p><span>Condomínio</span>: R$ {{ property.condominium || 0 | mask: 'separator.2':'.' }}</p>
+                                                <p><span>IPTU</span>: R$ {{ property.IPTU || 0 | mask: 'separator.2':'.' }}</p>
+                                                <p><span>Última Atualização</span>: {{ property.updatedAt | formatDateHour }}</p>
+                                            </div>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
+
+                        <br>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
