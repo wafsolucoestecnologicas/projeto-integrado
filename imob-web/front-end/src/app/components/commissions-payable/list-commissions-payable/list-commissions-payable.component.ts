@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import jsPDF from 'jspdf';
+import * as moment from 'moment';
 
 import { CommissionPayable } from 'src/app/core/interfaces/commission-payable.interface';
 import { AlertService } from 'src/app/shared/services/alert.service';
@@ -69,6 +71,40 @@ export class ListCommissionsPayableComponent implements OnInit, AfterViewInit, O
 
     public ngOnDestroy(): void {
         this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+    }
+
+    public createPDF(): void {
+        let x = 20;
+        let y = 45;
+        let total = 0;
+        const doc = new jsPDF();
+
+        doc.setFont('Arial');
+        doc.setFontSize(20);
+        doc.text('Comissões a Receber', 75, 10);
+
+        doc.setFontSize(15);
+        doc.text('Valor por Negócios', 20, 35);
+        doc.text('Valor por Imóveis', 70, 35);
+        doc.text('Imóvel', 120, 35);
+        doc.text('Data', 170, 35);
+
+        this.commissionsPayable.forEach((commissionPayable: CommissionPayable) => {
+            doc.text(`${commissionPayable.valueClosedDeals.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`, x, y);
+            x += 50;
+            doc.text(`${commissionPayable.valuePropertyCaptured.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`, x, y);
+            x += 50;
+            doc.text(`${commissionPayable.property.id}`, x, y);
+            x += 50;
+            doc.text(`${moment(commissionPayable.date).format('DD/MM/YYYY')}`, x, y);
+            x = 20;
+            y += 10;
+            total += commissionPayable.valueClosedDeals + commissionPayable.valuePropertyCaptured;
+        });
+
+        doc.text(`Total: ${total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`, 6, 65);
+        doc.output('dataurlnewwindow');
+        doc.save('comissoes-a-pagar.pdf');
     }
 
 }
