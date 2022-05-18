@@ -81,7 +81,7 @@ export class ListCommissionsPayableComponent implements OnInit, AfterViewInit, O
 
         doc.setFont('Arial');
         doc.setFontSize(20);
-        doc.text('Comissões a Receber', 75, 10);
+        doc.text('Comissões a Pagar', 75, 10);
 
         doc.setFontSize(15);
         doc.text('Valor por Negócios', 20, 35);
