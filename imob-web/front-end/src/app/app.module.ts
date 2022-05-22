@@ -33,47 +33,61 @@ import { CityService } from './core/services/city.service';
 import { StateService } from './core/services/state.service';
 import { AlertService } from './shared/services/alert.service';
 import { LoaderService } from './core/services/loader.service';
+import { SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
 
 @NgModule({
-	declarations: [
-		AppComponent
-	],
-	imports: [
-		BrowserModule,
-		BrowserAnimationsModule,
-		AppRoutingModule,
-		CoreModule,
-		SharedModule
-	],
-	providers: [
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        SocialLoginModule,
+        AppRoutingModule,
+        CoreModule,
+        SharedModule
+    ],
+    providers: [
 		{
-			provide: HTTP_INTERCEPTORS,
-			useClass: HeaderInterceptor,
-			multi: true
-		},
-		AuthenticationGuard,
-		AuthenticationService,
-		ProfileService,
-		UserService,
-		CompanyService,
-		ManagerService,
-		AdvisorService,
-		BrokerService,
-		SecretaryService,
-		OwnerService,
-		CustomerService,
-		PropertyService,
-		BusinessService,
-		LeadService,
-		CommissionReceivableService,
-		CommissionPayableService,
-		AddressService,
-		NeighborhoodService,
-		CityService,
-		StateService,
-		AlertService,
-		LoaderService
-	],
-	bootstrap: [AppComponent]
+            provide: 'SocialAuthServiceConfig',
+            useValue: {
+                autoLogin: false,
+                providers: [
+                    {
+                        id: FacebookLoginProvider.PROVIDER_ID,
+                        provider: new FacebookLoginProvider(
+							'528234648840969'
+						)
+                    }
+                ]
+            } as SocialAuthServiceConfig
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HeaderInterceptor,
+            multi: true
+        },
+        AuthenticationGuard,
+        AuthenticationService,
+        ProfileService,
+        UserService,
+        CompanyService,
+        ManagerService,
+        AdvisorService,
+        BrokerService,
+        SecretaryService,
+        OwnerService,
+        CustomerService,
+        PropertyService,
+        BusinessService,
+        LeadService,
+        CommissionReceivableService,
+        CommissionPayableService,
+        AddressService,
+        NeighborhoodService,
+        CityService,
+        StateService,
+        AlertService,
+        LoaderService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
