@@ -23,10 +23,10 @@ var App = /** @class */ (function () {
             case 'production':
                 this.production = {
                     type: 'postgres',
-                    host: 'tcc-puc-minas-db-1.c79fjwhk0fpx.us-east-1.rds.amazonaws.com',
+                    host: 'tcc-puc-minas-db-2.c79fjwhk0fpx.us-east-1.rds.amazonaws.com',
                     port: 5432,
                     username: 'tccpucminasadmin',
-                    password: '9MqS97pbzvjSQprORZ6t',
+                    password: 'yFs5jWYIijt0B0GoemDK',
                     database: 'imob_web',
                     synchronize: false,
                     logging: true,
