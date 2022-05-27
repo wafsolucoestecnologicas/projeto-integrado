@@ -50,3 +50,7 @@
 button {
     margin-right: 15px;
 }
+
+mat-sidenav-container {
+    height: calc(5vh - 65px);
+}
