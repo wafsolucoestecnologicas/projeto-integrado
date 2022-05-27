@@ -54,7 +54,7 @@ import { SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider } fro
                     {
                         id: FacebookLoginProvider.PROVIDER_ID,
                         provider: new FacebookLoginProvider(
-							'528234648840969'
+							'431396098392347'
 						)
                     }
                 ]
