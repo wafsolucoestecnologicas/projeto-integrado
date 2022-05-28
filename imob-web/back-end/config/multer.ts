@@ -6,6 +6,15 @@ const storage = multer.diskStorage({
 	destination: (request, file, callback) => {
 		const id = String(request.query.id);
 		const CNPJ = request.payload.company.CNPJ;
+
+		if (!fs.existsSync(path.resolve('public', 'uploads')))
+			fs.mkdirSync(path.resolve('public', 'uploads'));
+
+		if (!fs.existsSync(path.resolve('public', 'uploads', 'properties')))
+			fs.mkdirSync(path.resolve('public', 'uploads', 'properties'));
+
+		if (!fs.existsSync(path.resolve('public', 'uploads', 'businesses')))
+			fs.mkdirSync(path.resolve('public', 'uploads', 'businesses'));
 		
 		switch (request.baseUrl) {
 			case '/properties':
