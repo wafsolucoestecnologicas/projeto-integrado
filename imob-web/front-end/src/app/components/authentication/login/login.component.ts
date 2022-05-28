@@ -106,11 +106,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                             }, 10000);
                         }
 
-                        if (data?.manager) {
-                            this._router.navigate(['content/dashboard']);
-                        } else {
-                            this._router.navigate(['content']);
-                        }
+                        this._router.navigate(['content/dashboard']);
                     }
                 });
 
