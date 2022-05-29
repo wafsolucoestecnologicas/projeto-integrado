@@ -121,7 +121,7 @@ export class CommissionReceivableService {
         return result;
     }
 
-    public async calculateTotalValueReceivable(month: string): Promise<any> {
+    public async calculateTotalValueReceivable(month: string, payload: Payload): Promise<any> {
         const dateFrom: string = moment(month).startOf('month').format('YYYY-MM-DD');
         const dateTo: string = moment(month).endOf('month').format('YYYY-MM-DD');
 
@@ -131,6 +131,7 @@ export class CommissionReceivableService {
                         SUM (commissions_receivable.value) AS "totalValueReceivable"
                     FROM commission.commissions_receivable AS commissions_receivable
                     WHERE (commissions_receivable.date BETWEEN '${dateFrom}' AND '${dateTo}')
+                    AND (commissions_receivable.company_id = ${payload.company.id})
                 `);
 
         const result: any =

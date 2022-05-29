@@ -110,7 +110,7 @@ export class CommissionPayableService {
         return result;
     }
 
-    public async calculateTotalValuePayable(month: string): Promise<any> {
+    public async calculateTotalValuePayable(month: string, payload: Payload): Promise<any> {
         const dateFrom: string = moment(month).startOf('month').format('YYYY-MM-DD');
         const dateTo: string = moment(month).endOf('month').format('YYYY-MM-DD');
 
@@ -121,6 +121,7 @@ export class CommissionPayableService {
                     SUM (commissions_payable.value_property_captured) AS "totalValuePropertyCaptured"
                 FROM commission.commissions_payable AS commissions_payable
                 WHERE (commissions_payable.date BETWEEN '${dateFrom}' AND '${dateTo}')
+                AND (commissions_payable.company_id = ${payload.company.id})
             `);
 
         const result: any =

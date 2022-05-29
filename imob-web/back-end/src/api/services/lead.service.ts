@@ -149,7 +149,7 @@ export class LeadService {
 
     /* public async advancedLeadSearch(): Promise<LeadEntity[]> { } */
 
-    public async calculateTotalAmountLeads(month: string): Promise<any> {
+    public async calculateTotalAmountLeads(month: string, payload: Payload): Promise<any> {
         const dateFrom: string = moment(month).startOf('month').format('YYYY-MM-DD');
         const dateTo: string = moment(month).endOf('month').format('YYYY-MM-DD');
 
@@ -158,7 +158,8 @@ export class LeadService {
                 SELECT
                     COUNT (*) AS "totalLeads"
                 FROM business.leads
-                WHERE (leads.created_at BETWEEN '${dateFrom}' AND '${dateTo}');
+                WHERE (leads.created_at BETWEEN '${dateFrom}' AND '${dateTo}')
+                AND (leads.company_id = ${payload.company.id});
             `);
 
         const result: any =

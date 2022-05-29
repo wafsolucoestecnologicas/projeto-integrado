@@ -141,7 +141,7 @@ export class LeadController {
 
             if (request.query.month) {
                 const result: any =
-                    await leadService.calculateTotalAmountLeads(String(request.query.month));
+                    await leadService.calculateTotalAmountLeads(String(request.query.month), request.payload);
 
                 return response.status(200).json(result);
             } else {
