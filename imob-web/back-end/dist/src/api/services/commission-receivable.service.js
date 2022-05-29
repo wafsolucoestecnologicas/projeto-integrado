@@ -193,7 +193,7 @@ var CommissionReceivableService = /** @class */ (function () {
             });
         });
     };
-    CommissionReceivableService.prototype.calculateTotalValueReceivable = function (month) {
+    CommissionReceivableService.prototype.calculateTotalValueReceivable = function (month, payload) {
         return __awaiter(this, void 0, void 0, function () {
             var dateFrom, dateTo, query, result;
             return __generator(this, function (_a) {
@@ -201,7 +201,7 @@ var CommissionReceivableService = /** @class */ (function () {
                     case 0:
                         dateFrom = (0, moment_1.default)(month).startOf('month').format('YYYY-MM-DD');
                         dateTo = (0, moment_1.default)(month).endOf('month').format('YYYY-MM-DD');
-                        return [4 /*yield*/, this.repository.query("\n                    SELECT\n                        SUM (commissions_receivable.value) AS \"totalValueReceivable\"\n                    FROM commission.commissions_receivable AS commissions_receivable\n                    WHERE (commissions_receivable.date BETWEEN '" + dateFrom + "' AND '" + dateTo + "')\n                ")];
+                        return [4 /*yield*/, this.repository.query("\n                    SELECT\n                        SUM (commissions_receivable.value) AS \"totalValueReceivable\"\n                    FROM commission.commissions_receivable AS commissions_receivable\n                    WHERE (commissions_receivable.date BETWEEN '" + dateFrom + "' AND '" + dateTo + "')\n                    AND (commissions_receivable.company_id = " + payload.company.id + ")\n                ")];
                     case 1:
                         query = _a.sent();
                         result = query.map(function (object) {

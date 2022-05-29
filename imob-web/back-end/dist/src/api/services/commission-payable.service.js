@@ -176,7 +176,7 @@ var CommissionPayableService = /** @class */ (function () {
             });
         });
     };
-    CommissionPayableService.prototype.calculateTotalValuePayable = function (month) {
+    CommissionPayableService.prototype.calculateTotalValuePayable = function (month, payload) {
         return __awaiter(this, void 0, void 0, function () {
             var dateFrom, dateTo, query, result;
             return __generator(this, function (_a) {
@@ -184,7 +184,7 @@ var CommissionPayableService = /** @class */ (function () {
                     case 0:
                         dateFrom = (0, moment_1.default)(month).startOf('month').format('YYYY-MM-DD');
                         dateTo = (0, moment_1.default)(month).endOf('month').format('YYYY-MM-DD');
-                        return [4 /*yield*/, this.repository.query("\n                SELECT\n                    SUM (commissions_payable.value_closed_deals) AS \"totalValueClosedDeals\",\n                    SUM (commissions_payable.value_property_captured) AS \"totalValuePropertyCaptured\"\n                FROM commission.commissions_payable AS commissions_payable\n                WHERE (commissions_payable.date BETWEEN '" + dateFrom + "' AND '" + dateTo + "')\n            ")];
+                        return [4 /*yield*/, this.repository.query("\n                SELECT\n                    SUM (commissions_payable.value_closed_deals) AS \"totalValueClosedDeals\",\n                    SUM (commissions_payable.value_property_captured) AS \"totalValuePropertyCaptured\"\n                FROM commission.commissions_payable AS commissions_payable\n                WHERE (commissions_payable.date BETWEEN '" + dateFrom + "' AND '" + dateTo + "')\n                AND (commissions_payable.company_id = " + payload.company.id + ")\n            ")];
                     case 1:
                         query = _a.sent();
                         result = query.map(function (object) {

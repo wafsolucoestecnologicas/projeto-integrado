@@ -220,7 +220,7 @@ var CommissionReceivableController = /** @class */ (function () {
                         _a.trys.push([0, 4, , 5]);
                         commissionReceivableService = new commission_receivable_service_1.CommissionReceivableService();
                         if (!request.query.month) return [3 /*break*/, 2];
-                        return [4 /*yield*/, commissionReceivableService.calculateTotalValueReceivable(String(request.query.month))];
+                        return [4 /*yield*/, commissionReceivableService.calculateTotalValueReceivable(String(request.query.month), request.payload)];
                     case 1:
                         result = _a.sent();
                         return [2 /*return*/, response.status(200).json(result)];

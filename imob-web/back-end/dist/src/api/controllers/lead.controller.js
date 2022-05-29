@@ -215,7 +215,7 @@ var LeadController = /** @class */ (function () {
                         _a.trys.push([0, 4, , 5]);
                         leadService = new lead_service_1.LeadService();
                         if (!request.query.month) return [3 /*break*/, 2];
-                        return [4 /*yield*/, leadService.calculateTotalAmountLeads(String(request.query.month))];
+                        return [4 /*yield*/, leadService.calculateTotalAmountLeads(String(request.query.month), request.payload)];
                     case 1:
                         result = _a.sent();
                         return [2 /*return*/, response.status(200).json(result)];

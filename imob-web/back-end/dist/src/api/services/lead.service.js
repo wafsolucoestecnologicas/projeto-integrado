@@ -218,7 +218,7 @@ var LeadService = /** @class */ (function () {
     };
     /** @TODO Implementar método de pesquisa avançada de leads */
     /* public async advancedLeadSearch(): Promise<LeadEntity[]> { } */
-    LeadService.prototype.calculateTotalAmountLeads = function (month) {
+    LeadService.prototype.calculateTotalAmountLeads = function (month, payload) {
         return __awaiter(this, void 0, void 0, function () {
             var dateFrom, dateTo, query, result;
             return __generator(this, function (_a) {
@@ -226,7 +226,7 @@ var LeadService = /** @class */ (function () {
                     case 0:
                         dateFrom = (0, moment_1.default)(month).startOf('month').format('YYYY-MM-DD');
                         dateTo = (0, moment_1.default)(month).endOf('month').format('YYYY-MM-DD');
-                        return [4 /*yield*/, this.repository.query("\n                SELECT\n                    COUNT (*) AS \"totalLeads\"\n                FROM business.leads\n                WHERE (leads.created_at BETWEEN '" + dateFrom + "' AND '" + dateTo + "');\n            ")];
+                        return [4 /*yield*/, this.repository.query("\n                SELECT\n                    COUNT (*) AS \"totalLeads\"\n                FROM business.leads\n                WHERE (leads.created_at BETWEEN '" + dateFrom + "' AND '" + dateTo + "')\n                AND (leads.company_id = " + payload.company.id + ");\n            ")];
                     case 1:
                         query = _a.sent();
                         result = query.map(function (object) {
