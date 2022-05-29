@@ -23,7 +23,7 @@ export const validateURLWithoutAuthentication = (url: string, method: string): b
 
     const paths: string[] = [
         'docs',
-        'upload',
+        'uploads',
         'authentications',
         'users'
     ];
