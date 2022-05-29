@@ -69,7 +69,7 @@ var validateURLWithoutAuthentication = function (url, method) {
     var isValid = false;
     var paths = [
         'docs',
-        'upload',
+        'uploads',
         'authentications',
         'users'
     ];
