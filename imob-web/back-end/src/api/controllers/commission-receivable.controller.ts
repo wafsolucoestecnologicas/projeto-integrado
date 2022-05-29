@@ -140,7 +140,7 @@ export class CommissionReceivableController {
 
             if (request.query.month) {
                 const result: any =
-                    await commissionReceivableService.calculateTotalValueReceivable(String(request.query.month));
+                    await commissionReceivableService.calculateTotalValueReceivable(String(request.query.month), request.payload);
 
                 return response.status(200).json(result);
             } else {

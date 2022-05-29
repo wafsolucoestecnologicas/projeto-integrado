@@ -126,7 +126,7 @@ export class CommissionPayableController {
 
             if (request.query.month) {
                 const result: any =
-                    await commissionPayableService.calculateTotalValuePayable(String(request.query.month));
+                    await commissionPayableService.calculateTotalValuePayable(String(request.query.month), request.payload);
 
                 return response.status(200).json(result);
             } else {
