@@ -35,6 +35,9 @@ export class PropertiesForSaleComponent implements OnInit, OnDestroy {
 	private CNPJ: string;
 	public propertiesForSale: Property[];
 	public preview: any[];
+	public loadedAdresses: boolean;
+	public loadedNeighborhoods: boolean;
+	public loadedCities: boolean;
 
     constructor(
 		private readonly _router: Router,
@@ -51,6 +54,9 @@ export class PropertiesForSaleComponent implements OnInit, OnDestroy {
 		this.commissionsReceivable = new Array<CommissionReceivable>();
 		this.propertiesForSale = new Array<Property>();
 		this.preview = new Array<any>();
+		this.loadedAdresses = false;
+		this.loadedNeighborhoods = false;
+		this.loadedCities = false;
 	}
 
     public ngOnInit(): void {
@@ -109,6 +115,7 @@ export class PropertiesForSaleComponent implements OnInit, OnDestroy {
             .subscribe((data: Address[]) => {
                 if (data) {
                     this.adresses = data;
+					this.loadedAdresses = true;
                 }
             });
 
@@ -121,6 +128,7 @@ export class PropertiesForSaleComponent implements OnInit, OnDestroy {
             .subscribe((data: Neighborhood[]) => {
                 if (data) {
                     this.neighborhoods = data;
+					this.loadedNeighborhoods = true;
                 }
             });
 
@@ -133,6 +141,7 @@ export class PropertiesForSaleComponent implements OnInit, OnDestroy {
             .subscribe((data: City[]) => {
                 if (data) {
                     this.cities = data;
+					this.loadedCities = true;
                 }
             });
 

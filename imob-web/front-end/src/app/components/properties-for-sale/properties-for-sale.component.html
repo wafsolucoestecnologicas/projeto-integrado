@@ -13,7 +13,8 @@
 
         <div class="container">
             <div class="flex-container">
-                <ng-container *ngIf="propertiesForSale && propertiesForSale.length > 0">
+                <ng-container *ngIf="propertiesForSale && propertiesForSale.length > 0 &&
+                    loadedAdresses && loadedNeighborhoods && loadedCities">
                     <ng-container *ngFor="let property of propertiesForSale">
                         <div
                             fxLayout="column"
