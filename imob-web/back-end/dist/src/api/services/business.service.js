@@ -349,7 +349,7 @@ var BusinessService = /** @class */ (function () {
             });
         });
     };
-    BusinessService.prototype.calculateTotalAmountBusinesses = function (month) {
+    BusinessService.prototype.calculateTotalAmountBusinesses = function (month, payload) {
         return __awaiter(this, void 0, void 0, function () {
             var dateFrom, dateTo, query, result;
             return __generator(this, function (_a) {
@@ -357,7 +357,7 @@ var BusinessService = /** @class */ (function () {
                     case 0:
                         dateFrom = (0, moment_1.default)(month).startOf('month').format('YYYY-MM-DD');
                         dateTo = (0, moment_1.default)(month).endOf('month').format('YYYY-MM-DD');
-                        return [4 /*yield*/, this.repository.query("\n                SELECT\n                    SUM (CASE WHEN (businesses.status = 0) THEN (1) ELSE (0) END) AS \"totalAmountProspecting\",\n                    SUM (CASE WHEN (businesses.status = 1) THEN (1) ELSE (0) END) AS \"totalAmountVisit\",\n                    SUM (CASE WHEN (businesses.status = 2) THEN (1) ELSE (0) END) AS \"totalAmountProposal\",\n                    SUM (CASE WHEN (businesses.status = 3) THEN (1) ELSE (0) END) AS \"totalAmountRejected\",\n                    SUM (CASE WHEN (businesses.status = 4) THEN (1) ELSE (0) END) AS \"totalAmountClosed\",\n                    COUNT (*) AS \"totalAmountBusinesses\"\n                FROM business.businesses AS businesses\n                WHERE (businesses.created_at BETWEEN '" + dateFrom + "' AND '" + dateTo + "')\n            ")];
+                        return [4 /*yield*/, this.repository.query("\n                SELECT\n                    SUM (CASE WHEN (businesses.status = 0) THEN (1) ELSE (0) END) AS \"totalAmountProspecting\",\n                    SUM (CASE WHEN (businesses.status = 1) THEN (1) ELSE (0) END) AS \"totalAmountVisit\",\n                    SUM (CASE WHEN (businesses.status = 2) THEN (1) ELSE (0) END) AS \"totalAmountProposal\",\n                    SUM (CASE WHEN (businesses.status = 3) THEN (1) ELSE (0) END) AS \"totalAmountRejected\",\n                    SUM (CASE WHEN (businesses.status = 4) THEN (1) ELSE (0) END) AS \"totalAmountClosed\",\n                    COUNT (*) AS \"totalAmountBusinesses\"\n                FROM business.businesses AS businesses\n                WHERE (businesses.created_at BETWEEN '" + dateFrom + "' AND '" + dateTo + "')\n                AND (businesses.company_id = " + payload.company.id + ")\n            ")];
                     case 1:
                         query = _a.sent();
                         result = query.map(function (object) {

@@ -539,7 +539,7 @@ var BusinessController = /** @class */ (function () {
                         _a.trys.push([0, 4, , 5]);
                         businessService = new business_service_1.BusinessService();
                         if (!request.query.month) return [3 /*break*/, 2];
-                        return [4 /*yield*/, businessService.calculateTotalAmountBusinesses(String(request.query.month))];
+                        return [4 /*yield*/, businessService.calculateTotalAmountBusinesses(String(request.query.month), request.payload)];
                     case 1:
                         result = _a.sent();
                         return [2 /*return*/, response.status(200).json(result)];
