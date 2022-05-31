@@ -256,7 +256,7 @@ export class BusinessService {
         return updateResult;
     }
 
-    public async calculateTotalAmountBusinesses(month: string): Promise<any> {
+    public async calculateTotalAmountBusinesses(month: string, payload: Payload): Promise<any> {
         const dateFrom: string = moment(month).startOf('month').format('YYYY-MM-DD');
         const dateTo: string = moment(month).endOf('month').format('YYYY-MM-DD');
 
@@ -271,6 +271,7 @@ export class BusinessService {
                     COUNT (*) AS "totalAmountBusinesses"
                 FROM business.businesses AS businesses
                 WHERE (businesses.created_at BETWEEN '${dateFrom}' AND '${dateTo}')
+                AND (businesses.company_id = ${payload.company.id})
             `);
 
         const result: any =

@@ -102,7 +102,7 @@ export class ListCommissionsPayableComponent implements OnInit, AfterViewInit, O
             total += commissionPayable.valueClosedDeals + commissionPayable.valuePropertyCaptured;
         });
 
-        doc.text(`Total: ${total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`, 6, 65);
+        doc.text(`Total: ${total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`, 6, y);
         doc.output('dataurlnewwindow');
         doc.save('comissoes-a-pagar.pdf');
     }

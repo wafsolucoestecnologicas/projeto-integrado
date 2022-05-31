@@ -408,7 +408,7 @@ export class BusinessController {
 
             if (request.query.month) {
                 const result: any =
-                    await businessService.calculateTotalAmountBusinesses(String(request.query.month));
+                    await businessService.calculateTotalAmountBusinesses(String(request.query.month), request.payload);
 
                 return response.status(200).json(result);
             } else {
